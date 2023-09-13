@@ -8,6 +8,7 @@ router.get("/", function (req, res, next) {
 });
  
 router.post("/", async function (req, res, next) {
+  console.log('posting register form error ......... !')
   try {
     console.log(req.body);
 
