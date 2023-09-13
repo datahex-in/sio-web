@@ -66,6 +66,7 @@ var Programe = require("./routes/ejsRoutes/programeEjs");
 var News = require("./routes/ejsRoutes/newsEjs");
 var Deconquista = require("./routes/ejsRoutes/deconquistaEjs");
 var Calender = require("./routes/ejsRoutes/calenderEjs");
+var Register = require("./routes/ejsRoutes/registerEjs.js");
 
 // ADDED NEWS ROUTES-------
 var Privacy = require("./routes/ejsRoutes/privacyEjs");
@@ -117,6 +118,7 @@ app.use("/programe", Programe);
 app.use("/news", News);
 app.use("/deconquista", Deconquista);
 app.use("/calender", Calender);
+app.use("/register", Register);
 
 // LATESTS-----
 app.use("/privacy", Privacy);
