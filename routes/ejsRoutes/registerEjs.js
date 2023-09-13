@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const Registration = require("../../models/registration");
+const Registration = require("../../models/Registration");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
