@@ -1,5 +1,5 @@
 const { default: mongoose } = require("mongoose");
-const Registration = require("../models/registration");
+const Registration = require("../models/Registration");
 
 // @desc      CREATE NEW REGISTRATION
 // @route     POST /api/v1/registration
