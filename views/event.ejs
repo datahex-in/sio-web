@@ -1,0 +1,62 @@
+<body>
+  <div class="main-wrapper">
+    <!-- Preloader start -->
+    <!-- <div id="preloader">
+      <div class="preloader">
+        <span></span>
+        <span></span>
+      </div>
+    </div> -->
+    <!-- Preloader End -->
+
+    <!-- ========== Start header ========== -->
+   <%-include("layouts/header.ejs")%>
+      <!-- ========== End header ========== -->
+
+
+      <!-- Page Banner Start -->
+      <div id="bg-color-purple">
+        <div class="container">
+
+          <div class="events-page-main">
+            <div class="event-title">
+              <h1>Events</h1>
+            </div>
+            <!-- <div class="container"> -->
+            <div class="row">
+              <% eventData.forEach(item=> { %>
+              <div class="col-12 col-md-4  event-box">
+                <div class="event-box-section">
+                  <div class="workshop">
+                    <button>Workshop</button>
+                  </div>
+                  <div class="event-img">
+                    <img style="object-fit: cover;" src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.image}` %>" alt="">
+                  </div>
+                  <div class="event-content">
+                    <div class="event-content-head-title">
+                      <p><span>One day Workshop on</span><br><strong style="font-size: 23px;"><%= item.theme %></strong></p>
+                    </div>
+                    <div class="event-content-para">
+                      <p><%= item.shortDescription %></p>
+                    </div>
+                    <div class="know-more-btn">
+                      <a href="/event_about"> <button>Know More <i class="fas fa-arrow-right"></i></button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% }); %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div>
+     <!-- ========== Start footer ========== -->
+     <%-include("layouts/footer.ejs")%>
+     <!-- ========== End footer ========== --> 
+
+</body>
+
+
