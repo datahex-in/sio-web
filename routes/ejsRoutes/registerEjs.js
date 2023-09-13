@@ -37,6 +37,8 @@ router.post("/", async function (req, res, next) {
     return res.status(200).send("Successfully registered");
   } catch (error) {
     console.error(error);
+    console.log('error :')
+    console.log(error)
     return res.status(500).json({ error: "Internal server error" });
   }
 });
