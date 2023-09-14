@@ -8,14 +8,25 @@
     <div id="bg-color-purple">
       <div class="meeta-hero-section-3 "
         style="background-image: url('assets/images/header-svg.svg'); background-position: bottom;background-size: cover;position: relative; z-index: 3;">
+        <div class="register-button-m">
+          <a href="/register"> <button>Register</button></a>
+        </div>
       </div>
+
+
       <div class="about-sio">
         <div class="container">
           <div class="title-para">
             <h1 class="about-sio-title">About us</h1>
-            <p class="about-sio-para"> <%= aboutData.vision %> </p> <br>
-            <p class="about-sio-para"> <%= aboutData.mission %> </p> <br>
-            <p class="about-sio-para"> <%= aboutData.shortDescription %> </p>
+            <p class="about-sio-para">
+              <%= aboutData.vision %>
+            </p> <br>
+            <p class="about-sio-para">
+              <%= aboutData.mission %>
+            </p> <br>
+            <p class="about-sio-para">
+              <%= aboutData.shortDescription %>
+            </p>
           </div>
         </div>
       </div>
@@ -90,30 +101,32 @@
             <ul class="c-testimonials__items swiper-wrapper">
               <!-- CARD 1 -->
               <% eventData.forEach(item=> { %>
-              <li class="c-testimonials__item c-card-testimonial swiper-slide">
-                <div class="c-card-testimonial__profile">
-                  <img style="object-fit: cover;" src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.image}` %>" alt="" class="c-card-testimonial__image">
-                </div>
-
-                <div class="c-card-testimonial__description">
-                  <span class="c-card-testimonial__job">
-                    One day Workshop on
-                  </span>
-
-                  <div class="c-card-testimonial__author">
-                    <%= item.title %>
+                <li class="c-testimonials__item c-card-testimonial swiper-slide">
+                  <div class="c-card-testimonial__profile">
+                    <img style="object-fit: cover;"
+                      src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.image}` %>" alt=""
+                      class="c-card-testimonial__image">
                   </div>
 
-                  <div class="c-card-testimonial__excerpt">
-                    <%= item.shortDescription %>
-                  </div>
+                  <div class="c-card-testimonial__description">
+                    <span class="c-card-testimonial__job">
+                      One day Workshop on
+                    </span>
 
-                  <a href="/register" class="c-card-testimonial__link " id="register_card_btn" target="_blank">
-                    Register <i class="fa fa-arrow-right"></i>
-                  </a>
-                </div>
-              </li>
-              <% }); %>
+                    <div class="c-card-testimonial__author">
+                      <%= item.title %>
+                    </div>
+
+                    <div class="c-card-testimonial__excerpt">
+                      <%= item.shortDescription %>
+                    </div>
+
+                    <a href="/register" class="c-card-testimonial__link " id="register_card_btn" target="_blank">
+                      Register <i class="fa fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </li>
+                <% }); %>
             </ul>
 
             <div class="c-testimonials__upcoming">
