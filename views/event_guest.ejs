@@ -4,14 +4,7 @@
 <body>
     <div class="main-wrapper">
 
-        <!-- Preloader start -->
-        <!-- <div id="preloader">
-      <div class="preloader">
-        <span></span>
-        <span></span>
-      </div>
-    </div> -->
-        <!-- Preloader End -->
+
 
         <!-- ========== Start header ========== -->
         <%-include('mainHeader.ejs')%>
@@ -25,19 +18,59 @@
                         <div class="call-papers">
                             <img src="/assets/images/call-papers.svg" alt="">
                         </div>
-                        <%-include("eventNav.ejs")%>
+
+
+
+                        <% speakerData.forEach(item=> { %>
+
+
+                            <%-include("eventNav.ejs")%>
                     </div>
-                    <% speakerData.forEach(item=> { %>
-                    <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.photo}` %>" alt="">
-                    <h3><%= item.name %></h3>
-                    <p><%= item.designation %></p>
-                    <% }); %>
+
+                    <div class="clearfix pb-5">
+                        <div class="col-12 col-md-4 mb-5">
+                            <div class="guest library-cta">
+
+                                <div class="guest-box-section">
+
+                                    <div class="guest-img">
+                                        <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.photo}` %>"
+                                            alt="">
+                                    </div>
+                                    <div class="event_content_gust">
+                                        <div class="guest-content-head-title">
+                                            <h3>
+                                                <%= item.name %>
+                                            </h3>
+                                        </div>
+                                        <div class="guest-content-para">
+                                            <p>
+                                                <%= item.designation %>
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                        <% }); %>
+
+                    </div>
+
                 </div>
+
+
+
             </div>
 
     </div>
-    <div>
-        <%-include('mainFooter.ejs')%>
+
+    <div class="clearfix"></div>
+    <%-include('mainFooter.ejs')%>
 
 </body>
 
