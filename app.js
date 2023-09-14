@@ -90,6 +90,7 @@ const appointment = require("./routes/appointment.js");
 const franchise = require("./routes/franchise.js");
 const dashboard = require("./routes/dashboard.js");
 const faq = require("./routes/faq.js");
+const about = require("./routes/aboutUs.js")
 // const gallery = require("./routes/gallery");
 const news = require("./routes/news");
 const speakers = require("./routes/speakers");
@@ -144,6 +145,7 @@ app.use("/api/v1/appointment", appointment);
 app.use("/api/v1/franchise", franchise);
 app.use("/api/v1/dashboard", dashboard);
 app.use("/api/v1/faq", faq);
+app.use("/api/v1/about-us", about);
 // app.use("/api/v1/gallery", gallery);
 app.use("/api/v1/news", news);
 app.use("/api/v1/speakers", speakers);
