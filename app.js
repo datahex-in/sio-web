@@ -16,8 +16,10 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
   "http://localhost:8072",
+  "https://sio-kerala-deconquista-qywe3.ondigitalocean.app",
   "https://lemon-grass-0c88ad110.3.azurestaticapps.net",
   "https://lively-wave-04701e810.3.azurestaticapps.net",
+  "https://sio-kerala-admin-6gv6l.ondigitalocean.app",
 ];
 
 //cors policy
