@@ -13,19 +13,9 @@
         <div class="container">
           <div class="title-para">
             <h1 class="about-sio-title">About us</h1>
-            <p class="about-sio-para"> Welcome to DeConquista – a journey into critical engagements with contemporary
-              sociopolitical institutions, knowledge, and imaginations. Our series of academic programs delve deep into
-              the impacts of colonialism, particularly in the aftermath of the Fall of Granada in 1492 and the
-              'Reconquista' that heralded it, shaping the foundations of political modernity. </p> <br>
-            <p class="about-sio-para"> DeConquista scrutinizes the concepts and institutions that evolved through
-              various colonial transactions, challenging Eurocentric forms of knowledge, politics, socio-religious
-              establishments, and racial imaginings. From the moment Vasco da Gama reached the Malabar coast in 1498 to
-              the present day, our programs navigate the complexities of Eurocentric influences, seeking to reposition
-              knowledge, power, and resistance.</p> <br>
-            <p class="about-sio-para"> Embark on this intellectual odyssey through a four-month-long academic journey,
-              comprising a series of seminars, workshops, public discussions, book talks, online conclave, and an
-              academic conference. Join us in re-reading / de reading the history, reclaiming narratives, and reshaping
-              contemporary discourse. DeConquista: Unraveling, Relocating, and Reimagining. </p>
+            <p class="about-sio-para"> <%= aboutData.vision %> </p> <br>
+            <p class="about-sio-para"> <%= aboutData.mission %> </p> <br>
+            <p class="about-sio-para"> <%= aboutData.shortDescription %> </p>
           </div>
         </div>
       </div>
@@ -93,9 +83,10 @@
           <div class="c-testimonials">
             <ul class="c-testimonials__items swiper-wrapper">
               <!-- CARD 1 -->
+              <% eventData.forEach(item=> { %>
               <li class="c-testimonials__item c-card-testimonial swiper-slide">
                 <div class="c-card-testimonial__profile">
-                  <img src="/assets/images/Rectangle 986.png" alt="" class="c-card-testimonial__image">
+                  <img style="object-fit: cover;" src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.image}` %>" alt="" class="c-card-testimonial__image">
                 </div>
 
                 <div class="c-card-testimonial__description">
@@ -104,13 +95,11 @@
                   </span>
 
                   <div class="c-card-testimonial__author">
-                    Islam as a
-                    Discursive Tradition
+                    <%= item.title %>
                   </div>
 
                   <div class="c-card-testimonial__excerpt">
-                    Lead by T. Anees Ahamed10 September 2023, Sunday 10:00 AMVenue: Chair for Islamic Studies and
-                    Research,Calicut University.
+                    <%= item.shortDescription %>
                   </div>
 
                   <a href="/register" class="c-card-testimonial__link " id="register_card_btn" target="_blank">
@@ -118,33 +107,7 @@
                   </a>
                 </div>
               </li>
-
-              <!-- CARD 2 -->
-              <li class="c-testimonials__item c-card-testimonial swiper-slide">
-                <div class="c-card-testimonial__profile">
-                  <img src="/assets/images/Rectangle 986.png" alt="" class="c-card-testimonial__image">
-                </div>
-
-                <div class="c-card-testimonial__description">
-                  <span class="c-card-testimonial__job">
-                    One day Workshop on
-                  </span>
-
-                  <div class="c-card-testimonial__author">
-                    Islam as a
-                    Discursive Tradition
-                  </div>
-
-                  <div class="c-card-testimonial__excerpt">
-                    Lead by T. Anees Ahamed10 September 2023, Sunday 10:00 AMVenue: Chair for Islamic Studies and
-                    Research,Calicut University.
-                  </div>
-
-                  <a href="/register" class="c-card-testimonial__link " id="register_card_btn" target="_blank">
-                    Register <i class="fa fa-arrow-right"></i>
-                  </a>
-                </div>
-              </li>
+              <% }); %>
             </ul>
 
             <div class="c-testimonials__upcoming">
