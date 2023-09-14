@@ -37,7 +37,7 @@
                     <div class="event-content">
                       <div class="event-content-head-title">
                         <p><span>One day Workshop on</span><br><strong style="font-size: 23px;">
-                            <%= item.theme.substring(0,100)%>
+                            <%= item.description.substring(0,100)%>
                           </strong></p>
                       </div>
                       <div class="event-content-para">
@@ -46,7 +46,8 @@
                         </p>
                       </div>
                       <div class="know-more-btn">
-                        <a href="/event_about/<%= item._id %>"> <button>Know More <i class="fas fa-arrow-right"></i></button></a>
+                        <a href="/event_about/<%= item._id %>"> <button>Know More <i
+                              class="fas fa-arrow-right"></i></button></a>
                       </div>
                     </div>
                   </div>
