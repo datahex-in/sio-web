@@ -14446,11 +14446,12 @@ html body .hide {
 }
 @media (max-width: 500px) {
   .bottombarContainer {
+    padding: 0px 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 0 -2px 5px;
+    margin: 0 -4px -8px;
     border-radius: 100px;
     position: fixed;
     bottom: 0;

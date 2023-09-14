@@ -67,9 +67,10 @@ var Faq = require("./routes/ejsRoutes/faqEjs");
 var Speaker = require("./routes/ejsRoutes/speakerEjs");
 var Programe = require("./routes/ejsRoutes/programeEjs");
 var News = require("./routes/ejsRoutes/newsEjs");
+var Article = require("./routes/ejsRoutes/articleEjs");
 var Deconquista = require("./routes/ejsRoutes/deconquistaEjs");
 var Calender = require("./routes/ejsRoutes/calenderEjs");
-var Register = require("./routes/ejsRoutes/registerEjs.js");
+var Register = require("./routes/ejsRoutes/registerEjs");
 
 // ADDED NEWS ROUTES-------
 var Privacy = require("./routes/ejsRoutes/privacyEjs");
@@ -119,6 +120,7 @@ app.use("/faq", Faq);
 app.use("/speaker", Speaker);
 app.use("/programe", Programe);
 app.use("/news", News);
+app.use("/article", Article);
 app.use("/deconquista", Deconquista);
 app.use("/calender", Calender);
 app.use("/register", Register);
