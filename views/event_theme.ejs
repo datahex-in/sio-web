@@ -1,5 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="en">
+
 <body>
     <div class="main-wrapper">
 
@@ -24,16 +25,18 @@
                         <div class="call-papers">
                             <img src="/assets/images/call-papers.svg" alt="">
                         </div>
-                     
-                <%-include("eventNav.ejs")%>
-                        <div class="theme-contents">
 
-                            <h4 style="color: #fff;">Major Themes:</h4>
-                            <%= eventData.theme %>
-                            <ul style="list-style-type: disc; color: white; padding-top: 10px;">
-                                <li><%= eventData.theme %></li>
-                            </ul>
-                            <!-- <ul style="list-style-type: disc; color: white; padding-top: 10px;">
+                        <%-include("eventNav.ejs")%>
+                            <div class="theme-contents">
+
+                                <h4 style="color: #fff;">Major Themes:</h4>
+                                <!-- <%= eventData.theme %> -->
+                                <ul style="list-style-type: disc; color: white; padding-top: 10px;">
+                                    <li>
+                                        <%= eventData.theme %>
+                                    </li>
+                                </ul>
+                                <!-- <ul style="list-style-type: disc; color: white; padding-top: 10px;">
                                 <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus maiores vitae ipsa
                                     facilis aspernatur eveniet. </li>
                             </ul>
@@ -53,7 +56,7 @@
                                 <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus maiores vitae ipsa
                                     facilis aspernatur eveniet. </li>
                             </ul> -->
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>

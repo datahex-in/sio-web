@@ -14450,7 +14450,7 @@ html body .hide {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 0 15px 10px;
+    margin: 0 -2px 5px;
     border-radius: 100px;
     position: fixed;
     bottom: 0;
@@ -14465,7 +14465,7 @@ html body .hide {
   }
   .bottomBarLink {
     padding: 20px;
-    color: #9d45f5;
+    color: #fff;
   }
   /* Define your styles for Font Awesome icons here */
   .bottomBarLink i {
@@ -14473,9 +14473,10 @@ html body .hide {
   }
   .activeContainer {
     display: flex;
+    color: #9d45f5;
     align-items: center;
     justify-content: center;
-    background: #f1f1f1 !important;
+    background: #310441 !important;
     margin-top: -38px;
     height: 55px;
     width: 55px;
@@ -14602,7 +14603,7 @@ html body .hide {
   padding: 10px 0px;
   background-color: #43264e;
 }
-.event-nav ul li.active {
+.active {
   border-bottom: 2px solid #ff629b; /* Add a pink underline to the active item */
 }
 .event-about-para {
