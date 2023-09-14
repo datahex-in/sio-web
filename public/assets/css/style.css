@@ -12409,10 +12409,10 @@ img {
 
 .dates h6 {
   font-family: var(--font-Inter);
-  background-color: #83d8ff;
+  background-color: #e59bff;
   font-size: 13px;
   color: #000;
-  padding: 3px 35px;
+  padding: 3px 25px;
   border-radius: 5px;
   font-weight: 300;
 }
@@ -12485,6 +12485,7 @@ h2 {
 
 .card-text-para {
   font-family: var(--font-Inter);
+  color: #fff;
 }
 
 @media (max-width: 700px) {
@@ -13084,6 +13085,9 @@ figcaption {
 }
 
 @media (max-width: 768px) {
+  .news-details-head h1 {
+    font-size: 16px !important;
+  }
   .header-programe-title {
     padding: 20px;
   }
