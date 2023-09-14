@@ -6,7 +6,7 @@ const Events = require("../../models/event");
 
 router.get("/:id", async function (req, res, next) {
   const eventId = req.params.id;
-  const eventData = await Events.findById({ eventId });
+  const eventData = await Events.findById( eventId );
   console.log(eventData);
   res.render("event_about", { eventData });
 });

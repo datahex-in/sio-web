@@ -6,7 +6,7 @@ const RegistrationSchema = new mongoose.Schema(
       type: String,
     },
     mobileNumber: {
-      type: String,
+      type: Number,
     },
     email: {
       type: String,
@@ -44,7 +44,7 @@ const RegistrationSchema = new mongoose.Schema(
       type: Date,
     },
     age: {
-      type: String,
+      type: Number,
     },
     place: {
       type: String,

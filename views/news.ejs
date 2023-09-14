@@ -1,5 +1,5 @@
 <!-- ========== Start header ========== -->
-<%-include("layouts /header.ejs")%>
+<%-include("mainHeader.ejs")%>
   <!-- ========== End header ========== -->
 
   <body>
@@ -9,34 +9,35 @@
           <div class="updates-title">
             <h1>updates</h1>
           </div>
-          <div class="updates-menu">
-            <ul>
-              <li>News</li>
-              <li>Archive</li>
-              <li>Testimonial</li>
-              <li>Gallery</li>
-            </ul>
-          </div>
+          <%-include("newsnav.ejs")%>
         </div>
       </div>
 
       <div class="container">
         <div class="news-details">
-          <div class=" row news-details-head">
+
+          <div class="row news-details-head">
             <div class="col-12 col-xl-6 news-details-head-img">
 
-              <img src="/assets/images/worshop.png" alt="">
+              <img
+                src="https://img.freepik.com/free-photo/man-playing-badminton-medium-shot_23-2149733055.jpg?size=626&ext=jpg&ga=GA1.2.790742631.1691391131"
+                alt="">
             </div>
             <div class="col-12 col-xl-6 ">
               <h1>
-                sdjskjdvsnkjdn
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui iusto beatae voluptatibus voluptatum
+                voluptate officia ratione quidem nemo fuga laborum minima dicta aspernatur ab quis, sit, sed doloremque
+                ea sequi!
               </h1>
-              <div class="dates" style="color: #fff;">
-                <h6 style="display: inline; background-color: #E59BFF;">Latest</h6>sdvsdvsdvsdvsvd<span class="time"
-                  style="display: inline; padding-left: 10px;">32
+              <div class="dates">
+                <h6 style="display: inline;">Latest</h6><span class="time"
+                  style="display: inline; padding-left: 10px; color: #fff;">32
                   MINUTES AGO</span>
               </div>
               <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus sunt, dicta suscipit
+                praesentium at expedita dolore quae natus sequi animi mollitia voluptates, eveniet sint dolores.
+                Quibusdam maiores reiciendis soluta amet.
               </p>
 
             </div>
@@ -45,32 +46,40 @@
           <div class="row news-details-carousel" style="display: flex; margin-top: 50px;">
 
 
-            <div class="card" style="width: 18rem;" id="bg-color-purple">
-              <img class="card-img-top" src="" alt="Card image cap" style="border-radius: 10px;">
-              <div class="card-body" style="color: #fff;">
+
+            <div class="col-12 col-xl-4">
+              <img class="card-img-top"
+                src="https://img.freepik.com/free-photo/man-playing-badminton-medium-shot_23-2149733055.jpg?size=626&ext=jpg&ga=GA1.2.790742631.1691391131"
+                alt="Card image cap" style="border-radius: 10px;">
+              <div class="card-body">
                 <h5 class="card-title">
-
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere vel cupiditate repellendus, quod quos
+                  dicta quibusdam asperiores, quaerat, maiores quas eaque optio vitae cum beatae vero similique et
+                  deserunt quasi!
                 </h5>
-                <ul style="list-style: none; padding-left: 0;">
-                  <li style="display: inline;"> <span style="font-size: 20px; color: #49BDF2;">&bull;</span> 32
-                    MINUTES
-                    AGO
-                  </li>
-                </ul>
-                <P class="card-text-para">
-
-                </P>
-                <div>
-                  <a href="/news"> <button class="readmore">Read More</button></a>
+                <div class="dates">
+                  <h6 style="display: inline;">Latest</h6><span class="time"
+                    style="display: inline; padding-left: 10px; color: #fff;">32
+                    MINUTES AGO</span>
                 </div>
+                <P class="card-text-para">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis omnis odit, nesciunt debitis
+                  asperiores quibusdam vitae natus, ipsum, labore nisi porro neque at temporibus autem id explicabo
+                  expedita quod sit.
+                </P>
+
               </div>
             </div>
+
+
+
           </div>
         </div>
       </div>
     </div>
     </div>
-    <!-- ========== Start Section ========== -->
-    <%-include("layouts /footer.ejs")%>
-      <!-- ========== End Section ========== -->
+
+    <!-- ========== Start footer ========== -->
+    <%-include("mainFooter.ejs")%>
+      <!-- ========== End footer ========== -->
   </body>
