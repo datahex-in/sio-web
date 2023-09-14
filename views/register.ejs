@@ -78,13 +78,15 @@
               </div>
               <div class="register-form">
                 <div class="container">
+
                   <div id="alert-message" class="alert" style="display: none;"></div>
+
                   <form action="/register" method="post" id="registerForm">
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="name">Name</label>
-                          <input type="text" id="name" name="name" class="form-control" aria-required="true">
+                          <input type="text" id="name" name="name" class="form-control" aria-required="true" required>
                         </div>
                       </div>
                       <div class="col-md-6">
@@ -99,13 +101,13 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="day">Age</label>
-                          <input type="text" id="age" name="age" class="form-control" required>
+                          <input type="number" id="age" name="age" class="form-control" required>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="contact">Contact Number</label>
-                          <input type="tel" id="contact" name="contact" class="form-control" required>
+                          <input type="number" id="contact" name="contact" class="form-control" required>
                         </div>
                       </div>
                       <div class="col-md-6">
@@ -135,12 +137,27 @@
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label for="location">
-                            District</label>
-                          <input type="text" id="location" name="location" class="form-control" style="width: 100%;"
-                            placeholder="" required>
+                          <label for="location">District</label>
+                          <select id="location" name="location" class="form-control" required>
+                            <option value="" disabled selected>Select your district</option>
+                            <option value="Alappuzha">Alappuzha</option>
+                            <option value="Ernakulam">Ernakulam</option>
+                            <option value="Idukki">Idukki</option>
+                            <option value="Kannur">Kannur</option>
+                            <option value="Kasaragod">Kasaragod</option>
+                            <option value="Kollam">Kollam</option>
+                            <option value="Kottayam">Kottayam</option>
+                            <option value="Kozhikode">Kozhikode</option>
+                            <option value="Malappuram">Malappuram</option>
+                            <option value="Palakkad">Palakkad</option>
+                            <option value="Pathanamthitta">Pathanamthitta</option>
+                            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                            <option value="Thrissur">Thrissur</option>
+                            <option value="Wayanad">Wayanad</option>
+                          </select>
                         </div>
                       </div>
+                      
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="professions">profession</label>
