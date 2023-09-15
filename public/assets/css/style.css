@@ -14595,6 +14595,7 @@ html body .hide {
 }
 .event-nav ul {
   font-family: var(--font-Nutino);
+  cursor: pointer;
   display: flex;
   font-weight: 600;
   align-items: center;
@@ -14613,6 +14614,7 @@ html body .hide {
 }
 .event-about-para p {
   font-weight: normal;
+  text-align: center;
   color: #fff;
   font-family: var(--font-Nutino);
 }
