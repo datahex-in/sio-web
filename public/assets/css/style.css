@@ -14596,6 +14596,7 @@ html body .hide {
 }
 .event-nav ul {
   font-family: var(--font-Nutino);
+  cursor: pointer;
   display: flex;
   font-weight: 600;
   align-items: center;
@@ -14614,18 +14615,19 @@ html body .hide {
 }
 .event-about-para p {
   font-weight: normal;
+  text-align: center;
   color: #fff;
   font-family: var(--font-Nutino);
 }
 .event-date h5 {
-  padding-top: 50px;
+  padding-top: 10px;
   text-align: center;
   font-family: var(--font-Nutino);
   color: #fff;
 }
 .event-enroll {
   text-align: center;
-  padding: 40px 0px;
+  padding: 20px 0px;
 }
 .event-enroll button {
   padding-top: 50px;
@@ -15126,4 +15128,7 @@ main h1 {
 .testimonial {
   width: 100%;
   overflow: hidden;
+}
+#guest-section {
+  padding: 0 !important;
 }

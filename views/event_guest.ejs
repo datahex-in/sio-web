@@ -23,40 +23,7 @@
 
                         <%-include("eventNav.ejs")%>
 
-                            <div class="clearfix pb-5">
-                                <% speakerData.forEach(item=> { %>
-                                    <div class="col-12 col-md-4 mb-5">
-                                        <div class="guest library-cta">
 
-                                            <div class="guest-box-section">
-
-                                                <div class="guest-img">
-                                                    <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.photo}` %>"
-                                                        alt="">
-                                                </div>
-                                                <div class="event_content_gust">
-                                                    <div class="guest-content-head-title">
-                                                        <h3>
-                                                            <%= item.name %>
-                                                        </h3>
-                                                    </div>
-                                                    <div class="guest-content-para">
-                                                        <p>
-                                                            <%= item.designation %>
-                                                        </p>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-
-
-                                    <% }); %>
-
-                            </div>
                     </div>
 
 
