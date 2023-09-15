@@ -14459,7 +14459,8 @@ html body .hide {
     left: 0;
     right: 0;
     z-index: 102;
-    background: rgba(87, 42, 87, 0.438) !important;
+    /* background: rgba(87, 42, 87, 0.438) !important; */
+    background: #471d5a !important;
     box-shadow: 0 8px 32px 0 rgba(16, 15, 22, 0.5019607843137255);
     border-radius: 20px;
     -webkit-backdrop-filter: blur(10.5px);
