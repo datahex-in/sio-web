@@ -1,0 +1,38 @@
+<div class="updates-menu">
+    <ul>
+        <li><a href="/calender">September</a></li>
+        <li><a href="#calender_oct" onclick="loadContent('calender_oct')">October</a></li>
+        <li><a href="#" onclick="loadContent('calender_nov')">November</a></li>
+        <li><a href="#" onclick="loadContent('calender_dec')">December</a></li>
+    </ul>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+    // Highlight the active month based on the URL
+    var path = window.location.pathname;
+    $('.updates-menu a').each(function () {
+        var linkHref = $(this).attr('href');
+        if (path === linkHref) {
+            $(this).addClass('active');
+        }
+    });
+});
+
+function loadContent(month) {
+    $.ajax({
+        url: month + '.ejs', // Assuming content files like calender_oct.ejs, calender_nov.ejs, etc.
+        type: 'GET',
+        dataType: 'ejs',
+        success: function (data) {
+            $('#calender_oct').ejs(data);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
+}
+
+</script>
+
