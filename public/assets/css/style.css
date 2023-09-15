@@ -14358,7 +14358,7 @@ html body .hide {
   text-decoration: none;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   .event-content-head-title p strong {
     font-size: 17px !important;
   }
@@ -15036,4 +15036,95 @@ html body .hide {
 }
 .guest-content-para p {
   color: #000;
+}
+
+main {
+  width: 800px;
+}
+
+main h1 {
+  text-align: center;
+  font-size: 40px;
+  color: #fff;
+  margin-bottom: 5rem;
+}
+
+.slide-row {
+  display: flex;
+  width: 3200px;
+  transition: 0.5s;
+}
+
+.slide-col {
+  width: 800px;
+  height: 400px;
+  position: relative;
+}
+
+.user-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+.user-img img {
+  height: 100%;
+  border-radius: 10px;
+  width: 320px;
+  object-fit: cover;
+}
+
+.user-text {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+  width: 520px;
+  height: 270px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 10px;
+  color: #4d4352;
+  padding: 45px;
+  z-index: 2;
+}
+
+.user-text p {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.user-text h2 {
+  margin: 35px 0 5px;
+  color: #4d4352;
+}
+
+.indicator {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.indicator .btn {
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  margin: 4px;
+  border-radius: 15px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.btn.active {
+  width: 45px;
+}
+
+.testimonial {
+  width: 100%;
+  overflow: hidden;
 }
