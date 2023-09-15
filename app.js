@@ -60,7 +60,7 @@ var eventThemeRouter = require("./routes/ejsRoutes/event_themeEjs");
 var eventGuestRouter = require("./routes/ejsRoutes/event_guestEjs");
 var eventFAQsRouter = require("./routes/ejsRoutes/event_FAQsEjs");
 var event_listRouter = require("./routes/ejsRoutes/event-listEjs");
-var event_singleRouter = require("./routes/ejsRoutes/event-singleEjs");
+// var event_singleRouter = require("./routes/ejsRoutes/event-singleEjs");
 var scheduleRouter = require("./routes/ejsRoutes/scheduleEjs");
 var Gallery = require("./routes/ejsRoutes/galleryEjs");
 var Faq = require("./routes/ejsRoutes/faqEjs");
@@ -72,6 +72,7 @@ var Testimonial = require("./routes/ejsRoutes/testimonialEjs");
 var Deconquista = require("./routes/ejsRoutes/deconquistaEjs");
 var Calender = require("./routes/ejsRoutes/calenderEjs");
 var Register = require("./routes/ejsRoutes/registerEjs");
+var eventSingle = require("./routes/ejsRoutes/event_single.js");
 
 // ADDED NEWS ROUTES-------
 var Privacy = require("./routes/ejsRoutes/privacyEjs");
@@ -115,7 +116,8 @@ app.use("/event_guest", eventGuestRouter);
 app.use("/event_FAQs", eventFAQsRouter);
 app.use("/contact", contactRouter);
 app.use("/event-list", event_listRouter);
-app.use("/event-single", event_singleRouter);
+app.use("/event_single", eventSingle);
+// app.use("/event-single", event_singleRouter);
 app.use("/schedule", scheduleRouter);
 app.use("/gallery", Gallery);
 app.use("/faq", Faq);
