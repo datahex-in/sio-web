@@ -1,0 +1,334 @@
+<body>
+  <!DOCTYPE html>
+  <html class="no-js" lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="x-ua-compatible" content="ie=edge" />
+      <title>De Conquista</title>
+      <meta name="robots" content="noindex, follow" />
+      <meta name="description" content="" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      />
+      <!-- Favicon -->
+      <link
+        rel="shortcut icon"
+        type="image/x-icon"
+        href="../assets/images/decon-logo.svg"
+      />
+
+      <!-- Google Fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com/" />
+      <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;500;600;700;800&amp;family=Open+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/css?family=Archivo:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet"
+      />
+
+      <link
+        href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        rel="stylesheet"
+      />
+
+      <link
+        href="https://fonts.googleapis.com/css?family=Roboto:400,500"
+        rel="stylesheet"
+        type="text/css"
+      />
+
+      <!-- CSS
+        ============================================ -->
+
+      <!-- Icon Font CSS -->
+      <link rel="stylesheet" href="../assets/css/all.min.css" />
+      <link rel="stylesheet" href="../assets/css/flaticon.css" />
+
+      <!-- Plugins CSS -->
+      <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css" />
+      <link rel="stylesheet" href="../assets/css/magnific-popup.css" />
+      <link rel="stylesheet" href="../assets/css/aos.css" />
+      <link rel="stylesheet" href="../assets/css/nice-select.css" />
+
+      <!-- Main Style CSS -->
+      <link rel="stylesheet" href="../assets/css/style.css" />
+
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css"
+      />
+
+      <script
+        type="text/javascript"
+        src="https://code.jquery.com/jquery-1.12.0.min.js"
+      ></script>
+      <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"
+      ></script>
+
+      <!-- carousel Style CSS -->
+      <link rel="stylesheet" href="../assets/css/css/owl.carousel.min.css" />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css"
+      />
+      <link rel="stylesheet" href="../assets/css/css/style.css" />
+    </head>
+
+    <body>
+      <div class="main-wrapper">
+        <!-- Preloader start -->
+        <!-- <div id="preloader">
+          <div class="preloader">
+            <span></span>
+            <span></span>
+          </div>
+        </div> -->
+        <!-- Preloader End -->
+
+        <!-- ========== Start header ========== -->
+        <%-include("mainHeader.ejs")%>
+        <!-- ========== End header ========== -->
+
+        <!-- Page Banner Start -->
+        <div id="bg-color-purple">
+          <div class="container">
+            <div class="call-papers">
+              <img src="/../assets/images/call-papers.svg" alt="" />
+            </div>
+
+            <div class="event-nav">
+              <ul>
+                <li data-section="about">About</li>
+                <li data-section="theme">Theme</li>
+                <li data-section="guest">Guest</li>
+                <li data-section="faqs">FAQs</li>
+              </ul>
+            </div>
+
+            <!-- Sections -->
+            <div id="about-section" >
+              <div class="event-about-para">
+                <p><%= eventData.description %></p>
+              </div>
+              <div class="event-date">
+                <h5>SEP 17 SUNDAY | 9:00 AM | ERNAKULAM</h5>
+              </div>
+              <div class="event-enroll">
+                <% if (eventData.isEnroll) { %>
+                <a href="/register">
+                  <button>Enroll Now</button>
+                </a>
+                <% } %>
+              </div>
+            </div>
+
+            <div id="theme-section" style="display: none">
+              <div class="theme-contents">
+                <h4 style="color: #fff">Major Themes:</h4>
+                <ul
+                  style="list-style-type: disc; color: white; padding-top: 10px"
+                >
+                  <li><%= eventData.theme %></li>
+                </ul>
+              </div>
+            </div>
+
+            <div id="guest-section" style="display: none">
+              <!-- Add your guest content here -->
+              <% speakerData.forEach(item=> { %>
+              <div class="clearfix pb-5">
+                <div class="col-12 col-md-4 mb-5">
+                  <div class="guest library-cta">
+                    <div class="guest-box-section">
+                      <div class="guest-img">
+                        <img
+                          src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.photo}` %>"
+                          alt=""
+                        />
+                      </div>
+                      <div class="event_content_gust">
+                        <div class="guest-content-head-title">
+                          <h3><%= item.name %></h3>
+                        </div>
+                        <div class="guest-content-para">
+                          <p><%= item.designation %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% }); %>
+            </div>
+
+            <div id="faqs-section" style="display: none">
+              <div class="FAQs-content">
+                <% faqData.forEach(item=> { %>
+                <ul
+                  style="list-style-type: disc; color: white; padding-top: 10px"
+                >
+                  <li><%= item.question %></li>
+                  <p><%= item.answer %></p>
+                </ul>
+                <% }); %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ========== Start header ========== -->
+      <%-include("mainFooter.ejs")%>
+      <!-- ========== End header ========== -->
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          // Function to toggle the "active" class for navigation items
+          function toggleActiveNavigation(section) {
+            var eventNavItems = document.querySelectorAll(".event-nav li");
+            eventNavItems.forEach(function (item) {
+              if (item.getAttribute("data-section") === section) {
+                item.classList.add("active");
+              } else {
+                item.classList.remove("active");
+              }
+            });
+          }
+
+          // Function to toggle the visibility of sections
+          function toggleSection(section) {
+            var sections = ["about", "theme", "guest", "faqs"];
+            sections.forEach(function (s) {
+              var sectionElement = document.getElementById(s + "-section");
+              if (s === section) {
+                sectionElement.style.display = "block";
+              } else {
+                sectionElement.style.display = "none";
+              }
+            });
+          }
+
+          // Add click event listeners to "li" tags in the eventNav
+          var eventNavItems = document.querySelectorAll(".event-nav li");
+          eventNavItems.forEach(function (item) {
+            item.addEventListener("click", function () {
+              var targetSection = this.getAttribute("data-section");
+              toggleSection(targetSection); // Toggle section visibility
+              toggleActiveNavigation(targetSection); // Update active navigation item
+            });
+          });
+
+          // Initially, show the "About" section and set it as active
+          toggleSection("about");
+          toggleActiveNavigation("about");
+        });
+      </script>
+
+        function loadEventData() {
+          // Get the event ID from your EJS template if needed
+          const eventId = "<%= eventData._id %>"; // Replace with the correct value
+
+          // Make an AJAX request to fetch the event data
+          fetch(`/event_single/${eventId}`)
+            .then((response) => response.json())
+            .then((data) => {
+              const { eventData, speakerData, faqData } = data;
+
+              // Update the event data in the event-data-container
+              const eventDataContainer = document.getElementById(
+                "event-data-container"
+              );
+              eventDataContainer.innerHTML = `
+        <div class="event-about-para">
+          <p>${eventData.description}</p>
+        </div>
+        <div class="event-date">
+          <h5>SEP 17 SUNDAY | 9:00 AM | ERNAKULAM</h5>
+        </div>
+        <div class="event-enroll">
+          ${
+            eventData.isEnroll
+              ? `<a href="/register"><button>Enroll Now</button></a>`
+              : ""
+          }
+        </div>
+        <div class="theme-contents">
+          <h4 style="color: #fff">Major Themes:</h4>
+          <ul style="list-style-type: disc; color: white; padding-top: 10px">
+            <li>${eventData.theme}</li>
+          </ul>
+        </div>
+      `;
+
+              // Update the speaker data in the speaker-data-container
+              const speakerDataContainer = document.getElementById(
+                "speaker-data-container"
+              );
+              speakerDataContainer.innerHTML = "";
+
+              speakerData.forEach((item) => {
+                speakerDataContainer.innerHTML += `
+          <div class="clearfix pb-5">
+            <div class="col-12 col-md-4 mb-5">
+              <div class="guest library-cta">
+                <div class="guest-box-section">
+                  <div class="guest-img">
+                    <img
+                      src="https://event-manager.syd1.cdn.digitaloceanspaces.com/${item.photo}"
+                      alt=""
+                    />
+                  </div>
+                  <div class="event_content_gust">
+                    <div class="guest-content-head-title">
+                      <h3>${item.name}</h3>
+                    </div>
+                    <div class="guest-content-para">
+                      <p>${item.designation}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+              });
+
+              // Update the FAQ data in the faq-data-container
+              const faqDataContainer =
+                document.getElementById("faq-data-container");
+              faqDataContainer.innerHTML = `
+        <div class="FAQs-content">
+          ${faqData
+            .map(
+              (item) => `
+            <ul style="list-style-type: disc; color: white; padding-top: 10px;">
+              <li>${item.question}</li>
+              <p>${item.answer}</p>
+            </ul>
+          `
+            )
+            .join("")}
+        </div>
+      `;
+            })
+            .catch((error) => {
+              console.error("Error loading event data: ", error);
+            });
+        }
+
+        // Call the function to load data when the page loads
+        loadEventData();
+      </script> -->
+    </body>
+  </html>
+</body>
