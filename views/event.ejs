@@ -28,7 +28,7 @@
                 <div class="col-12 col-md-4  event-box">
                   <div class="event-box-section">
                     <div class="workshop">
-                      <button>Workshop</button>
+                      <button><%= item.eventType %></button>
                     </div>
                     <div class="event-img">
                       <img style="object-fit: cover;"
@@ -46,8 +46,9 @@
                         </p>
                       </div>
                       <div class="know-more-btn">
-                        <a href="/event_about/<%= item._id %>"> <button>Know More <i
-                              class="fas fa-arrow-right"></i></button></a>
+                        <a href="/event_single/<%= item._id %>">
+                          <button>Know More <i class="fas fa-arrow-right"></i></button>
+                        </a>
                       </div>
                     </div>
                   </div>
