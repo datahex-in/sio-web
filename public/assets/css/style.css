@@ -14619,14 +14619,14 @@ html body .hide {
   font-family: var(--font-Nutino);
 }
 .event-date h5 {
-  padding-top: 50px;
+  padding-top: 10px;
   text-align: center;
   font-family: var(--font-Nutino);
   color: #fff;
 }
 .event-enroll {
   text-align: center;
-  padding: 40px 0px;
+  padding: 20px 0px;
 }
 .event-enroll button {
   padding-top: 50px;
