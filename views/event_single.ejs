@@ -117,34 +117,6 @@
             </div>
 
             <div id="guest-section" style="display: none;">
-              <!-- Add your guest content here -->
-              <!-- <% speakerData.forEach(item=> { %>
-                <div class="clearfix pb-5">
-                  <div class="col-12 col-md-4 mb-5">
-                    <div class="guest library-cta">
-                      <div class="guest-box-section">
-                        <div class="guest-img">
-                          <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.photo}` %>"
-                            alt="" />
-                        </div>
-                        <div class="event_content_gust">
-                          <div class="guest-content-head-title">
-                            <h3>
-                              <%= item.name %>
-                            </h3>
-                          </div>
-                          <div class="guest-content-para">
-                            <p>
-                              <%= item.designation %>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <% }); %> -->
-
               <div class="deconquista-slider">
                 <div class="slide-container swiper">
                   <div class="slide-content">
@@ -240,98 +212,7 @@
           toggleActiveNavigation("about");
         });
       </script>
-      <script>
-        function loadEventData() {
-          // Get the event ID from your EJS template if needed
-          const eventId = "<%= eventData._id %>"; // Replace with the correct value
 
-          // Make an AJAX request to fetch the event data
-          fetch(`/event_single/${eventId}`)
-            .then((response) => response.json())
-            .then((data) => {
-              const { eventData, speakerData, faqData } = data;
-
-              // Update the event data in the event-data-container
-              const eventDataContainer = document.getElementById(
-                "event-data-container"
-              );
-              eventDataContainer.innerHTML = `
-        <div class="event-about-para">
-          <p>${eventData.description}</p>
-        </div>
-        <div class="event-date">
-          <h5>SEP 17 SUNDAY | 9:00 AM | ERNAKULAM</h5>
-        </div>
-        <div class="event-enroll">
-          ${eventData.isEnroll
-                  ? `<a href="/register"><button>Enroll Now</button></a>`
-                  : ""
-                }
-        </div>
-        <div class="theme-contents">
-          <h4 style="color: #fff">Major Themes:</h4>
-          <ul style="list-style-type: disc; color: white; padding-top: 10px">
-            <li>${eventData.theme}</li>
-          </ul>
-        </div>
-        `;
-
-              // Update the speaker data in the speaker-data-container
-              const speakerDataContainer = document.getElementById(
-                "speaker-data-container"
-              );
-              speakerDataContainer.innerHTML = "";
-
-              speakerData.forEach((item) => {
-                speakerDataContainer.innerHTML += `
-        <div class="clearfix pb-5">
-          <div class="col-12 col-md-4 mb-5">
-            <div class="guest library-cta">
-              <div class="guest-box-section">
-                <div class="guest-img">
-                  <img src="https://event-manager.syd1.cdn.digitaloceanspaces.com/${item.photo}" alt="" />
-                </div>
-                <div class="event_content_gust">
-                  <div class="guest-content-head-title">
-                    <h3>${item.name}</h3>
-                  </div>
-                  <div class="guest-content-para">
-                    <p>${item.designation}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        `;
-              });
-
-              // Update the FAQ data in the faq-data-container
-              const faqDataContainer =
-                document.getElementById("faq-data-container");
-              faqDataContainer.innerHTML = `
-        <div class="FAQs-content">
-          ${faqData
-                  .map(
-                    (item) => `
-          <ul style="list-style-type: disc; color: white; padding-top: 10px;">
-            <li>${item.question}</li>
-            <p>${item.answer}</p>
-          </ul>
-          `
-                  )
-                  .join("")}
-        </div>
-        `;
-            })
-            .catch((error) => {
-              console.error("Error loading event data: ", error);
-            });
-        }
-
-        // Call the function to load data when the page loads
-        loadEventData();
-      </script>
   </body>
 
   </html>

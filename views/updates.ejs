@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <!-- ========== Start header ========== -->
+    <%-include("mainHeader.ejs")%>
+    <!-- ========== End header ========== -->
+    <div class="updates-section" id="bg-color-purple">
+      <div class="header-programe" style="margin-top: 100px">
+        <div class="container">
+          <div class="updates-title">
+            <h1>updates</h1>
+          </div>
+          <div class="updates-menu">
+            <ul>
+              <li style="cursor: pointer" data-section="News">News</li>
+              <li style="cursor: pointer" data-section="Article">Article</li>
+              <li style="cursor: pointer" data-section="Testimonial">
+                Testimonial
+              </li>
+              <li style="cursor: pointer" data-section="Gallery">Gallery</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+      <div class="container active" id="News-section">
+        <div class="news-section">
+          <div class="container">
+            <div class="news-details">
+              <div class="row news-details-head">
+                <div class="col-12 col-xl-6 news-details-head-img">
+                  <img
+                    src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[newsData.length - 1].image}` %>"
+                    alt=""
+                  />
+                </div>
+                <div class="col-12 col-xl-6">
+                  <h1><%= newsData[newsData.length - 1].title %></h1>
+                  <div class="dates">
+                    <h6 style="display: inline">Latest</h6>
+                    <span
+                      class="time"
+                      style="display: inline; padding-left: 10px; color: #fff"
+                    >
+                      <% const createdAt = new Date(newsData[newsData.length -
+                      1].createdAt); const currentTimeNews = new Date(); const
+                      timeDifferenceMs = currentTimeNews - createdAt; const
+                      seconds = Math.floor(timeDifferenceMs / 1000); const
+                      minutes = Math.floor(seconds / 60); const hours =
+                      Math.floor(minutes / 60); const days = Math.floor(hours /
+                      24); const weeks = Math.floor(days / 7); const months =
+                      Math.floor(weeks / 4.345); const years = Math.floor(months
+                      / 12); if (years >= 1) { if (years === 1) { %>1 YEAR AGO<%
+                      } else { %><%= years %> YEARS AGO<% } } else if (months >=
+                      1) { if (months === 1) { %>1 MONTH AGO<% } else { %><%=
+                      months %> MONTHS AGO<% } } else if (weeks >= 1) { if
+                      (weeks === 1) { %>1 WEEK AGO<% } else { %><%= weeks %>
+                      WEEKS AGO<% } } else if (days >= 1) { if (days === 1) {
+                      %>1 DAY AGO<% } else { %><%= days %> DAYS AGO<% } } else
+                      if (hours >= 1) { if (hours === 1) { %>1 HOUR AGO<% } else
+                      { %><%= hours %> HOURS AGO<% } } else if (minutes >= 1) {
+                      if (minutes === 1) { %>1 MINUTE AGO<% } else { %><%=
+                      minutes %> MINUTES AGO<% } } else { %>Just now<% } %>
+                    </span>
+                  </div>
+                  <p><%= newsData[newsData.length - 1].description %></p>
+                </div>
+              </div>
+
+              <% newsData.forEach(news=> { %>
+
+              <div
+                class="row news-details-carousel"
+                style="display: flex; margin-top: 50px"
+              >
+                <div class="col-12 col-xl-4">
+                  <img
+                    class="card-img-top"
+                    src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ news.image}` %>"
+                    alt="Card image cap"
+                    style="border-radius: 10px"
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title"><%= news.title %></h5>
+                    <div class="dates">
+                      <h6 style="display: inline">Latest</h6>
+                      <span
+                        class="time"
+                        style="display: inline; padding-left: 10px; color: #fff"
+                        ><% const createdAt = new Date(news.createdAt); const
+                        currentTimeNews = new Date(); const timeDifferenceMs =
+                        currentTimeNews - createdAt; const seconds =
+                        Math.floor(timeDifferenceMs / 1000); const minutes =
+                        Math.floor(seconds / 60); const hours =
+                        Math.floor(minutes / 60); const days = Math.floor(hours
+                        / 24); const weeks = Math.floor(days / 7); const months
+                        = Math.floor(weeks / 4.345); const years =
+                        Math.floor(months / 12); if (years >= 1) { if (years ===
+                        1) { %>1 YEAR AGO<% } else { %><%= years %> YEARS AGO<%
+                        } } else if (months >= 1) { if (months === 1) { %>1
+                        MONTH AGO<% } else { %><%= months %> MONTHS AGO<% } }
+                        else if (weeks >= 1) { if (weeks === 1) { %>1 WEEK AGO<%
+                        } else { %><%= weeks %> WEEKS AGO<% } } else if (days >=
+                        1) { if (days === 1) { %>1 DAY AGO<% } else { %><%= days
+                        %> DAYS AGO<% } } else if (hours >= 1) { if (hours ===
+                        1) { %>1 HOUR AGO<% } else { %><%= hours %> HOURS AGO<%
+                        } } else if (minutes >= 1) { if (minutes === 1) { %>1
+                        MINUTE AGO<% } else { %><%= minutes %> MINUTES AGO<% } }
+                        else { %>Just now<% } %></span
+                      >
+                    </div>
+                    <P class="card-text-para"> <%= news.description %> </P>
+                  </div>
+                </div>
+              </div>
+              <% }); %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" id="Article-section" style="display: none">
+        <div class="article-section">
+          <div class="container">
+            <div class="news-details">
+              <div class="row news-details-head">
+                <div class="col-12 col-xl-6 news-details-head-img">
+                  <img
+                    src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ articleData[articleData.length - 1].image}` %>"
+                    alt=""
+                  />
+                </div>
+                <div class="col-12 col-xl-6">
+                  <h1><%= articleData[articleData.length - 1].title %></h1>
+                  <div class="dates">
+                    <h6 style="display: inline">Latest</h6>
+                    <span
+                      class="time"
+                      style="display: inline; padding-left: 10px; color: #fff"
+                    >
+                      <% const articleCreatedAtArticle = new
+                      Date(articleData[articleData.length - 1].createdAt); const
+                      currentTimeArticle = new Date(); const
+                      timeDifferenceMsArticle = currentTimeArticle -
+                      articleCreatedAtArticle; const secondsArticle =
+                      Math.floor(timeDifferenceMsArticle / 1000); const
+                      minutesArticle = Math.floor(secondsArticle / 60); const
+                      hoursArticle = Math.floor(minutesArticle / 60); const
+                      daysArticle = Math.floor(hoursArticle / 24); const
+                      weeksArticle = Math.floor(daysArticle / 7); const
+                      monthsArticle = Math.floor(weeksArticle / 4.345); const
+                      yearsArticle = Math.floor(monthsArticle / 12); if
+                      (yearsArticle >= 1) { if (yearsArticle === 1) { %>1 YEAR
+                      AGO<% } else { %><%= yearsArticle %> YEARS AGO<% } } else
+                      if (monthsArticle >= 1) { if (monthsArticle === 1) { %>1
+                      MONTH AGO<% } else { %><%= monthsArticle %> MONTHS AGO<% }
+                      } else if (weeksArticle >= 1) { if (weeksArticle === 1) {
+                      %>1 WEEK AGO<% } else { %><%= weeksArticle %> WEEKS AGO<%
+                      } } else if (daysArticle >= 1) { if (daysArticle === 1) {
+                      %>1 DAY AGO<% } else { %><%= daysArticle %> DAYS AGO<% } }
+                      else if (hoursArticle >= 1) { if (hoursArticle === 1) {
+                      %>1 HOUR AGO<% } else { %><%= hoursArticle %> HOURS AGO<%
+                      } } else if (minutesArticle >= 1) { if (minutesArticle ===
+                      1) { %>1 MINUTE AGO<% } else { %><%= minutesArticle %>
+                      MINUTES AGO<% } } else { %>Just now<% } %>
+                    </span>
+                  </div>
+                  <p><%= articleData[articleData.length - 1].description %></p>
+                </div>
+              </div>
+
+              <% articleData.forEach(article=> { %>
+
+              <div
+                class="row news-details-carousel"
+                style="display: flex; margin-top: 50px"
+              >
+                <div class="col-12 col-xl-4">
+                  <img
+                    class="card-img-top"
+                    src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ article.image}` %>"
+                    alt="Card image cap"
+                    style="border-radius: 10px"
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title"><%= article.title %></h5>
+                    <div class="dates">
+                      <h6 style="display: inline">Latest</h6>
+                      <span
+                        class="time"
+                        style="display: inline; padding-left: 10px; color: #fff"
+                        ><% const articleCreatedAt = new
+                        Date(article.createdAt); const currentTimeArticle = new
+                        Date(); const timeDifferenceMs = currentTimeArticle -
+                        articleCreatedAt; const seconds =
+                        Math.floor(timeDifferenceMs / 1000); const minutes =
+                        Math.floor(seconds / 60); const hours =
+                        Math.floor(minutes / 60); const days = Math.floor(hours
+                        / 24); const weeks = Math.floor(days / 7); const months
+                        = Math.floor(weeks / 4.345); const years =
+                        Math.floor(months / 12); if (years >= 1) { if (years ===
+                        1) { %>1 YEAR AGO<% } else { %><%= years %> YEARS AGO<%
+                        } } else if (months >= 1) { if (months === 1) { %>1
+                        MONTH AGO<% } else { %><%= months %> MONTHS AGO<% } }
+                        else if (weeks >= 1) { if (weeks === 1) { %>1 WEEK AGO<%
+                        } else { %><%= weeks %> WEEKS AGO<% } } else if (days >=
+                        1) { if (days === 1) { %>1 DAY AGO<% } else { %><%= days
+                        %> DAYS AGO<% } } else if (hours >= 1) { if (hours ===
+                        1) { %>1 HOUR AGO<% } else { %><%= hours %> HOURS AGO<%
+                        } } else if (minutes >= 1) { if (minutes === 1) { %>1
+                        MINUTE AGO<% } else { %><%= minutes %> MINUTES AGO<% } }
+                        else { %>Just now<% } %></span
+                      >
+                    </div>
+                    <P class="card-text-para"> <%= article.description %> </P>
+                  </div>
+                </div>
+              </div>
+              <% }); %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" id="Testimonial-section" style="display: none">
+        <div class="testimonial-section">
+          <div class="container">
+            <div class="deconquista-slider">
+              <div class="slide-container swiper">
+                <div class="slide-content">
+                  <div class="card-wrapper swiper-wrapper">
+                    <% testimonialData.forEach(testimonial=> { %>
+                    <div class="card2 swiper-slide">
+                      <div class="image-content">
+                        <span class="overlay"></span>
+
+                        <div>
+                          <img
+                            src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ testimonial.image}` %>"
+                            alt=""
+                            class="card-img"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="card-content">
+                        <p class="description-testimonial">
+                          <%= testimonial.title %> <br />
+                          <%= testimonial.content %>
+                        </p>
+
+                        <!-- <button class="button">View More</button> -->
+                      </div>
+                    </div>
+                    <% }); %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" id="Gallery-section" style="display: none">
+        <div class="gallery-section">
+          <div class="container" style="margin-top: 50px">
+            <div class="gallery">
+              <div class="column">
+                <figure>
+                  <img
+                    src="https://source.unsplash.com/random/800x600/?jungle"
+                  />
+                  <figcaption>Jungle</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    src="https://source.unsplash.com/random/600x800/?mountain"
+                  />
+                  <figcaption>Mountain</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    src="https://source.unsplash.com/random/800x600/?beach"
+                  />
+                  <figcaption>Beach</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    src="https://source.unsplash.com/random/600x800/?forest"
+                  />
+                  <figcaption>Forest</figcaption>
+                </figure>
+              </div>
+              <div class="column">
+                <figure>
+                  <img
+                    src="https://source.unsplash.com/random/600x800/?iceland+ladscape"
+                  />
+                  <figcaption>Iceland</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    src="https://source.unsplash.com/random/800x600/?river"
+                  />
+                  <figcaption>River</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    src="https://source.unsplash.com/random/600x800/?grass"
+                  />
+                  <figcaption>Grass</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    src="https://source.unsplash.com/random/800x600/?tundra"
+                  />
+                  <figcaption>Tundra</figcaption>
+                </figure>
+              </div>
+              <div class="column">
+                <figure>
+                  <img
+                    src="https://source.unsplash.com/random/800x600/?borealis"
+                  />
+                  <figcaption>Boreal</figcaption>
+                </figure>
+                <figure>
+                  <img src="https://source.unsplash.com/random/600x800/?Lake" />
+                  <figcaption>Lake</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    src="https://source.unsplash.com/random/800x600/?tropic"
+                  />
+                  <figcaption>Tropical</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    src="https://source.unsplash.com/random/600x800/?marine"
+                  />
+                  <figcaption>Marine</figcaption>
+                </figure>
+              </div>
+              <div class="column">
+                <figure>
+                  <img
+                    src="https://source.unsplash.com/random/600x800/?ocean"
+                  />
+                  <figcaption>Ocean</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    src="https://source.unsplash.com/random/800x600/?savanna"
+                  />
+                  <figcaption>Savanna</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    src="https://source.unsplash.com/random/600x800/?grass+land"
+                  />
+                  <figcaption>GrassLand</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    src="https://source.unsplash.com/random/800x600/?artic"
+                  />
+                  <figcaption>Artic</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== Start footer ========== -->
+    <%-include("mainFooter.ejs")%>
+    <!-- ========== End footer ========== -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Function to toggle the "active" class for navigation items
+        function toggleActiveNavigation(section) {
+          var eventNavItems = document.querySelectorAll(".updates-menu li");
+          eventNavItems.forEach(function (item) {
+            if (item.getAttribute("data-section") === section) {
+              item.classList.add("active");
+            } else {
+              item.classList.remove("active");
+            }
+          });
+        }
+
+        // Function to toggle the visibility of sections
+        function toggleSection(section) {
+          var sections = ["News", "Article", "Testimonial", "Gallery"];
+          sections.forEach(function (s) {
+            var sectionElement = document.getElementById(s + "-section");
+            if (s === section) {
+              sectionElement.style.display = "block";
+            } else {
+              sectionElement.style.display = "none";
+            }
+          });
+        }
+
+        // Add click event listeners to "li" tags in the eventNav
+        var eventNavItems = document.querySelectorAll(".updates-menu li");
+        eventNavItems.forEach(function (item) {
+          item.addEventListener("click", function () {
+            var targetSection = this.getAttribute("data-section");
+            toggleSection(targetSection); // Toggle section visibility
+            toggleActiveNavigation(targetSection); // Update active navigation item
+          });
+        });
+
+        // Initially, show the "News" section and set it as active
+        toggleSection("News");
+        toggleActiveNavigation("News");
+      });
+    </script>
+  </body>
+</html>
