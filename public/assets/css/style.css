@@ -13178,6 +13178,7 @@ figcaption {
 
 /* Apply grayscale to the image initially */
 .speaker-imgs img {
+  object-fit: cover;
   filter: grayscale(100%);
   transition: filter 0.3s ease-in-out;
   cursor: pointer;

@@ -72,7 +72,8 @@ var Testimonial = require("./routes/ejsRoutes/testimonialEjs");
 var Deconquista = require("./routes/ejsRoutes/deconquistaEjs");
 var Calender = require("./routes/ejsRoutes/calenderEjs");
 var Register = require("./routes/ejsRoutes/registerEjs");
-var eventSingle = require("./routes/ejsRoutes/event_single.js");
+var eventSingle = require("./routes/ejsRoutes/event_single");
+var Updates = require("./routes/ejsRoutes/updatesEjs");
 
 // ADDED NEWS ROUTES-------
 var Privacy = require("./routes/ejsRoutes/privacyEjs");
@@ -129,6 +130,7 @@ app.use("/testimonial", Testimonial);
 app.use("/deconquista", Deconquista);
 app.use("/calender", Calender);
 app.use("/register", Register);
+app.use("/updates", Updates);
 
 // LATESTS-----
 app.use("/privacy", Privacy);
@@ -168,6 +170,7 @@ app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
+  console.log(err)
   // render the error page
   res.status(err.status || 500);
   res.render("error");
