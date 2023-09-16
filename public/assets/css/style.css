@@ -13838,7 +13838,7 @@ html body .hide {
 }
 .program_box {
   padding: 5%;
-  min-height: 180px;
+  min-height: 220px;
   margin: 3px;
   margin-top: 22px;
   border-top: solid 0px #373737;
@@ -13856,7 +13856,7 @@ html body .hide {
 /***** media screen *****/
 @media (max-width: 600px) {
   .program_box {
-    min-height: auto;
+    min-height: 110px;
     border-top: solid 0px #7c7c7c !important;
     border-bottom: solid 0px #373737 !important;
     border-left: solid 1px #373737 !important;
@@ -13922,10 +13922,6 @@ html body .hide {
     margin-top: -80px;
     text-align: center;
     padding: 0 30px;
-  }
-  .c-card-testimonial .c-card-testimonial__profile .c-card-testimonial__image {
-    margin-left: 20px;
-    width: 78%;
   }
 }
 @media screen and (max-width: 576px) {
@@ -14174,6 +14170,16 @@ html body .hide {
   text-align: center;
   z-index: 21;
   transform: translateY(-50%);
+}
+.swiper_border {
+  border-radius: 8px;
+  border: 0.3px solid grey;
+  background: radial-gradient(
+    221.82% 106.55% at 15.38% 30.26%,
+    rgba(101, 42, 122, 0.44) 0%,
+    rgba(231, 66, 126, 0) 100%
+  );
+  backdrop-filter: blur(24.5px);
 }
 @media screen and (max-width: 768px) {
   .c-testimonials .c-testimonials__pagination {
@@ -14542,7 +14548,7 @@ html body .hide {
   text-align: center;
   color: #ff4a8c;
   font-size: 30px;
-  padding-top: 50px;
+  padding-top: 32px;
   padding-bottom: 20px;
   font-family: var(--font-fabulous);
 }
@@ -14785,7 +14791,7 @@ html body .hide {
   padding: 5px 0;
 }
 .slide-content {
-  margin: 0 40px;
+  margin: 0 15px;
   overflow: hidden;
   border-radius: 25px;
 }
@@ -14798,8 +14804,8 @@ html body .hide {
 .card-content {
   flex-direction: column;
   align-items: start;
-  padding: 3px 14px;
-  text-align: center;
+  width: 100%;
+  padding: 8px 0px;
 }
 .card-content h2 {
   text-align: left;
@@ -14986,7 +14992,7 @@ html body .hide {
 /* testimonial side */
 .card-testimonial {
   height: 350px;
-  padding: 20px 20px;
+  /* padding: 20px 20px; */
   border: 2px solid whitesmoke;
   border-radius: 25px;
   background: white;
@@ -14995,7 +15001,7 @@ html body .hide {
 }
 .description-testimonial {
   color: #fff !important;
-  text-align: revert;
+  text-align: left;
 }
 .deconquista-slider {
   padding-bottom: 30px;
@@ -15013,7 +15019,7 @@ html body .hide {
     top: 25px;
     right: 10px;
     border: none !important;
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 5px 20px;
     background-color: #65297a;
     color: #fff;
@@ -15225,4 +15231,18 @@ main h1 {
   color: white;
   font-size: 14.3px;
   font-family: var(--font-Nutino);
+}
+/* page-arrow */
+.page_backarrow {
+  display: none;
+}
+@media (max-width: 768px) {
+  .page_backarrow {
+    position: fixed;
+    left: 20px;
+    top: 35px;
+    display: block;
+    z-index: 0;
+    cursor: pointer;
+  }
 }
