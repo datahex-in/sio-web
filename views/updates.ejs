@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body>
-    <!-- ========== Start header ========== -->
-    <%-include("mainHeader.ejs")%>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <!-- ========== Start header ========== -->
+  <%-include("mainHeader.ejs")%>
     <!-- ========== End header ========== -->
     <div class="updates-section" id="bg-color-purple">
+      <div class="page_backarrow"><a href="/"><i ><svg xmlns="http://www.w3.org/2000/svg" width="25" height="40" viewBox="0 0 17 19" fill="none">
+        <path d="M10.0054 0.265434C10.3271 0.587173 10.3564 1.09064 10.0931 1.44542L10.0054 1.54706L2.18829 9.36458L10.0054 17.1821C10.3271 17.5038 10.3564 18.0073 10.0931 18.3621L10.0054 18.4637C9.68366 18.7855 9.18019 18.8147 8.82541 18.5515L8.72376 18.4637L0.265433 10.0054C-0.0563049 9.68365 -0.0855541 9.18019 0.177686 8.82541L0.265433 8.72376L8.72376 0.265434C9.07768 -0.0884781 9.65148 -0.0884781 10.0054 0.265434Z" fill="#FF4A8C"/>
+      </svg></i></a></div>
       <div class="header-programe" style="margin-top: 100px">
         <div class="container">
           <div class="updates-title">
@@ -33,93 +38,106 @@
         <div class="news-section">
           <div class="container">
             <div class="news-details">
-              <div class="row news-details-head">
+              <div class="row news-details-head" onclick="openModal(
+                      
+              '<%= newsData[newsData.length - 1].description %>'
+            )">
                 <div class="col-12 col-xl-6 news-details-head-img">
                   <img
                     src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[newsData.length - 1].image}` %>"
-                    alt=""
-                  />
+                    alt="" />
+
                 </div>
-                <div class="col-12 col-xl-6">
-                  <h1><%= newsData[newsData.length - 1].title %></h1>
+                <div class="col-12 col-xl-6 card-body">
+                  <h1>
+                    <%= newsData[newsData.length - 1].title %>
+                  </h1>
                   <div class="dates">
                     <h6 style="display: inline">Latest</h6>
-                    <span
-                      class="time"
-                      style="display: inline; padding-left: 10px; color: #fff"
-                    >
-                      <% const createdAt = new Date(newsData[newsData.length -
-                      1].createdAt); const currentTimeNews = new Date(); const
-                      timeDifferenceMs = currentTimeNews - createdAt; const
-                      seconds = Math.floor(timeDifferenceMs / 1000); const
-                      minutes = Math.floor(seconds / 60); const hours =
-                      Math.floor(minutes / 60); const days = Math.floor(hours /
-                      24); const weeks = Math.floor(days / 7); const months =
-                      Math.floor(weeks / 4.345); const years = Math.floor(months
-                      / 12); if (years >= 1) { if (years === 1) { %>1 YEAR AGO<%
-                      } else { %><%= years %> YEARS AGO<% } } else if (months >=
-                      1) { if (months === 1) { %>1 MONTH AGO<% } else { %><%=
-                      months %> MONTHS AGO<% } } else if (weeks >= 1) { if
-                      (weeks === 1) { %>1 WEEK AGO<% } else { %><%= weeks %>
-                      WEEKS AGO<% } } else if (days >= 1) { if (days === 1) {
-                      %>1 DAY AGO<% } else { %><%= days %> DAYS AGO<% } } else
-                      if (hours >= 1) { if (hours === 1) { %>1 HOUR AGO<% } else
-                      { %><%= hours %> HOURS AGO<% } } else if (minutes >= 1) {
-                      if (minutes === 1) { %>1 MINUTE AGO<% } else { %><%=
-                      minutes %> MINUTES AGO<% } } else { %>Just now<% } %>
+                    <span class="time" style="display: inline; padding-left: 10px; color: #fff; font-size: 12px;">
+                      <% const createdAt=new Date(newsData[newsData.length - 1].createdAt); const currentTimeNews=new
+                        Date(); const timeDifferenceMs=currentTimeNews - createdAt; const
+                        seconds=Math.floor(timeDifferenceMs / 1000); const minutes=Math.floor(seconds / 60); const
+                        hours=Math.floor(minutes / 60); const days=Math.floor(hours / 24); const weeks=Math.floor(days /
+                        7); const months=Math.floor(weeks / 4.345); const years=Math.floor(months / 12); if (years>= 1)
+                        { if (years === 1) { %>1 YEAR AGO<% } else { %>
+                          <%= years %> YEARS AGO<% } } else if (months>= 1) { if (months === 1) { %>1 MONTH AGO<% } else
+                                { %>
+                                <%= months %> MONTHS AGO<% } } else if (weeks>= 1) { if (weeks === 1) { %>1 WEEK AGO<% }
+                                      else { %>
+                                      <%= weeks %> WEEKS AGO<% } } else if (days>= 1) { if (days === 1) { %>1 DAY AGO<%
+                                            } else { %>
+                                            <%= days %> DAYS AGO<% } } else if (hours>= 1) { if (hours === 1) { %>1 HOUR
+                                                AGO<% } else { %>
+                                                  <%= hours %> HOURS AGO<% } } else if (minutes>= 1) { if (minutes ===
+                                                      1) { %>1 MINUTE AGO<% } else { %>
+                                                        <%= minutes %> MINUTES AGO<% } } else { %>Just now<% } %>
+
                     </span>
                   </div>
-                  <p><%= newsData[newsData.length - 1].description %></p>
+                  <p>
+                    <%= newsData[newsData.length - 1].description %>
+                  </p>
                 </div>
               </div>
+
+
+              <!-- The modal -->
+              <div id="myModal" class="modal">
+                <div class="modal-content">
+                  <span class="close" id="closeModalButton">&times;</span>
+                  <h1 id="modalTitle"></h1>
+                  <img id="modalImage" src="" alt="">
+                  <p id="modalDescription"></p>
+
+                </div>
+              </div>
+
+
 
               <% newsData.forEach(news=> { %>
 
-              <div
-                class="row news-details-carousel"
-                style="display: flex; margin-top: 50px"
-              >
-                <div class="col-12 col-xl-4">
-                  <img
-                    class="card-img-top"
-                    src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ news.image}` %>"
-                    alt="Card image cap"
-                    style="border-radius: 10px"
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title"><%= news.title %></h5>
-                    <div class="dates">
-                      <h6 style="display: inline">Latest</h6>
-                      <span
-                        class="time"
-                        style="display: inline; padding-left: 10px; color: #fff"
-                        ><% const createdAt = new Date(news.createdAt); const
-                        currentTimeNews = new Date(); const timeDifferenceMs =
-                        currentTimeNews - createdAt; const seconds =
-                        Math.floor(timeDifferenceMs / 1000); const minutes =
-                        Math.floor(seconds / 60); const hours =
-                        Math.floor(minutes / 60); const days = Math.floor(hours
-                        / 24); const weeks = Math.floor(days / 7); const months
-                        = Math.floor(weeks / 4.345); const years =
-                        Math.floor(months / 12); if (years >= 1) { if (years ===
-                        1) { %>1 YEAR AGO<% } else { %><%= years %> YEARS AGO<%
-                        } } else if (months >= 1) { if (months === 1) { %>1
-                        MONTH AGO<% } else { %><%= months %> MONTHS AGO<% } }
-                        else if (weeks >= 1) { if (weeks === 1) { %>1 WEEK AGO<%
-                        } else { %><%= weeks %> WEEKS AGO<% } } else if (days >=
-                        1) { if (days === 1) { %>1 DAY AGO<% } else { %><%= days
-                        %> DAYS AGO<% } } else if (hours >= 1) { if (hours ===
-                        1) { %>1 HOUR AGO<% } else { %><%= hours %> HOURS AGO<%
-                        } } else if (minutes >= 1) { if (minutes === 1) { %>1
-                        MINUTE AGO<% } else { %><%= minutes %> MINUTES AGO<% } }
-                        else { %>Just now<% } %></span
-                      >
+
+                <div class="row news-details-carousel" style="display: flex; margin-top: 50px"
+                  onclick="openModal('<%= news.description %>', '<%= news.id %>')">
+                  <div class="col-12 col-xl-4">
+                    <img class="card-img-top"
+                      src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${news.image}` %>"
+                      alt="Card image cap" style="border-radius: 10px" />
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <%= news.title %>
+                      </h5>
+                      <div class="dates">
+                        <h6 style="display: inline">Latest</h6>
+                        <span class="time" style="display: inline; padding-left: 10px; color: #fff; font-size: 12px;">
+                          <% const createdAt=new Date(news.createdAt); const currentTimeNews=new Date(); const
+                            timeDifferenceMs=currentTimeNews - createdAt; const seconds=Math.floor(timeDifferenceMs /
+                            1000); const minutes=Math.floor(seconds / 60); const hours=Math.floor(minutes / 60); const
+                            days=Math.floor(hours / 24); const weeks=Math.floor(days / 7); const months=Math.floor(weeks
+                            / 4.345); const years=Math.floor(months / 12); if (years>= 1) { if (years ===
+                            1) { %>1 YEAR AGO<% } else { %>
+                              <%= years %> YEARS AGO<% } } else if (months>= 1) { if (months === 1) { %>1
+                                  MONTH AGO<% } else { %>
+                                    <%= months %> MONTHS AGO<% } } else if (weeks>= 1) { if (weeks === 1) { %>1 WEEK AGO
+                                        <% } else { %>
+                                          <%= weeks %> WEEKS AGO<% } } else if (days>=
+                                              1) { if (days === 1) { %>1 DAY AGO<% } else { %>
+                                                <%= days %> DAYS AGO<% } } else if (hours>= 1) { if (hours ===
+                                                    1) { %>1 HOUR AGO<% } else { %>
+                                                      <%= hours %> HOURS AGO<% } } else if (minutes>= 1) { if (minutes
+                                                          === 1) { %>1
+                                                          MINUTE AGO<% } else { %>
+                                                            <%= minutes %> MINUTES AGO<% } } else { %>Just now<% } %>
+                        </span>
+                      </div>
+                      <P class="card-text-para">
+                        <%= news.description %>
+                      </P>
                     </div>
-                    <P class="card-text-para"> <%= news.description %> </P>
                   </div>
                 </div>
-              </div>
-              <% }); %>
+                <% }); %>
             </div>
           </div>
         </div>
@@ -133,96 +151,91 @@
                 <div class="col-12 col-xl-6 news-details-head-img">
                   <img
                     src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ articleData[articleData.length - 1].image}` %>"
-                    alt=""
-                  />
+                    alt="" />
                 </div>
-                <div class="col-12 col-xl-6">
-                  <h1><%= articleData[articleData.length - 1].title %></h1>
+                <div class="col-12 col-xl-6  card-body">
+                  <h1>
+                    <%= articleData[articleData.length - 1].title %>
+                  </h1>
                   <div class="dates">
                     <h6 style="display: inline">Latest</h6>
-                    <span
-                      class="time"
-                      style="display: inline; padding-left: 10px; color: #fff"
-                    >
-                      <% const articleCreatedAtArticle = new
-                      Date(articleData[articleData.length - 1].createdAt); const
-                      currentTimeArticle = new Date(); const
-                      timeDifferenceMsArticle = currentTimeArticle -
-                      articleCreatedAtArticle; const secondsArticle =
-                      Math.floor(timeDifferenceMsArticle / 1000); const
-                      minutesArticle = Math.floor(secondsArticle / 60); const
-                      hoursArticle = Math.floor(minutesArticle / 60); const
-                      daysArticle = Math.floor(hoursArticle / 24); const
-                      weeksArticle = Math.floor(daysArticle / 7); const
-                      monthsArticle = Math.floor(weeksArticle / 4.345); const
-                      yearsArticle = Math.floor(monthsArticle / 12); if
-                      (yearsArticle >= 1) { if (yearsArticle === 1) { %>1 YEAR
-                      AGO<% } else { %><%= yearsArticle %> YEARS AGO<% } } else
-                      if (monthsArticle >= 1) { if (monthsArticle === 1) { %>1
-                      MONTH AGO<% } else { %><%= monthsArticle %> MONTHS AGO<% }
-                      } else if (weeksArticle >= 1) { if (weeksArticle === 1) {
-                      %>1 WEEK AGO<% } else { %><%= weeksArticle %> WEEKS AGO<%
-                      } } else if (daysArticle >= 1) { if (daysArticle === 1) {
-                      %>1 DAY AGO<% } else { %><%= daysArticle %> DAYS AGO<% } }
-                      else if (hoursArticle >= 1) { if (hoursArticle === 1) {
-                      %>1 HOUR AGO<% } else { %><%= hoursArticle %> HOURS AGO<%
-                      } } else if (minutesArticle >= 1) { if (minutesArticle ===
-                      1) { %>1 MINUTE AGO<% } else { %><%= minutesArticle %>
-                      MINUTES AGO<% } } else { %>Just now<% } %>
+                    <span class="time" style="display: inline; padding-left: 10px; color: #fff;font-size: 12px;">
+                      <% const articleCreatedAtArticle=new Date(articleData[articleData.length - 1].createdAt); const
+                        currentTimeArticle=new Date(); const timeDifferenceMsArticle=currentTimeArticle -
+                        articleCreatedAtArticle; const secondsArticle=Math.floor(timeDifferenceMsArticle / 1000); const
+                        minutesArticle=Math.floor(secondsArticle / 60); const hoursArticle=Math.floor(minutesArticle /
+                        60); const daysArticle=Math.floor(hoursArticle / 24); const weeksArticle=Math.floor(daysArticle
+                        / 7); const monthsArticle=Math.floor(weeksArticle / 4.345); const
+                        yearsArticle=Math.floor(monthsArticle / 12); if (yearsArticle>= 1) { if (yearsArticle === 1) {
+                        %>1 YEAR
+                        AGO<% } else { %>
+                          <%= yearsArticle %> YEARS AGO<% } } else if (monthsArticle>= 1) { if (monthsArticle === 1) {
+                              %>1
+                              MONTH AGO<% } else { %>
+                                <%= monthsArticle %> MONTHS AGO<% } } else if (weeksArticle>= 1) { if (weeksArticle ===
+                                    1) {
+                                    %>1 WEEK AGO<% } else { %>
+                                      <%= weeksArticle %> WEEKS AGO<% } } else if (daysArticle>= 1) { if (daysArticle
+                                          === 1) {
+                                          %>1 DAY AGO<% } else { %>
+                                            <%= daysArticle %> DAYS AGO<% } } else if (hoursArticle>= 1) { if
+                                                (hoursArticle === 1) {
+                                                %>1 HOUR AGO<% } else { %>
+                                                  <%= hoursArticle %> HOURS AGO<% } } else if (minutesArticle>= 1) { if
+                                                      (minutesArticle ===
+                                                      1) { %>1 MINUTE AGO<% } else { %>
+                                                        <%= minutesArticle %>
+                                                          MINUTES AGO<% } } else { %>Just now<% } %>
                     </span>
                   </div>
-                  <p><%= articleData[articleData.length - 1].description %></p>
+                  <p>
+                    <%= articleData[articleData.length - 1].description %>
+                  </p>
                 </div>
               </div>
 
               <% articleData.forEach(article=> { %>
 
-              <div
-                class="row news-details-carousel"
-                style="display: flex; margin-top: 50px"
-              >
-                <div class="col-12 col-xl-4">
-                  <img
-                    class="card-img-top"
-                    src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ article.image}` %>"
-                    alt="Card image cap"
-                    style="border-radius: 10px"
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title"><%= article.title %></h5>
-                    <div class="dates">
-                      <h6 style="display: inline">Latest</h6>
-                      <span
-                        class="time"
-                        style="display: inline; padding-left: 10px; color: #fff"
-                        ><% const articleCreatedAt = new
-                        Date(article.createdAt); const currentTimeArticle = new
-                        Date(); const timeDifferenceMs = currentTimeArticle -
-                        articleCreatedAt; const seconds =
-                        Math.floor(timeDifferenceMs / 1000); const minutes =
-                        Math.floor(seconds / 60); const hours =
-                        Math.floor(minutes / 60); const days = Math.floor(hours
-                        / 24); const weeks = Math.floor(days / 7); const months
-                        = Math.floor(weeks / 4.345); const years =
-                        Math.floor(months / 12); if (years >= 1) { if (years ===
-                        1) { %>1 YEAR AGO<% } else { %><%= years %> YEARS AGO<%
-                        } } else if (months >= 1) { if (months === 1) { %>1
-                        MONTH AGO<% } else { %><%= months %> MONTHS AGO<% } }
-                        else if (weeks >= 1) { if (weeks === 1) { %>1 WEEK AGO<%
-                        } else { %><%= weeks %> WEEKS AGO<% } } else if (days >=
-                        1) { if (days === 1) { %>1 DAY AGO<% } else { %><%= days
-                        %> DAYS AGO<% } } else if (hours >= 1) { if (hours ===
-                        1) { %>1 HOUR AGO<% } else { %><%= hours %> HOURS AGO<%
-                        } } else if (minutes >= 1) { if (minutes === 1) { %>1
-                        MINUTE AGO<% } else { %><%= minutes %> MINUTES AGO<% } }
-                        else { %>Just now<% } %></span
-                      >
+                <div class="row news-details-carousel" style="display: flex; margin-top: 50px">
+                  <div class="col-12 col-xl-4">
+                    <img class="card-img-top"
+                      src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ article.image}` %>"
+                      alt="Card image cap" style="border-radius: 10px" />
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <%= article.title %>
+                      </h5>
+                      <div class="dates">
+                        <h6 style="display: inline">Latest</h6>
+                        <span class="time" style="display: inline; padding-left: 10px; color: #fff;font-size: 12px;">
+                          <% const articleCreatedAt=new Date(article.createdAt); const currentTimeArticle=new Date();
+                            const timeDifferenceMs=currentTimeArticle - articleCreatedAt; const
+                            seconds=Math.floor(timeDifferenceMs / 1000); const minutes=Math.floor(seconds / 60); const
+                            hours=Math.floor(minutes / 60); const days=Math.floor(hours / 24); const
+                            weeks=Math.floor(days / 7); const months=Math.floor(weeks / 4.345); const
+                            years=Math.floor(months / 12); if (years>= 1) { if (years ===
+                            1) { %>1 YEAR AGO<% } else { %>
+                              <%= years %> YEARS AGO<% } } else if (months>= 1) { if (months === 1) { %>1
+                                  MONTH AGO<% } else { %>
+                                    <%= months %> MONTHS AGO<% } } else if (weeks>= 1) { if (weeks === 1) { %>1 WEEK AGO
+                                        <% } else { %>
+                                          <%= weeks %> WEEKS AGO<% } } else if (days>=
+                                              1) { if (days === 1) { %>1 DAY AGO<% } else { %>
+                                                <%= days %> DAYS AGO<% } } else if (hours>= 1) { if (hours ===
+                                                    1) { %>1 HOUR AGO<% } else { %>
+                                                      <%= hours %> HOURS AGO<% } } else if (minutes>= 1) { if (minutes
+                                                          === 1) { %>1
+                                                          MINUTE AGO<% } else { %>
+                                                            <%= minutes %> MINUTES AGO<% } } else { %>Just now<% } %>
+                        </span>
+                      </div>
+                      <P class="card-text-para">
+                        <%= article.description %>
+                      </P>
                     </div>
-                    <P class="card-text-para"> <%= article.description %> </P>
                   </div>
                 </div>
-              </div>
-              <% }); %>
+                <% }); %>
             </div>
           </div>
         </div>
@@ -236,29 +249,27 @@
                 <div class="slide-content">
                   <div class="card-wrapper swiper-wrapper">
                     <% testimonialData.forEach(testimonial=> { %>
-                    <div class="card2 swiper-slide">
-                      <div class="image-content">
-                        <span class="overlay"></span>
+                      <div class="card2 swiper-slide">
+                        <div class="image-content">
+                          <span class="overlay"></span>
 
-                        <div>
-                          <img
-                            src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ testimonial.image}` %>"
-                            alt=""
-                            class="card-img"
-                          />
+                          <div>
+                            <img
+                              src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ testimonial.image}` %>"
+                              alt="" class="card-img" />
+                          </div>
+                        </div>
+
+                        <div class="card-content">
+                          <p class="description-testimonial">
+                            <%= testimonial.title %> <br />
+                              <%= testimonial.content %>
+                          </p>
+
+                          <!-- <button class="button">View More</button> -->
                         </div>
                       </div>
-
-                      <div class="card-content">
-                        <p class="description-testimonial">
-                          <%= testimonial.title %> <br />
-                          <%= testimonial.content %>
-                        </p>
-
-                        <!-- <button class="button">View More</button> -->
-                      </div>
-                    </div>
-                    <% }); %>
+                      <% }); %>
                   </div>
                 </div>
               </div>
@@ -273,13 +284,13 @@
             <div class="gallery">
               <div class="column">
                 <% galleryData.forEach(gallery=> { %>
-                <figure>
-                  <img
-                    src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ gallery.image}` %>"
-                  />
-                  <figcaption><%= gallery.title %></figcaption>
-                </figure>
-                <% }); %>
+                  <figure>
+                    <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ gallery.image}` %>" />
+                    <figcaption>
+                      <%= gallery.title %>
+                    </figcaption>
+                  </figure>
+                  <% }); %>
               </div>
             </div>
           </div>
@@ -289,51 +300,86 @@
 
     <!-- ========== Start footer ========== -->
     <%-include("mainFooter.ejs")%>
-    <!-- ========== End footer ========== -->
+      <!-- ========== End footer ========== -->
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Function to toggle the "active" class for navigation items
-        function toggleActiveNavigation(section) {
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          // Function to toggle the "active" class for navigation items
+          function toggleActiveNavigation(section) {
+            var eventNavItems = document.querySelectorAll(".updates-menu li");
+            eventNavItems.forEach(function (item) {
+              if (item.getAttribute("data-section") === section) {
+                item.classList.add("active");
+              } else {
+                item.classList.remove("active");
+              }
+            });
+          }
+
+          // Function to toggle the visibility of sections
+          function toggleSection(section) {
+            var sections = ["News", "Article", "Testimonial", "Gallery"];
+            sections.forEach(function (s) {
+              var sectionElement = document.getElementById(s + "-section");
+              if (s === section) {
+                sectionElement.style.display = "block";
+              } else {
+                sectionElement.style.display = "none";
+              }
+            });
+          }
+
+          // Add click event listeners to "li" tags in the eventNav
           var eventNavItems = document.querySelectorAll(".updates-menu li");
           eventNavItems.forEach(function (item) {
-            if (item.getAttribute("data-section") === section) {
-              item.classList.add("active");
-            } else {
-              item.classList.remove("active");
-            }
+            item.addEventListener("click", function () {
+              var targetSection = this.getAttribute("data-section");
+              toggleSection(targetSection); // Toggle section visibility
+              toggleActiveNavigation(targetSection); // Update active navigation item
+            });
           });
-        }
 
-        // Function to toggle the visibility of sections
-        function toggleSection(section) {
-          var sections = ["News", "Article", "Testimonial", "Gallery"];
-          sections.forEach(function (s) {
-            var sectionElement = document.getElementById(s + "-section");
-            if (s === section) {
-              sectionElement.style.display = "block";
-            } else {
-              sectionElement.style.display = "none";
-            }
-          });
-        }
-
-        // Add click event listeners to "li" tags in the eventNav
-        var eventNavItems = document.querySelectorAll(".updates-menu li");
-        eventNavItems.forEach(function (item) {
-          item.addEventListener("click", function () {
-            var targetSection = this.getAttribute("data-section");
-            toggleSection(targetSection); // Toggle section visibility
-            toggleActiveNavigation(targetSection); // Update active navigation item
-          });
+          // Initially, show the "News" section and set it as active
+          toggleSection("News");
+          toggleActiveNavigation("News");
         });
+      </script>
+</body>
 
-        // Initially, show the "News" section and set it as active
-        toggleSection("News");
-        toggleActiveNavigation("News");
-      });
-    </script>
-  </body>
+<script>
+  // Function to open the modal
+  function openModal(description) {
+    // var modalImage = document.getElementById("modalImage");
+    // var modalTitle = document.getElementById("modalTitle");
+    var modalDescription = document.getElementById("modalDescription");
+
+    // modalImage.src = imageUrl;
+    // modalTitle.textContent = title;
+    modalDescription.textContent = description;
+
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  }
+
+  // Find the trigger element by its class name and add a click event listener to open the modal
+  var triggerElement = document.querySelector(".news-details-head-img img");
+  triggerElement.addEventListener("click", function () {
+    // Replace these values with the actual data you want to display
+    // var imageUrl = "https://example.com/image.jpg";
+    // var title = "Example Title";
+    var description = "Example Description";
+
+    openModal(imageUrl, title, description);
+  });
+
+  // Find the close button by its class name
+  var closeButton = document.getElementById("closeModalButton");
+
+  // Add a click event listener to the close button to close the modal
+  closeButton.addEventListener("click", function () {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  });
+</script>
+
 </html>
-
-

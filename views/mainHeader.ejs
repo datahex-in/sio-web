@@ -86,7 +86,7 @@
            </div> -->
           <!-- Header Toggle Start -->
           <div class="register-button-m">
-            <a href="/register"> <button>Register</button></a>
+            <a href="/register"> <button>Sign In</button></a>
           </div>
           <div class="header-toggle" style="display: none;">
             
@@ -109,33 +109,33 @@
   <div class="bottombarContainer">
     <a href="/">
       <div class="bottomBarLink">
-        <i class="fas fa-home"></i>
 
+        <img src="/assets/images/home.svg" alt="">
       </div>
     </a>
     <a href="/event">
       <div class="bottomBarLink">
-        <i class="fas fa-ticket-alt"></i>
+        <img src="/assets/images/event.svg" alt="">
 
 
       </div>
     </a>
     <a href="/calender" aria-current="page">
       <div class="bottomBarLink">
-        <i class="fas fa-calendar-alt"></i>
+        <img src="/assets/images/calender.svg" alt="">
 
       </div>
     </a>
     <a href="/updates">
       <div class="bottomBarLink">
-        <i class="fas fa-bullhorn"></i>
 
+        <img src="/assets/images/decon.svg" alt="">
 
       </div>
     </a>
     <a href="/deconquista">
       <div class="bottomBarLink">
-        <i class="fas fa-medal"></i>
+        <img src="/assets/images/updates.svg" alt="">
 
       </div>
     </a>
@@ -166,6 +166,22 @@
         $(this).addClass("activeContainer");
       }
     });
+  </script>
+  <script>
+    const image = document.querySelector(".news-details-head-img img");
+    const popup = document.getElementById("popup");
+
+    // Add a click event listener to the image
+    image.addEventListener("click", function () {
+      // Show the popup
+      popup.style.display = "block";
+
+      // Hide the popup after a certain time (e.g., 2 seconds)
+      setTimeout(function () {
+        popup.style.display = "none";
+      }, 2000); // Adjust the time (in milliseconds) as needed
+    });
+
   </script>
 </body>
 
