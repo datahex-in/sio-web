@@ -164,7 +164,7 @@ h4 {
 }
 
 h5 {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 h6 {
@@ -558,7 +558,7 @@ textarea:-ms-input-placeholder {
   height: 35px;
   padding: 0;
   line-height: 33px;
-  font-size: 16px;
+  font-size: 14px;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   text-align: center;
@@ -736,7 +736,7 @@ textarea:-ms-input-placeholder {
 
   color: #ffff;
   border-radius: 0px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   height: 40px;
   line-height: 40px;
@@ -1208,7 +1208,7 @@ label {
 
 .header-action button {
   font-family: "Big Shoulders Display", cursive;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   color: #ffff;
   background-color: transparent;
@@ -1253,7 +1253,7 @@ label {
 
 .header-navigation .main-menu li a {
   font-family: "Big Shoulders Display", cursive;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   color: #ffff;
   letter-spacing: 1px;
@@ -1378,7 +1378,7 @@ label {
 }
 
 .header-search .search-btn {
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 50%;
   text-align: center;
   color: #ffff;
@@ -1483,7 +1483,7 @@ label {
     .search-cell
     .search-field-holder
     .main-search-input {
-    font-size: 16px;
+    font-size: 14px;
     padding: 0 15px;
   }
 }
@@ -1523,7 +1523,7 @@ label {
     .search-cell
     .search-field-holder
     .main-search-input::-webkit-input-placeholder {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -1564,7 +1564,7 @@ label {
     .search-cell
     .search-field-holder
     .main-search-input:-moz-placeholder {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -1605,7 +1605,7 @@ label {
     .search-cell
     .search-field-holder
     .main-search-input::-moz-placeholder {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -1646,7 +1646,7 @@ label {
     .search-cell
     .search-field-holder
     .main-search-input:-ms-input-placeholder {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -2051,7 +2051,7 @@ label {
 
 .offcanvas-menu .main-menu li a {
   display: block;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   font-family: "Big Shoulders Display", cursive;
   /* color: #ffff; */
@@ -2073,7 +2073,7 @@ label {
 .offcanvas-menu .main-menu li .mobile-menu-expand::before {
   position: absolute;
   content: "";
-  width: 16px;
+  width: 14px;
   height: 2px;
   background-color: #ffff;
   top: 50%;
@@ -2086,7 +2086,7 @@ label {
   position: absolute;
   content: "";
   width: 2px;
-  height: 16px;
+  height: 14px;
   left: 50%;
   top: 50%;
   bottom: 0;
@@ -2750,7 +2750,7 @@ label {
   }
 
   .meeta-hero-section-2 .meeta-hero-content .text {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 70px;
   }
 
@@ -3081,7 +3081,7 @@ label {
   }
 
   .meeta-hero-section-3 .meeta-hero-content .text {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .meeta-hero-section-3 .meeta-hero-content .title {
@@ -3303,7 +3303,7 @@ label {
   }
 
   .meeta-hero-section-4 .hero-content .place {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 30px;
     height: 40px;
     line-height: 40px;
@@ -3611,7 +3611,7 @@ label {
 }
 
 .meeta-hero-section-5 .hero-content .popular-tag .label {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   margin-right: 10px;
 }
@@ -3625,7 +3625,7 @@ label {
 }
 
 .meeta-hero-section-5 .hero-content .popular-tag ul li a {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   font-weight: 700;
   text-decoration: underline;
@@ -4419,7 +4419,7 @@ label {
 }
 
 .meeta-about-section-2 .about-2-content-wrap .meeta-about-content p {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .meeta-about-section-2 .about-2-content-wrap .meeta-about-content .about-list {
@@ -4666,11 +4666,11 @@ label {
 }
 
 .meeta-about-section-3 .about-content-3-wrap .about-content-3 p {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .meeta-about-section-3 .about-content-3-wrap .about-content-3 .btn-2 {
-  font-size: 16px;
+  font-size: 14px;
   padding: 0 50px;
   border-radius: 5px;
   margin-top: 40px;
@@ -5001,7 +5001,7 @@ label {
   }
 
   .meeta-about-section-4 .meeta-about-counter-wrap .single-about-counter .text {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .meeta-about-section-4
@@ -6038,7 +6038,7 @@ label {
   .post-link
   .post-text
   .title {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 20px;
   font-family: "Archivo", sans-serif;
   font-weight: 700;
@@ -6748,7 +6748,7 @@ label {
 }
 
 .single-pricing .pricing-header .price sup {
-  font-size: 16px;
+  font-size: 14px;
   top: -35px;
 }
 
@@ -6758,7 +6758,7 @@ label {
 }
 
 .single-pricing .pricing-body ul li {
-  font-size: 16px;
+  font-size: 14px;
   color: #666666;
 }
 
@@ -7420,7 +7420,7 @@ label {
 
 @media only screen and (max-width: 767px) {
   .page-banner .breadcrumb .breadcrumb-item {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -7565,7 +7565,7 @@ label {
 }
 
 .single-counter .counter-text p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 30px;
   color: #ffff;
 }
@@ -7861,7 +7861,7 @@ label {
 }
 
 .meeta-video-content .video-info .video-info-item p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 26px;
   margin-top: 5px;
 }
@@ -8114,7 +8114,7 @@ label {
 }
 
 .topic-item .topic-content p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 30px;
   margin-top: 15px;
 }
@@ -8367,7 +8367,7 @@ label {
   .single-item
   .featured-content
   .title {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 22px;
 }
 
@@ -8467,7 +8467,7 @@ label {
 }
 
 .feature-item .feature-content p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 30px;
   margin-top: 20px;
 }
@@ -8595,7 +8595,7 @@ label {
   width: 35px;
   height: 35px;
   line-height: 35px;
-  font-size: 16px;
+  font-size: 14px;
   text-align: center;
   border-radius: 50%;
   color: #ffff;
@@ -9064,7 +9064,7 @@ label {
 
 .sidebar-widget .recent-posts ul li .post-link .post-text .title {
   font-size: 14px;
-  line-height: 16px;
+  line-height: 14px;
   font-family: "Archivo", sans-serif;
   font-weight: 600;
   transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -9302,7 +9302,7 @@ label {
   border-radius: 5px;
   padding: 6px 15px;
   font-size: 14px;
-  line-height: 16px;
+  line-height: 14px;
   border: 1px solid #ebebeb;
   transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
@@ -9534,7 +9534,7 @@ label {
   .blog-pagination-post
   .post-content
   .title {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
@@ -9731,7 +9731,7 @@ label {
 }
 
 .event-single-content p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 30px;
   margin-top: 35px;
 }
@@ -9755,7 +9755,7 @@ label {
   .speker-img
   .speker-content
   .name {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 18px;
 }
 
@@ -9923,7 +9923,7 @@ label {
   .single-form
   .form-control::-webkit-input-placeholder {
   opacity: 0.95;
-  font-size: 16px;
+  font-size: 14px;
   color: #a7a5c6;
   font-weight: 400;
 }
@@ -9934,7 +9934,7 @@ label {
   .single-form
   .form-control:-moz-placeholder {
   opacity: 0.95;
-  font-size: 16px;
+  font-size: 14px;
   color: #a7a5c6;
   font-weight: 400;
 }
@@ -9945,7 +9945,7 @@ label {
   .single-form
   .form-control::-moz-placeholder {
   opacity: 0.95;
-  font-size: 16px;
+  font-size: 14px;
   color: #a7a5c6;
   font-weight: 400;
 }
@@ -9956,7 +9956,7 @@ label {
   .single-form
   .form-control:-ms-input-placeholder {
   opacity: 0.95;
-  font-size: 16px;
+  font-size: 14px;
   color: #a7a5c6;
   font-weight: 400;
 }
@@ -10079,7 +10079,7 @@ label {
     .single-contact-info
     .info-content
     p {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -10158,7 +10158,7 @@ label {
 .event-list-top-bar .event-list-search .single-form i {
   display: block;
   position: absolute;
-  left: 16px;
+  left: 14px;
   right: auto;
   top: 50%;
   transform: translateY(-50%);
@@ -10362,7 +10362,7 @@ label {
   .event-list-content
   .event-price
   .price {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 30px;
   font-family: "Archivo", sans-serif;
   font-weight: 600;
@@ -10467,7 +10467,7 @@ label {
 .event-list-content-wrap .event-list-item.event-list .event-time {
   width: 45px;
   height: 45px;
-  line-height: 16px;
+  line-height: 14px;
   text-align: center;
   background: #000000;
   color: #ffff;
@@ -10483,7 +10483,7 @@ label {
 }
 
 .event-list-content-wrap .event-list-item.event-list .event-time span {
-  font-size: 16px;
+  font-size: 14px;
   display: block;
 }
 
@@ -10661,7 +10661,7 @@ label {
 }
 
 .faq-accordion .accordion-item .accordion-body p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 30px;
   color: #415674;
 }
@@ -11502,7 +11502,7 @@ label {
 
 @media only screen and (max-width: 575px) {
   .footer-newsletter p {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -11528,7 +11528,7 @@ label {
   .footer-newsletter-form input {
     height: 50px;
     padding: 0 25px;
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -12125,7 +12125,7 @@ label {
 }
 @media (max-width: 600px) {
   .malabar-title p {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 .malabar-title img {
@@ -12364,12 +12364,6 @@ img {
   font-size: 30px;
   font-style: normal;
   font-weight: 100;
-  line-height: normal;
-  text-decoration-line: underline;
-  text-decoration-style: wavy;
-  text-decoration-skip-ink: none;
-  text-underline-offset: 15px;
-  /* Adjust the value as needed */
 }
 
 .news-details {
@@ -12384,10 +12378,13 @@ img {
   color: #fff;
   font-family: var(--font-Nutino);
   padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 30px;
 }
 .news-details-head p {
   color: #fff;
   font-family: var(--font-Inter);
+  font-size: 18px;
 }
 
 .news-details-head-img img {
@@ -12415,7 +12412,7 @@ img {
   background-color: #e59bff;
   font-size: 13px;
   color: #000;
-  padding: 3px 25px;
+  padding: 3px 18px;
   border-radius: 5px;
   font-weight: 300;
 }
@@ -13396,7 +13393,7 @@ html body main .slider .slide .slider-img img {
   width: 240px;
   display: block;
   border-radius: 10px;
-  box-shadow: 0px 16px 40px 0px rgba(135, 105, 210, 0.4);
+  box-shadow: 0px 14px 40px 0px rgba(135, 105, 210, 0.4);
 }
 html body main .slider .slide .active {
   opacity: 1;
@@ -13517,7 +13514,7 @@ html body .hide {
 .select-items div,
 .select-selected {
   color: #ffff;
-  padding: 8px 16px;
+  padding: 8px 14px;
   border: 1px solid transparent;
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
   cursor: pointer;
@@ -13702,6 +13699,7 @@ html body .hide {
     width: 100%;
     text-align: center;
     color: #531768 !important;
+    padding-bottom: 70px;
   }
 
   .privacy {
@@ -13878,7 +13876,7 @@ html body .hide {
     font-size: 30px;
   }
   .programe-texts h3 {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 /***** End media screen *****/
@@ -14227,7 +14225,7 @@ html body .hide {
   border: 0;
   color: var(--color-light);
   background-color: transparent;
-  font-size: 16px;
+  font-size: 14px;
   transition: color 300ms ease;
 }
 .c-testimonials .c-testimonials__arrows .c-testimonials__arrow-next::before,
@@ -14309,7 +14307,7 @@ html body .hide {
   width: 100%;
   margin-top: 50px;
   padding: 10px;
-  font-size: 16px;
+  font-size: 14px;
   font-family: var(--font-Nutino);
   font-style: normal;
   font-weight: 300;
@@ -14402,11 +14400,11 @@ html body .hide {
     color: #fff;
     line-height: normal;
     padding-top: 2px !important;
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
   .know-more-btn {
     text-align: center;
-    margin-top: 5px !important;
+    margin-top: 15px !important;
   }
   .know-more-btn button {
     padding: 2px 18px !important;
@@ -14488,13 +14486,13 @@ html body .hide {
   .news-details-head p {
     color: #fff;
     font-family: var(--font-Inter);
-    font-size: 13px;
+    font-size: 14px;
     padding-top: 5px;
   }
   .card-text-para {
     font-family: var(--font-Inter);
     color: #fff;
-    font-size: 13px;
+    font-size: 14px;
     padding-top: 5px;
   }
   .bottombarContainer {
@@ -14509,7 +14507,7 @@ html body .hide {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 102;
+    z-index: 999;
     /* background: rgba(87, 42, 87, 0.438) !important; */
     background: #471d5a !important;
     box-shadow: 0 8px 32px 0 rgba(16, 15, 22, 0.5019607843137255);
@@ -14733,7 +14731,7 @@ html body .hide {
   color: #fff;
   text-align: justify;
   font-family: var(--font-Nutino);
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 200;
   line-height: 128.5%; /* 15.42px */
@@ -14750,7 +14748,7 @@ html body .hide {
 .c-card-testimonial__deconquista {
   color: #fff;
   font-family: var(--font-Inter);
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
@@ -15147,7 +15145,7 @@ main h1 {
 
 .user-text {
   background: rgba(255, 255, 255, 0.7);
-  border-radius: 16px;
+  border-radius: 14px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(4.5px);
   -webkit-backdrop-filter: blur(4.5px);
@@ -15244,5 +15242,43 @@ main h1 {
     display: block;
     z-index: 0;
     cursor: pointer;
+  }
+  .modal-content {
+    border-radius: 20px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px; /* Adjust the maximum width as needed */
+    height: 80vh;
+    background-color: rgba(128, 128, 128, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: -9999 !important; /* Set a lower z-index */
+  }
+
+  #modalImage {
+    border-radius: 20px;
+    padding: 10px;
+  }
+  #modalTitle {
+    color: #fff;
+    font-size: 18px;
+    font-family: var(--font-Nutino);
+    text-align: center;
+  }
+  #modalDescription {
+    color: #fff;
+    margin-top: 50px;
+    font-size: 14px;
+    font-family: var(--font-Inter);
+    text-align: center;
+    font-weight: 600;
+    padding: 0px 10px;
+  }
+  .close {
+    padding: 10px;
+    color: white;
+    font-size: 30px;
   }
 }
