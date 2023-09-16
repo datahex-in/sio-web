@@ -55,8 +55,8 @@
     <link rel="stylesheet" href="../assets/css/css/style.css" />
   </head>
 
-  <body>
-    <div class="main-wrapper">
+  <body id="bg-color-purple">
+    <div class="main-wrapper" >
       <!-- Preloader start -->
       <!-- <div id="preloader">
           <div class="preloader">
@@ -71,7 +71,8 @@
         <!-- ========== End header ========== -->
 
         <!-- Page Banner Start -->
-        <div id="bg-color-purple">
+       
+        <div>
           <div class="container">
             <div class="call-papers">
               <img src="/../assets/images/call-papers.svg" alt="" />
@@ -94,7 +95,9 @@
                 </p>
               </div>
               <div class="event-date">
-                <h5>SEP 17 SUNDAY | 9:00 AM | ERNAKULAM</h5>
+                <h5 class="event-date-one">SEP 17 SUNDAY | 9:00 AM | ERNAKULAM</h5>
+                <h5 class="event-date-two">SEP 17 SUNDAY | 9:00 AM</h5>
+                <h5 class="event-date-two">ERNAKULAM</h5>
               </div>
               <div class="event-enroll">
                 <% if (eventData.isEnroll) { %>
@@ -112,41 +115,47 @@
                   <li>
                     <%= eventData.theme %>
                   </li>
+                  <li>
+                    <%= eventData.theme %>
+                  </li>
                 </ul>
               </div>
             </div>
 
             <div id="guest-section" style="display: none;">
+
               <div class="deconquista-slider">
                 <div class="slide-container swiper">
                   <div class="slide-content">
-                    <div class="card-wrapper swiper-wrapper" style="height: auto; width: 100%;">
+                    <div class="card-wrapper swiper-wrapper">
                       <% speakerData.forEach(item=> { %>
-                        <div class="card swiper-slide">
-                          <div class="image-content">
-                            <span class="overlay"></span>
-
-                            <div class="card-image">
-                              <img
-                                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.photo}` %>"" alt="" class="
-                                card-img" />
-                            </div>
-                          </div>
-
-                          <div class="card-content">
-                            <h2 class="name">
-                              <%= item.name %>
-                            </h2>
-                            <p class="description">
-                              <%= item.designation %>
-                            </p>
+                      <div class="card-speakers swiper-slide">
+                        <div class="image-content">
+                          <span class="overlay"></span>
+                          <div class="card-image-items">
+                            <img
+                            src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.photo}` %>" alt="image" class="card-img" />
                           </div>
                         </div>
-                        <% }); %>
+  
+                        <div class="card-content">
+                          <h2 class="name">
+                            <%= item.name %>
+                          </h2>
+                          <p class="description">
+                            <%= item.designation %>
+                          </p>
+                          <!-- <button class="button">View More</button> -->
+                        </div>
+                      </div>
+                      <% }); %>
                     </div>
                   </div>
                 </div>
               </div>
+
+
+
             </div>
 
             <div id="faqs-section" style="display: none">
@@ -159,17 +168,37 @@
                     <p>
                       <%= item.answer %>
                     </p>
+                    <li>
+                      <%= item.question %>
+                    </li>
+                    <p>
+                      <%= item.answer %>
+                    </p>
+                    <li>
+                      <%= item.question %>
+                    </li>
+                    <p>
+                      <%= item.answer %>
+                    </p>
+                    <li>
+                      <%= item.question %>
+                    </li>
+                    <p>
+                      <%= item.answer %>
+                    </p>
+                    <li>
+                      <%= item.question %>
+                    </li>
+                    <p>
+                      <%= item.answer %>
+                    </p>
                   </ul>
+                  
                   <% }); %>
-              </div>
-            </div>
-          </div>
-        </div>
+              </div>      
+       </div>       
+        </div>   
     </div>
-    <!-- ========== Start header ========== -->
-    <%-include("mainFooter.ejs")%>
-      <!-- ========== End header ========== -->
-
       <script>
         document.addEventListener("DOMContentLoaded", function () {
           // Function to toggle the "active" class for navigation items
