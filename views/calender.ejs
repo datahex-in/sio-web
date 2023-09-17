@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body>
+<body id="bg-color-purple">
   <!-- ========== Start header ========== -->
 <%-include("mainHeader.ejs")%>
 <!-- ========== End header ========== -->
@@ -15,16 +15,6 @@
       <div class="updates-title">
         <h1>Calender</h1>
       </div>
-
-      <!-- <div 
-        class="updates-menu">
-        <ul>
-          <li data-section="september" id="september">September</li>
-          <li data-section="october" id="october">October</li>
-          <li data-section="november" id="november">November</li>
-          <li data-section="december" id="december">December</li>
-        </ul>
-      </div> -->
       <form id="monthForm" action="/calendar" method="POST">
         <input type="hidden" name="month" id="selectedMonth" value="">
       </form>
@@ -72,12 +62,11 @@
     </div>
   </div>
 </div>
-
-<!-- ========== Start footer ========== -->
+<div class="footer_hide_mobile">
+  <!-- ========== Start footer ========== -->
 <%-include("mainFooter.ejs")%>
 <!-- ========== End footer ========== -->
-
-
+</div>
 <script>
   // Hide events for months other than September by default
   $('.calender-cards-items:not([data-month="September"])').hide();
