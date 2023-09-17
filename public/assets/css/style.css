@@ -1114,6 +1114,7 @@ label {
   line-height: 1;
   margin-bottom: 10px;
   font-weight: 400;
+  color: #ffff;
   text-transform: capitalize;
 }
 
@@ -12902,7 +12903,7 @@ li a {
   }
 
   .delegate-table-section {
-    padding: 25px !important;
+    padding: 15px !important;
   }
 }
 
@@ -13793,11 +13794,11 @@ html body .hide {
   line-height: 25.734px;
 }
 .about-sio-para::first-letter {
-  color: #e7427e;
+  color: #fff;
   font-weight: bold;
   font-style: initial;
   font-family: var(--font-fabulous);
-  font-size: 22px;
+  font-size: 16px;
 }
 .about-gradient-img {
   position: absolute;
@@ -13867,10 +13868,12 @@ html body .hide {
     border-right: solid 0px #373737 !important;
   }
   #borders_both {
-    width: 60%;
+    width: 50%;
     margin: auto;
+    margin-top: auto;
     border-left: solid 1px #373737 !important;
     border-right: solid 1px #373737 !important;
+    margin-top: 10px;
   }
   .programe-texts h1 {
     font-size: 30px;
@@ -14036,7 +14039,7 @@ html body .hide {
   .c-testimonials__upcoming {
     position: absolute;
     left: 30%;
-    top: -120px;
+    top: -100px;
     z-index: 4;
   }
 }
@@ -14199,7 +14202,7 @@ html body .hide {
   .c-testimonials
     .c-testimonials__pagination.swiper-pagination-bullets
     .swiper-pagination-bullet {
-    margin: 0 5px;
+    margin: 400px 5px;
   }
 }
 .c-testimonials .c-testimonials__arrows {
@@ -14707,7 +14710,7 @@ html body .hide {
     display: none;
   }
   .event-about-para p {
-    font-size: 13.5px;
+    font-size: 14px;
   }
   .event-date-two {
     display: block;
