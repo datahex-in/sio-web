@@ -12508,7 +12508,7 @@ h2 {
     /* Add some margin between cards */
   }
   .news-details {
-    padding: 0px 30px !important;
+    padding: 0px 20px auto !important;
   }
 }
 
@@ -14391,7 +14391,20 @@ html body .hide {
   color: #fff;
   text-decoration: none;
 }
-
+.know-more-btn {
+  text-align: center;
+  margin-top: 30px;
+}
+.know-more-btn button {
+  padding: 10px 45px;
+  border-radius: 15px;
+  border: 1px solid #c149b1;
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: 100;
+  color: #fff;
+  font-family: var(--font-fabulous);
+}
 @media (max-width: 800px) {
   .event-content-head-title p strong {
     font-size: 17px !important;
@@ -14407,17 +14420,18 @@ html body .hide {
     margin-top: 15px !important;
   }
   .know-more-btn button {
-    padding: 2px 18px !important;
-    border-radius: 5px !important;
+    padding: 5px 15px !important;
+    border-radius: 5px;
     border: 1px solid #c149b1;
     background-color: transparent;
-    font-size: 12px !important;
+    font-size: 13px;
+    font-weight: 100;
     color: #fff;
-    font-family: var(--font-fabulous);
+    font-family: var(--font-Nutino);
   }
   .event-img img {
     /* border-radius: 20px; */
-    width: 200px !important;
+    width: 200px;
     height: 173px !important;
     margin-top: 25px;
   }
@@ -14516,7 +14530,7 @@ html body .hide {
     backdrop-filter: blur(15px);
   }
   .bottomBarLink {
-    padding: 20px;
+    padding: 10px;
     color: #fff;
   }
   /* Define your styles for Font Awesome icons here */
@@ -14545,20 +14559,35 @@ html body .hide {
 .updates-title h1 {
   text-align: center;
   color: #ff4a8c;
-  font-size: 30px;
-  padding-top: 32px;
+  font-size: 40px;
+  padding-top: 28px;
+  font-weight: 400;
   padding-bottom: 20px;
   font-family: var(--font-fabulous);
 }
+.updates-menu {
+  padding-bottom: 10px;
+}
 .updates-menu ul {
+  margin-top: 1em;
   display: flex;
   font-weight: 600;
   align-items: center;
+  font-size: 16px;
+  cursor: pointer;
   justify-content: space-evenly;
   color: #fff;
   border: 1px solid #c149b1;
   border-radius: 10px;
   padding: 10px 0px;
+}
+@media (max-width: 600px) {
+  .updates-menu ul {
+    font-size: 13px;
+  }
+  .updates-title h1 {
+    font-size: 30px;
+  }
 }
 /* event-section------ */
 .events-page-main {
@@ -14572,6 +14601,7 @@ html body .hide {
   font-size: 40px;
   font-style: normal;
   font-weight: 400;
+  padding-bottom: 10px;
   line-height: normal;
 }
 .event-cards-sections {
@@ -14609,27 +14639,14 @@ html body .hide {
   line-height: normal;
   padding-top: 15px;
 }
-.know-more-btn {
-  text-align: center;
-  margin-top: 30px;
-}
-.know-more-btn button {
-  padding: 10px 45px;
-  border-radius: 15px;
-  border: 1px solid #c149b1;
-  background-color: transparent;
-  font-size: 20px;
-  color: #fff;
-  font-family: var(--font-fabulous);
-}
 
 .workshop button {
   position: absolute;
-  top: 0;
-  left: 27%;
+  top: 12px;
+  right: -3px;
   border: none;
-  padding: 2px 50px;
-  border-radius: 5px;
+  padding: 2px 25px;
+  border-radius: 0px;
   background-color: rgba(255, 255, 255, 0.5);
   font-size: 13px;
   color: #fff;
@@ -14694,6 +14711,9 @@ html body .hide {
   }
   .event-date-two {
     display: block;
+  }
+  .event-title h1 {
+    font-size: 30px;
   }
 }
 .event-enroll {
@@ -15238,7 +15258,7 @@ main h1 {
   .page_backarrow {
     position: fixed;
     left: 20px;
-    top: 35px;
+    top: 38px;
     display: block;
     z-index: 0;
     cursor: pointer;
@@ -15250,11 +15270,11 @@ main h1 {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
-    max-width: 600px; /* Adjust the maximum width as needed */
+    max-width: 600px;
     height: 80vh;
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: #4d1560;
     backdrop-filter: blur(10px);
-    z-index: -9999 !important; /* Set a lower z-index */
+    z-index: 1;
   }
 
   #modalImage {
@@ -15280,5 +15300,13 @@ main h1 {
     padding: 10px;
     color: white;
     font-size: 30px;
+  }
+}
+.footer_hide_mobile {
+  visibility: visible;
+}
+@media (max-width: 600px) {
+  .footer_hide_mobile {
+    display: none;
   }
 }
