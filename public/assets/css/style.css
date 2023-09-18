@@ -13910,9 +13910,9 @@ html body .hide {
   }
 }
 .c-card-testimonial .c-card-testimonial__profile .c-card-testimonial__image {
-  width: 80%;
+  width: 100%;
   position: absolute;
-  left: 50px;
+  left: 10px;
   height: 100%;
   object-fit: contain;
   border-radius: 20px;
