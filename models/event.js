@@ -30,7 +30,7 @@ const eventSchema = new mongoose.Schema({
 
   eventType: {
     type: String,
-    enum: ["Seminar", "Workshop", "Reading Session"],
+    enum: ["Seminar", "Workshop","Public Discussion", "Reading Session", "Academic Conference", "Book Talks", "Online Academic Conclaves"],
     required: true,
   },
 });
