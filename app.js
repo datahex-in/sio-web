@@ -6,11 +6,21 @@ var logger = require("morgan");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/db.js");
+const session = require("express-session");
 
 // Load env vars
 dotenv.config({ path: "./config/.env" });
 
 const app = express();
+
+app.use(
+  session({
+    secret: "This_is_my_secret_key",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  })
+);
 
 const allowedOrigins = [
   "http://localhost:3000",
@@ -55,20 +65,10 @@ app.set("view engine", "ejs");
 var indexRouter = require("./routes/ejsRoutes/indexEjs"); /*page from route*/
 var contactRouter = require("./routes/ejsRoutes/contactEjs");
 var eventRouter = require("./routes/ejsRoutes/eventEjs");
-// var eventAboutRouter = require("./routes/ejsRoutes/event_aboutEjs");
-// var eventThemeRouter = require("./routes/ejsRoutes/event_themeEjs");
-// var eventGuestRouter = require("./routes/ejsRoutes/event_guestEjs");
-// var eventFAQsRouter = require("./routes/ejsRoutes/event_FAQsEjs");
-// var event_listRouter = require("./routes/ejsRoutes/event-listEjs");
-// var event_singleRouter = require("./routes/ejsRoutes/event-singleEjs");
 var scheduleRouter = require("./routes/ejsRoutes/scheduleEjs");
-// var Gallery = require("./routes/ejsRoutes/galleryEjs");
 var Faq = require("./routes/ejsRoutes/faqEjs");
 var Speaker = require("./routes/ejsRoutes/speakerEjs");
 var Programe = require("./routes/ejsRoutes/programeEjs");
-// var News = require("./routes/ejsRoutes/newsEjs");
-// var Article = require("./routes/ejsRoutes/articleEjs");
-// var Testimonial = require("./routes/ejsRoutes/testimonialEjs");
 var Deconquista = require("./routes/ejsRoutes/deconquistaEjs");
 var Calender = require("./routes/ejsRoutes/calenderEjs");
 var Register = require("./routes/ejsRoutes/registerEjs");
@@ -92,7 +92,7 @@ const appointment = require("./routes/appointment.js");
 const franchise = require("./routes/franchise.js");
 const dashboard = require("./routes/dashboard.js");
 const faq = require("./routes/faq.js");
-const about = require("./routes/aboutUs.js")
+const about = require("./routes/aboutUs.js");
 const gallery = require("./routes/gallery");
 const news = require("./routes/news");
 const speakers = require("./routes/speakers");
@@ -160,7 +160,7 @@ app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  console.log(err)
+  console.log(err);
   // render the error page
   res.status(err.status || 500);
   res.render("error");
