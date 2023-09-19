@@ -14588,8 +14588,38 @@ html body .hide {
   border-radius: 10px;
   padding: 10px 0px;
 }
+
+.updates_menu_scroll ul {
+  margin-top: 1em;
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
+  justify-content: space-evenly;
+  color: #fff;
+  border: 1px solid #c149b1;
+  border-radius: 10px;
+  padding: 10px 0px;
+  width: auto;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.updates_menu_scroll ul li {
+  display: inline-block;
+  text-align: center;
+}
+
 @media (max-width: 600px) {
   .updates-menu ul {
+    font-size: 13px;
+  }
+  .updates_menu_scroll ul {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    padding: 10px 10px;
     font-size: 13px;
   }
   .updates-title h1 {

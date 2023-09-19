@@ -45,7 +45,7 @@
               <h1>Events</h1>
             </div>
 
-            <div class="updates-menu">
+            <div class="updates_menu_scroll">
               <ul>
                 <li data-section="All">All</li>
                 <li data-section="Seminar">Seminar</li>
@@ -158,7 +158,7 @@
       document.addEventListener("DOMContentLoaded", function () {
         // Function to toggle the "active" class for navigation items
         function toggleActiveNavigation(section) {
-          var eventNavItems = document.querySelectorAll(".updates-menu li");
+          var eventNavItems = document.querySelectorAll(".updates_menu_scroll li");
           eventNavItems.forEach(function (item) {
             if (item.getAttribute("data-section") === section) {
               item.classList.add("active");
@@ -169,7 +169,7 @@
         }
 
         // Add click event listeners to "li" tags in the eventNav
-        var eventNavItems = document.querySelectorAll(".updates-menu li");
+        var eventNavItems = document.querySelectorAll(".updates_menu_scroll li");
         eventNavItems.forEach(function (item) {
           item.addEventListener("click", function () {
             var targetSection = this.getAttribute("data-section");
