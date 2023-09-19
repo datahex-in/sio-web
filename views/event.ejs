@@ -45,7 +45,7 @@
               <h1>Events</h1>
             </div>
 
-            <div class="updates-menu">
+            <div class="updates_menu_scroll">
               <ul>
                 <li data-section="All">All</li>
                 <li data-section="Seminar">Seminar</li>
@@ -68,47 +68,21 @@
               >
                 <div class="event-box-section">
                   <div class="workshop">
-                    <button><%= item.eventType %></button>
-                  </div>
-                  <div class="event-img">
-                    <img
-                      style="object-fit: cover"
-                      src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${item.image}` %>"
-                      alt=""
-                    />
-                  </div>
-                  <div class="event-content">
-                    <div class="event-content-head-title">
-                      <p>
-                        <span>One day Workshop on</span><br /><strong
-                          style="font-size: 23px"
-                        >
-                          <%= item.description.substring(0, 40) %>
-                        </strong>
-                      </p>
-                    </div>
-                    <div class="event-content-para">
-                      <p><%= item.shortDescription.substring(0, 60) %></p>
-                    </div>
-                    <div class="know-more-btn">
-                      <a href="/event_single/<%= item._id %>">
-                        <button>
-                          Know More <i class="fas fa-arrow-right"></i>
-                        </button>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <% }); %>
-            </div>
-
-            <div class="row">
-              <% eventData.forEach(item => { %>
-              <div class="col-12 col-md-4 event-box">
-                <div class="event-box-section">
-                  <div class="workshop">
-                    <button><%= item.eventType %></button>
+                    <h1 class="workshop_title"><%= item.eventType %></h1>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="165" height="100" viewBox="0 0 68 19" fill="none">
+                      <g filter="url(#filter0_b_14_640)">
+                        <path d="M0.2836 0.985077H67.9851V18.5373H0.2836L4.55948 9.60448L0.2836 0.985077Z" fill="white" fill-opacity="0.28"/>
+                        <path d="M0.536283 1.14179H67.8284V18.3806H0.532361L4.70084 9.67214L4.73382 9.60325L4.69987 9.53483L0.536283 1.14179Z" stroke="white" stroke-opacity="0.1" stroke-width="0.313433"/>
+                      </g>
+                      <defs>
+                        <filter id="filter0_b_14_640" x="-5.10745" y="-4.40597" width="78.4836" height="28.3343" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                          <feGaussianBlur in="BackgroundImageFix" stdDeviation="2.69552"/>
+                          <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_14_640"/>
+                          <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_14_640" result="shape"/>
+                        </filter>
+                      </defs>
+                    </svg>            
                   </div>
                   <div class="event-img">
                     <img
@@ -158,7 +132,7 @@
       document.addEventListener("DOMContentLoaded", function () {
         // Function to toggle the "active" class for navigation items
         function toggleActiveNavigation(section) {
-          var eventNavItems = document.querySelectorAll(".updates-menu li");
+          var eventNavItems = document.querySelectorAll(".updates_menu_scroll li");
           eventNavItems.forEach(function (item) {
             if (item.getAttribute("data-section") === section) {
               item.classList.add("active");
@@ -169,7 +143,7 @@
         }
 
         // Add click event listeners to "li" tags in the eventNav
-        var eventNavItems = document.querySelectorAll(".updates-menu li");
+        var eventNavItems = document.querySelectorAll(".updates_menu_scroll li");
         eventNavItems.forEach(function (item) {
           item.addEventListener("click", function () {
             var targetSection = this.getAttribute("data-section");
