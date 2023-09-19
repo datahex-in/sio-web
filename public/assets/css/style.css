@@ -14638,6 +14638,7 @@ html body .hide {
   font-size: 40px;
   font-style: normal;
   font-weight: 400;
+  padding-top: 3px;
   padding-bottom: 10px;
   line-height: normal;
 }
