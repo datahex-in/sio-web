@@ -85,13 +85,8 @@
 
     <!-- Google Sign-In Meta Tags and Script -->
     <meta name="google-signin-scope" content="profile email" />
-    <meta
-      name="google-signin-client_id"
-      content="365382382373-tahn4pldb3gsa4e483o026jpm80rgqej.apps.googleusercontent.com"
-    />
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
   </head>
 
   <body id="bg-color-purple">
@@ -155,10 +150,12 @@
             </div>
             <div class="event-enroll">
               <% if (eventData.isEnroll) { %>
-                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-              <!-- <a href="/register">
-              <button>Enroll Now</button>
-            </a> -->
+                <a href="/auth/google">
+                  <button>
+                    Enroll Now with 
+                    <i class="fab fa-google"></i>
+                  </button>
+                </a>
               <% } %>
             </div>
           </div>
@@ -275,12 +272,15 @@
     </script>
 
     <script>
+      // Callback function after a successful Google Sign-In
       function onSignIn(googleUser) {
-        console.log("onSignIn function called");
+        // Get the ID token from the authenticated user
         const id_token = googleUser.getAuthResponse().id_token;
+
+        // Send the ID token to your server for verification
         $.ajax({
           type: "POST",
-          url: "/google-signin",
+          url: "/auth/google", // The endpoint on your server for handling Google OAuth
           data: { id_token },
           success: function (response) {
             console.log("User data received on the server:", response);

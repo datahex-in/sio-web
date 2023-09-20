@@ -8,6 +8,10 @@ const cors = require("cors");
 const connectDB = require("./config/db.js");
 const session = require("express-session");
 
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const Registration = require("./models/Registration.js");
+
 // Load env vars
 dotenv.config({ path: "./config/.env" });
 
@@ -30,6 +34,8 @@ const allowedOrigins = [
   "https://lemon-grass-0c88ad110.3.azurestaticapps.net",
   "https://lively-wave-04701e810.3.azurestaticapps.net",
   "https://sio-kerala-admin-6gv6l.ondigitalocean.app",
+  "https://accounts.google.com",
+  "https://oauth.googleusercontent.com",
 ];
 
 //cors policy
@@ -101,6 +107,7 @@ const registration = require("./routes/registration");
 const testimonial = require("./routes/testimonial");
 const event = require("./routes/event");
 const eventUser = require("./routes/eventUser");
+const { errorMonitor } = require("stream");
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -148,6 +155,98 @@ app.use("/api/v1/registration", registration);
 app.use("/api/v1/testimonial", testimonial);
 app.use("/api/v1/event", event);
 app.use("/api/v1/event-user", eventUser);
+
+// ---------------------------------------------------- Google Auth Start ------------------------------------------------ \\
+
+// Passport.js configuration
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    done(err, null);
+  }
+});
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "http://localhost:8072/auth/google/callback",
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        // Get the user's Google ID and email from the profile
+        const googleId = profile.id;
+        const googleEmail = profile.emails[0].value;
+        const googleName = profile.displayName;
+
+        // Check if the user exists in your MongoDB database using googleId or email
+        let user = await Registration.findOne({
+          $or: [{ googleId }, { email: googleEmail }],
+        });
+
+        if (!user) {
+          // If the user doesn't exist, redirect them to the registration page with the email query parameter
+          return done(null, false, {
+            message: "User not registered",
+            email: googleEmail,
+            name: googleName,
+          });
+        } else {
+          // If the user already exists, update their Google ID if it's not already set
+          if (!user.googleId) {
+            user.googleId = googleId;
+            // Save the updated user in the database
+            await user.save();
+          }
+          return done(null, user);
+        }
+      } catch (err) {
+        return done(err, null);
+      }
+    }
+  )
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Route for Google OAuth authentication
+app.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+  })
+);
+
+// Callback route after successful Google OAuth authentication
+app.get("/auth/google/callback", (req, res, next) => {
+  passport.authenticate("google", (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      // console.log(info);
+      // Handle the case where user is not registered
+      return res.redirect(`/register?email=${info.email}&name=${info.name}`);
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      // Successful authentication with Google
+      return res.redirect("/"); // Redirect to the home page or any other desired page
+    });
+  })(req, res, next);
+});
+
+// ---------------------------------------------------- Google Auth End ------------------------------------------------ \\
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 
 const RegistrationSchema = new mongoose.Schema(
   {
+    googleId: {
+      type: String,
+    },
     name: {
       type: String,
     },

@@ -4,9 +4,11 @@ const Registration = require("../../models/Registration");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("register");
+  const preFilledEmail = req.query.email;
+  const preFilledName = req.query.name;
+  res.render("register", { preFilledEmail, preFilledName });
 });
- 
+
 router.post("/", async function (req, res, next) {
   try {
     console.log(req.body);
@@ -36,12 +38,10 @@ router.post("/", async function (req, res, next) {
     return res.status(200).send("Successfully registered");
   } catch (error) {
     console.error(error);
-    console.log('error :')
-    console.log(error)
+    console.log("error :");
+    console.log(error);
     return res.status(500).json({ error: "Internal server error" });
   }
 });
- 
-
 
 module.exports = router;
