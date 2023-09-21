@@ -21,16 +21,28 @@ const eventSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  eventMode: {
+    type: String,
+    enum: ["Online", "Offline", "Hybrid"],
+  },
   month: {
     type: String,
-    enum: ['September', 'October', 'November', 'December'],
+    enum: ["September", "October", "November", "December"],
   },
-  
+
   isEnroll: Boolean,
 
   eventType: {
     type: String,
-    enum: ["Seminar", "Workshop","Public Discussion", "Reading Session", "Academic Conference", "Book Talks", "Online Academic Conclaves"],
+    enum: [
+      "Seminar",
+      "Workshop",
+      "Public Discussion",
+      "Reading Session",
+      "Academic Conference",
+      "Book Talks",
+      "Online Academic Conclaves",
+    ],
     required: true,
   },
 });
