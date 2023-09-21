@@ -15289,6 +15289,13 @@ main h1 {
 .testimonial_header_data {
   margin-right: 10px;
 }
+
+#modalDescription {
+  color: #fff;
+  margin-top: -25px;
+  font-size: 14px;
+  font-family: var(--font-Inter);
+
 .testimonial_header_data h2 {
   color: #ff4a8c;
   text-align: center;
