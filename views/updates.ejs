@@ -6,11 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-<body>
+<body id="bg-color-purple">
   <!-- ========== Start header ========== -->
   <%-include("mainHeader.ejs")%>
     <!-- ========== End header ========== -->
     <div class="updates-section" id="bg-color-purple">
+      <div class="page_backarrow"><a href="/"><i ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 19 20" fill="none">
+        <path d="M10.0054 0.265434C10.3271 0.587173 10.3564 1.09064 10.0931 1.44542L10.0054 1.54706L2.18829 9.36458L10.0054 17.1821C10.3271 17.5038 10.3564 18.0073 10.0931 18.3621L10.0054 18.4637C9.68366 18.7855 9.18019 18.8147 8.82541 18.5515L8.72376 18.4637L0.265433 10.0054C-0.0563049 9.68365 -0.0855541 9.18019 0.177686 8.82541L0.265433 8.72376L8.72376 0.265434C9.07768 -0.0884781 9.65148 -0.0884781 10.0054 0.265434Z" fill="#FF4A8C"/>
+      </svg></i></a></div>
       <div class="header-programe" style="margin-top: 100px">
         <div class="container">
           <div class="updates-title">
@@ -238,42 +241,62 @@
         </div>
       </div>
 
+    
+
       <div class="container" id="Testimonial-section" style="display: none">
-        <div class="testimonial-section">
-          <div class="container">
-            <div class="deconquista-slider">
-              <div class="slide-container swiper">
+        <div class="deconquista-slider">
+            <div class="slide-container swiper swiper_border">
                 <div class="slide-content">
-                  <div class="card-wrapper swiper-wrapper">
-                    <% testimonialData.forEach(testimonial=> { %>
-                      <div class="card2 swiper-slide">
-                        <div class="image-content">
-                          <span class="overlay"></span>
-
-                          <div>
-                            <img
-                              src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ testimonial.image}` %>"
-                              alt="" class="card-img" />
-                          </div>
-                        </div>
-
-                        <div class="card-content">
-                          <p class="description-testimonial">
-                            <%= testimonial.title %> <br />
+                    <div class="card-wrapper swiper-wrapper">
+                      <% testimonialData.forEach(testimonial=> { %>
+                        <div class="card-one swiper-slide">
+                            <div class="card-content">
+                             <p class="description-testimonial">
                               <%= testimonial.content %>
-                          </p>
-
-                          <!-- <button class="button">View More</button> -->
+                                </p>
+                            </div>
+                            <div class="image-content">
+                                <span class="overlay"></span>
+                                <div class="testimonial_header_items">            
+                                    <div>
+                                      <img
+                                      src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ testimonial.image}` %>"
+                                      alt="" class="card-img-testimonial"  />
+                                       
+                                    </div>
+                                   <div class="testimonial_header_data">
+                                    <h2><%= testimonial.title %></h2>
+                                   <h3>Designation</h3>
+                                   </div>
+                                </div>
+                            </div>           
                         </div>
+                        <!-- card-two
+                        <div class="card-two swiper-slide">
+                            <div class="card-content">
+                                <p class="description-testimonial">
+                                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa nostrum reprehenderit non doloribus commodi eius tempora ducimus itaque, qui rerum sunt. Possimus architecto facilis inventore. Sunt aperiam animi incidunt temporibus.
+                                </p>
+                            </div>
+                            <div class="image-content">
+                                <span class="overlay"></span>
+                                <div class="testimonial_header_items">                         
+                                    <div>
+                                        <img src="../assets/images/worshop.png" alt="" class="card-img-testimonial" />
+                                    </div>
+                                   <div class="testimonial_header_data">
+                                    <h2>Rana Ayyub</h2>
+                                   <h3>Designation</h3>
+                                   </div>
+                                </div>
+                            </div>             
+                        </div> -->
+                        <% }); %>
                       </div>
-                      <% }); %>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
 
       <div class="container" id="Gallery-section" style="display: none">
         <div class="gallery-section">
@@ -294,11 +317,11 @@
         </div>
       </div>
     </div>
-
-    <!-- ========== Start footer ========== -->
-    <%-include("mainFooter.ejs")%>
-      <!-- ========== End footer ========== -->
-
+    <div class="footer_hide_mobile">
+      <!-- ========== Start footer ========== -->
+<%-include("mainFooter.ejs")%>
+<!-- ========== End footer ========== -->
+ </div>
       <script>
         document.addEventListener("DOMContentLoaded", function () {
           // Function to toggle the "active" class for navigation items

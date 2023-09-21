@@ -46,7 +46,7 @@ exports.getEvent = async (req, res) => {
       parseInt(skip) === 0 && Event.countDocuments(query),
       Event.find(query)
         .skip(parseInt(skip) || 0)
-        .limit(parseInt(limit) || 50)
+        .limit(parseInt(limit) || 20000)
         .sort({ _id: -1 }),
     ]);
 
