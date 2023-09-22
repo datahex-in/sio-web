@@ -252,8 +252,21 @@ app.get("/auth/google/callback", async (req, res, next) => {
       const hasEventId = user.events.includes(eventId);
 
       if (hasEventId) {
-        // If eventId is already in the user's events, you can handle it here.
-        return res.redirect(`/event_single/${eventId}`);
+        // If eventId is already in the user's events, redirect to /profile with user data
+        const userData = {
+          name: user.name, // Replace with actual user data fields
+          email: user.email,
+          mobileNumber: user.mobileNumber,
+          age: user.age,
+          gender: user.gender,
+          profession: user.profession,
+          district: user.district,
+          events: user.events,
+          user,
+          // Add more user data as needed
+        };
+        const queryParameters = new URLSearchParams(userData).toString();
+        return res.redirect(`/profile?${queryParameters}`);
       } else {
         // If eventId is not found in the user's events, add it
         user.events.push(eventId); // Add eventId to the user's events array
