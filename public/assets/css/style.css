@@ -15444,6 +15444,7 @@ main h1 {
 }
 .profile_input {
   background-color: #43264e;
+  color: #fff;
 }
 .inputgap {
   flex-basis: calc(50% - 10px);
