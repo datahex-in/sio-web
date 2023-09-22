@@ -6,7 +6,9 @@ const Registration = require("../../models/Registration");
 router.get("/", function (req, res, next) {
   const preFilledEmail = req.query.email;
   const preFilledName = req.query.name;
-  res.render("register", { preFilledEmail, preFilledName });
+  const eventId = req.cookies.eventId;
+  console.log("eventId  :", eventId);
+  res.render("register", { preFilledEmail, preFilledName, eventId });
 });
 
 router.post("/", async function (req, res, next) {
@@ -31,6 +33,7 @@ router.post("/", async function (req, res, next) {
       place: req.body.place,
       age: req.body.age,
       course: req.body.course,
+      events: req.body.eventId
     });
 
     // Save the registration data to the database
