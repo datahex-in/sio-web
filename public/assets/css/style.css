@@ -15029,6 +15029,11 @@ html body .hide {
   cursor: pointer;
 }
 @media (max-width: 768px) {
+  .calender-cards-items {
+    margin-top: 3em;
+    display: flex;
+    justify-content: space-between;
+  }
   .calender-cards {
     padding: 20px;
     width: 100px;
@@ -15374,6 +15379,7 @@ main h1 {
   height: auto;
 }
 
+
 /* profile page...... */
 .profile_title {
   text-align: center;
@@ -15453,3 +15459,72 @@ main h1 {
 span {
   margin-right: 8px; /* Adjust the value as needed */
 }
+
+/***** quotes page *****/
+.card_quotes {
+  margin: auto;
+  width: 60%;
+  border-radius: 8px;
+  border: 2.3px solid rgba(216, 216, 216, 0);
+  background: radial-gradient(
+    221.82% 106.55% at 15.38% 30.26%,
+    rgba(101, 42, 122, 0.44) 0%,
+    rgba(231, 66, 126, 0) 100%
+  );
+  backdrop-filter: blur(24.5px);
+  height: auto;
+  display: grid;
+  padding: 5px;
+  gap: 5px;
+  grid-template-columns: auto auto auto; /* Adjust column layout as needed */
+  grid-template-rows: auto auto; /* Adjust row layout as needed */
+}
+
+.card_quotes_img {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 1;
+}
+
+.card_quotes_desc p {
+  padding: 5px 0px;
+  font-size: 18px;
+  color: #fff;
+  font-family: var(--font-Inter);
+  font-style: normal;
+  font-weight: 100;
+  line-height: normal;
+}
+
+.card_quotes_desig h3 {
+  padding: 8px 0px;
+  color: #ff4a8c;
+  font-family: var(--font-Inter);
+  font-size: 16.099px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 98.023%; /* 15.78px */
+}
+.card_quotes_desig h5 {
+  color: #fff;
+  font-family: var(--font-Inter);
+  font-size: 12.566px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.card_quotes_img img {
+  width: 100%;
+  height: 150px;
+}
+@media (max-width: 768px) {
+  .card_quotes {
+    width: 100%;
+  }
+  .card_quotes_desc p {
+    font-size: 13px;
+  }
+  .card_quotes_desig h5 {
+    font-size: 7.638px;
+  }
+}
+/***** End quotes page *****/
