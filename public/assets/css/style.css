@@ -15029,6 +15029,11 @@ html body .hide {
   cursor: pointer;
 }
 @media (max-width: 768px) {
+  .calender-cards-items {
+    margin-top: 3em;
+    display: flex;
+    justify-content: space-between;
+  }
   .calender-cards {
     padding: 20px;
     width: 100px;
