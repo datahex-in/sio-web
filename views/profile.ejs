@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Your head content here -->
+</head>
+
+<body>
+    <div class="main-wrapper">
+
+
+        <!-- ========== Start header ========== -->
+        <%- include("mainHeader.ejs") %>
+            <!-- ========== End header ========== -->
+
+            <!-- Page Banner Start -->
+            <div id="bg-color-purple">
+                <div class="page_backarrow">
+                    <a href="/"><i><svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 19 20"
+                                fill="none">
+                                <path
+                                    d="M10.0054 0.265434C10.3271 0.587173 10.3564 1.09064 10.0931 1.44542L10.0054 1.54706L2.18829 9.36458L10.0054 17.1821C10.3271 17.5038 10.3564 18.0073 10.0931 18.3621L10.0054 18.4637C9.68366 18.7855 9.18019 18.8147 8.82541 18.5515L8.72376 18.4637L0.265433 10.0054C-0.0563049 9.68365 -0.0855541 9.18019 0.177686 8.82541L0.265433 8.72376L8.72376 0.265434C9.07768 -0.0884781 9.65148 -0.0884781 10.0054 0.265434Z"
+                                    fill="#FF4A8C" />
+                            </svg></i></a>
+                </div>
+                <div class="container">
+                    <div class="events-page-main">
+
+                        <div class="userprofile">
+                            <div class="profile">
+                                <h1 class="profile_title">My Profile</h1>
+                                <div class="qr-code"
+                                    style="width: 10rem; height: 10rem; text-align: center; margin: 0 auto;">
+                                    <img src="https://www.qrcode-monkey.com/img/default-preview-qr.svg" alt="QR Code">
+                                    <div class="qr_details" style="padding-top: 10px;">
+                                        <h5>Muhammed Shafeef</h5>
+                                        <p>87878722</p>
+                                    </div>
+                                </div>
+                                <div class="profile_info">
+                                    <div class="col-12 form-group">
+                                        <label for="email">Email:</label>
+                                        <input readonly type="text" id="email" class="profile_input" value="">
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div class="col-6 form-group inputgap">
+                                            <label for="dob">Date of Birth:</label>
+                                            <input readonly type="text" id="dob" class="profile_input" value="">
+                                        </div>
+                                        <div class="col-6 form-group inputgap">
+                                            <label for="gender">Gender:</label>
+                                            <input type="text" id="gender" class="profile_input" value="">
+                                        </div>
+
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div class="col-6 form-group inputgap">
+                                            <label for="profession">Profession:</label>
+                                            <input type="text" id="profession" class="profile_input" value="">
+                                        </div>
+                                        <div class="col-6 form-group inputgap">
+                                            <label for="district">District:</label>
+                                            <input type="text" id="district" class="profile_input" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="event-title">
+                            <h1>My Events</h1>
+                        </div>
+                        <!-- <div class="container"> -->
+                        <div class="events-page-main">
+                            <div class="row">
+                                <% eventData.forEach(item=> { %>
+                                    <div class="col-12 col-md-4 event-box" data-section="<%= item.eventType %>">
+                                        <div class="event-box-section">
+                                            <div class="workshop">
+                                                <h1 class="workshop_title">
+                                                    <%= item.eventType %>
+                                                </h1>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="165" height="100"
+                                                    viewBox="0 0 68 19" fill="none">
+                                                    <g filter="url(#filter0_b_14_640)">
+                                                        <path
+                                                            d="M0.2836 0.985077H67.9851V18.5373H0.2836L4.55948 9.60448L0.2836 0.985077Z"
+                                                            fill="white" fill-opacity="0.28" />
+                                                        <path
+                                                            d="M0.536283 1.14179H67.8284V18.3806H0.532361L4.70084 9.67214L4.73382 9.60325L4.69987 9.53483L0.536283 1.14179Z"
+                                                            stroke="white" stroke-opacity="0.1"
+                                                            stroke-width="0.313433" />
+                                                    </g>
+                                                    <defs>
+                                                        <filter id="filter0_b_14_640" x="-5.10745" y="-4.40597"
+                                                            width="78.4836" height="28.3343"
+                                                            filterUnits="userSpaceOnUse"
+                                                            color-interpolation-filters="sRGB">
+                                                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                                            <feGaussianBlur in="BackgroundImageFix"
+                                                                stdDeviation="2.69552" />
+                                                            <feComposite in2="SourceAlpha" operator="in"
+                                                                result="effect1_backgroundBlur_14_640" />
+                                                            <feBlend mode="normal" in="SourceGraphic"
+                                                                in2="effect1_backgroundBlur_14_640" result="shape" />
+                                                        </filter>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="event-img">
+                                                <img style="object-fit: cover"
+                                                    src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${item.image}` %>"
+                                                    alt="" />
+                                            </div>
+                                            <div class="event-content">
+                                                <div class="event-content-head-title">
+                                                    <p>
+                                                        <span>One day Workshop on</span><br /><strong
+                                                            style="font-size: 23px">
+                                                            <%= item.description.substring(0, 40) %>
+                                                        </strong>
+                                                    </p>
+                                                </div>
+                                                <div class="event-content-para">
+                                                    <p>
+                                                        <%= item.shortDescription.substring(0, 60) %>
+                                                    </p>
+                                                </div>
+                                                <div class="know-more-btn">
+                                                    <a href="/event_single/<%= item._id %>">
+                                                        <button>
+                                                            Know More <i class="fas fa-arrow-right"></i>
+                                                        </button>
+                                                    </a>
+
+                                                    <span style="color: #cdb3ff;padding-left: 5px;"><i
+                                                            class="fas fa-trash-alt"></i></span>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }); %>
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="footer_hide_mobile">
+                    <!-- ========== Start footer ========== -->
+                    <%- include("mainFooter.ejs") %>
+                        <!-- ========== End footer ========== -->
+                </div>
+            </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Function to toggle the "active" class for navigation items
+            function toggleActiveNavigation(section) {
+                var eventNavItems = document.querySelectorAll(".updates_menu_scroll li");
+                eventNavItems.forEach(function (item) {
+                    if (item.getAttribute("data-section") === section) {
+                        item.classList.add("active");
+                    } else {
+                        item.classList.remove("active");
+                    }
+                });
+            }
+
+            // Add click event listeners to "li" tags in the eventNav
+            var eventNavItems = document.querySelectorAll(".updates_menu_scroll li");
+            eventNavItems.forEach(function (item) {
+                item.addEventListener("click", function () {
+                    var targetSection = this.getAttribute("data-section");
+                    toggleActiveNavigation(targetSection); // Update active navigation item
+                    filterEventsByType(targetSection); // Filter events by selected event type
+                });
+            });
+
+            // Initially, show the "All" section and set it as active
+            toggleActiveNavigation("All");
+        });
+
+        // Function to filter and display events based on the selected event type
+        function filterEventsByType(eventType) {
+            var eventBoxes = document.querySelectorAll(".event-box");
+
+            eventBoxes.forEach(function (box) {
+                var boxEventType = box.getAttribute("data-section");
+
+                if (eventType === "All" || eventType === boxEventType) {
+                    box.style.display = "block"; // Show the event box
+                } else {
+                    box.style.display = "none"; // Hide the event box
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
