@@ -14017,7 +14017,7 @@ html body .hide {
 }
 .c-testimonials__upcoming {
   position: absolute;
-  right: 0px;
+  right: -50px;
   top: 50px;
 }
 .c-testimonials__upcoming img {
@@ -14042,7 +14042,7 @@ html body .hide {
   }
   .c-testimonials__upcoming {
     position: absolute;
-    left: 30%;
+    left: 32%;
     top: -100px;
     z-index: 4;
   }
@@ -14206,7 +14206,7 @@ html body .hide {
   .c-testimonials
     .c-testimonials__pagination.swiper-pagination-bullets
     .swiper-pagination-bullet {
-    margin: 400px 5px;
+    margin: 420px 5px;
   }
 }
 .c-testimonials .c-testimonials__arrows {
@@ -14911,7 +14911,10 @@ html body .hide {
   padding: 3px;
 }
 .card-image-items .card-img {
-  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  width: 50%;
   height: auto;
   object-fit: contain;
   border-radius: none;
@@ -14922,6 +14925,8 @@ html body .hide {
   opacity: 1;
 }
 .name {
+  display: flex;
+  justify-content: center;
   font-family: var(--font-Nutino);
   color: white;
   letter-spacing: 3px;
@@ -14931,6 +14936,8 @@ html body .hide {
 }
 .description {
   width: 100%;
+  display: flex;
+  justify-content: center;
   text-align: left;
   color: #fff;
   font-size: 14.5px;
@@ -15029,6 +15036,10 @@ html body .hide {
   cursor: pointer;
 }
 @media (max-width: 768px) {
+  .card-image-items .card-img {
+    width: 100%;
+    height: auto;
+  }
   .calender-cards-items {
     margin-top: 3em;
     display: flex;
@@ -15378,7 +15389,6 @@ main h1 {
   width: 100%;
   height: auto;
 }
-
 
 /* profile page...... */
 .profile_title {
