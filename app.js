@@ -98,10 +98,12 @@ const appointment = require("./routes/appointment.js");
 const franchise = require("./routes/franchise.js");
 const dashboard = require("./routes/dashboard.js");
 const faq = require("./routes/faq.js");
+const globalFaq = require("./routes/globalFaq.js");
 const about = require("./routes/aboutUs.js");
 const gallery = require("./routes/gallery");
 const news = require("./routes/news");
 const speakers = require("./routes/speakers");
+const globalSpeakers = require("./routes/globalSpeakers.js");
 const material = require("./routes/material");
 const registration = require("./routes/registration");
 const testimonial = require("./routes/testimonial");
@@ -146,10 +148,12 @@ app.use("/api/v1/appointment", appointment);
 app.use("/api/v1/franchise", franchise);
 app.use("/api/v1/dashboard", dashboard);
 app.use("/api/v1/faq", faq);
+app.use("/api/v1/global-faq", globalFaq);
 app.use("/api/v1/about-us", about);
 app.use("/api/v1/gallery", gallery);
 app.use("/api/v1/news", news);
 app.use("/api/v1/speakers", speakers);
+app.use("/api/v1/global-speakers", globalSpeakers);
 app.use("/api/v1/material", material);
 app.use("/api/v1/registration", registration);
 app.use("/api/v1/testimonial", testimonial);
@@ -177,7 +181,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:8072/auth/google/callback",
+      callbackURL: "http://localhost:8072/auth/google/callback", // process.env.GOOGLE_CALLBACK_URL,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -226,23 +230,39 @@ app.get(
 );
 
 // Callback route after successful Google OAuth authentication
-app.get("/auth/google/callback", (req, res, next) => {
-  passport.authenticate("google", (err, user, info) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      // console.log(info);
-      // Handle the case where user is not registered
-      return res.redirect(`/register?email=${info.email}&name=${info.name}`);
-    }
-    req.logIn(user, (err) => {
-      if (err) {
-        return next(err);
+app.get("/auth/google/callback", async (req, res, next) => {
+  passport.authenticate("google", async (err, user, info) => {
+    try {
+      if (err) return next(err);
+
+      // Handle the case where the user is not registered
+      if (!user) {
+        const redirectUrl = `/register?email=${info.email}&name=${info.name}`;
+        return res.redirect(redirectUrl);
       }
-      // Successful authentication with Google
-      return res.redirect("/"); // Redirect to the home page or any other desired page
-    });
+
+      const eventId = req.cookies.eventId;
+      console.log("eventId : ", eventId);
+
+      // Check if the user's database record already has eventId
+      const hasEventId = user.events.includes(eventId);
+
+      if (hasEventId) {
+        // If eventId is already in the user's events, you can handle it here.
+        return res.redirect(`/event_single/${eventId}`);
+      } else {
+        // If eventId is not found in the user's events, add it
+        user.events.push(eventId); // Add eventId to the user's events array
+        await user.save(); // Save the updated user record with the new eventId
+
+        req.logIn(user, (loginErr) => {
+          if (loginErr) return next(loginErr);
+          return res.redirect("/"); // Redirect to the home page or any other desired page
+        });
+      }
+    } catch (error) {
+      return next(error);
+    }
   })(req, res, next);
 });
 

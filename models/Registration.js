@@ -2,6 +2,12 @@ const mongoose = require("mongoose");
 
 const RegistrationSchema = new mongoose.Schema(
   {
+    events: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Event",
+      },
+    ],
     googleId: {
       type: String,
     },

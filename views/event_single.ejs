@@ -150,13 +150,20 @@
             </div>
             <div class="event-enroll">
               <% if (eventData.isEnroll) { %>
-                <a href="/auth/google">
-                  <button>
-                    Enroll Now with 
-                    <i class="fab fa-google"></i>
-                  </button>
-                </a>
+              <a
+                href="#"
+                id="enrollButton"
+                onclick="enrollForEvent('<%= eventData._id %>'); return false;"
+              >
+                <button>
+                  Enroll Now
+                  <i class="fab fa-google"></i>
+                </button>
+              </a>
               <% } %>
+            </div>
+            <div id="registrationMessage" style="display: none">
+              You are already registered for this event.
             </div>
           </div>
 
@@ -166,8 +173,7 @@
               <ul
                 style="list-style-type: disc; color: white; padding-top: 10px"
               >
-                <li><%= eventData.theme %></li>
-                <li><%= eventData.theme %></li>
+                <%- eventData.theme %>
               </ul>
             </div>
           </div>
@@ -209,14 +215,6 @@
               <ul
                 style="list-style-type: disc; color: white; padding-top: 10px"
               >
-                <li><%= item.question %></li>
-                <p><%= item.answer %></p>
-                <li><%= item.question %></li>
-                <p><%= item.answer %></p>
-                <li><%= item.question %></li>
-                <p><%= item.answer %></p>
-                <li><%= item.question %></li>
-                <p><%= item.answer %></p>
                 <li><%= item.question %></li>
                 <p><%= item.answer %></p>
               </ul>
@@ -272,30 +270,47 @@
     </script>
 
     <script>
-      // Callback function after a successful Google Sign-In
-      function onSignIn(googleUser) {
-        // Get the ID token from the authenticated user
-        const id_token = googleUser.getAuthResponse().id_token;
+      function enrollForEvent(eventId) {
+        // Store the eventId in a cookie or session variable
+        document.cookie = `eventId=${eventId}; path=/`; // Example: Store in a cookie
 
-        // Send the ID token to your server for verification
-        $.ajax({
-          type: "POST",
-          url: "/auth/google", // The endpoint on your server for handling Google OAuth
-          data: { id_token },
-          success: function (response) {
-            console.log("User data received on the server:", response);
-
-            // Optionally, you can update the UI to display user information
-            // Example: $('#user-name').text(response.userData.userName);
-          },
-          error: function (error) {
-            console.error(
-              "Error while sending user data to the server:",
-              error
-            );
-          },
-        });
+        // Redirect the user to Google authentication
+        window.location.href = `/auth/google?eventId=${eventId}`;
       }
+
+      // After successful Google OAuth authentication, handle the response
+      async function handleAuthResponse(response) {
+        try {
+          const jsonResponse = JSON.parse(response.isRegistered); // Parse the JSON response
+          if (jsonResponse.isRegistered) {
+            // User is already registered, display a message
+            const registrationMessage = document.getElementById(
+              "registrationMessage"
+            );
+            registrationMessage.style.display = "block";
+            registrationMessage.textContent =
+              "You are already registered for this event.";
+          } else {
+            // User is not registered, you can handle this case as needed
+            // For example, you can redirect them to a registration page
+            window.location.href = "/register";
+          }
+        } catch (error) {
+          // Handle any parsing errors
+          console.error("Error parsing JSON response:", error);
+        }
+      }
+
+      // This function is called when the user clicks the "Enroll Now" button
+      document.addEventListener("DOMContentLoaded", function () {
+        var enrollButton = document.getElementById("enrollButton");
+        if (enrollButton) {
+          enrollButton.addEventListener("click", function () {
+            const eventId = req.cookies.eventId;
+            enrollForEvent(eventId);
+          });
+        }
+      });
     </script>
   </body>
 </html>
