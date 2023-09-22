@@ -80,6 +80,7 @@ var Calender = require("./routes/ejsRoutes/calenderEjs");
 var Register = require("./routes/ejsRoutes/registerEjs");
 var eventSingle = require("./routes/ejsRoutes/event_single");
 var Updates = require("./routes/ejsRoutes/updatesEjs");
+var Profile = require("./routes/ejsRoutes/profileEjs");
 var Quotes = require("./routes/ejsRoutes/quotesEjs.js");
 
 // ADDED NEWS ROUTES-------
@@ -129,6 +130,7 @@ app.use("/deconquista", Deconquista);
 app.use("/calender", Calender);
 app.use("/register", Register);
 app.use("/updates", Updates);
+app.use("/profile", Profile);
 app.use("/quotes", Quotes);
 
 // LATESTS-----
