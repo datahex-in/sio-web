@@ -14771,6 +14771,7 @@ html body .hide {
   }
   .event-about-para p {
     font-size: 16px;
+    padding-bottom: 50px;
   }
   .event-date-two {
     display: block;
@@ -14788,7 +14789,7 @@ html body .hide {
 }
 .event-enroll button {
   font-weight: 600;
-  margin-bottom: 60px;
+  /* margin-bottom: 60px; */
   color: #fff;
   padding: 5px 90px;
   border: 1px solid #c149b1;

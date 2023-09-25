@@ -104,6 +104,16 @@
             <h5 class="event-date-two">SEP 17 SUNDAY | 9:00 AM</h5>
             <h5 class="event-date-two">ERNAKULAM</h5>
           </div>
+          <div class="event-enroll">
+            <% if (eventData.isEnroll) { %>
+              <a href="#" id="enrollButton" onclick="enrollForEvent('<%= eventData._id %>'); return false;">
+                <button>
+                  Enroll Now
+                  <i class="fab fa-google"></i>
+                </button>
+              </a>
+              <% } %>
+          </div>
           <!-- Sections -->
           <div id="about-section">
             <div class="event-about-para">
@@ -112,16 +122,7 @@
               </p>
             </div>
 
-            <div class="event-enroll">
-              <% if (eventData.isEnroll) { %>
-                <a href="#" id="enrollButton" onclick="enrollForEvent('<%= eventData._id %>'); return false;">
-                  <button>
-                    Enroll Now
-                    <i class="fab fa-google"></i>
-                  </button>
-                </a>
-                <% } %>
-            </div>
+
             <div id="registrationMessage" style="display: none">
               You are already registered for this event.
             </div>
