@@ -31,8 +31,10 @@ const eventSchema = new mongoose.Schema({
   },
 
   isEnroll: Boolean,
-  
 
+  headerImage: {
+    type: String,
+  },
 
   eventType: {
     type: String,
