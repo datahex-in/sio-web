@@ -14028,6 +14028,15 @@ html body .hide {
   backdrop-filter: blur(22px);
   transition: all 300ms;
 }
+.c-testimonials__upcoming_moblie {
+  display: flex;
+  justify-content: center;
+}
+.c-testimonials__upcoming_moblie img {
+  display: none;
+  width: 150px;
+  height: auto;
+}
 .c-testimonials__upcoming {
   position: absolute;
   right: -30px;
@@ -14050,14 +14059,16 @@ html body .hide {
     height: auto;
     margin: 40px auto;
   }
-  .c-testimonials__upcoming {
-    position: absolute;
-    left: 35%;
-    top: 20px;
-    z-index: 2;
-  }
   .c-testimonials__upcoming img {
-    width: 130px;
+    display: none;
+  }
+  .c-testimonials__upcoming_moblie {
+    display: flex;
+    justify-content: center;
+  }
+  .c-testimonials__upcoming_moblie img {
+    display: block;
+    width: 150px;
     height: auto;
   }
 }
@@ -14220,7 +14231,7 @@ html body .hide {
   .c-testimonials
     .c-testimonials__pagination.swiper-pagination-bullets
     .swiper-pagination-bullet {
-    margin: 420px 5px;
+    margin: 450px 5px;
   }
 }
 .c-testimonials .c-testimonials__arrows {
