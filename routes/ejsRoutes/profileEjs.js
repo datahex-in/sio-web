@@ -5,12 +5,31 @@ const Registration = require("../../models/Registration");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
-  const userData = req.query;
-  const eventIds = Array.isArray(userData.events)
-    ? userData.events
-    : userData.events.split(",");
-  const eventData = await Events.find({ _id: { $in: eventIds } });
-  res.render("profile", { eventData, userData });
+  try {
+    const userData = req.query;
+    console.log(userData);
+
+    // Assuming userData.events is either an array of event IDs or a comma-separated string
+    let eventIds = Array.isArray(userData.events)
+      ? userData.events
+      : userData.events.split(",");
+
+    // Filter out empty strings and invalid values from eventIds
+    eventIds = eventIds.filter((eventId) => eventId.trim() !== "");
+
+    if (eventIds.length === 0) {
+      // No valid event IDs found, you may want to handle this case
+      return res.status(400).send("No valid event IDs provided");
+    }
+
+    // Find events using the filtered event IDs
+    const eventData = await Events.find({ _id: { $in: eventIds } });
+
+    res.render("profile", { eventData, userData });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 /* DELETE event by ID. */

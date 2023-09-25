@@ -12,6 +12,9 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const Registration = require("./models/Registration.js");
 
+const fs = require("fs");
+const qr = require("qrcode");
+
 // Load env vars
 dotenv.config({ path: "./config/.env" });
 
@@ -185,7 +188,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.GOOGLE_CALLBACK_URL,
+      callbackURL: "http://localhost:8072/auth/google/callback", // process.env.GOOGLE_CALLBACK_URL,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -265,6 +268,33 @@ app.get("/auth/google/callback", async (req, res, next) => {
           user,
           // Add more user data as needed
         };
+
+        // Generate QR code and store it
+        const qrData = {
+          userId: user._id,
+          email: user.email,
+          name: user.name,
+          mobileNumber: user.mobileNumber,
+          age: user.age,
+          gender: user.gender,
+          profession: user.profession,
+          district: user.district,
+          events: user.events,
+        };
+
+        // Create the 'qrcodes' directory if it doesn't exist
+        const qrCodeDirectory = "./public/qrcodes";
+        if (!fs.existsSync(qrCodeDirectory)) {
+          fs.mkdirSync(qrCodeDirectory);
+        }
+
+        // Generate the QR code and save it
+        const qrCodeFileName = `${qrCodeDirectory}/${user._id}.png`;
+        await qr.toFile(qrCodeFileName, JSON.stringify(qrData));
+
+        // Add QR image URL as a query parameter
+        userData.qrImageUrl = `/qrcodes/${user._id}.png`;
+
         const queryParameters = new URLSearchParams(userData).toString();
         return res.redirect(`/profile?${queryParameters}`);
       } else {
