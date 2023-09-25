@@ -142,168 +142,26 @@
               <div class="slide-container swiper">
                 <div class="slide-content">
                   <div class="card-wrapper swiper-wrapper">
+                    <% speakerData.forEach(speaker=> { %>
                     <div class="card-speakers swiper-slide">
                       <div class="image-content">
                         <span class="overlay"></span>
+
                         <div class="card-image-items">
-                          <img src="../assets/images/Rectangle 983.png" alt="" class="card-img" />
+                          <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ speaker.photo }` %>" alt="" class="card-img" />
                         </div>
                       </div>
 
                       <div class="card-content">
-                        <h2 class="name">Sami Al Arian
+                        <h2 class="name"><%= speaker.name %>
                         </h2>
                         <p class="description">
-                          Director of CIGA &Public Affairs
-                          Professorat Istanbul Zaim University.
-                        </p>
-
-                        <!-- <button class="button">View More</button> -->
-                      </div>
-                    </div>
-                    <div class="card-speakers swiper-slide">
-                      <div class="image-content">
-                        <span class="overlay"></span>
-
-                        <div class="card-image-items">
-                          <img src="../assets/images/Rectangle 983.png" alt="" class="card-img" />
-                        </div>
-                      </div>
-
-                      <div class="card-content">
-                        <h2 class="name">Sami Al Arian
-                        </h2>
-                        <p class="description">
-                          Director of CIGA &Public Affairs
-                          Professorat Istanbul Zaim University.
+                          <%= speaker.designation %>
                         </p>
                       </div>
                     </div>
-                    <div class="card-speakers swiper-slide">
-                      <div class="image-content">
-                        <span class="overlay"></span>
+                    <% }); %>
 
-                        <div class="card-image-items">
-                          <img src="../assets/images/Rectangle 983.png" alt="" class="card-img" />
-                        </div>
-                      </div>
-
-                      <div class="card-content">
-                        <h2 class="name">Sami Al Arian
-                        </h2>
-                        <p class="description">
-                          Director of CIGA &Public Affairs
-                          Professorat Istanbul Zaim University.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="card-speakers swiper-slide">
-                      <div class="image-content">
-                        <span class="overlay"></span>
-
-                        <div class="card-image-items">
-                          <img src="../assets/images/Rectangle 983.png" alt="" class="card-img" />
-                        </div>
-                      </div>
-
-                      <div class="card-content">
-                        <h2 class="name">Sami Al Arian
-                        </h2>
-                        <p class="description">
-                          Director of CIGA &Public Affairs
-                          Professorat Istanbul Zaim University.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="card-speakers swiper-slide">
-                      <div class="image-content">
-                        <span class="overlay"></span>
-
-                        <div class="card-image-items">
-                          <img src="../assets/images/Rectangle 983.png" alt="" class="card-img" />
-                        </div>
-                      </div>
-
-                      <div class="card-content">
-                        <h2 class="name">Sami Al Arian
-                        </h2>
-                        <p class="description">
-                          Director of CIGA &Public Affairs
-                          Professorat Istanbul Zaim University.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="card-speakers swiper-slide">
-                      <div class="image-content">
-                        <span class="overlay"></span>
-
-                        <div class="card-image-items">
-                          <img src="../assets/images/Rectangle 983.png" alt="" class="card-img" />
-                        </div>
-                      </div>
-
-                      <div class="card-content">
-                        <h2 class="name">Sami Al Arian
-                        </h2>
-                        <p class="description">
-                          Director of CIGA &Public Affairs
-                          Professorat Istanbul Zaim University.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="card-speakers swiper-slide">
-                      <div class="image-content">
-                        <span class="overlay"></span>
-
-                        <div class="card-image-items">
-                          <img src="../assets/images/Rectangle 983.png" alt="" class="card-img" />
-                        </div>
-                      </div>
-
-                      <div class="card-content">
-                        <h2 class="name">Sami Al Arian
-                        </h2>
-                        <p class="description">
-                          Director of CIGA &Public Affairs
-                          Professorat Istanbul Zaim University.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="card-speakers swiper-slide">
-                      <div class="image-content">
-                        <span class="overlay"></span>
-
-                        <div class="card-image-items">
-                          <img src="../assets/images/Rectangle 983.png" alt="" class="card-img" />
-                        </div>
-                      </div>
-
-                      <div class="card-content">
-                        <h2 class="name">Sami Al Arian
-                        </h2>
-                        <p class="description">
-                          Director of CIGA &Public Affairs
-                          Professorat Istanbul Zaim University.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="card-speakers swiper-slide">
-                      <div class="image-content">
-                        <span class="overlay"></span>
-
-                        <div class="card-image-items">
-                          <img src="../assets/images/Rectangle 983.png" alt="" class="card-img" />
-                        </div>
-                      </div>
-
-                      <div class="card-content">
-                        <h2 class="name">Sami Al Arian </h2>
-                        <p class="description">
-                          Director of CIGA &Public Affairs
-                          Professorat Istanbul Zaim University.
-                        </p>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
