@@ -37,16 +37,19 @@ exports.getEvent = async (req, res) => {
       });
     }
 
-    const query = searchkey
-      ? { ...req.filter, title: { $regex: searchkey, $options: "i" } }
-      : req.filter;
+    const query = {
+      ...req.filter,
+      ...(searchkey && {
+        title: { $regex: searchkey, $options: "i" },
+      }),
+    };
 
     const [totalCount, filterCount, data] = await Promise.all([
       parseInt(skip) === 0 && Event.countDocuments(),
       parseInt(skip) === 0 && Event.countDocuments(query),
       Event.find(query)
         .skip(parseInt(skip) || 0)
-        .limit(parseInt(limit) || 20000)
+        .limit(parseInt(limit) || 0)
         .sort({ _id: -1 }),
     ]);
 
