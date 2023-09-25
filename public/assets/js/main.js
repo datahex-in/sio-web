@@ -462,24 +462,41 @@ var swiper = new Swiper(".c-testimonials", {
 });
 
 // count
+function animateCountsWhenVisible() {
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Trigger the animation when the element is in the viewport
+        $(".program_count").each(function () {
+          $(this)
+            .prop("counter", 0)
+            .animate(
+              {
+                counter: $(this).text(),
+              },
+              {
+                duration: 2000, // Increase the duration to slow it down
+                easing: "swing",
+                step: function (now) {
+                  $(this).text(Math.ceil(now));
+                },
+              }
+            );
+        });
 
-$(".program_count").each(function () {
-  $(this)
-    .prop("counter", 0)
-    .animate(
-      {
-        counter: $(this).text(),
-      },
-      {
-        duration: 20000, // Increase the duration to slow it down
-
-        easing: "swing",
-
-        step: function (now) {
-          $(this).text(Math.ceil(now));
-        },
+        // Disconnect the observer since the animation is triggered
+        observer.disconnect();
       }
-    );
+    });
+  });
+
+  // Add the sentinel element to the observer
+  observer.observe(document.getElementById("scrollTrigger"));
+}
+
+// Call the function when the page is ready
+$(document).ready(function () {
+  animateCountsWhenVisible();
 });
 
 var swiper = new Swiper(".slide-content", {
