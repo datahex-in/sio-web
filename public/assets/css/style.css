@@ -13768,6 +13768,7 @@ html body .hide {
   }
   .work-shop-section {
     padding-bottom: 40px !important;
+    overflow: hidden;
   }
 }
 .about-sio-title {
@@ -13903,8 +13904,19 @@ html body .hide {
   .c-card-testimonial .c-card-testimonial__profile {
     width: 95%;
   }
+  .c-card-testimonial .c-card-testimonial__profile .c-card-testimonial__image {
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 70px;
+    height: auto !important;
+    object-fit: contain;
+    border-radius: 20px;
+    opacity: 0;
+    transition: all 0.3s;
+  }
 }
-@media screen and (max-height: 500px) and (min-width: 992px) {
+@media screen and (min-width: 992px) {
   .c-card-testimonial .c-card-testimonial__profile {
     height: 270px;
   }
@@ -14006,7 +14018,8 @@ html body .hide {
   box-shadow: var(--shadow-base);
   padding: calc(var(--spacing-base) * 8);
   border-radius: 25px;
-  height: 400px;
+  height: 450px;
+  overflow: hidden;
   background: radial-gradient(
     234.84% 141.59% at 0.9% 2.98%,
     rgba(205, 179, 255, 0.4) 0%,
@@ -14017,8 +14030,9 @@ html body .hide {
 }
 .c-testimonials__upcoming {
   position: absolute;
-  right: -50px;
-  top: 50px;
+  right: -30px;
+  top: 25px;
+  z-index: 2;
 }
 .c-testimonials__upcoming img {
   width: 62%;
@@ -14036,15 +14050,15 @@ html body .hide {
     height: auto;
     margin: 40px auto;
   }
-  .c-testimonials__upcoming img {
-    width: 50%;
-    height: auto;
-  }
   .c-testimonials__upcoming {
     position: absolute;
-    left: 32%;
-    top: -100px;
-    z-index: 4;
+    left: 35%;
+    top: 20px;
+    z-index: 2;
+  }
+  .c-testimonials__upcoming img {
+    width: 130px;
+    height: auto;
   }
 }
 @media screen and (max-height: 500px) and (min-width: 992px) {
@@ -14660,8 +14674,7 @@ html body .hide {
 }
 .event-img img {
   border-radius: 20px;
-  width: 19rem;
-  height: 21rem;
+  width: 18rem;
   padding-top: 10px;
 }
 .event-content-head-title p {
