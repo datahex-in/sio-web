@@ -31,7 +31,7 @@
             </ul>
           </div>
 
-          <% monthWiseData.forEach(monthData=> { %>
+          <% monthWiseData.sort((a, b) => a.events.date - b.events.date).forEach(monthData => { %>
           <div class="calender-cards-items" data-month="<%= monthData.month %>">
             <div class="calender-cards">
               <h3><%= monthData.month %></h3>
