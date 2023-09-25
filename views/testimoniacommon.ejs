@@ -1,49 +1,33 @@
 <div class="container">
-    <div class="deconquista-slider">
-        <div class="slide-container swiper swiper_border">
-            <div class="slide-content">
-                <div class="card-wrapper swiper-wrapper">
-                    <div class="card-one swiper-slide">
-                        <div class="card-content">
-                         <p class="description-testimonial">
-                              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore eveniet iste ab amet, id cum vitae facilis, magnam dolor nemo, corrupti fugit! Blanditiis beatae dolore reprehenderit eveniet nobis laborum amet.
-                            </p>
-                        </div>
-                        <div class="image-content">
-                            <span class="overlay"></span>
-                            <div class="testimonial_header_items">            
-                                <div>
-                                    <img src="../assets/images/worshop.png" alt="" class="card-img-testimonial" />
-                                </div>
-                               <div class="testimonial_header_data">
-                                <h2>Rana Ayyub</h2>
-                               <h3>Designation</h3>
-                               </div>
-                            </div>
-                        </div>           
-                    </div>
-                    <!-- card-two -->
-                    <div class="card-two swiper-slide">
-                        <div class="card-content">
-                            <p class="description-testimonial">
-                               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa nostrum reprehenderit non doloribus commodi eius tempora ducimus itaque, qui rerum sunt. Possimus architecto facilis inventore. Sunt aperiam animi incidunt temporibus.
-                            </p>
-                        </div>
-                        <div class="image-content">
-                            <span class="overlay"></span>
-                            <div class="testimonial_header_items">                         
-                                <div>
-                                    <img src="../assets/images/worshop.png" alt="" class="card-img-testimonial" />
-                                </div>
-                               <div class="testimonial_header_data">
-                                <h2>Rana Ayyub</h2>
-                               <h3>Designation</h3>
-                               </div>
-                            </div>
-                        </div>             
-                    </div>
-                </div>
+  <div class="deconquista-slider">
+    <div class="slide-container swiper swiper_border">
+      <div class="slide-content">
+        <div class="card-wrapper swiper-wrapper">
+          <% testimonialData.forEach(item=> { %>
+          <div class="card-one swiper-slide">
+            <div class="card-content">
+              <p class="description-testimonial"><%= item.content %></p>
             </div>
+            <div class="image-content">
+              <span class="overlay"></span>
+              <div class="testimonial_header_items">
+                <div>
+                  <img
+                    src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.image }` %>"
+                    alt=""
+                    class="card-img-testimonial"
+                  />
+                </div>
+                <div class="testimonial_header_data">
+                  <h2><%= item.author %></h2>
+                  <h3><%= item.title %></h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }); %>
         </div>
+      </div>
     </div>
+  </div>
 </div>
