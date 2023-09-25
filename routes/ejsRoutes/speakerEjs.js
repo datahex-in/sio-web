@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const Speakers = require("../../models/Speaker");
+const Speakers = require("../../models/globalSpeaker");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
