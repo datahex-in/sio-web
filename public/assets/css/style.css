@@ -15555,3 +15555,13 @@ span {
   }
 }
 /***** End quotes page *****/
+.zoom-effect {
+  transform: scale(1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.zoom-effect:hover {
+  transform: scale(
+    1.05
+  ); /* Adjust the scale factor as needed for a subtle zoom effect */
+}
