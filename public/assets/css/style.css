@@ -14060,7 +14060,7 @@ html body .hide {
 }
 
 .swipe_button::after {
-  margin-bottom: 5px;
+  margin-bottom: 55px;
   animation: pulsea 2s linear infinite;
   font-size: 20pt;
   color: transparent; /*Using only shadows makes the animation easier*/
