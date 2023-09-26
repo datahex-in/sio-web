@@ -14104,8 +14104,14 @@ html body .hide {
 }
 @media screen and (max-width: 768px) {
   .c-testimonials {
+    position: relative;
     height: auto;
     margin: 40px auto;
+  }
+  #register_card_btn {
+    position: absolute;
+    left: 0px;
+    bottom: -50px;
   }
 }
 @media screen and (max-height: 500px) and (min-width: 992px) {
