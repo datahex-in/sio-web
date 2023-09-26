@@ -14008,6 +14008,66 @@ html body .hide {
 #register_card_btn:hover {
   background-color: #e59bff;
 }
+.swiper_items {
+  padding: 10px 0px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.swiper_items :is(h5, i) {
+  font-size: 14px;
+  font-weight: 100;
+  padding: 10px 0px;
+  color: white;
+}
+
+@keyframes pulsea {
+  0%,
+  80%,
+  100% {
+    text-shadow: 0pt 0px 0px rgba(255, 255, 255, 0),
+      10pt 0px 0px rgba(255, 255, 255, 0), 20pt 0px 0px rgba(255, 255, 255, 0);
+  }
+  10% {
+    text-shadow: 0pt 0px 0px rgba(255, 255, 255, 0.5),
+      10pt 0px 0px rgba(255, 255, 255, 0), 20pt 0px 0px rgba(255, 255, 255, 0);
+  }
+  20% {
+    text-shadow: 0pt 0px 0px rgba(255, 255, 255, 1),
+      10pt 0px 0px rgba(255, 255, 255, 0), 20pt 0px 0px rgba(255, 255, 255, 0);
+  }
+  30% {
+    text-shadow: 0pt 0px 0px rgba(255, 255, 255, 0.5),
+      10pt 0px 0px rgba(255, 255, 255, 0.5), 20pt 0px 0px rgba(255, 255, 255, 0);
+  }
+  40% {
+    text-shadow: 0pt 0px 0px rgba(255, 255, 255, 0),
+      10pt 0px 0px rgba(255, 255, 255, 1), 20pt 0px 0px rgba(255, 255, 255, 0);
+  }
+  50% {
+    text-shadow: 0pt 0px 0px rgba(255, 255, 255, 0),
+      10pt 0px 0px rgba(255, 255, 255, 0.5),
+      20pt 0px 0px rgba(255, 255, 255, 0.5);
+  }
+  60% {
+    text-shadow: 0pt 0px 0px rgba(255, 255, 255, 0),
+      10pt 0px 0px rgba(255, 255, 255, 0), 20pt 0px 0px rgba(255, 255, 255, 1);
+  }
+  70% {
+    text-shadow: 0pt 0px 0px rgba(255, 255, 255, 0),
+      10pt 0px 0px rgba(255, 255, 255, 0), 20pt 0px 0px rgba(255, 255, 255, 0.5);
+  }
+}
+
+.swipe_button::after {
+  animation: pulsea 2s linear infinite;
+  font-size: 20pt;
+  color: transparent; /*Using only shadows makes the animation easier*/
+  content: "\2192"; /* Unicode for the desired Font Awesome icon */
+  text-shadow: 0pt 0px 0px rgba(255, 255, 255, 1),
+    10pt 0px 0px rgba(255, 255, 255, 1), 20pt 0px 0px rgba(255, 255, 255, 1);
+}
+
 .c-testimonials {
   width: 100%;
   position: relative;
