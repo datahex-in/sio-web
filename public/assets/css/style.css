@@ -14498,10 +14498,8 @@ html body .hide {
     font-family: var(--font-Nutino);
   }
   .event-img img {
-    /* border-radius: 20px; */
-    width: 200px;
-    height: 173px !important;
-    margin-top: 25px;
+    height: 11rem !important;
+    margin-top: 10px;
   }
   .event-box-section {
     padding: 0px !important;
@@ -14562,6 +14560,9 @@ html body .hide {
   display: none;
 }
 @media (max-width: 500px) {
+  .row_mobile {
+    padding-bottom: 50px;
+  }
   .news-details-carousel {
     margin-top: 15px !important;
   }
@@ -14722,6 +14723,7 @@ html body .hide {
 .event-img img {
   border-radius: 20px;
   width: 18rem;
+  height: 21rem;
   padding-top: 10px;
 }
 .event-content-head-title p {
@@ -14744,21 +14746,21 @@ html body .hide {
 .workshop svg {
   position: absolute;
   top: -27px;
-  right: -10px;
+  right: -33px;
   border: none;
   padding: 2px 20px;
   color: #fff;
 }
 .workshop_title {
   position: absolute;
-  left: 225px;
-  top: 16px;
+  left: 245px;
+  top: 14px;
   color: #fff;
   font-family: var(--font-Nutino);
-  font-size: 14.236px;
+  font-size: 12.236px;
   font-style: normal;
   font-weight: 100;
-  line-height: 130%; /* 10.187px */
+  line-height: 100%;
 }
 
 .event-about-section {
@@ -15608,3 +15610,13 @@ span {
   }
 }
 /***** End quotes page *****/
+.zoom-effect {
+  transform: scale(1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.zoom-effect:hover {
+  transform: scale(
+    1.05
+  ); /* Adjust the scale factor as needed for a subtle zoom effect */
+}
