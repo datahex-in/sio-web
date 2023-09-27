@@ -13759,9 +13759,13 @@ html body .hide {
   }
 
   .footer-sections {
-    flex-direction: column;
-    /* Stack child divs vertically */
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    gap: 0px;
+    margin-top: 0px;
   }
 
   .footer-malabar-img,
