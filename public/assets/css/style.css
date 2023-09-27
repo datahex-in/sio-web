@@ -125,7 +125,7 @@ body {
     #e94584,
     #24aadb,
     #8d27db,
-    #d0c585,
+    #af30da,
     #f3603b
   );
   background-size: 600% 100%;
@@ -137,8 +137,8 @@ body {
   width: 400px;
   height: 400px;
   position: absolute;
-  right: 0px;
-  opacity: 0.5;
+  bottom: 2000px;
+  opacity: 0.3;
   filter: blur(72px);
   background: linear-gradient(
     45deg,
@@ -146,13 +146,16 @@ body {
     #e94584,
     #24aadb,
     #8d27db,
-    #d0c585,
+    #a933be,
     #f3603b
   );
   background-size: 600% 100%;
   border-radius: 386.5px;
   animation: gradient 16s linear infinite;
   animation-direction: alternate;
+  animation-name: move;
+  animation-duration: 6.6s;
+  animation-iteration-count: infinite;
 }
 @keyframes gradient {
   0% {
@@ -160,6 +163,20 @@ body {
   }
   100% {
     background-position: 100%;
+  }
+}
+@keyframes move {
+  0% {
+    left: -100px;
+    top: 2000px;
+  }
+  50% {
+    left: 1200px;
+    top: 2000px;
+  }
+  100% {
+    left: -100px;
+    top: 2000px;
   }
 }
 body[dir="rtl"] {
@@ -193,118 +210,142 @@ h1 {
     position: absolute;
     left: -120px;
   }
-}
+  .rectangle_background_down {
+    width: 242px;
+    height: 242px;
+    position: absolute;
+    right: 0px;
+    top: 1600px;
+  }
+  @keyframes move {
+    0% {
+      left: -100px;
+      top: 2025px;
+    }
+    50% {
+      left: 50px;
+      top: 2050px;
+    }
+    75% {
+      left: 50px;
+      top: 2075px;
+    }
+    100% {
+      left: -100px;
+      top: 2100px;
+    }
+  }
 
-h2 {
-  font-size: 30px;
-}
-
-@media only screen and (max-width: 767px) {
   h2 {
+    font-size: 30px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    h2 {
+      font-size: 24px;
+    }
+  }
+
+  h3 {
     font-size: 24px;
   }
-}
 
-h3 {
-  font-size: 24px;
-}
+  @media only screen and (max-width: 767px) {
+    h3 {
+      font-size: 20px;
+    }
+  }
 
-@media only screen and (max-width: 767px) {
-  h3 {
-    font-size: 20px;
+  h4 {
+    font-size: 18px;
+  }
+
+  h5 {
+    font-size: 14px;
+  }
+
+  h6 {
+    font-size: 14px;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-size: 1em;
+    line-height: 1.8;
+    font-weight: 200;
+  }
+
+  a,
+  button {
+    color: inherit;
+    display: inline-block;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  a,
+  button,
+  img,
+  input {
+    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    outline: 0;
+  }
+
+  a:focus,
+  button:focus,
+  img:focus,
+  input:focus {
+    outline: 0;
+  }
+
+  a:focus {
+    color: none;
+    outline: none;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: #000000;
+  }
+
+  ul,
+  ol {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+  }
+
+  button,
+  input[type="submit"] {
+    cursor: pointer;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  input::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder {
+    opacity: 1;
+  }
+
+  input:-moz-placeholder,
+  textarea:-moz-placeholder {
+    opacity: 1;
+  }
+
+  input::-moz-placeholder,
+  textarea::-moz-placeholder {
+    opacity: 1;
+  }
+
+  input:-ms-input-placeholder,
+  textarea:-ms-input-placeholder {
+    opacity: 1;
   }
 }
-
-h4 {
-  font-size: 18px;
-}
-
-h5 {
-  font-size: 14px;
-}
-
-h6 {
-  font-size: 14px;
-}
-
-p {
-  margin-bottom: 0;
-  font-size: 1em;
-  line-height: 1.8;
-  font-weight: 200;
-}
-
-a,
-button {
-  color: inherit;
-  display: inline-block;
-  line-height: inherit;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-a,
-button,
-img,
-input {
-  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-  outline: 0;
-}
-
-a:focus,
-button:focus,
-img:focus,
-input:focus {
-  outline: 0;
-}
-
-a:focus {
-  color: none;
-  outline: none;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: none;
-  color: #000000;
-}
-
-ul,
-ol {
-  padding: 0;
-  list-style: none;
-  margin: 0;
-}
-
-button,
-input[type="submit"] {
-  cursor: pointer;
-}
-
-img {
-  max-width: 100%;
-}
-
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
-  opacity: 1;
-}
-
-input:-moz-placeholder,
-textarea:-moz-placeholder {
-  opacity: 1;
-}
-
-input::-moz-placeholder,
-textarea::-moz-placeholder {
-  opacity: 1;
-}
-
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-  opacity: 1;
-}
-
 /*-- Common Classes --*/
 @media only screen and (min-width: 1200px) {
   .container {
