@@ -14744,7 +14744,7 @@ html body .hide {
 }
 .event-img img {
   border-radius: 20px;
-  width: 13rem;
+  width: 17rem;
   padding-top: 10px;
 }
 .event-content-head-title p {
@@ -14765,17 +14765,17 @@ html body .hide {
 }
 
 .workshop svg {
-  position: absolute;
-  top: -3px;
-  right: -38px;
+  position: relative;
+  bottom: 37px;
+  left: 150px;
   border: none;
   color: #fff;
 }
 .workshop_title {
   position: absolute;
-  left: 210px;
-  top: 12px;
-  width: 100%;
+  left: 230px;
+  top: 10px;
+  width: 100px;
   color: #fff;
   font-family: var(--font-Nutino);
   font-size: 12px;
@@ -14836,6 +14836,24 @@ html body .hide {
   display: none;
 }
 @media (max-width: 600px) {
+  .event-img img {
+    width: 13rem;
+  }
+  .workshop svg {
+    position: absolute;
+    top: -3px;
+    right: -38px;
+    border: none;
+    color: #fff;
+  }
+  .workshop_title {
+    position: absolute;
+    left: 200px;
+    top: 11px;
+    color: #fff;
+    width: 120px;
+    font-size: 11px;
+  }
   .event-date-one {
     display: none;
   }
@@ -15638,6 +15656,6 @@ span {
 
 .zoom-effect:hover {
   transform: scale(
-    1.05
+    1.02
   ); /* Adjust the scale factor as needed for a subtle zoom effect */
 }
