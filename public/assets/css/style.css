@@ -14094,9 +14094,15 @@ html body .hide {
   top: 25px;
   z-index: 2;
 }
+.c-testimonials__upcoming_mobile img {
+  margin: auto;
+  width: 50%;
+  display: none;
+}
 .c-testimonials__upcoming img {
   width: 150px;
   height: auto;
+  visibility: visible;
 }
 @media screen and (max-width: 992px) {
   .c-testimonials {
@@ -14113,7 +14119,14 @@ html body .hide {
   #register_card_btn {
     position: absolute;
     left: 0px;
-    bottom: -40px;
+    bottom: -30px;
+  }
+  .c-testimonials__upcoming_mobile img {
+    width: 50%;
+    display: block;
+  }
+  .c-testimonials__upcoming img {
+    display: none;
   }
 }
 @media screen and (max-height: 500px) and (min-width: 992px) {
@@ -14508,6 +14521,7 @@ html body .hide {
   .event-img img {
     height: 11rem !important;
     margin-top: 10px;
+    object-fit: contain;
   }
   .event-box-section {
     padding: 0px !important;
@@ -14515,7 +14529,7 @@ html body .hide {
     display: flex;
   }
   .event-content {
-    padding: 30px 10px !important;
+    padding: 30px 30px !important;
   }
   .event-box {
     width: 23rem;
@@ -14753,19 +14767,19 @@ html body .hide {
 
 .workshop svg {
   position: absolute;
-  top: -27px;
+  top: -5px;
   right: -33px;
   border: none;
-  padding: 2px 20px;
   color: #fff;
 }
 .workshop_title {
   position: absolute;
-  left: 245px;
-  top: 14px;
+  left: 190px;
+  top: 14.5px;
+  width: 100%;
   color: #fff;
   font-family: var(--font-Nutino);
-  font-size: 12.236px;
+  font-size: 13.236px;
   font-style: normal;
   font-weight: 100;
   line-height: 100%;
