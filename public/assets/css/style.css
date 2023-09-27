@@ -704,8 +704,8 @@ h1 {
   background-color: purple;
   background-image: url("/assets/images/animation\ compass\ web\ pre.gif");
   background-repeat: no-repeat;
-  background-size: contain;
-  z-index: 3;
+  background-size: cover;
+  z-index: 999999;
 }
 
 #preloader .preloader {
@@ -727,8 +727,8 @@ h1 {
   height: 50px;
   border-radius: 50%;
   background-color: #000000;
-  -webkit-animation: preloader 1s linear infinite;
-  animation: preloader 1s linear infinite;
+  -webkit-animation: preloader 1s linear;
+  animation: preloader 1s linear;
 }
 
 #preloader .preloader span:last-child {
