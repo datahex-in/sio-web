@@ -156,7 +156,7 @@ body {
   animation-timing-function: ease-in;
   animation-name: move;
   animation-delay: 2s;
-  animation-duration: 10.6s;
+  animation-duration: 30s;
   animation-iteration-count: infinite;
 }
 @keyframes gradient {
@@ -15310,24 +15310,61 @@ html body .hide {
 .testimonialphone {
   display: none;
 }
-.register-button-m button {
+.btn_register {
   display: none;
 }
 @media (max-width: 768px) {
-  .register-button-m button {
-    display: inline;
+  .btn_register {
+    display: block;
     position: absolute;
-    top: 25px;
-    right: 10px;
-    border: none !important;
-    border-radius: 10px;
-    padding: 5px 20px;
-    background-color: #65297a;
-    color: #fff;
-    font-family: var(--font-Nutino);
+    top: 48%;
+    right: -10px;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: #744499;
+    color: white;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+      rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    overflow: hidden;
   }
-  .register-button-m button :hover {
-    background-color: #e59bff;
+
+  .btn_register span {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: top 0.3s;
+  }
+
+  .btn-text-one {
+    font-size: 16px;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+  }
+
+  .btn-text-two {
+    position: absolute;
+    font-size: 7px;
+    width: 100%;
+    top: 150%;
+    left: 0px;
+    transform: translateY(-50%);
+  }
+
+  .btn_register:hover .btn-text-one {
+    top: -100%;
+  }
+
+  .btn_register:hover .btn-text-two {
+    top: 50%;
   }
   .testimonialphone {
     display: block;
@@ -15340,7 +15377,6 @@ html body .hide {
     font-weight: 700px;
   }
 }
-
 .guest {
   width: 100%;
   float: left;
