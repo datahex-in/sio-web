@@ -137,7 +137,7 @@ body {
   width: 400px;
   height: 400px;
   position: absolute;
-  right: -160px;
+  right: 0px;
   opacity: 0.5;
   filter: blur(72px);
   background: linear-gradient(
@@ -191,7 +191,7 @@ h1 {
     width: 242px;
     height: 242px;
     position: absolute;
-    left: -150px;
+    left: -120px;
   }
 }
 
