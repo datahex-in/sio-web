@@ -703,7 +703,9 @@ h1 {
   bottom: 0;
   background-color: purple;
   background-image: url("/assets/images/animation\ compass\ web\ pre.gif");
-  z-index: 999999;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 3;
 }
 
 #preloader .preloader {
