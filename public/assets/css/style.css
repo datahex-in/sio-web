@@ -171,7 +171,7 @@ body {
     top: 2000px;
   }
   50% {
-    left: 1200px;
+    left: 1000px;
     top: 2000px;
   }
   100% {
@@ -182,7 +182,13 @@ body {
 body[dir="rtl"] {
   text-align: right;
 }
-
+a {
+  text-decoration: none;
+  color: #000000;
+}
+li {
+  list-style-type: none;
+}
 h1,
 h2,
 h3,
