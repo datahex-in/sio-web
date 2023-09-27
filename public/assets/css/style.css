@@ -14502,7 +14502,7 @@ html body .hide {
     color: #fff;
     line-height: normal;
     padding-top: 2px !important;
-    font-size: 14px !important;
+    font-size: 8px !important;
   }
   .know-more-btn {
     text-align: center;
@@ -14766,19 +14766,19 @@ html body .hide {
 
 .workshop svg {
   position: absolute;
-  top: -5px;
-  right: -33px;
+  top: -3px;
+  right: -38px;
   border: none;
   color: #fff;
 }
 .workshop_title {
   position: absolute;
-  left: 190px;
-  top: 14.5px;
+  left: 210px;
+  top: 12px;
   width: 100%;
   color: #fff;
   font-family: var(--font-Nutino);
-  font-size: 13.236px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 100;
   line-height: 100%;
