@@ -115,6 +115,11 @@
             <!-- <div class="container"> -->
             <div class="events-page-main">
               <div class="row">
+                <% if (eventData.length === 0) { %>
+                  <div class="col-12">
+                    <p>No events found.</p>
+                  </div>
+                  <% } else { %>
                 <% eventData.forEach(item=> { %>
                 <div
                   class="col-12 col-md-4 event-box"
@@ -181,6 +186,7 @@
                         style="object-fit: cover"
                         src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${item.image}` %>"
                         alt=""
+                            onerror="this.src='/assets/images/no-image.jpg'"
                       />
                     </div>
                     <div class="event-content">
@@ -215,6 +221,7 @@
                   </div>
                 </div>
                 <% }); %>
+                <% } %>
               </div>
             </div>
             <!-- </div> -->
