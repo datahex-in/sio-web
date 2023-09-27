@@ -24,6 +24,8 @@
 
       <!-- Page Banner Start -->
       <div id="bg-color-purple">
+        <div class="rectangle_background_top">
+        </div>
         <div class="page_backarrow">
           <a href="/"><i><svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 19 20" fill="none">
                 <path
@@ -50,10 +52,8 @@
                 </li>
               </ul>
             </div>
-
             <div class="row row_mobile">
               <% eventData.forEach(item=> { %>
-
                 <div class="col-12 col-md-4 event-box zoom-effect" data-section="<%= item.eventType %>">
                   <a href="/event_single/<%= item._id %>">
                     <div class="event-box-section">
@@ -103,7 +103,6 @@
                     </div>
                   </a>
                 </div>
-
                 <% }); %>
             </div>
           </div>
