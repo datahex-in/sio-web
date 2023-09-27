@@ -39,9 +39,9 @@ exports.getS3Middleware = (fieldNames) => {
       } else {
         try {
           const fileContent = await sharp(filePath)
-            .resize({ width: 2000 }) // set the maximum width of the image
-            .jpeg({ quality: 80 }) // set the JPEG quality to 80%
-            .toBuffer();
+          .resize({ width: 2000, withoutEnlargement: false }) // Preserve original size
+          .toFormat('png') // Save as PNG
+          .toBuffer();
 
           const params = {
             Bucket: process.env.SPACES_BUCKET_NAME,

@@ -10,27 +10,32 @@ router.get("/", async function (req, res, next) {
     console.log(userData);
 
     // Assuming userData.events is either an array of event IDs or a comma-separated string
-    let eventIds = Array.isArray(userData.events)
-      ? userData.events
-      : userData.events.split(",");
+    let eventIds = [];
+
+    if (userData.events) {
+      // Check if userData.events is defined (not undefined or null)
+      if (Array.isArray(userData.events)) {
+        // If it's already an array, use it as is
+        eventIds = userData.events;
+      } else {
+        // If it's not an array, assume it's a single event ID and convert it to an array
+        eventIds = [userData.events];
+      }
+    }
 
     // Filter out empty strings and invalid values from eventIds
     eventIds = eventIds.filter((eventId) => eventId.trim() !== "");
 
-    if (eventIds.length === 0) {
-      // No valid event IDs found, you may want to handle this case
-      return res.status(400).send("No valid event IDs provided");
-    }
-
-    // Find events using the filtered event IDs
     const eventData = await Events.find({ _id: { $in: eventIds } });
 
+    // Render the profile page with eventData and userData
     res.render("profile", { eventData, userData });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
 });
+
 
 /* DELETE event by ID. */
 router.delete("/delete/:eventId", async function (req, res, next) {

@@ -254,8 +254,8 @@ app.get("/auth/google/callback", async (req, res, next) => {
       // Check if the user's database record already has eventId
       const hasEventId = user.events.includes(eventId);
 
-      if (hasEventId) {
-        // If eventId is already in the user's events, redirect to /profile with user data
+      if (hasEventId || eventId === null) {
+        // If eventId is already in the user's events or is null, redirect to /profile with user data
         const userData = {
           name: user.name, // Replace with actual user data fields
           email: user.email,
@@ -295,7 +295,13 @@ app.get("/auth/google/callback", async (req, res, next) => {
         // Add QR image URL as a query parameter
         userData.qrImageUrl = `/qrcodes/${user._id}.png`;
 
-        const queryParameters = new URLSearchParams(userData).toString();
+        // Append qrImageUrl to the query parameters
+        const queryParameters = new URLSearchParams({
+          ...userData, // Include all existing user data
+          qrImageUrl: userData.qrImageUrl, // Append qrImageUrl
+        }).toString();
+
+        // const queryParameters = new URLSearchParams(userData).toString();
         return res.redirect(`/profile?${queryParameters}`);
       } else {
         // If eventId is not found in the user's events, add it
