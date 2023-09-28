@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const News = require("../../models/news");
+const Article = require("../../models/article");
 const Testimonial = require("../../models/testimonial");
 const Gallery = require('../../models/gallery')
 
@@ -8,7 +9,7 @@ const Gallery = require('../../models/gallery')
 router.get("/", async function (req, res, next) {
   try {
     const newsData = await News.find();
-    const articleData = await News.find();
+    const articleData = await Article.find();
     const testimonialData = await Testimonial.find();
     const galleryData = await Gallery.find();
     console.log(newsData);

@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const Events = require("../../models/event");
 const Registration = require("../../models/Registration");
+const { default: mongoose } = require("mongoose");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
@@ -16,15 +17,19 @@ router.get("/", async function (req, res, next) {
       // Check if userData.events is defined (not undefined or null)
       if (Array.isArray(userData.events)) {
         // If it's already an array, use it as is
-        eventIds = userData.events;
+        eventIds = userData.events.filter((eventId) =>
+          mongoose.Types.ObjectId.isValid(eventId)
+        );
       } else {
-        // If it's not an array, assume it's a single event ID and convert it to an array
-        eventIds = [userData.events];
+        // If it's not an array, assume it's a comma-separated string and split it
+        eventIds = userData.events
+          .split(",")
+          .map((eventId) => eventId.trim())
+          .filter((eventId) => mongoose.Types.ObjectId.isValid(eventId));
       }
     }
 
-    // Filter out empty strings and invalid values from eventIds
-    eventIds = eventIds.filter((eventId) => eventId.trim() !== "");
+    // Now, eventIds only contains valid ObjectId values
 
     const eventData = await Events.find({ _id: { $in: eventIds } });
 
@@ -35,7 +40,6 @@ router.get("/", async function (req, res, next) {
     res.status(500).send("Internal Server Error");
   }
 });
-
 
 /* DELETE event by ID. */
 router.delete("/delete/:eventId", async function (req, res, next) {
