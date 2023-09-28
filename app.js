@@ -107,6 +107,7 @@ const globalFaq = require("./routes/globalFaq.js");
 const about = require("./routes/aboutUs.js");
 const gallery = require("./routes/gallery");
 const news = require("./routes/news");
+const article = require("./routes/article.js");
 const speakers = require("./routes/speakers");
 const globalSpeakers = require("./routes/globalSpeakers.js");
 const material = require("./routes/material");
@@ -159,6 +160,7 @@ app.use("/api/v1/global-faq", globalFaq);
 app.use("/api/v1/about-us", about);
 app.use("/api/v1/gallery", gallery);
 app.use("/api/v1/news", news);
+app.use("/api/v1/article", article);
 app.use("/api/v1/speakers", speakers);
 app.use("/api/v1/global-speakers", globalSpeakers);
 app.use("/api/v1/material", material);
@@ -196,6 +198,8 @@ passport.use(
         const googleId = profile.id;
         const googleEmail = profile.emails[0].value;
         const googleName = profile.displayName;
+        const googlePhoto = profile.photos[0].value;
+        console.log(googlePhoto);
 
         // Check if the user exists in your MongoDB database using googleId or email
         let user = await Registration.findOne({
@@ -208,6 +212,7 @@ passport.use(
             message: "User not registered",
             email: googleEmail,
             name: googleName,
+            photo: googlePhoto,
           });
         } else {
           // If the user already exists, update their Google ID if it's not already set
@@ -308,9 +313,41 @@ app.get("/auth/google/callback", async (req, res, next) => {
         user.events.push(eventId); // Add eventId to the user's events array
         await user.save(); // Save the updated user record with the new eventId
 
+        // Generate QR code and store it
+        const userData = {
+          userId: user._id,
+          email: user.email,
+          name: user.name,
+          mobileNumber: user.mobileNumber,
+          age: user.age,
+          gender: user.gender,
+          profession: user.profession,
+          district: user.district,
+          events: user.events,
+        };
+
+        // Create the 'qrcodes' directory if it doesn't exist
+        const qrCodeDirectory = "./public/qrcodes";
+        if (!fs.existsSync(qrCodeDirectory)) {
+          fs.mkdirSync(qrCodeDirectory);
+        }
+
+        // Generate the QR code and save it
+        const qrCodeFileName = `${qrCodeDirectory}/${user._id}.png`;
+        await qr.toFile(qrCodeFileName, JSON.stringify(userData));
+
+        // Add QR image URL as a query parameter
+        userData.qrImageUrl = `/qrcodes/${user._id}.png`;
+
+        // Append qrImageUrl to the query parameters
+        const queryParameters = new URLSearchParams({
+          ...userData, // Include all existing user data
+          qrImageUrl: userData.qrImageUrl, // Append qrImageUrl
+        }).toString();
+
         req.logIn(user, (loginErr) => {
           if (loginErr) return next(loginErr);
-          return res.redirect("/"); // Redirect to the home page or any other desired page
+          return res.redirect(`/profile?${queryParameters}`); // Redirect to the home page or any other desired page
         });
       }
     } catch (error) {

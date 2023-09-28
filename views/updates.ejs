@@ -52,10 +52,7 @@
             <div class="news-details">
               <div
                 class="row news-details-head"
-                onclick="openModal(
-                      
-              '<%= newsData[newsData.length - 1].description %>'
-            )"
+                onclick="openModal('<%= newsData[newsData.length - 1].description %>', '<%= newsData[newsData.length - 1].id %>')"
               >
                 <div class="col-12 col-xl-6 news-details-head-img">
                   <img
@@ -76,32 +73,36 @@
                         font-size: 12px;
                       "
                     >
-                      <% const createdAt=new Date(newsData[newsData.length -
-                      1].createdAt); const currentTimeNews=new Date(); const
-                      timeDifferenceMs=currentTimeNews - createdAt; const
-                      seconds=Math.floor(timeDifferenceMs / 1000); const
-                      minutes=Math.floor(seconds / 60); const
-                      hours=Math.floor(minutes / 60); const
-                      days=Math.floor(hours / 24); const weeks=Math.floor(days /
-                      7); const months=Math.floor(weeks / 4.345); const
-                      years=Math.floor(months / 12); if (years>= 1) { if (years
-                      === 1) { %>1 YEAR AGO<% } else { %> <%= years %> YEARS
-                      AGO<% } } else if (months>= 1) { if (months === 1) { %>1
-                      MONTH AGO<% } else { %> <%= months %> MONTHS AGO<% } }
-                      else if (weeks>= 1) { if (weeks === 1) { %>1 WEEK AGO<% }
-                      else { %> <%= weeks %> WEEKS AGO<% } } else if (days>= 1)
-                      { if (days === 1) { %>1 DAY AGO<% } else { %> <%= days %>
-                      DAYS AGO<% } } else if (hours>= 1) { if (hours === 1) {
-                      %>1 HOUR AGO<% } else { %> <%= hours %> HOURS AGO<% } }
-                      else if (minutes>= 1) { if (minutes === 1) { %>1 MINUTE
-                      AGO<% } else { %> <%= minutes %> MINUTES AGO<% } } else {
-                      %>Just now<% } %>
+                      <% const createdAt = new Date(newsData[newsData.length - 1].createdAt);
+                      const currentTimeNews = new Date();
+                      const timeDifferenceMs = currentTimeNews - createdAt;
+                      const seconds = Math.floor(timeDifferenceMs / 1000);
+                      const minutes = Math.floor(seconds / 60);
+                      const hours = Math.floor(minutes / 60);
+                      const days = Math.floor(hours / 24);
+                      const weeks = Math.floor(days / 7);
+                      const months = Math.floor(weeks / 4.345);
+                      const years = Math.floor(months / 12);
+      
+                      if (years >= 1) {
+                        if (years === 1) { %>1 YEAR AGO<% } else { %> <%= years %> YEARS AGO<% }
+                      } else if (months >= 1) {
+                        if (months === 1) { %>1 MONTH AGO<% } else { %> <%= months %> MONTHS AGO<% }
+                      } else if (weeks >= 1) {
+                        if (weeks === 1) { %>1 WEEK AGO<% } else { %> <%= weeks %> WEEKS AGO<% }
+                      } else if (days >= 1) {
+                        if (days === 1) { %>1 DAY AGO<% } else { %> <%= days %> DAYS AGO<% }
+                      } else if (hours >= 1) {
+                        if (hours === 1) { %>1 HOUR AGO<% } else { %> <%= hours %> HOURS AGO<% }
+                      } else if (minutes >= 1) {
+                        if (minutes === 1) { %>1 MINUTE AGO<% } else { %> <%= minutes %> MINUTES AGO<% }
+                      } else { %>Just now<% } %>
                     </span>
                   </div>
                   <p><%= newsData[newsData.length - 1].description %></p>
                 </div>
               </div>
-
+      
               <!-- The modal -->
               <div id="myModal" class="modal">
                 <div class="modal-content">
@@ -111,9 +112,9 @@
                   <p id="modalDescription"></p>
                 </div>
               </div>
-
-              <% newsData.forEach(news=> { %>
-
+      
+              <% newsData.forEach(news => { %>
+      
               <div
                 class="row news-details-carousel"
                 style="display: flex; margin-top: 50px"
@@ -129,7 +130,9 @@
                   <div class="card-body">
                     <h5 class="card-title"><%= news.title %></h5>
                     <div class="dates">
-                      <h6 style="display: inline">Latest</h6>
+                      <% if (news === newsData[newsData.length - 1]) { %>
+                        <h6 style="display: inline">Latest</h6>
+                      <% } %>
                       <span
                         class="time"
                         style="
@@ -139,26 +142,30 @@
                           font-size: 12px;
                         "
                       >
-                        <% const createdAt=new Date(news.createdAt); const
-                        currentTimeNews=new Date(); const
-                        timeDifferenceMs=currentTimeNews - createdAt; const
-                        seconds=Math.floor(timeDifferenceMs / 1000); const
-                        minutes=Math.floor(seconds / 60); const
-                        hours=Math.floor(minutes / 60); const
-                        days=Math.floor(hours / 24); const weeks=Math.floor(days
-                        / 7); const months=Math.floor(weeks / 4.345); const
-                        years=Math.floor(months / 12); if (years>= 1) { if
-                        (years === 1) { %>1 YEAR AGO<% } else { %> <%= years %>
-                        YEARS AGO<% } } else if (months>= 1) { if (months === 1)
-                        { %>1 MONTH AGO<% } else { %> <%= months %> MONTHS AGO<%
-                        } } else if (weeks>= 1) { if (weeks === 1) { %>1 WEEK
-                        AGO <% } else { %> <%= weeks %> WEEKS AGO<% } } else if
-                        (days>= 1) { if (days === 1) { %>1 DAY AGO<% } else { %>
-                        <%= days %> DAYS AGO<% } } else if (hours>= 1) { if
-                        (hours === 1) { %>1 HOUR AGO<% } else { %> <%= hours %>
-                        HOURS AGO<% } } else if (minutes>= 1) { if (minutes ===
-                        1) { %>1 MINUTE AGO<% } else { %> <%= minutes %> MINUTES
-                        AGO<% } } else { %>Just now<% } %>
+                        <% const createdAt = new Date(news.createdAt);
+                        const currentTimeNews = new Date();
+                        const timeDifferenceMs = currentTimeNews - createdAt;
+                        const seconds = Math.floor(timeDifferenceMs / 1000);
+                        const minutes = Math.floor(seconds / 60);
+                        const hours = Math.floor(minutes / 60);
+                        const days = Math.floor(hours / 24);
+                        const weeks = Math.floor(days / 7);
+                        const months = Math.floor(weeks / 4.345);
+                        const years = Math.floor(months / 12);
+      
+                        if (years >= 1) {
+                          if (years === 1) { %>1 YEAR AGO<% } else { %> <%= years %> YEARS AGO<% }
+                        } else if (months >= 1) {
+                          if (months === 1) { %>1 MONTH AGO<% } else { %> <%= months %> MONTHS AGO<% }
+                        } else if (weeks >= 1) {
+                          if (weeks === 1) { %>1 WEEK AGO <% } else { %> <%= weeks %> WEEKS AGO<% }
+                        } else if (days >= 1) {
+                          if (days === 1) { %>1 DAY AGO<% } else { %> <%= days %> DAYS AGO<% }
+                        } else if (hours >= 1) {
+                          if (hours === 1) { %>1 HOUR AGO<% } else { %> <%= hours %> HOURS AGO<% }
+                        } else if (minutes >= 1) {
+                          if (minutes === 1) { %>1 MINUTE AGO<% } else { %> <%= minutes %> MINUTES AGO<% }
+                        } else { %>Just now<% } %>
                       </span>
                     </div>
                     <P class="card-text-para"> <%= news.description %> </P>
@@ -170,6 +177,7 @@
           </div>
         </div>
       </div>
+      
 
       <div class="container" id="Article-section" style="display: none">
         <div class="article-section">
@@ -177,15 +185,28 @@
             <div class="news-details">
               <div class="row news-details-head">
                 <div class="col-12 col-xl-6 news-details-head-img">
-                  <img
-                    src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ articleData[articleData.length - 1].image}` %>"
-                    alt=""
-                  />
+                  <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ articleData[articleData.length - 1].image}` %>" alt="" />
                 </div>
                 <div class="col-12 col-xl-6 card-body">
                   <h1><%= articleData[articleData.length - 1].title %></h1>
                   <div class="dates">
-                    <h6 style="display: inline">Latest</h6>
+                    <% const latestArticle = articleData[articleData.length - 1];
+                    const articleCreatedAtArticle = new Date(latestArticle.createdAt);
+                    const currentTimeArticle = new Date();
+                    const timeDifferenceMsArticle = currentTimeArticle - articleCreatedAtArticle;
+                    const secondsArticle = Math.floor(timeDifferenceMsArticle / 1000);
+                    const minutesArticle = Math.floor(secondsArticle / 60);
+                    const hoursArticle = Math.floor(minutesArticle / 60);
+                    const daysArticle = Math.floor(hoursArticle / 24);
+                    const weeksArticle = Math.floor(daysArticle / 7);
+                    const monthsArticle = Math.floor(weeksArticle / 4.345);
+                    const yearsArticle = Math.floor(monthsArticle / 12);
+                    
+                    const isLatest = daysArticle < 3; // Check if article is less than 3 days old
+      
+                    if (isLatest) { %>
+                      <h6 style="display: inline">Latest</h6>
+                    <% } %>
                     <span
                       class="time"
                       style="
@@ -195,54 +216,47 @@
                         font-size: 12px;
                       "
                     >
-                      <% const articleCreatedAtArticle=new
-                      Date(articleData[articleData.length - 1].createdAt); const
-                      currentTimeArticle=new Date(); const
-                      timeDifferenceMsArticle=currentTimeArticle -
-                      articleCreatedAtArticle; const
-                      secondsArticle=Math.floor(timeDifferenceMsArticle / 1000);
-                      const minutesArticle=Math.floor(secondsArticle / 60);
-                      const hoursArticle=Math.floor(minutesArticle / 60); const
-                      daysArticle=Math.floor(hoursArticle / 24); const
-                      weeksArticle=Math.floor(daysArticle / 7); const
-                      monthsArticle=Math.floor(weeksArticle / 4.345); const
-                      yearsArticle=Math.floor(monthsArticle / 12); if
-                      (yearsArticle>= 1) { if (yearsArticle === 1) { %>1 YEAR
-                      AGO<% } else { %> <%= yearsArticle %> YEARS AGO<% } } else
-                      if (monthsArticle>= 1) { if (monthsArticle === 1) { %>1
-                      MONTH AGO<% } else { %> <%= monthsArticle %> MONTHS AGO<%
-                      } } else if (weeksArticle>= 1) { if (weeksArticle === 1) {
-                      %>1 WEEK AGO<% } else { %> <%= weeksArticle %> WEEKS AGO<%
-                      } } else if (daysArticle>= 1) { if (daysArticle === 1) {
-                      %>1 DAY AGO<% } else { %> <%= daysArticle %> DAYS AGO<% }
-                      } else if (hoursArticle>= 1) { if (hoursArticle === 1) {
-                      %>1 HOUR AGO<% } else { %> <%= hoursArticle %> HOURS AGO<%
-                      } } else if (minutesArticle>= 1) { if (minutesArticle ===
-                      1) { %>1 MINUTE AGO<% } else { %> <%= minutesArticle %>
-                      MINUTES AGO<% } } else { %>Just now<% } %>
+                      <% if (isLatest) { %>
+                        <% if (secondsArticle < 60) { %><%= secondsArticle %> SECONDS AGO<% } else if (minutesArticle < 60) { %><%= minutesArticle %> MINUTES AGO<% } else if (hoursArticle < 24) { %><%= hoursArticle %> HOURS AGO<% } else if (daysArticle < 7) { %><%= daysArticle %> DAYS AGO<% } else if (weeksArticle < 4.345) { %><%= weeksArticle %> WEEKS AGO<% } else if (monthsArticle < 12) { %><%= monthsArticle %> MONTHS AGO<% } else { %><%= yearsArticle %> YEARS AGO<% } %>
+                      <% } else { %>
+                      <% const years = Math.floor(daysArticle / 365);
+                      const months = Math.floor(daysArticle / 30);
+                      
+                      if (years >= 1) {
+                        if (years === 1) { %>1 YEAR AGO<% } else { %> <%= years %> YEARS AGO<% }
+                      } else if (months >= 1) {
+                        if (months === 1) { %>1 MONTH AGO<% } else { %> <%= months %> MONTHS AGO<% }
+                      } else { %>Just now<% } %>
+                      <% } %>
                     </span>
                   </div>
-                  <p><%= articleData[articleData.length - 1].description %></p>
+                  <p><%= latestArticle.description %></p>
                 </div>
               </div>
-
-              <% articleData.forEach(article=> { %>
-
-              <div
-                class="row news-details-carousel"
-                style="display: flex; margin-top: 50px"
-              >
+      
+              <% articleData.forEach(article => { %>
+      
+              <div class="row news-details-carousel" style="display: flex; margin-top: 50px">
                 <div class="col-12 col-xl-4">
-                  <img
-                    class="card-img-top"
-                    src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ article.image}` %>"
-                    alt="Card image cap"
-                    style="border-radius: 10px"
-                  />
+                  <img class="card-img-top" src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ article.image}` %>" alt="Card image cap" style="border-radius: 10px" />
                   <div class="card-body">
                     <h5 class="card-title"><%= article.title %></h5>
                     <div class="dates">
-                      <h6 style="display: inline">Latest</h6>
+                      <% const articleCreatedAt = new Date(article.createdAt);
+                      const currentTimeArticle = new Date();
+                      const timeDifferenceMs = currentTimeArticle - articleCreatedAt;
+                      const seconds = Math.floor(timeDifferenceMs / 1000);
+                      const minutes = Math.floor(seconds / 60);
+                      const hours = Math.floor(minutes / 60);
+                      const days = Math.floor(hours / 24);
+                      const weeks = Math.floor(days / 7);
+                      const months = Math.floor(weeks / 4.345);
+                      const years = Math.floor(months / 12);
+                      const isLatest = days < 3; // Check if article is less than 3 days old
+      
+                      if (isLatest) { %>
+                        <h6 style="display: inline">Latest</h6>
+                      <% } %>
                       <span
                         class="time"
                         style="
@@ -252,26 +266,18 @@
                           font-size: 12px;
                         "
                       >
-                        <% const articleCreatedAt=new Date(article.createdAt);
-                        const currentTimeArticle=new Date(); const
-                        timeDifferenceMs=currentTimeArticle - articleCreatedAt;
-                        const seconds=Math.floor(timeDifferenceMs / 1000); const
-                        minutes=Math.floor(seconds / 60); const
-                        hours=Math.floor(minutes / 60); const
-                        days=Math.floor(hours / 24); const weeks=Math.floor(days
-                        / 7); const months=Math.floor(weeks / 4.345); const
-                        years=Math.floor(months / 12); if (years>= 1) { if
-                        (years === 1) { %>1 YEAR AGO<% } else { %> <%= years %>
-                        YEARS AGO<% } } else if (months>= 1) { if (months === 1)
-                        { %>1 MONTH AGO<% } else { %> <%= months %> MONTHS AGO<%
-                        } } else if (weeks>= 1) { if (weeks === 1) { %>1 WEEK
-                        AGO <% } else { %> <%= weeks %> WEEKS AGO<% } } else if
-                        (days>= 1) { if (days === 1) { %>1 DAY AGO<% } else { %>
-                        <%= days %> DAYS AGO<% } } else if (hours>= 1) { if
-                        (hours === 1) { %>1 HOUR AGO<% } else { %> <%= hours %>
-                        HOURS AGO<% } } else if (minutes>= 1) { if (minutes ===
-                        1) { %>1 MINUTE AGO<% } else { %> <%= minutes %> MINUTES
-                        AGO<% } } else { %>Just now<% } %>
+                        <% if (isLatest) { %>
+                          <% if (seconds < 60) { %><%= seconds %> SECONDS AGO<% } else if (minutes < 60) { %><%= minutes %> MINUTES AGO<% } else if (hours < 24) { %><%= hours %> HOURS AGO<% } else if (days < 7) { %><%= days %> DAYS AGO<% } else if (weeks < 4.345) { %><%= weeks %> WEEKS AGO<% } else if (months < 12) { %><%= months %> MONTHS AGO<% } else { %><%= years %> YEARS AGO<% } %>
+                        <% } else { %>
+                        <% const years = Math.floor(days / 365);
+                        const months = Math.floor(days / 30);
+                        
+                        if (years >= 1) {
+                          if (years === 1) { %>1 YEAR AGO<% } else { %> <%= years %> YEARS AGO<% }
+                        } else if (months >= 1) {
+                          if (months === 1) { %>1 MONTH AGO<% } else { %> <%= months %> MONTHS AGO<% }
+                        } else { %>Just now<% } %>
+                        <% } %>
                       </span>
                     </div>
                     <P class="card-text-para"> <%= article.description %> </P>
@@ -283,6 +289,8 @@
           </div>
         </div>
       </div>
+      
+      
 
       <div class="container" id="Testimonial-section" style="display: none">
         <div class="deconquista-slider">
