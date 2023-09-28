@@ -726,7 +726,7 @@ h1 {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #000000;
+  background-color: rgb(116, 40, 187);
   -webkit-animation: preloader 1s linear;
   animation: preloader 1s linear;
 }
@@ -13878,10 +13878,6 @@ html body .hide {
     color: #ffffff;
     text-align: center;
   }
-  .about-sio-para {
-    text-align: center;
-    padding: 0px 10px !important;
-  }
   .work-shop-section {
     padding-bottom: 40px !important;
     overflow: hidden;
@@ -13911,6 +13907,14 @@ html body .hide {
   text-align: center;
   padding: 0px 70px;
   line-height: 25.734px;
+  opacity: 0; /* Start with 0 opacity */
+  transform: translateX(-20px); /* Start position: moved to the left */
+  transition: opacity 1.5s ease-in-out, transform 0.5s ease-in-out; /* Transition properties */
+}
+/* Add the animation when the element is visible */
+.about-sio-para.visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 .about-sio-para::first-letter {
   color: #fff;
@@ -13976,6 +13980,10 @@ html body .hide {
 }
 /***** media screen *****/
 @media (max-width: 600px) {
+  .about-sio-para {
+    text-align: center;
+    padding: 0px 10px !important;
+  }
   .program_box {
     min-height: 110px;
     border-top: solid 0px #7c7c7c !important;
