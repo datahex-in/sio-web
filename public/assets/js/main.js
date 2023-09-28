@@ -4,7 +4,7 @@ $(function () {
   /*--
         preloader
     -----------------------------------*/
-  $(window).on("load", function (event) {
+  $(window).on("load", function () {
     $("#preloader").delay(200).fadeOut(200);
   });
 
