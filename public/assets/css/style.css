@@ -14388,13 +14388,14 @@ html body .hide {
 }
 @media screen and (max-width: 768px) {
   .c-testimonials .c-testimonials__pagination {
-    top: 235px;
+    /* top: 235px;
     left: 50% !important;
     width: 100% !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: translateX(-50%);
+    transform: translateX(-50%); */
+    display: none;
   }
 }
 .c-testimonials
@@ -15738,6 +15739,9 @@ span {
 }
 
 /***** quotes page *****/
+.card_quotes_row {
+  padding-bottom: 50px !important;
+}
 .card_quotes {
   margin: auto;
   width: 60%;
