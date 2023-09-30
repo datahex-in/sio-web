@@ -14010,6 +14010,7 @@ html body .hide {
   border-radius: 20px;
   transform: translateX(-20px);
 }
+
 @media screen and (max-width: 768px) {
   .c-card-testimonial .c-card-testimonial__profile {
     transform: translateY(-50%);
@@ -14038,10 +14039,10 @@ html body .hide {
   }
 }
 .c-card-testimonial .c-card-testimonial__profile .c-card-testimonial__image {
-  width: 100%;
+  width: 300px;
   position: absolute;
   left: 0px;
-  height: 100%;
+  height: auto;
   object-fit: contain;
   border-radius: 20px;
   opacity: 0;
@@ -14052,7 +14053,7 @@ html body .hide {
 }
 @media screen and (max-width: 768px) {
   .c-card-testimonial .c-card-testimonial__description {
-    margin-top: -80px;
+    margin-top: 20px;
     text-align: center;
     padding: 0 30px;
   }
