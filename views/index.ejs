@@ -81,9 +81,9 @@
             <ul class="c-testimonials__items swiper-wrapper">
               <!-- CARD 1 -->
               <% eventData.forEach(item=> { %>
-                <a href="/event_single/<%= item._id %>">
                 <li class="c-testimonials__item c-card-testimonial swiper-slide">
                   <div class="c-card-testimonial__profile">
+                    <a href="/event_single/<%= item._id %>">
                     <img style="object-fit: cover;"
                       src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.image}` %>" alt=""
                       class="c-card-testimonial__image">
@@ -105,9 +105,9 @@
                     <div class="swiper_items"><h5>Swipe for More</h5> <h6 class="swipe_button">
                    
                     </h6></div>
+                  </a>
                   </div>
                 </li>
-              </a>
                 <% }); %>
             </ul>
             <div class="c-testimonials__upcoming">
