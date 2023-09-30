@@ -14014,7 +14014,7 @@ html body .hide {
 @media screen and (max-width: 768px) {
   .c-card-testimonial .c-card-testimonial__profile {
     transform: translateY(-50%);
-    width: 90%;
+    width: 290px;
   }
 }
 @media screen and (max-width: 576px) {
@@ -14051,11 +14051,22 @@ html body .hide {
 .c-card-testimonial .c-card-testimonial__description {
   padding-right: 25px;
 }
+.c-card-deconquista__description span {
+  color: white;
+  font-family: var(--font-Nutino);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 130%; /* 32.5px */
+}
 @media screen and (max-width: 768px) {
   .c-card-testimonial .c-card-testimonial__description {
     margin-top: 20px;
     text-align: center;
     padding: 0 30px;
+  }
+  .c-card-deconquista__description span {
+    font-size: 16px;
   }
 }
 @media screen and (max-width: 576px) {
