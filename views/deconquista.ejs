@@ -64,18 +64,17 @@
             <div class="title-para">
               <h1 class="about-sio-title" id="deconquista-header">DeConquista</h1>
             </div>
+            <% deconquistaData.forEach(deconquista=> { %>
             <div class="deconquista-img">
-              <img src="../assets/images/image 15.jpg" alt="DeConquista">
+              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ deconquista.image}` %>" alt="DeConquista">
             </div>
             <div class="deconquista-desc">
-              <p>This seminar examines how the War on terror project impacted the narratives about Islam and Muslims and
-                how the interaction between the two subsequently extended the ir influence onto the practice(s) of
-                Islam's the ological interpretations and dialogues. As a malicious politico-military propaganda intia
-                ted by the US at the turn of the millennium, the .</p>
+              <p><%= deconquista.description %></p>
             </div>
-            <div class="conquista-btn">
+            <% }); %>
+            <!-- <div class="conquista-btn">
               <button class="btn event-primary" type="submit">Know More <i class="fa fa-arrow-right"></i></button>
-            </div>
+            </div> -->
 
             <div class="title-para">
               <h1 class="about-sio-title" style="text-align: left;">Leaders’ Notes</h1>

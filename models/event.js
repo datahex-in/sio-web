@@ -21,6 +21,10 @@ const eventSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  time: {
+    type: String,
+    required: true,
+  },
   eventMode: {
     type: String,
     enum: ["Online", "Offline", "Hybrid"],
