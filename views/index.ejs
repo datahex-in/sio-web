@@ -81,6 +81,7 @@
             <ul class="c-testimonials__items swiper-wrapper">
               <!-- CARD 1 -->
               <% eventData.forEach(item=> { %>
+                <a href="/event_single/<%= item._id %>">
                 <li class="c-testimonials__item c-card-testimonial swiper-slide">
                   <div class="c-card-testimonial__profile">
                     <img style="object-fit: cover;"
@@ -101,14 +102,12 @@
                       <%= item.shortDescription %>
                     </div>
 
-                    <a href="/register" class="c-card-testimonial__link " id="register_card_btn" target="_blank">
-                      Register <i class="fa fa-arrow-right"></i>
-                    </a>
                     <div class="swiper_items"><h5>Swipe for More</h5> <h6 class="swipe_button">
                    
                     </h6></div>
                   </div>
                 </li>
+              </a>
                 <% }); %>
             </ul>
             <div class="c-testimonials__upcoming">

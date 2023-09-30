@@ -105,6 +105,7 @@ const dashboard = require("./routes/dashboard.js");
 const faq = require("./routes/faq.js");
 const globalFaq = require("./routes/globalFaq.js");
 const about = require("./routes/aboutUs.js");
+const deconquista = require("./routes/deconquista.js");
 const gallery = require("./routes/gallery");
 const news = require("./routes/news");
 const article = require("./routes/article.js");
@@ -158,6 +159,7 @@ app.use("/api/v1/dashboard", dashboard);
 app.use("/api/v1/faq", faq);
 app.use("/api/v1/global-faq", globalFaq);
 app.use("/api/v1/about-us", about);
+app.use("/api/v1/deconquista", deconquista);
 app.use("/api/v1/gallery", gallery);
 app.use("/api/v1/news", news);
 app.use("/api/v1/article", article);
@@ -190,7 +192,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.GOOGLE_CALLBACK_URL,
+      callbackURL: "http://localhost:8072/auth/google/callback", // process.env.GOOGLE_CALLBACK_URL,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
