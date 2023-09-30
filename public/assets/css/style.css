@@ -14006,7 +14006,7 @@ html body .hide {
 .c-card-testimonial .c-card-testimonial__profile {
   width: 300px;
   flex-shrink: 0;
-  height: 300px;
+  height: 280px;
   border-radius: 20px;
   transform: translateX(-20px);
 }
@@ -14051,7 +14051,7 @@ html body .hide {
 .c-card-testimonial .c-card-testimonial__description {
   padding-right: 25px;
 }
-.c-card-deconquista__description span {
+.c-card-deconquista__description {
   color: white;
   font-family: var(--font-Nutino);
   font-size: 20px;
@@ -14065,7 +14065,7 @@ html body .hide {
     text-align: center;
     padding: 0 30px;
   }
-  .c-card-deconquista__description span {
+  .c-card-deconquista__description {
     font-size: 16px;
   }
 }
