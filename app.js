@@ -39,6 +39,7 @@ const allowedOrigins = [
   "https://sio-kerala-admin-6gv6l.ondigitalocean.app",
   "https://accounts.google.com",
   "https://oauth.googleusercontent.com",
+  "https://deconquista.siokerala.org",
 ];
 
 //cors policy
