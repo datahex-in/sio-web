@@ -96,13 +96,13 @@ document.addEventListener("DOMContentLoaded", function () {
     function showSlides() {
       for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
-        dots[i].classList.remove("active");
+        dots[i].classList.remove("active_btn_quotes");
       }
 
       slideIndex = (slideIndex + 1) % slides.length;
 
       slides[slideIndex].style.display = "block";
-      dots[slideIndex].classList.add("active");
+      dots[slideIndex].classList.add("active_btn_quotes");
     }
 
     let autoplayInterval = setInterval(function () {

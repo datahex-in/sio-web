@@ -99,7 +99,7 @@
                       } else { %>Just now<% } %>
                     </span>
                   </div>
-                  <p><%= newsData[newsData.length - 1].description %></p>
+                  <p><%= newsData[newsData.length - 1].description.substring(0,300) %>...</p>
                 </div>
               </div>
       
@@ -112,15 +112,13 @@
                   <p id="modalDescription"></p>
                 </div>
               </div>
-      
-              <% newsData.forEach(news => { %>
-      
               <div
-                class="row news-details-carousel"
+                class="row news-details-carousel "
                 style="display: flex; margin-top: 50px"
-                onclick="openModal('<%= news.description %>', '<%= news.id %>')"
+              
               >
-                <div class="col-12 col-xl-4">
+              <% newsData.forEach(news => { %>
+                <div class="col-12 col-xl-4 news_image"  onclick="openModal('<%= news.description %>', '<%= news.id %>')">
                   <img
                     class="card-img-top"
                     src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${news.image}` %>"
@@ -168,11 +166,11 @@
                         } else { %>Just now<% } %>
                       </span>
                     </div>
-                    <P class="card-text-para"> <%= news.description %> </P>
+                    <P class="card-text-para"> <%= news.description.substring(0,300) %>...</P>
                   </div>
                 </div>
-              </div>
-              <% }); %>
+                <% }); %>
+              </div>       
             </div>
           </div>
         </div>
@@ -234,10 +232,11 @@
                 </div>
               </div>
       
-              <% articleData.forEach(article => { %>
+           
       
               <div class="row news-details-carousel" style="display: flex; margin-top: 50px">
-                <div class="col-12 col-xl-4">
+                <% articleData.forEach(article => { %>
+                <div class="col-12 col-xl-4 news_image">
                   <img class="card-img-top" src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ article.image}` %>" alt="Card image cap" style="border-radius: 10px" />
                   <div class="card-body">
                     <h5 class="card-title"><%= article.title %></h5>
@@ -283,8 +282,8 @@
                     <P class="card-text-para"> <%= article.description %> </P>
                   </div>
                 </div>
+                <% }); %>
               </div>
-              <% }); %>
             </div>
           </div>
         </div>
@@ -321,26 +320,6 @@
                     </div>
                   </div>
                 </div>
-                <!-- card-two
-                        <div class="card-two swiper-slide">
-                            <div class="card-content">
-                                <p class="description-testimonial">
-                                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa nostrum reprehenderit non doloribus commodi eius tempora ducimus itaque, qui rerum sunt. Possimus architecto facilis inventore. Sunt aperiam animi incidunt temporibus.
-                                </p>
-                            </div>
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                                <div class="testimonial_header_items">                         
-                                    <div>
-                                        <img src="../assets/images/worshop.png" alt="" class="card-img-testimonial" />
-                                    </div>
-                                   <div class="testimonial_header_data">
-                                    <h2>Rana Ayyub</h2>
-                                   <h3>Designation</h3>
-                                   </div>
-                                </div>
-                            </div>             
-                        </div> -->
                 <% }); %>
               </div>
             </div>
@@ -416,39 +395,35 @@
     </script>
   </body>
 
-  <script>
-    // Function to open the modal
-    function openModal(description) {
-      // var modalImage = document.getElementById("modalImage");
-      // var modalTitle = document.getElementById("modalTitle");
-      var modalDescription = document.getElementById("modalDescription");
+ <script>
+  // Function to open the modal
+  function openModal(description) {
+    var modalDescription = document.getElementById("modalDescription");
+    modalDescription.textContent = description;
 
-      // modalImage.src = imageUrl;
-      // modalTitle.textContent = title;
-      modalDescription.textContent = description;
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  }
 
-      var modal = document.getElementById("myModal");
-      modal.style.display = "block";
-    }
-
-    // Find the trigger element by its class name and add a click event listener to open the modal
-    var triggerElement = document.querySelector(".news-details-head-img img");
+  // Find all trigger elements by their class name and add a click event listener to open the modal for each
+  var triggerElements = document.querySelectorAll(".news-details-head-img img");
+  triggerElements.forEach(function (triggerElement) {
     triggerElement.addEventListener("click", function () {
-      // Replace these values with the actual data you want to display
-      // var imageUrl = "https://example.com/image.jpg";
-      // var title = "Example Title";
+      // Replace this with the actual data you want to display
       var description = "Example Description";
 
-      openModal(imageUrl, title, description);
+      openModal(description);
     });
+  });
 
-    // Find the close button by its class name
-    var closeButton = document.getElementById("closeModalButton");
+  // Find the close button by its id
+  var closeButton = document.getElementById("closeModalButton");
 
-    // Add a click event listener to the close button to close the modal
-    closeButton.addEventListener("click", function () {
-      var modal = document.getElementById("myModal");
-      modal.style.display = "none";
-    });
-  </script>
+  // Add a click event listener to the close button to close the modal
+  closeButton.addEventListener("click", function () {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  });
+</script>
+
 </html>
