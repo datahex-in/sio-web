@@ -14662,13 +14662,16 @@ html body .hide {
   .event-content {
     padding: 30px 30px !important;
   }
+
   .event-box {
     width: 23rem;
     border: 1px solid #8161bf;
     border-radius: 30px;
-    margin: 10px auto !important;
+    margin: 10px auto !important; /* Center horizontally */
     overflow: hidden;
+    display: block; /* Ensures block-level centering */
   }
+
   .major-items {
     margin: auto;
     width: 100%;
@@ -14715,6 +14718,7 @@ html body .hide {
 @media (max-width: 500px) {
   .row_mobile {
     padding-bottom: 50px;
+    margin: 5px auto !important;
   }
   .news-details-carousel {
     margin-top: 15px !important;
