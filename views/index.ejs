@@ -1,14 +1,15 @@
 <!-- ========== Start header ========== -->
 <%-include("mainHeader.ejs")%>
   <!-- ========== End header ========== -->
- <!-- Preloader start -->
-    <!-- <div id="preloader">
+  <!-- Preloader start -->
+  <!-- <div id="preloader">
       <div class="preloader">
         <span></span>
         <span></span>
       </div>
     </div> -->
-    <!-- Preloader End -->
+  <!-- Preloader End -->
+
   <body>
     <!-- Offcanvas End -->
     <!-- Slider Section Start  -->
@@ -16,8 +17,8 @@
       <div class="meeta-hero-section-3 "
         style="background-image: url('assets/images/header-svg.svg'); background-position: bottom;background-size: cover;position: relative; z-index: 3;">
       </div>
- <div class="rectangle_background_top">
- </div>
+      <div class="rectangle_background_top">
+      </div>
       <div class="about-sio">
         <div class="container">
           <div class="title-para">
@@ -55,7 +56,7 @@
             <div class="row program-title-items">
               <% eventTypeCounts.forEach(item=> { %>
                 <div class="col-4 col-sm-6 col-md-3 text-center">
-                  <div class="program_box" >
+                  <div class="program_box">
                     <h1 class="program_count">
                       <%= item.count %>
                     </h1>
@@ -84,9 +85,9 @@
                 <li class="c-testimonials__item c-card-testimonial swiper-slide">
                   <div class="c-card-testimonial__profile">
                     <a href="/event_single/<%= item._id %>">
-                    <img style="object-fit: cover;"
-                      src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.image}` %>" alt=""
-                      class="c-card-testimonial__image">
+                      <img style="object-fit: cover;"
+                        src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.image}` %>" alt=""
+                        class="c-card-testimonial__image">
                   </div>
 
                   <div class="c-card-testimonial__description">
@@ -102,10 +103,13 @@
                       <%= item.shortDescription %>
                     </div>
 
-                    <div class="swiper_items"><h5>Swipe for More</h5> <h6 class="swipe_button">
-                   
-                    </h6></div>
-                  </a>
+                    <div class="swiper_items">
+                      <h5>Swipe for More</h5>
+                      <h6 class="swipe_button">
+
+                      </h6>
+                    </div>
+                    </a>
                   </div>
                 </li>
                 <% }); %>
@@ -130,4 +134,5 @@
       <!-- ========== End footer ========== -->
 
   </body>
+
   </html>

@@ -15713,6 +15713,7 @@ main h1 {
   margin-bottom: 10px;
   text-align: left;
   margin-left: auto;
+  width: 97%;
 }
 
 .form-group label {
@@ -15829,4 +15830,15 @@ span {
   transform: scale(
     1.02
   ); /* Adjust the scale factor as needed for a subtle zoom effect */
+}
+.no_events {
+  font-size: 20px;
+  text-align: center;
+  color: #ff4a8c;
+  font-family: var(--font-fabulous);
+  font-style: normal;
+  font-weight: 400;
+  padding-top: 3px;
+  padding-bottom: 10px;
+  line-height: normal;
 }
