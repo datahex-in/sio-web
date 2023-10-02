@@ -14863,7 +14863,7 @@ html body .hide {
 /* event-section------ */
 .events-page-main {
   padding-top: 30px;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
 }
 .event-title h1 {
   text-align: center;
@@ -15787,12 +15787,9 @@ span {
 }
 
 /***** quotes page *****/
-.card_quotes_row {
-  padding-bottom: 50px !important;
-}
 .card_quotes {
   margin: auto;
-  width: 60%;
+  width: 80%;
   border-radius: 8px;
   border: 2.3px solid rgba(216, 216, 216, 0);
   background: radial-gradient(
@@ -15847,6 +15844,7 @@ span {
 }
 @media (max-width: 768px) {
   .card_quotes {
+    margin: auto;
     width: 100%;
   }
   .card_quotes_desc p {
@@ -16151,13 +16149,13 @@ span {
   height: 11px;
   display: block;
   border-radius: 10px;
-  background: #310441;
-  opacity: 0.2;
+  background: white;
+  opacity: 1;
   transition: all 0.3s;
 }
 .blog-slider__pagination .swiper-pagination-bullet-active {
   opacity: 1;
-  background: #7132cd;
+  background: #9a0668;
   height: 30px;
 }
 @media screen and (max-width: 768px) {
@@ -16168,3 +16166,52 @@ span {
 }
 
 /***** End leader's note Section *****/
+.quotes_deconquista {
+  margin-bottom: 50px;
+}
+.quotes_deconquista h1 {
+  text-align: left;
+}
+/* slideshow container */
+.slideshow-container_quotes {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Slides */
+.mySlides_quotes {
+  display: none;
+}
+
+/* the dot/bullet/indicator container */
+.dot-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* the dots/bullets/indicators */
+.dot_quotes {
+  height: 0.635rem;
+  width: 0.635rem;
+  margin: 5px 5px;
+  background-color: #6f0561;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.4s linear;
+}
+
+/* add bg color to the active dot/circle */
+.active {
+  background-color: #fff;
+}
+@media screen and (max-width: 768px) {
+  .quotes_deconquista h1 {
+    text-align: center;
+  }
+  .slideshow-container_quotes {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
