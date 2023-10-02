@@ -14716,6 +14716,9 @@ html body .hide {
   display: none;
 }
 @media (max-width: 500px) {
+  .form-group {
+    width: 97% !important;
+  }
   .row_mobile {
     padding-bottom: 50px;
     margin: 5px auto !important;
@@ -15717,7 +15720,7 @@ main h1 {
   margin-bottom: 10px;
   text-align: left;
   margin-left: auto;
-  width: 97%;
+  width: 100%;
 }
 
 .form-group label {
