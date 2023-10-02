@@ -145,23 +145,25 @@
           </div>
           <div class="event-date">
             <h5 class="event-date-one">
-              <% const eventDate = new Date(eventData.date); %>
-              <% const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']; %>
-              <% const monthAbbreviation = months[eventDate.getMonth()]; %>
-              <% const day = eventDate.getDate(); %>
-              <% const dayOfWeek = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'][eventDate.getDay()]; %>
-            
-              <%= monthAbbreviation %> <%= day %> <%= dayOfWeek %> |
-              
-              <% const eventTime = new Date(eventData.time); %>
-              <% const hours = eventTime.getHours(); %>
-              <% const minutes = eventTime.getMinutes(); %>
-              <% const timeFormatted = (hours % 12 || 12) + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM'); %>
-            
-              <%= timeFormatted %> | <%= eventData.venue %>
+              <% const eventDate = new Date(eventData.date); %> <% const months
+              = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP',
+              'OCT', 'NOV', 'DEC']; %> <% const monthAbbreviation =
+              months[eventDate.getMonth()]; %> <% const day =
+              eventDate.getDate(); %> <% const dayOfWeek = ['SUNDAY', 'MONDAY',
+              'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY',
+              'SATURDAY'][eventDate.getDay()]; %> <%= monthAbbreviation %> <%=
+              day %> <%= dayOfWeek %> | <% const eventTime = new
+              Date(eventData.time); %> <% const hours = eventTime.getHours(); %>
+              <% const minutes = eventTime.getMinutes(); %> <% const
+              timeFormatted = (hours % 12 || 12) + ':' + (minutes < 10 ? '0' :
+              '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM'); %> <%=
+              timeFormatted %> | <%= eventData.venue %>
             </h5>
-            
-            <h5 class="event-date-two"><%= monthAbbreviation %> <%= day %> <%= dayOfWeek %> | <%= timeFormatted %></h5>
+
+            <h5 class="event-date-two">
+              <%= monthAbbreviation %> <%= day %> <%= dayOfWeek %> | <%=
+              timeFormatted %>
+            </h5>
             <h5 class="event-date-two"><%= eventData.venue %></h5>
           </div>
           <div class="event-enroll">
@@ -209,7 +211,7 @@
                     <div class="card-speakers swiper-slide">
                       <div class="image-content">
                         <span class="overlay"></span>
-                        <div class="card-image-items">
+                        <div class="card_image_guest">
                           <img
                             src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.photo}` %>"
                             alt="image"
