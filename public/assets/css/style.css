@@ -12481,6 +12481,7 @@ img {
 
 .news-details-head {
   display: flex;
+  cursor: pointer;
 }
 .news-details-head h1 {
   color: #fff;
@@ -12772,10 +12773,6 @@ li a {
   height: 360px;
   display: flex;
   align-items: center;
-}
-
-.footer-malabar-img img {
-  /* width: 30%; */
 }
 
 .circle {
@@ -14853,6 +14850,7 @@ html body .hide {
 }
 .news_image {
   padding-top: 0px;
+  cursor: pointer;
 }
 .news_image .card-img-top {
   width: 20vw;
@@ -15656,6 +15654,45 @@ main h1 {
   z-index: 0;
   cursor: pointer;
 }
+
+/* modal */
+.modal {
+  backdrop-filter: blur(15px);
+}
+.modal-content {
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  padding: 10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 1000px;
+  height: auto;
+  background-color: #4d1560;
+  backdrop-filter: blur(10px);
+  z-index: 1;
+}
+#modalTitle {
+  color: #fff;
+  font-size: 18px;
+  font-family: var(--font-Nutino);
+  text-align: center;
+}
+#modalDescription {
+  color: #fff;
+  font-size: 14px;
+  font-family: var(--font-Inter);
+  text-align: center;
+  font-weight: 600;
+  overflow-x: hidden;
+  padding: 0px 10px;
+}
+.close {
+  padding: 3px 24px;
+  cursor: pointer;
+  color: white;
+  font-size: 30px;
+}
 @media (max-width: 768px) {
   .page_backarrow {
     position: fixed;
@@ -15668,10 +15705,10 @@ main h1 {
   .modal-content {
     border-radius: 20px;
     position: absolute;
-    top: 60%;
+    top: 62%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
+    width: 90%;
     max-width: 600px;
     height: 80vh;
     background-color: #4d1560;
@@ -15691,15 +15728,15 @@ main h1 {
   }
   #modalDescription {
     color: #fff;
-    margin-top: 50px;
     font-size: 14px;
     font-family: var(--font-Inter);
     text-align: center;
     font-weight: 600;
+    overflow-x: hidden;
     padding: 0px 10px;
   }
   .close {
-    padding: 10px;
+    padding: 3px 24px;
     color: white;
     font-size: 30px;
   }
