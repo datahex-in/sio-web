@@ -58,3 +58,67 @@ window.addEventListener("scroll", checkScroll);
 
 // Check on page load
 window.addEventListener("load", checkScroll);
+
+// deconquista
+var swiper = new Swiper(".blog-slider", {
+  spaceBetween: 30,
+  effect: "fade",
+  loop: true,
+  mousewheel: {
+    invert: false,
+  },
+  // autoHeight: true,
+  pagination: {
+    el: ".blog-slider__pagination",
+    clickable: true,
+  },
+});
+
+// quotes
+document.addEventListener("DOMContentLoaded", function () {
+  let slides = document.getElementsByClassName("mySlides_quotes");
+  let dots = document.getElementsByClassName("dot_quotes");
+
+  if (slides.length > 0) {
+    let slideIndex = 0;
+    showSlides();
+
+    function plusSlides(n) {
+      slideIndex += n;
+      showSlides();
+    }
+
+    function currentSlide(n) {
+      slideIndex = n;
+      showSlides();
+    }
+
+    function showSlides() {
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+        dots[i].classList.remove("active_btn_quotes");
+      }
+
+      slideIndex = (slideIndex + 1) % slides.length;
+
+      slides[slideIndex].style.display = "block";
+      dots[slideIndex].classList.add("active_btn_quotes");
+    }
+
+    let autoplayInterval = setInterval(function () {
+      plusSlides(1);
+    }, 3000);
+
+    // Stop autoplay on user interaction
+    function stopAutoplay() {
+      clearInterval(autoplayInterval);
+    }
+
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].addEventListener("click", function () {
+        currentSlide(i);
+        stopAutoplay();
+      });
+    }
+  }
+});
