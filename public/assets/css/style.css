@@ -15705,12 +15705,12 @@ main h1 {
   .modal-content {
     border-radius: 20px;
     position: absolute;
-    top: 62%;
+    top: 53%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
     max-width: 600px;
-    height: 80vh;
+    height: 74vh;
     background-color: #4d1560;
     backdrop-filter: blur(10px);
     z-index: 1;
