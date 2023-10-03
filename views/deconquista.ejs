@@ -97,87 +97,45 @@
               </h1>
             </div>
             <% deconquistaData.forEach(deconquista=> { %>
-            <div class="deconquista-img">
-              <img
+              <div class="deconquista-img">
+                <img
                 src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ deconquista.image}` %>"
                 alt="DeConquista"
-              />
-            </div>
-            <div class="deconquista-desc">
-              <p><%= deconquista.description %></p>
-            </div>
-            <% }); %>
-            <!-- <div class="conquista-btn">
-              <button class="btn event-primary" type="submit">Know More <i class="fa fa-arrow-right"></i></button>
-            </div> -->
-
-            <!-- ========== Start leader notes slider ========== -->
-            <div class="leader_notes_header">
-              <div class="title-para">
+                />
+              </div>
+              <div class="deconquista-desc">
+                <p><%= deconquista.description %></p>
+              </div>
+              <% }); %>
+              <!-- <div class="conquista-btn">
+                <button class="btn event-primary" type="submit">Know More <i class="fa fa-arrow-right"></i></button>
+              </div> -->
+              
+              <!-- ========== Start leader notes slider ========== -->
+              <div class="leader_notes_header">
+                <div class="title-para">
                 <h1 class="about-sio-title">Leaders’ Notes</h1>
               </div>
               <div class="blog-slider">
                 <div class="blog-slider__wrp swiper-wrapper">
+                  
+                  <% leadersNoteData.forEach(data=> { %>
                   <div class="blog-slider__item swiper-slide">
                     <div class="blog-slider__img">
                       <img src="/assets/images/guestimg.png" alt="" />
                     </div>
                     <div class="blog-slider__content">
-                      <span class="blog-slider__code">26 December 2019</span>
-                      <div class="blog-slider__title_1">Rana Ayyub</div>
+                      <div class="blog-slider__title_1"><%= data.name %></div>
                       <div class="blog-slider__title_2">
-                        Director of CIGA &Public Affairs
+                        <%= data.designation %>
                       </div>
                       <div class="blog-slider__text">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Recusandae voluptate repellendus magni illo ea
-                        animi?
+                        <%= data.description %>
                       </div>
-                      <a href="#" class="blog-slider__button btn-deconquista"
-                        >READ MORE</a
-                      >
                     </div>
                   </div>
-                  <div class="blog-slider__item swiper-slide">
-                    <div class="blog-slider__img">
-                      <img src="/assets/images/guestimg.png" alt="" />
-                    </div>
-                    <div class="blog-slider__content">
-                      <span class="blog-slider__code">26 December 2019</span>
-                      <div class="blog-slider__title_1">Rana Ayyub</div>
-                      <div class="blog-slider__title_2">
-                        Director of CIGA &Public Affairs
-                      </div>
-                      <div class="blog-slider__text">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Recusandae voluptate repellendus magni illo ea
-                        animi?
-                      </div>
-                      <a href="#" class="blog-slider__button btn-deconquista"
-                        >READ MORE</a
-                      >
-                    </div>
-                  </div>
-                  <div class="blog-slider__item swiper-slide">
-                    <div class="blog-slider__img">
-                      <img src="/assets/images/guestimg.png" alt="" />
-                    </div>
-                    <div class="blog-slider__content">
-                      <span class="blog-slider__code">26 December 2019</span>
-                      <div class="blog-slider__title_1">Rana Ayyub</div>
-                      <div class="blog-slider__title_2">
-                        Director of CIGA &Public Affairs
-                      </div>
-                      <div class="blog-slider__text">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Recusandae voluptate repellendus magni illo ea
-                        animi?
-                      </div>
-                      <a href="#" class="blog-slider__button btn-deconquista"
-                        >READ MORE</a
-                      >
-                    </div>
-                  </div>
+                  <% }); %>
+
                 </div>
                 <div class="blog-slider__pagination"></div>
               </div>
@@ -220,11 +178,12 @@
             </div>
             <!-- ========== End speaker section ========== -->
             <!-- ========== Start quotes Section ========== -->
-            <%-include('quotes')%>
+
             <!-- ========== End quotes Section ========== -->
           </div>
         </div>
-        <div class="container conquista-btn">
+        
+        <!-- <div class="container conquista-btn">
           <div>
             <button class="btn btn-deconquista" type="submit">
               <i class="fa fa-clipboard p-1"></i> Brounche
@@ -235,12 +194,11 @@
               <i class="fa fa-question-circle p-1"></i>FaQ
             </button>
           </div>
-        </div>
+        </div> -->
 
         <!-- Contact Form Start -->
-        <div class="contact-form-section section-padding">
+        <!-- <div class="contact-form-section section-padding">
           <div class="container">
-            <!-- Contact Wrap Start -->
             <div class="contact-wrap">
               <div class="row justify-content-center">
                 <div class="col-lg-10">
@@ -250,12 +208,11 @@
                         Get in touch
                       </h1>
                     </div>
-                    <!-- Contact Form Wrap Start -->
                     <div class="contact-form-wrap">
                       <form action="#">
                         <div class="row">
                           <div class="col-md-6">
-                            <!-- Single Form Start -->
+
                             <div class="single-form">
                               <input
                                 class="form-control"
@@ -263,10 +220,8 @@
                                 placeholder="Your Name"
                               />
                             </div>
-                            <!-- Single Form End -->
                           </div>
                           <div class="col-md-6">
-                            <!-- Single Form Start -->
                             <div class="single-form">
                               <input
                                 class="form-control"
@@ -274,10 +229,8 @@
                                 placeholder="Your Email"
                               />
                             </div>
-                            <!-- Single Form End -->
                           </div>
                           <div class="col-md-6">
-                            <!-- Single Form Start -->
                             <div class="single-form">
                               <input
                                 class="form-control"
@@ -285,10 +238,8 @@
                                 placeholder="Your Number"
                               />
                             </div>
-                            <!-- Single Form End -->
                           </div>
                           <div class="col-md-6">
-                            <!-- Single Form Start -->
                             <div class="single-form">
                               <input
                                 class="form-control"
@@ -296,39 +247,31 @@
                                 placeholder="Subject"
                               />
                             </div>
-                            <!-- Single Form End -->
                           </div>
                           <div class="col-md-12">
-                            <!-- Single Form Start -->
                             <div class="single-form">
                               <textarea
                                 class="form-control"
                                 placeholder="Write A Message"
                               ></textarea>
                             </div>
-                            <!-- Single Form End -->
                           </div>
                           <div class="col-md-12">
-                            <!--  Single Form Start -->
                             <div class="form-btn text-center">
                               <button class="btn event-primary" type="submit">
                                 Submit Now
                               </button>
                             </div>
-                            <!--  Single Form End -->
                           </div>
                         </div>
                       </form>
                     </div>
-                    <!-- Contact Form Wrap End -->
                   </div>
                 </div>
               </div>
-              <!-- Contact Wrap End -->
             </div>
           </div>
-          <!-- Contact Form End -->
-        </div>
+        </div> -->
       </div>
     </div>
 

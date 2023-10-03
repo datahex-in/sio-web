@@ -117,6 +117,7 @@ const registration = require("./routes/registration");
 const testimonial = require("./routes/testimonial");
 const event = require("./routes/event");
 const eventUser = require("./routes/eventUser");
+const leadersNote = require("./routes/leadersNote.js");
 const { errorMonitor } = require("stream");
 
 app.use(logger("dev"));
@@ -171,6 +172,7 @@ app.use("/api/v1/registration", registration);
 app.use("/api/v1/testimonial", testimonial);
 app.use("/api/v1/event", event);
 app.use("/api/v1/event-user", eventUser);
+app.use("/api/v1/leaders-note", leadersNote);
 
 // ---------------------------------------------------- Google Auth Start ------------------------------------------------ \\
 
