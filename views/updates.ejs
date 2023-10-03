@@ -50,10 +50,7 @@
         <div class="news-section">
           <div class="container">
             <div class="news-details">
-              <div
-                class="row news-details-head"
-                onclick="openModal('<%= newsData[newsData.length - 1].description %>', '<%= newsData[newsData.length - 1].id %>')"
-              >
+              <div class="row news-details-head" onclick="openHeadNewsModal(this)">
                 <div class="col-12 col-xl-6 news-details-head-img">
                   <img
                     src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ newsData[newsData.length - 1].image}` %>"
@@ -83,7 +80,7 @@
                       const weeks = Math.floor(days / 7);
                       const months = Math.floor(weeks / 4.345);
                       const years = Math.floor(months / 12);
-      
+              
                       if (years >= 1) {
                         if (years === 1) { %>1 YEAR AGO<% } else { %> <%= years %> YEARS AGO<% }
                       } else if (months >= 1) {
@@ -99,9 +96,12 @@
                       } else { %>Just now<% } %>
                     </span>
                   </div>
-                  <p><%= newsData[newsData.length - 1].description.substring(0,300) %>...</p>
+                  <p data-descriptions="<%= newsData[newsData.length - 1].description %>">
+                    <%= newsData[newsData.length - 1].description.substring(0, 300) %>...
+                  </p>
                 </div>
               </div>
+              
       
               <!-- The modal -->
               <div id="myModal" class="modal">
@@ -118,8 +118,8 @@
               
               >
               <% newsData.forEach(news => { %>
-                <div class="col-12 col-xl-4 news_image"  onclick="openModal('<%= news.description %>', '<%= news.id %>')">
-                  <img
+                <div class="col-12 col-xl-4 news_image" onclick="openNewsModal(this)">
+                    <img
                     class="card-img-top"
                     src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${news.image}` %>"
                     alt="Card image cap"
@@ -166,7 +166,7 @@
                         } else { %>Just now<% } %>
                       </span>
                     </div>
-                    <P class="card-text-para"> <%= news.description.substring(0,300) %>...</P>
+                    <P class="card-text-para" data-description="<%= news.description %>"> <%= news.description.substring(0,300) %>...</P>
                   </div>
                 </div>
                 <% }); %>
@@ -395,26 +395,37 @@
     </script>
   </body>
 
- <script>
-  // Function to open the modal
-  function openModal(description) {
+  <script>
+    // Function to open the modal with the specified news item's description
+    function openNewsModal(newsItem) {
+      var description = newsItem.querySelector('.card-text-para').getAttribute('data-description');
+      var modalDescription = document.getElementById("modalDescription");
+      modalDescription.textContent = description;
+  
+      var modal = document.getElementById("myModal");
+      modal.style.display = "block";
+    }
+  
+    // Find the close button by its id
+    var closeButton = document.getElementById("closeModalButton");
+  
+    // Add a click event listener to the close button to close the modal
+    closeButton.addEventListener("click", function () {
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    });
+  </script>
+
+<script>
+  // Function to open the modal with the specified news item's description
+  function openHeadNewsModal(newsItem) {
+    var description = newsItem.querySelector('p').getAttribute('data-descriptions');
     var modalDescription = document.getElementById("modalDescription");
     modalDescription.textContent = description;
 
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
   }
-
-  // Find all trigger elements by their class name and add a click event listener to open the modal for each
-  var triggerElements = document.querySelectorAll(".news-details-head-img img");
-  triggerElements.forEach(function (triggerElement) {
-    triggerElement.addEventListener("click", function () {
-      // Replace this with the actual data you want to display
-      var description = "Example Description";
-
-      openModal(description);
-    });
-  });
 
   // Find the close button by its id
   var closeButton = document.getElementById("closeModalButton");
@@ -425,5 +436,8 @@
     modal.style.display = "none";
   });
 </script>
+
+  
+  
 
 </html>
