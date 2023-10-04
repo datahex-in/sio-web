@@ -89,16 +89,24 @@
                       <div class="event-content">
                         <div class="event-content-head-title">
                           <p>
-                            <span><%= item.eventType %> on</span><br /><strong style="font-size: 23px">
-                              <%= item.title.substring(0, 20) %>
+                            <strong style="font-size: 23px">
+                              <% const eventDate = new Date(item.date); %> <% const months
+                              = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP',
+                              'OCT', 'NOV', 'DEC']; %> <% const monthAbbreviation =
+                              months[eventDate.getMonth()]; %> <% const day =
+                              eventDate.getDate(); %> <% const dayOfWeek = ['SUNDAY', 'MONDAY',
+                              'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY',
+                              'SATURDAY'][eventDate.getDay()]; %> <%= monthAbbreviation %> <%=
+                              day %> <%= dayOfWeek %> | <% const eventTime = new
+                              Date(item.time); %> <% const hours = eventTime.getHours(); %>
+                              <% const minutes = eventTime.getMinutes(); %> <% const
+                              timeFormatted = (hours % 12 || 12) + ':' + (minutes < 10 ? '0' :
+                              '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM'); %> <%=
+                              timeFormatted %> | <%= item.venue %>
                             </strong>
                           </p>
                         </div>
-                        <div class="event-content-para">
-                          <p>
-                            <%= item.shortDescription.substring(0, 60) %>
-                          </p>
-                        </div>
+
                       </div>
                     </div>
                   </a>
