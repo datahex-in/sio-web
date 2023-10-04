@@ -14883,10 +14883,12 @@ html body .hide {
   width: 17rem;
   padding-top: 10px;
 }
-.event-content-head-title {
-  padding: 15px 0px;
+.event-content {
+  padding: 20px 30px !important;
 }
+
 .event-content-head-title p {
+  padding: 0px 0px;
   color: #fff;
   line-height: normal;
   font-size: 20px;
@@ -14972,7 +14974,7 @@ html body .hide {
     width: 13rem;
   }
   .event-content {
-    padding: 40px 30px !important;
+    padding: 45px 30px !important;
   }
   .event-content-head-title p {
     color: #fff;
