@@ -14974,7 +14974,7 @@ html body .hide {
     width: 13rem;
   }
   .event-content {
-    padding: 45px 30px !important;
+    padding: 60px 30px !important;
   }
   .event-content-head-title p {
     color: #fff;
@@ -15955,15 +15955,15 @@ span {
 }
 @media screen and (max-width: 992px) {
   .blog-slider {
+    margin-top: 20px;
     max-width: 680px;
     height: 400px;
   }
 }
 @media screen and (max-width: 768px) {
   .blog-slider {
-    min-height: 500px;
     height: auto;
-    margin: 100px auto;
+    margin: 120px auto;
   }
   .leader_notes_header h1 {
     text-align: center;
@@ -16073,7 +16073,7 @@ span {
 }
 @media screen and (max-width: 576px) {
   .blog-slider__img {
-    width: 95%;
+    width: 85%;
   }
 }
 @media screen and (max-height: 500px) and (min-width: 992px) {
