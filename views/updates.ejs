@@ -34,11 +34,11 @@
           <div class="updates-menu">
             <ul>
               <li style="cursor: pointer" data-section="News">News</li>
-              <!-- <li style="cursor: pointer" data-section="Article">Article</li> -->
+              <li style="cursor: pointer" data-section="Article">Article</li>
               <li style="cursor: pointer" data-section="Testimonial">
                 Testimonial
               </li>
-              <!-- <li style="cursor: pointer" data-section="Gallery">Gallery</li> -->
+              <li style="cursor: pointer" data-section="Gallery">Gallery</li>
             </ul>
           </div>
         </div>
@@ -112,10 +112,11 @@
                   <p id="modalDescription"></p>
                 </div>
               </div>
+              <!-- modal end -->
+
               <div
                 class="row news-details-carousel "
-                style="display: flex; margin-top: 50px"
-              
+                style="display: flex; margin-top: 50px"           
               >
               <% newsData.forEach(news => { %>
                 <div class="col-12 col-xl-4 news_image" onclick="openNewsModal(this)">
@@ -182,7 +183,7 @@
           <div class="container">
             <div class="news-details">
               <div class="row news-details-head">
-                <div class="col-12 col-xl-6 news-details-head-img"  onclick="openArticleHeadModal(this)">
+                <div class="col-12 col-xl-6 news-details-head-img" onclick="openArticleHeadModal(this)">
                   <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ articleData[articleData.length - 1].image}` %>" alt="" />
                 </div>
                 <div class="col-12 col-xl-6 card-body">
@@ -231,9 +232,6 @@
                   <p data-article="<%= latestArticle.description %>"><%= latestArticle.description.substring(0, 300) %>...</p>
                 </div>
               </div>
-      
-           
-      
               <div class="row news-details-carousel" style="display: flex; margin-top: 50px">
                 <% articleData.forEach(article => { %>
                 <div class="col-12 col-xl-4 news_image">
@@ -437,8 +435,8 @@
 
 <script>
   // Function to open the modal with the specified news item's description
-  function openArticleHeadModal(newsItem) {
-    var description = newsItem.querySelector('p').getAttribute('data-article');
+  function openArticleHeadModal(element) {
+    var description = element.querySelector('p').getAttribute('data-article');
     var modalDescription = document.getElementById("modalDescription");
     modalDescription.textContent = description;
 
@@ -446,21 +444,13 @@
     modal.style.display = "block";
   }
 
-  // Wait for the DOM to fully load
-  document.addEventListener("DOMContentLoaded", function() {
-    // Find the close button by its id
-    var closeButton = document.getElementById("closeModalButton");
+   // Find the close button by its id
+   var closeButton = document.getElementById("closeModalButton");
 
-    // Add a click event listener to the close button to close the modal
-    closeButton.addEventListener("click", function () {
-      var modal = document.getElementById("myModal");
-      modal.style.display = "none";
-    });
-  });
+// Add a click event listener to the close button to close the modal
+closeButton.addEventListener("click", function () {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+});
 </script>
-
-
-  
-  
-
 </html>
