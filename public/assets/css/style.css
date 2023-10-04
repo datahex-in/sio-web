@@ -14642,15 +14642,6 @@ html body .hide {
   .leader_notes_header h1 {
     text-align: center;
   }
-  .event-content-head-title p strong {
-    font-size: 17px !important;
-  }
-  .event-content-para p {
-    color: #fff;
-    line-height: normal;
-    padding-top: 2px !important;
-    font-size: 8px !important;
-  }
   .know-more-btn {
     text-align: center;
     margin-top: 15px !important;
@@ -14665,29 +14656,6 @@ html body .hide {
     color: #fff;
     font-family: var(--font-Nutino);
   }
-  .event-img img {
-    height: 11rem !important;
-    margin-top: 10px;
-    object-fit: contain;
-  }
-  .event-box-section {
-    padding: 0px !important;
-    position: relative;
-    display: flex;
-  }
-  .event-content {
-    padding: 30px 30px !important;
-  }
-
-  .event-box {
-    width: 23rem;
-    border: 1px solid #8161bf;
-    border-radius: 30px;
-    margin: 10px auto !important; /* Center horizontally */
-    overflow: hidden;
-    display: block; /* Ensures block-level centering */
-  }
-
   .major-items {
     margin: auto;
     width: 100%;
@@ -14915,18 +14883,14 @@ html body .hide {
   width: 17rem;
   padding-top: 10px;
 }
+.event-content-head-title {
+  padding: 15px 0px;
+}
 .event-content-head-title p {
   color: #fff;
   line-height: normal;
-  padding-top: 15px;
-}
-.event-content-head-title p strong {
+  font-size: 20px;
   font-family: var(--font-fabulous);
-}
-.event-content-para p {
-  color: #fff;
-  line-height: normal;
-  padding-top: 15px;
 }
 .event-box-section {
   position: relative;
@@ -15006,6 +14970,32 @@ html body .hide {
 @media (max-width: 600px) {
   .event-img img {
     width: 13rem;
+  }
+  .event-content {
+    padding: 40px 30px !important;
+  }
+  .event-content-head-title p {
+    color: #fff;
+    line-height: normal;
+    font-size: 18px !important;
+  }
+  .event-img img {
+    height: 11rem !important;
+    margin-top: 10px;
+    object-fit: contain;
+  }
+  .event-box-section {
+    padding: 0px !important;
+    position: relative;
+    display: flex;
+  }
+  .event-box {
+    width: 23rem;
+    border: 1px solid #8161bf;
+    border-radius: 30px;
+    margin: 10px auto !important; /* Center horizontally */
+    overflow: hidden;
+    display: block; /* Ensures block-level centering */
   }
   .workshop svg {
     position: absolute;
