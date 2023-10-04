@@ -89,7 +89,6 @@
                       <div class="event-content">
                         <div class="event-content-head-title">
                           <p>
-                            <strong style="font-size: 23px">
                               <% const eventDate = new Date(item.date); %> <% const months
                               = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP',
                               'OCT', 'NOV', 'DEC']; %> <% const monthAbbreviation =
@@ -97,16 +96,18 @@
                               eventDate.getDate(); %> <% const dayOfWeek = ['SUNDAY', 'MONDAY',
                               'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY',
                               'SATURDAY'][eventDate.getDay()]; %> <%= monthAbbreviation %> <%=
-                              day %> <%= dayOfWeek %> | <% const eventTime = new
+                              day %> <%= dayOfWeek %> 
+                            </p>
+                              <p>
+                                <% const eventTime = new
                               Date(item.time); %> <% const hours = eventTime.getHours(); %>
                               <% const minutes = eventTime.getMinutes(); %> <% const
                               timeFormatted = (hours % 12 || 12) + ':' + (minutes < 10 ? '0' :
                               '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM'); %> <%=
                               timeFormatted %> | <%= item.venue %>
-                            </strong>
-                          </p>
+                              </>
+                              </p>
                         </div>
-
                       </div>
                     </div>
                   </a>
