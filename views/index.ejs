@@ -57,17 +57,18 @@
               <% eventTypeCounts.forEach(item=> { %>
                 <div class="col-4 col-sm-6 col-md-3 text-center">
                   <div class="program_box">
-                    <h1 class="program_count">
+                    <h1 class="program_count fade-in">
                       <%= item.count %>
                     </h1>
                     <h3>
-                      <%= item._id %>
+                      <%= item.count> 1 ? item._id + 's' : item._id %>
                     </h3>
                   </div>
                 </div>
                 <% }); %>
             </div>
           </div>
+
         </div>
       </div>
       <!-- programs sections------ends-->
@@ -132,6 +133,7 @@
     <!-- ========== Start footer ========== -->
     <%-include("mainFooter.ejs")%>
       <!-- ========== End footer ========== -->
+
 
   </body>
 

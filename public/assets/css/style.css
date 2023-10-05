@@ -13927,6 +13927,28 @@ html body .hide {
 .work-shop-section img {
   height: 27rem;
 }
+.program_count {
+  animation: fadecount;
+}
+@keyframes fadecount {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  75% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadecount 6.3s ease-in-out;
+}
+
 .programe-texts h1 {
   color: #fff;
   text-align: center;
@@ -15615,8 +15637,8 @@ main h1 {
 .card-img-testimonial {
   margin: 10px;
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 68px;
+  height: 68px;
 }
 .testimonial_header_data {
   margin-right: 10px;
@@ -15631,6 +15653,7 @@ main h1 {
   line-height: 98.023%; /* 15.78px */
 }
 .testimonial_header_data h3 {
+  text-align: center;
   padding: 10px;
   color: white;
   font-size: 14.3px;
@@ -15693,6 +15716,12 @@ main h1 {
     display: block;
     z-index: 0;
     cursor: pointer;
+  }
+  .testimonial_header_data h2 {
+    font-size: 16.099px;
+  }
+  .testimonial_header_data h3 {
+    font-size: 14.3px;
   }
   .modal-content {
     border-radius: 20px;
