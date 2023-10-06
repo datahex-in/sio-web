@@ -120,6 +120,7 @@ const event = require("./routes/event");
 const eventUser = require("./routes/eventUser");
 const leadersNote = require("./routes/leadersNote.js");
 const { errorMonitor } = require("stream");
+const { getS3Middleware } = require("./middleware/s3client.js");
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -197,7 +198,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.GOOGLE_CALLBACK_URL,
+      callbackURL: "http://localhost:8072/auth/google/callback", // process.env.GOOGLE_CALLBACK_URL,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -281,7 +282,7 @@ app.get("/auth/google/callback", async (req, res, next) => {
           // Add more user data as needed
         };
 
-        // Generate QR code and store it
+        // Generate QR code data
         const qrData = {
           userId: user._id,
           email: user.email,
@@ -295,17 +296,22 @@ app.get("/auth/google/callback", async (req, res, next) => {
         };
 
         // Create the 'qrcodes' directory if it doesn't exist
-        const qrCodeDirectory = "./public/qrcodes";
+        const qrCodeDirectory = "./uploads/qrcodes";
         if (!fs.existsSync(qrCodeDirectory)) {
           fs.mkdirSync(qrCodeDirectory);
         }
 
-        // Generate the QR code and save it
+        // Generate the QR code and save it locally
         const qrCodeFileName = `${qrCodeDirectory}/${user._id}.png`;
         await qr.toFile(qrCodeFileName, JSON.stringify(qrData));
 
-        // Add QR image URL as a query parameter
-        userData.qrImageUrl = `/qrcodes/${user._id}.png`;
+        // Use the S3 middleware to upload the QR image to S3
+        const uploadQRImageToS3 = getS3Middleware(["qrImageUrl"]);
+        req.body.qrImageUrl = `uploads/qrcodes/${user._id}.png`; // Set the QR image file path in the request body
+        uploadQRImageToS3(req, res); // Upload the QR image to S3
+
+        // Update the user's QR image URL with the S3 URL
+        userData.qrImageUrl = req.body.qrImageUrl;
 
         // Append qrImageUrl to the query parameters
         const queryParameters = new URLSearchParams({
@@ -313,14 +319,13 @@ app.get("/auth/google/callback", async (req, res, next) => {
           qrImageUrl: userData.qrImageUrl, // Append qrImageUrl
         }).toString();
 
-        // const queryParameters = new URLSearchParams(userData).toString();
         return res.redirect(`/profile?${queryParameters}`);
       } else {
         // If eventId is not found in the user's events, add it
         user.events.push(eventId); // Add eventId to the user's events array
         await user.save(); // Save the updated user record with the new eventId
 
-        // Generate QR code and store it
+        // Generate QR code data
         const userData = {
           userId: user._id,
           email: user.email,
@@ -334,17 +339,22 @@ app.get("/auth/google/callback", async (req, res, next) => {
         };
 
         // Create the 'qrcodes' directory if it doesn't exist
-        const qrCodeDirectory = "./public/qrcodes";
+        const qrCodeDirectory = "./uploads/qrcodes";
         if (!fs.existsSync(qrCodeDirectory)) {
           fs.mkdirSync(qrCodeDirectory);
         }
 
-        // Generate the QR code and save it
+        // Generate the QR code and save it locally
         const qrCodeFileName = `${qrCodeDirectory}/${user._id}.png`;
         await qr.toFile(qrCodeFileName, JSON.stringify(userData));
 
-        // Add QR image URL as a query parameter
-        userData.qrImageUrl = `/qrcodes/${user._id}.png`;
+        // Use the S3 middleware to upload the QR image to S3
+        const uploadQRImageToS3 = getS3Middleware(["qrImageUrl"]);
+        req.body.qrImageUrl = `uploads/qrcodes/${user._id}.png`; // Set the QR image file path in the request body
+        uploadQRImageToS3(req, res); // Upload the QR image to S3
+
+        // Update the user's QR image URL with the S3 URL
+        userData.qrImageUrl = req.body.qrImageUrl;
 
         // Append qrImageUrl to the query parameters
         const queryParameters = new URLSearchParams({
@@ -362,6 +372,7 @@ app.get("/auth/google/callback", async (req, res, next) => {
     }
   })(req, res, next);
 });
+
 
 // ---------------------------------------------------- Google Auth End ------------------------------------------------ \\
 

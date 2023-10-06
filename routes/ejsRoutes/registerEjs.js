@@ -3,6 +3,11 @@ var router = express.Router();
 const Registration = require("../../models/Registration");
 const fs = require("fs");
 const qr = require("qrcode");
+const upload = require("../../middleware/uploadEjs");
+const { getS3Middleware } = require("../../middleware/s3client");
+
+// Import the uploadQRImageToS3 function from the S3 middleware module
+const uploadQRImageToS3 = getS3Middleware(["qrImageUrl"]);
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -56,7 +61,7 @@ router.post("/", async function (req, res, next) {
       };
 
       // Create the 'qrcodes' directory if it doesn't exist
-      const qrCodeDirectory = "./public/qrcodes";
+      const qrCodeDirectory = "./uploads/qrcodes";
       if (!fs.existsSync(qrCodeDirectory)) {
         fs.mkdirSync(qrCodeDirectory);
       }
@@ -65,17 +70,25 @@ router.post("/", async function (req, res, next) {
       const qrCodeFileName = `${qrCodeDirectory}/${newRegistration._id}.png`;
       await qr.toFile(qrCodeFileName, JSON.stringify(qrData));
 
-      // Add QR image URL to the registration data
-      const qrImageUrl = `/qrcodes/${newRegistration._id}.png`;
-      newRegistration.qrImageUrl = qrImageUrl;
+      // Set the QR image URL in the request body
+      req.body.qrImageUrl = `uploads/qrcodes/${newRegistration._id}.png`;
 
-      await newRegistration.save();
+      // Use the S3 middleware to upload the QR image to S3
+      uploadQRImageToS3(req, res, async () => {
+        // After the upload is complete, you can access the S3 URL
+        const qrImageUrl = req.body.qrImageUrl;
+        console.log("Qr Url :-", qrImageUrl);
 
-      // Include the QR image URL in the response JSON
-      const userDataQueryString = `name=${req.body.name}&email=${req.body.email}&mobileNumber=${req.body.contact}&age=${req.body.age}&gender=${req.body.gender}&profession=${req.body.profession}&district=${req.body.location}&qrImageUrl=${qrImageUrl}`;
+        // Update the QR image URL in your database if needed
+        newRegistration.qrImageUrl = qrImageUrl;
+        await newRegistration.save();
 
-      // Send the query string as a JSON response
-      res.json({ userDataQueryString });
+        // Include the QR image URL in the response JSON
+        const userDataQueryString = `name=${req.body.name}&email=${req.body.email}&mobileNumber=${req.body.contact}&age=${req.body.age}&gender=${req.body.gender}&profession=${req.body.profession}&district=${req.body.location}&events=${eventId}&qrImageUrl=${qrImageUrl}`;
+
+        // Send the query string as a JSON response
+        res.json({ userDataQueryString });
+      });
     } else {
       const newRegistration = new Registration({
         name: req.body.name,
@@ -107,7 +120,7 @@ router.post("/", async function (req, res, next) {
       };
 
       // Create the 'qrcodes' directory if it doesn't exist
-      const qrCodeDirectory = "./public/qrcodes";
+      const qrCodeDirectory = "./uploads/qrcodes";
       if (!fs.existsSync(qrCodeDirectory)) {
         fs.mkdirSync(qrCodeDirectory);
       }
@@ -116,17 +129,25 @@ router.post("/", async function (req, res, next) {
       const qrCodeFileName = `${qrCodeDirectory}/${newRegistration._id}.png`;
       await qr.toFile(qrCodeFileName, JSON.stringify(qrData));
 
-      // Add QR image URL to the registration data
-      const qrImageUrl = `/qrcodes/${newRegistration._id}.png`;
-      newRegistration.qrImageUrl = qrImageUrl;
+      // Set the QR image URL in the request body
+      req.body.qrImageUrl = `uploads/qrcodes/${newRegistration._id}.png`;
 
-      await newRegistration.save();
+      // Use the S3 middleware to upload the QR image to S3
+      uploadQRImageToS3(req, res, async () => {
+        // After the upload is complete, you can access the S3 URL
+        const qrImageUrl = req.body.qrImageUrl;
+        console.log("Qr Url :-", qrImageUrl);
 
-      // Include the QR image URL in the response JSON
-      const userDataQueryString = `name=${req.body.name}&email=${req.body.email}&mobileNumber=${req.body.contact}&age=${req.body.age}&gender=${req.body.gender}&profession=${req.body.profession}&district=${req.body.location}&events=${eventId}&qrImageUrl=${qrImageUrl}`;
+        // Update the QR image URL in your database if needed
+        newRegistration.qrImageUrl = qrImageUrl;
+        await newRegistration.save();
 
-      // Send the query string as a JSON response
-      res.json({ userDataQueryString });
+        // Include the QR image URL in the response JSON
+        const userDataQueryString = `name=${req.body.name}&email=${req.body.email}&mobileNumber=${req.body.contact}&age=${req.body.age}&gender=${req.body.gender}&profession=${req.body.profession}&district=${req.body.location}&events=${eventId}&qrImageUrl=${qrImageUrl}`;
+
+        // Send the query string as a JSON response
+        res.json({ userDataQueryString });
+      });
     }
   } catch (error) {
     console.error(error);

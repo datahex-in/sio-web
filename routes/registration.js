@@ -15,14 +15,14 @@ const getUploadMiddleware = require("../middleware/upload");
 router
     .route("/")
     .post(
-        getUploadMiddleware("uploads/registration", ["image"]),
-        getS3Middleware(["image"]),
+        getUploadMiddleware("uploads/registration", ["qrImageUrl"]),
+        getS3Middleware(["qrImageUrl"]),
         createRegistration
     )
     .get(reqFilter, getRegistration)
     .put(
-        getUploadMiddleware("uploads/registration", ["image"]),
-        getS3Middleware(["image"]), updateRegistration
+        getUploadMiddleware("uploads/registration", ["qrImageUrl"]),
+        getS3Middleware(["qrImageUrl"]), updateRegistration
     )
     .delete(deleteRegistration);
 

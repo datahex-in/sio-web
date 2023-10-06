@@ -64,6 +64,13 @@ const RegistrationSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+    qrImageUrl: {
+      type: String,
+    },
+    attended: {
+      type: Boolean,
+      default: false
+    },
   },
   { timestamps: true }
 );
