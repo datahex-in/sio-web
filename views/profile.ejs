@@ -31,7 +31,7 @@
                     text-align: center;
                     margin: 0 auto;
                   ">
-                  <img src="<%= userData.qrImageUrl %>" alt="QR Code" />
+                  <img id="qrCodeImage" src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${userData.qrImageUrl}` %>" alt="QR Code" />
                   <div class="qr_details" style="padding-top: 10px">
                     <h5>
                       <%= userData.name %>
@@ -157,7 +157,7 @@
         </div>
       </div>
   </div>
-
+  
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // Function to toggle the "active" class for navigation items

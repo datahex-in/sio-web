@@ -29,6 +29,8 @@ exports.getRegistration = async (req, res) => {
     const { id, skip, limit, searchkey } = req.query;
     if (id && mongoose.isValidObjectId(id)) {
       const response = await Registration.findById(id);
+      console.log("Id....", id)
+      console.log("Responseeeee....", response)
       return res.status(200).json({
         success: true,
         message: `Retrieved specific registration`,
@@ -56,6 +58,7 @@ exports.getRegistration = async (req, res) => {
       totalCount: totalCount || 0,
       filterCount: filterCount || 0,
     });
+    console.log("Ressss", data)
   } catch (err) {
     console.log(err);
     res.status(204).json({
