@@ -76,7 +76,7 @@
             <% deconquistaData.forEach(deconquista=> { %>
               <div class="deconquista-img">
                 <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ deconquista.image}` %>"
-                  alt="DeConquista" />
+                  alt="DeConquista" loading="lazy" />
               </div>
               <div class="deconquista-desc">
                 <p>
@@ -100,7 +100,7 @@
                         <div class="blog-slider__item swiper-slide">
                           <div class="blog-slider__img">
                             <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ data.image }` %>"
-                              alt="" />
+                              alt="" loading="lazy" />
                           </div>
                           <div class="blog-slider__content">
                             <div class="blog-slider__title_1">
