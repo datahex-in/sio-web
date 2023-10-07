@@ -15013,7 +15013,6 @@ html body .hide {
     transform: translateX(0);
   }
 }
-
 @media (max-width: 600px) {
   .event-img img {
     width: 13rem;
