@@ -68,7 +68,6 @@
                 <% }); %>
             </div>
           </div>
-
         </div>
       </div>
       <!-- programs sections------ends-->
@@ -92,22 +91,36 @@
                   </div>
 
                   <div class="c-card-testimonial__description">
-                    <span class="c-card-testimonial__job">
+                    <!-- <span class="c-card-testimonial__job">
                       One day Workshop on
-                    </span>
-
+                    </span> -->
                     <div class="c-card-testimonial__author">
-                      <%= item.title %>
+                      <p>
+                        <% const eventDate=new Date(item.date); %>
+                          <% const months=['JAN', 'FEB' , 'MAR' , 'APR' , 'MAY' , 'JUN' , 'JUL' , 'AUG' , 'SEP' , 'OCT'
+                            , 'NOV' , 'DEC' ]; %>
+                            <% const monthAbbreviation=months[eventDate.getMonth()]; %>
+                              <% const day=eventDate.getDate(); %>
+                                <% const dayOfWeek=['SUNDAY', 'MONDAY' , 'TUESDAY' , 'WEDNESDAY' , 'THURSDAY' , 'FRIDAY'
+                                  , 'SATURDAY' ][eventDate.getDay()]; %>
+                                  <%= monthAbbreviation %>
+                                    <%= day %>
+                                      <%= dayOfWeek %>
+                      </p>
                     </div>
-
                     <div class="c-card-testimonial__excerpt">
-                      <%= item.shortDescription %>
+                      <p>
+                        <% const eventTime=new Date(item.time); %>
+                          <% const hours=eventTime.getHours(); %>
+                            <% const minutes=eventTime.getMinutes(); %>
+                              <% const timeFormatted=(hours % 12 || 12) + ':' + (minutes < 10 ? '0' : '' ) + minutes
+                                + ' ' + (hours>= 12 ? 'PM' : 'AM'); %> <%= timeFormatted %> | <%= item.venue %>
+                                    </>
+                      </p>
                     </div>
-
                     <div class="swiper_items">
                       <h5>Swipe for More</h5>
                       <h6 class="swipe_button">
-
                       </h6>
                     </div>
                     </a>

@@ -13858,11 +13858,10 @@ html body .hide {
 @media (max-width: 500px) {
   .header-logo-title {
     margin-top: 0px;
-
     margin-left: 0px;
   }
   .work-shop-section {
-    padding-bottom: 20px !important;
+    padding-bottom: 0px !important;
     overflow: hidden;
   }
 }
@@ -14983,6 +14982,38 @@ html body .hide {
   color: #fff;
   display: none;
 }
+/* fade animation in event page */
+.event-box {
+  animation: fadeInFromLeft 5s ease forwards;
+}
+
+.event-box:nth-child(even) {
+  animation: fadeInFromRight 5s ease forwards;
+}
+@keyframes fadeInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @media (max-width: 600px) {
   .event-img img {
     width: 13rem;
@@ -15773,7 +15804,7 @@ main h1 {
 .footer-gradient-line img {
   width: 100%;
   position: relative;
-  top: 90px;  
+  top: 90px;
 }
 
 /* profile page...... */
