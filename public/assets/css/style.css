@@ -14984,10 +14984,10 @@ html body .hide {
 }
 /* fade animation in event page */
 #fade_animation {
-  animation: fadeInRight 3s linear 1s;
+  animation: fadeInRight 1s linear 0.5s;
 }
 #fade_animation:nth-child(even) {
-  animation: fadeInLeft 3s linear 1s;
+  animation: fadeInLeft 0.8s linear 0.5s;
 }
 @keyframes fadeInRight {
   from {
