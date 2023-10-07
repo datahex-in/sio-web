@@ -13016,8 +13016,8 @@ li a {
 }
 
 .delegate-table-section h1 {
-  margin-top: 40px;
-  padding: 50px 0px;
+  margin-top: 0px;
+  padding: 30px 0px;
   color: #e59bff;
   font-family: var(--font-fabulous);
   font-size: 50px;
@@ -13768,19 +13768,11 @@ html body .hide {
   .footer-sections {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     align-content: center;
     align-items: center;
-    gap: 0px;
-    margin-top: 0px;
-  }
-
-  .footer-malabar-img,
-  .links,
-  .address {
-    /* flex: none;
-    min-width: 50%; */
-    /* Take full width on smaller screens */
+    gap: 15px;
+    margin-top: 80px;
   }
   .address img {
     margin-bottom: 0px;
@@ -13870,7 +13862,7 @@ html body .hide {
     margin-left: 0px;
   }
   .work-shop-section {
-    padding-bottom: 40px !important;
+    padding-bottom: 20px !important;
     overflow: hidden;
   }
 }
@@ -14795,7 +14787,7 @@ html body .hide {
   text-align: center;
   color: #ff4a8c;
   font-size: 40px;
-  padding-top: 28px;
+  padding-top: 30px;
   font-weight: 400;
   padding-bottom: 20px;
   font-family: var(--font-fabulous);
@@ -15001,7 +14993,7 @@ html body .hide {
   .event-content-head-title p {
     color: #fff;
     line-height: normal;
-    font-size: 18px !important;
+    font-size: 15px !important;
   }
   .event-img img {
     height: 11rem !important;
@@ -15078,7 +15070,7 @@ html body .hide {
 
 /***** deconquista page *****/
 #deconquista-header {
-  padding: 1em;
+  padding: 34px 0px;
 }
 .deconquista-img {
   margin-top: 2em;
@@ -15088,7 +15080,7 @@ html body .hide {
   color: #fff;
   text-align: justify;
   font-family: var(--font-Nutino);
-  font-size: 14px;
+  font-size: 16.8px;
   font-style: normal;
   font-weight: 200;
   line-height: 128.5%; /* 15.42px */
@@ -15135,6 +15127,10 @@ html body .hide {
 @media (max-width: 600px) {
   .c-card-testimonial__profile img {
     margin-top: 4em;
+  }
+  .deconquista-desc p {
+    text-align: center;
+    font-size: 13.8px;
   }
 }
 
@@ -15236,7 +15232,7 @@ html body .hide {
   width: 100%;
   display: flex;
   justify-content: center;
-  text-align: left;
+  text-align: center;
   color: #fff;
   font-size: 14.5px;
   font-style: normal;
@@ -15394,7 +15390,7 @@ html body .hide {
   text-align: left;
 }
 .deconquista-slider {
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 .testimonialphone {
   display: none;
@@ -15775,11 +15771,9 @@ main h1 {
 }
 
 .footer-gradient-line img {
-  margin-bottom: 0px;
   width: 100%;
-  float: left;
-  margin: 0px;
-  height: auto;
+  position: relative;
+  top: 90px;  
 }
 
 /* profile page...... */
@@ -15814,19 +15808,10 @@ main h1 {
   margin-top: 20px;
 }
 
-/* .col-12 {
-  flex-basis: 100%;
-}
-
-.col-6 {
-  flex-basis: calc(50% - 5px); 
-} */
-
 .form-group {
   margin-bottom: 10px;
   text-align: left;
   margin-left: auto;
-  /* width: 99% !important; */
 }
 #email_form {
   width: 99%;
@@ -16151,7 +16136,7 @@ span {
   margin-top: 5px;
   color: #fff;
   font-family: var(--font-Inter);
-  font-size: 10px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;

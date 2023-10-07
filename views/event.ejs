@@ -5,7 +5,7 @@
   <!-- Your head content here -->
 </head>
 
-<body>
+<body id="bg-color-purple">
   <div class="main-wrapper">
     <!-- Preloader start -->
     <!--
@@ -23,7 +23,7 @@
       <!-- ========== End header ========== -->
 
       <!-- Page Banner Start -->
-      <div id="bg-color-purple">
+      <div>
         <div class="page_backarrow">
           <a href="/"><i><svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 19 20" fill="none">
                 <path
@@ -61,8 +61,7 @@
                         <h1 class="workshop_title">
                           <%= item.eventType %>
                         </h1>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="195" height="40" viewBox="0 0 68 19"
-                          fill="none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="195" height="40" viewBox="0 0 68 19" fill="none">
                           <g filter="url(#filter0_b_14_640)">
                             <path d="M0.2836 0.985077H67.9851V18.5373H0.2836L4.55948 9.60448L0.2836 0.985077Z"
                               fill="white" fill-opacity="0.28" />
@@ -89,33 +88,32 @@
                       <div class="event-content">
                         <div class="event-content-head-title">
                           <p>
-                              <% const eventDate = new Date(item.date); %> <% const months
-                              = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP',
-                              'OCT', 'NOV', 'DEC']; %> <% const monthAbbreviation =
-                              months[eventDate.getMonth()]; %> <% const day =
-                              eventDate.getDate(); %> <% const dayOfWeek = ['SUNDAY', 'MONDAY',
-                              'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY',
-                              'SATURDAY'][eventDate.getDay()]; %> <%= monthAbbreviation %> <%=
-                              day %> <%= dayOfWeek %> 
-                            </p>
-                              <p>
-                                <% const eventTime = new
-                              Date(item.time); %> <% const hours = eventTime.getHours(); %>
-                              <% const minutes = eventTime.getMinutes(); %> <% const
-                              timeFormatted = (hours % 12 || 12) + ':' + (minutes < 10 ? '0' :
-                              '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM'); %> <%=
-                              timeFormatted %> | <%= item.venue %>
-                              </>
-                              </p>
+                            <% const eventDate=new Date(item.date); %>
+                              <% const months=['JAN', 'FEB' , 'MAR' , 'APR' , 'MAY' , 'JUN' , 'JUL' , 'AUG' , 'SEP'
+                                , 'OCT' , 'NOV' , 'DEC' ]; %>
+                                <% const monthAbbreviation=months[eventDate.getMonth()]; %>
+                                  <% const day=eventDate.getDate(); %>
+                                    <% const dayOfWeek=['SUNDAY', 'MONDAY' , 'TUESDAY' , 'WEDNESDAY' , 'THURSDAY'
+                                      , 'FRIDAY' , 'SATURDAY' ][eventDate.getDay()]; %>
+                                      <%= monthAbbreviation %>
+                                        <%= day %>
+                                          <%= dayOfWeek %>
+                          </p>
+                          <p>
+                            <% const eventTime=new Date(item.time); %>
+                              <% const hours=eventTime.getHours(); %>
+                                <% const minutes=eventTime.getMinutes(); %>
+                                  <% const timeFormatted=(hours % 12 || 12) + ':' + (minutes < 10 ? '0' : '' ) + minutes
+                                    + ' ' + (hours>= 12 ? 'PM' : 'AM'); %> <%= timeFormatted %> | <%= item.venue %>
+                                        </>
+                          </p>
                         </div>
                       </div>
                     </div>
                   </a>
                 </div>
                 <% }); %>
-             
-            </div>
-            <div class="rectangle_background_down">
+
             </div>
           </div>
         </div>
