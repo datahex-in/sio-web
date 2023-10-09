@@ -19,7 +19,7 @@ router.get("/", function (req, res, next) {
   res.render("register", { preFilledEmail, preFilledName, eventId });
 });
 
-router.post("/", async function (req, res, next) {
+router.post("/", uploadQRImageToS3, async function (req, res, next) {
   try {
     console.log(req.body);
 
@@ -48,6 +48,7 @@ router.post("/", async function (req, res, next) {
 
       // Generate QR code and store it
       const qrData = {
+        userId: newRegistration._id,
         name: req.body.name,
         gender: req.body.gender,
         mobileNumber: req.body.contact,
@@ -106,6 +107,7 @@ router.post("/", async function (req, res, next) {
 
       // Generate QR code and store it
       const qrData = {
+        userId: newRegistration._id,
         name: req.body.name,
         gender: req.body.gender,
         mobileNumber: req.body.contact,

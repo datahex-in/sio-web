@@ -8,14 +8,7 @@ const fs = require("fs");
 const dotenv = require("dotenv");
 const sharp = require("sharp");
 dotenv.config({ path: ".env" });
-// const s3 = new S3Client({
-//   endpoint: "https://syd1.digitaloceanspaces.com",
-//   region: process.env.REGION,
-//   credentials: {
-//     accessKeyId: process.env.ACCESS_KEY_ID,
-//     secretAccessKey: process.env.SECRET_ACCESS_KEY,
-//   },
-// });
+
 const s3 = new S3Client({
   endpoint: "https://syd1.digitaloceanspaces.com",
   region: "syd1",

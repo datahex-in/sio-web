@@ -26,10 +26,10 @@ exports.createMaterial = async (req, res) => {
 // @access    private
 exports.getMaterial = async (req, res) => {
   try {
-    const { id, skip, limit, searchkey } = req.query;
-    console.log("Id -- ", id)
-    if (id && mongoose.isValidObjectId(id)) {
-      const response = await Speakers.findById(id);
+    const { id, skip, limit, searchkey, event } = req.query;
+    console.log("Id -- ", req.query)
+    if (id && mongoose.isValidObjectId(event)) {
+      const response = await Speakers.findById(event);
       return res.status(200).json({
         success: true,
         message: `Retrieved specific speakers`,
