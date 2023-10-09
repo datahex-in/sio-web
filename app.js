@@ -1,8 +1,8 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/db.js");
@@ -93,6 +93,8 @@ var Refund = require("./routes/ejsRoutes/refundEjs");
 var Conditions = require("./routes/ejsRoutes/conditionsEjs");
 
 // route files
+const scanning = require("./routes/scanner.js");
+const attendedUsers = require("./routes/attendedUsers.js");
 const auth = require("./routes/auth.js");
 const user = require("./routes/user.js");
 const userType = require("./routes/userType.js");
@@ -150,6 +152,8 @@ app.use("/refund", Refund);
 app.use("/terms-conditions", Conditions);
 
 // mount routers
+app.use("/api/v1/scanning", scanning);
+app.use("/api/v1/attended-users", attendedUsers);
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/user", user);
 app.use("/api/v1/user-type", userType);
@@ -198,7 +202,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.GOOGLE_CALLBACK_URL,
+      callbackURL: "http://localhost:8072/auth/google/callback", // process.env.GOOGLE_CALLBACK_URL,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -308,7 +312,18 @@ app.get("/auth/google/callback", async (req, res, next) => {
         // Use the S3 middleware to upload the QR image to S3
         const uploadQRImageToS3 = getS3Middleware(["qrImageUrl"]);
         req.body.qrImageUrl = `uploads/qrcodes/${user._id}.png`; // Set the QR image file path in the request body
-        uploadQRImageToS3(req, res); // Upload the QR image to S3
+        // uploadQRImageToS3(req, res); // Upload the QR image to S3
+
+        // Use async/await to ensure the S3 upload completes before proceeding
+        await new Promise((resolve, reject) => {
+          uploadQRImageToS3(req, res, (err) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve();
+            }
+          });
+        });
 
         // Update the user's QR image URL with the S3 URL
         userData.qrImageUrl = req.body.qrImageUrl;
@@ -351,7 +366,18 @@ app.get("/auth/google/callback", async (req, res, next) => {
         // Use the S3 middleware to upload the QR image to S3
         const uploadQRImageToS3 = getS3Middleware(["qrImageUrl"]);
         req.body.qrImageUrl = `uploads/qrcodes/${user._id}.png`; // Set the QR image file path in the request body
-        uploadQRImageToS3(req, res); // Upload the QR image to S3
+        // uploadQRImageToS3(req, res); // Upload the QR image to S3
+
+        // Use async/await to ensure the S3 upload completes before proceeding
+        await new Promise((resolve, reject) => {
+          uploadQRImageToS3(req, res, (err) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve();
+            }
+          });
+        });
 
         // Update the user's QR image URL with the S3 URL
         userData.qrImageUrl = req.body.qrImageUrl;
@@ -372,7 +398,6 @@ app.get("/auth/google/callback", async (req, res, next) => {
     }
   })(req, res, next);
 });
-
 
 // ---------------------------------------------------- Google Auth End ------------------------------------------------ \\
 

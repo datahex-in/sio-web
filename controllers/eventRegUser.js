@@ -2,10 +2,12 @@ const { default: mongoose } = require("mongoose");
 const Event = require("../models/event");
 const Registration = require("../models/Registration");
 
+let eventId;
+
 exports.getRegEvent = async (req, res) => {
   try {
     const { id, skip, limit, searchkey, event } = req.query;
-
+    eventId = event
     console.log("Id :- ", event);
     if (event && mongoose.isValidObjectId(event)) {
       // Find the event by ID
@@ -57,6 +59,48 @@ exports.getRegEvent = async (req, res) => {
     res.status(400).json({
       success: false,
       message: err.toString(),
+    });
+  }
+};
+
+exports.deleteRegEvent = async (req, res) => {
+  try {
+    const { id } = req.query;
+
+    console.log("iddd...", id);
+    console.log("ievent..", eventId);
+
+    // Check if the provided event ID and registration ID are valid ObjectId
+    if (!mongoose.isValidObjectId(id) || !mongoose.isValidObjectId(eventId)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid event ID or registration ID",
+      });
+    }
+
+    // Find the user by ID to ensure it exists
+    const user = await Registration.findById(id);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    // Remove the specified event ID from the user's events array
+    user.events.pull(eventId);
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Removed event from user's events",
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
     });
   }
 };
