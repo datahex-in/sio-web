@@ -1,12 +1,14 @@
 const { default: mongoose } = require("mongoose");
+const Event = require("../models/event");
 const EventAttendance = require("../models/eventAttendance");
+const Registration = require("../models/Registration");
 
 // @desc      CREATE NEW EVENT
 // @route     POST /api/v1/event
 // @access    protect
-exports.createAttendedUser = async (req, res) => {
+exports.createEvent = async (req, res) => {
   try {
-    const newEvent = await EventAttendance.create(req.body);
+    const newEvent = await Event.create(req.body);
     res.status(200).json({
       success: true,
       message: "Event created successfully",
@@ -24,46 +26,58 @@ exports.createAttendedUser = async (req, res) => {
 // @desc      GET ALL EVENT
 // @route     GET /api/v1/event
 // @access    public
-exports.getAttendedUser = async (req, res) => {
+exports.getEvent = async (req, res) => {
   try {
-    const { id, skip, limit, searchkey } = req.query;
+    const { id, skip, limit, searchkey, event } = req.query;
 
-    console.log(id)
-    console.log(req.query)
-    console.log("hello world")
-    // if (id && mongoose.isValidObjectId(id)) {
-    //   const response = await Event.findById(id);
-    //   return res.status(200).json({
-    //     success: true,
-    //     message: "Retrieved specific event",
-    //     response,
-    //   });
-    // }
+    console.log(searchkey);
+    if (event && mongoose.isValidObjectId(event)) {
+      const eventDetail = await Event.findById(event);
+      console.log("response../", eventDetail);
 
-    // const query = {
-    //   ...req.filter,
-    //   ...(searchkey && {
-    //     title: { $regex: searchkey, $options: "i" },
-    //   }),
-    // };
+      // Find users in EventAttendance collection with the specified event ID
+      const users = await EventAttendance.find({
+        events: new mongoose.Types.ObjectId(event),
+      }).populate("user");
 
-    // const [totalCount, filterCount, data] = await Promise.all([
-    //   parseInt(skip) === 0 && Event.countDocuments(),
-    //   parseInt(skip) === 0 && Event.countDocuments(query),
-    //   Event.find(query)
-    //     .skip(parseInt(skip) || 0)
-    //     .limit(parseInt(limit) || 0)
-    //     .sort({ _id: -1 }),
-    // ]);
+      const response = users.map((userAttendance) => userAttendance.user);
 
-    // res.status(200).json({
-    //   success: true,
-    //   message: `Retrieved all event`,
-    //   response: data,
-    //   count: data.length,
-    //   totalCount: totalCount || 0,
-    //   filterCount: filterCount || 0,
-    // });
+      console.log("User user..", response);
+
+      return res.status(200).json({
+        success: true,
+        message: "Retrieved specific event",
+        response,
+      });
+    }
+
+    const query = {
+      ...req.filter,
+      ...(searchkey && {
+        title: { $regex: searchkey, $options: "i" },
+      }),
+    };
+
+    let [totalCount, filterCount, data] = await Promise.all([
+      parseInt(skip) === 0 && Event.countDocuments(),
+      parseInt(skip) === 0 && Event.countDocuments(query),
+      Event.find(query)
+        .populate("user") // Populate the "user" field
+        .skip(parseInt(skip) || 0)
+        .limit(parseInt(limit) || 0)
+        .sort({ _id: -1 }),
+    ]);
+
+    console.log(data);
+
+    res.status(200).json({
+      success: true,
+      message: `Retrieved all event`,
+      response: data,
+      count: data.length,
+      totalCount: totalCount || 0,
+      filterCount: filterCount || 0,
+    });
   } catch (err) {
     console.log(err);
     res.status(400).json({
@@ -76,7 +90,7 @@ exports.getAttendedUser = async (req, res) => {
 // @desc      UPDATE SPECIFIC EVENT
 // @route     PUT /api/v1/event/:id
 // @access    protect
-exports.updateAttendedUser = async (req, res) => {
+exports.updateEvent = async (req, res) => {
   try {
     const events = await Event.findByIdAndUpdate(req.body.id, req.body, {
       new: true,
@@ -106,7 +120,7 @@ exports.updateAttendedUser = async (req, res) => {
 // @desc      DELETE SPECIFIC EVENT
 // @route     DELETE /api/v1/event/:id
 // @access    protect
-exports.deleteAttendedUser = async (req, res) => {
+exports.deleteEvent = async (req, res) => {
   try {
     const events = await Event.findByIdAndDelete(req.query.id);
 
