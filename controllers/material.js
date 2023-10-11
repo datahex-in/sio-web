@@ -27,7 +27,6 @@ exports.createMaterial = async (req, res) => {
 exports.getMaterial = async (req, res) => {
   try {
     const { id, skip, limit, searchkey, event } = req.query;
-    console.log("Id -- ", req.query)
     if (id && mongoose.isValidObjectId(event)) {
       const response = await Speakers.findById(event);
       return res.status(200).json({

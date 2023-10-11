@@ -7,20 +7,16 @@ let eventId;
 exports.getRegEvent = async (req, res) => {
   try {
     const { id, skip, limit, searchkey, event } = req.query;
-    eventId = event
-    console.log("Id :- ", event);
     if (event && mongoose.isValidObjectId(event)) {
       // Find the event by ID
       const eventData = await Event.findById(event);
 
-      console.log("event Data -- ", eventData);
       // If the event is found, retrieve registered users for that event
       if (eventData) {
         const response = await Registration.find({ events: event })
           .populate("events") // Populate the 'events' field with Event documents
           .exec();
 
-        console.log("registeredUsers :", response);
         return res.status(200).json({
           success: true,
           message: "Retrieved specific event and its registered users",
@@ -66,9 +62,6 @@ exports.getRegEvent = async (req, res) => {
 exports.deleteRegEvent = async (req, res) => {
   try {
     const { id } = req.query;
-
-    console.log("iddd...", id);
-    console.log("ievent..", eventId);
 
     // Check if the provided event ID and registration ID are valid ObjectId
     if (!mongoose.isValidObjectId(id) || !mongoose.isValidObjectId(eventId)) {

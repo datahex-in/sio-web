@@ -1,10 +1,10 @@
 const router = require("express").Router();
 // Controllers
 const {
-  createAttendedUser,
-  getAttendedUser,
-  updateAttendedUser,
-  deleteAttendedUser,
+  createEvent,
+  getEvent,
+  updateEvent,
+  deleteEvent,
   select,
 } = require("../controllers/attendedUsers");
 // Middleware
@@ -18,15 +18,15 @@ router
   .post(
     getUploadMiddleware("uploads/event", ["image", "headerImage"]),
     getS3Middleware(["image", "headerImage"]),
-    createAttendedUser
+    createEvent
   )
-  .get(reqFilter, getAttendedUser)
+  .get(reqFilter, getEvent)
   .put(
     getUploadMiddleware("uploads/event", ["image", "headerImage"]),
     getS3Middleware(["image", "headerImage"]),
-    updateAttendedUser
+    updateEvent
   )
-  .delete(deleteAttendedUser);
+  .delete(deleteEvent);
 
 router.get("/select", reqFilter, select);
 
