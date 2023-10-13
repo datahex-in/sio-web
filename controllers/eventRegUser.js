@@ -7,6 +7,8 @@ let eventId;
 exports.getRegEvent = async (req, res) => {
   try {
     const { id, skip, limit, searchkey, event } = req.query;
+    console.log(req.query);
+    eventId = event;
     if (event && mongoose.isValidObjectId(event)) {
       // Find the event by ID
       const eventData = await Event.findById(event);
@@ -60,19 +62,23 @@ exports.getRegEvent = async (req, res) => {
 };
 
 exports.deleteRegEvent = async (req, res) => {
+  console.log(req.query);
   try {
-    const { id } = req.query;
+    const { id, event } = req.query;
+    console.log(event);
+    const objectId = new mongoose.Types.ObjectId(id);
+    console.log(objectId);
 
-    // Check if the provided event ID and registration ID are valid ObjectId
-    if (!mongoose.isValidObjectId(id) || !mongoose.isValidObjectId(eventId)) {
+    // Check if the provided event ID is a valid ObjectId
+    if (!mongoose.isValidObjectId(objectId)) {
       return res.status(400).json({
         success: false,
-        message: "Invalid event ID or registration ID",
+        message: "Invalid event ID",
       });
     }
 
     // Find the user by ID to ensure it exists
-    const user = await Registration.findById(id);
+    const user = await Registration.findOne({ _id: objectId });
 
     if (!user) {
       return res.status(404).json({
@@ -82,8 +88,10 @@ exports.deleteRegEvent = async (req, res) => {
     }
 
     // Remove the specified event ID from the user's events array
+    console.log(user.events);
     user.events.pull(eventId);
     await user.save();
+    console.log(user);
 
     res.status(200).json({
       success: true,
@@ -97,6 +105,7 @@ exports.deleteRegEvent = async (req, res) => {
     });
   }
 };
+
 
 exports.select = async (req, res) => {
   try {
