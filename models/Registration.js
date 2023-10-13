@@ -45,10 +45,6 @@ const RegistrationSchema = new mongoose.Schema(
     course: {
       type: String,
     },
-    // regType: {
-    //     type: String,
-    //     enum: ["attende", "delegate", "student"],
-    // },
     regDate: {
       type: Date,
     },
