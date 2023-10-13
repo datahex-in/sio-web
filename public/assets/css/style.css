@@ -13016,8 +13016,8 @@ li a {
 }
 
 .delegate-table-section h1 {
-  margin-top: 40px;
-  padding: 50px 0px;
+  margin-top: 0px;
+  padding: 30px 0px;
   color: #e59bff;
   font-family: var(--font-fabulous);
   font-size: 50px;
@@ -13768,19 +13768,11 @@ html body .hide {
   .footer-sections {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     align-content: center;
     align-items: center;
-    gap: 0px;
-    margin-top: 0px;
-  }
-
-  .footer-malabar-img,
-  .links,
-  .address {
-    /* flex: none;
-    min-width: 50%; */
-    /* Take full width on smaller screens */
+    gap: 15px;
+    margin-top: 80px;
   }
   .address img {
     margin-bottom: 0px;
@@ -13866,11 +13858,10 @@ html body .hide {
 @media (max-width: 500px) {
   .header-logo-title {
     margin-top: 0px;
-
     margin-left: 0px;
   }
   .work-shop-section {
-    padding-bottom: 40px !important;
+    padding-bottom: 0px !important;
     overflow: hidden;
   }
 }
@@ -13927,6 +13918,28 @@ html body .hide {
 .work-shop-section img {
   height: 27rem;
 }
+.program_count {
+  animation: fadecount;
+}
+@keyframes fadecount {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  75% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadecount 6.3s ease-in-out;
+}
+
 .programe-texts h1 {
   color: #fff;
   text-align: center;
@@ -14773,7 +14786,7 @@ html body .hide {
   text-align: center;
   color: #ff4a8c;
   font-size: 40px;
-  padding-top: 28px;
+  padding-top: 30px;
   font-weight: 400;
   padding-bottom: 20px;
   font-family: var(--font-fabulous);
@@ -14969,17 +14982,42 @@ html body .hide {
   color: #fff;
   display: none;
 }
+/* fade animation in event page */
+#fade_animation {
+  animation: fadeInRight 1s linear 0.5s;
+}
+#fade_animation:nth-child(even) {
+  animation: fadeInLeft 0.8s linear 0.5s;
+}
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+  }
+}
 @media (max-width: 600px) {
   .event-img img {
     width: 13rem;
   }
   .event-content {
-    padding: 45px 30px !important;
+    padding: 60px 30px !important;
   }
   .event-content-head-title p {
     color: #fff;
     line-height: normal;
-    font-size: 18px !important;
+    font-size: 15px !important;
   }
   .event-img img {
     height: 11rem !important;
@@ -15056,7 +15094,7 @@ html body .hide {
 
 /***** deconquista page *****/
 #deconquista-header {
-  padding: 1em;
+  padding: 34px 0px;
 }
 .deconquista-img {
   margin-top: 2em;
@@ -15066,7 +15104,7 @@ html body .hide {
   color: #fff;
   text-align: justify;
   font-family: var(--font-Nutino);
-  font-size: 14px;
+  font-size: 16.8px;
   font-style: normal;
   font-weight: 200;
   line-height: 128.5%; /* 15.42px */
@@ -15113,6 +15151,10 @@ html body .hide {
 @media (max-width: 600px) {
   .c-card-testimonial__profile img {
     margin-top: 4em;
+  }
+  .deconquista-desc p {
+    text-align: center;
+    font-size: 13.8px;
   }
 }
 
@@ -15214,7 +15256,7 @@ html body .hide {
   width: 100%;
   display: flex;
   justify-content: center;
-  text-align: left;
+  text-align: center;
   color: #fff;
   font-size: 14.5px;
   font-style: normal;
@@ -15372,7 +15414,7 @@ html body .hide {
   text-align: left;
 }
 .deconquista-slider {
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 .testimonialphone {
   display: none;
@@ -15615,8 +15657,8 @@ main h1 {
 .card-img-testimonial {
   margin: 10px;
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 68px;
+  height: 68px;
 }
 .testimonial_header_data {
   margin-right: 10px;
@@ -15631,6 +15673,7 @@ main h1 {
   line-height: 98.023%; /* 15.78px */
 }
 .testimonial_header_data h3 {
+  text-align: center;
   padding: 10px;
   color: white;
   font-size: 14.3px;
@@ -15694,6 +15737,12 @@ main h1 {
     z-index: 0;
     cursor: pointer;
   }
+  .testimonial_header_data h2 {
+    font-size: 16.099px;
+  }
+  .testimonial_header_data h3 {
+    font-size: 14.3px;
+  }
   .modal-content {
     border-radius: 20px;
     position: absolute;
@@ -15746,11 +15795,9 @@ main h1 {
 }
 
 .footer-gradient-line img {
-  margin-bottom: 0px;
   width: 100%;
-  float: left;
-  margin: 0px;
-  height: auto;
+  position: relative;
+  top: 90px;
 }
 
 /* profile page...... */
@@ -15785,19 +15832,10 @@ main h1 {
   margin-top: 20px;
 }
 
-/* .col-12 {
-  flex-basis: 100%;
-}
-
-.col-6 {
-  flex-basis: calc(50% - 5px); 
-} */
-
 .form-group {
   margin-bottom: 10px;
   text-align: left;
   margin-left: auto;
-  /* width: 99% !important; */
 }
 #email_form {
   width: 99%;
@@ -15955,15 +15993,15 @@ span {
 }
 @media screen and (max-width: 992px) {
   .blog-slider {
+    margin-top: 20px;
     max-width: 680px;
     height: 400px;
   }
 }
 @media screen and (max-width: 768px) {
   .blog-slider {
-    min-height: 500px;
     height: auto;
-    margin: 100px auto;
+    margin: 120px auto;
   }
   .leader_notes_header h1 {
     text-align: center;
@@ -16073,7 +16111,7 @@ span {
 }
 @media screen and (max-width: 576px) {
   .blog-slider__img {
-    width: 95%;
+    width: 85%;
   }
 }
 @media screen and (max-height: 500px) and (min-width: 992px) {
@@ -16122,7 +16160,7 @@ span {
   margin-top: 5px;
   color: #fff;
   font-family: var(--font-Inter);
-  font-size: 10px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
