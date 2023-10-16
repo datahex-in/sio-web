@@ -40,6 +40,7 @@ const allowedOrigins = [
   "https://accounts.google.com",
   "https://oauth.googleusercontent.com",
   "https://deconquista.siokerala.org",
+  "https://event-manager.syd1.cdn.digitaloceanspaces.com",
 ];
 
 //cors policy
