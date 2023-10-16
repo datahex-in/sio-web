@@ -40,7 +40,6 @@ const allowedOrigins = [
   "https://accounts.google.com",
   "https://oauth.googleusercontent.com",
   "https://deconquista.siokerala.org",
-  "https://remarkable-daifuku-fcbd24.netlify.app/"
 ];
 
 //cors policy
