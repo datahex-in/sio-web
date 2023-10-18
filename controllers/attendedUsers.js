@@ -8,7 +8,7 @@ const Registration = require("../models/Registration");
 // @access    protect
 exports.createEvent = async (req, res) => {
   try {
-    const newEvent = await Event.create(req.body);
+    const newEvent = await EventAttendance.create(req.body);
     res.status(200).json({
       success: true,
       message: "Event created successfully",
@@ -42,7 +42,8 @@ exports.getEvent = async (req, res) => {
 
       const response = users.map((userAttendance) => userAttendance.user);
 
-      console.log("User user..", response);
+      console.log("user..", users);
+      console.log("User Response..", response);
 
       return res.status(200).json({
         success: true,
@@ -68,7 +69,7 @@ exports.getEvent = async (req, res) => {
         .sort({ _id: -1 }),
     ]);
 
-    console.log(data);
+    console.log("data", data);
 
     res.status(200).json({
       success: true,
