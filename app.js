@@ -243,6 +243,13 @@ passport.use(
   )
 );
 
+// ---------------------------- Site Map -------------------------------- //
+app.get("/sitemap.xml", (req, res) => {
+  res.header("Content-Type", "application/xml");
+  res.sendFile(__dirname + "/sitemap.xml");
+});
+// ---------------------------- ------- -------------------------------- //
+
 app.use(passport.initialize());
 app.use(passport.session());
 
