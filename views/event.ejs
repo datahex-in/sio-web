@@ -105,24 +105,21 @@
                       <div class="event-content">
                         <div class="event-content-head-title">
                           <p>
-                            <% const eventDate=new Date(item.date); %>
-                              <% const months=['JAN', 'FEB' , 'MAR' , 'APR' , 'MAY' , 'JUN' , 'JUL' , 'AUG' , 'SEP'
-                                , 'OCT' , 'NOV' , 'DEC' ]; %>
-                                <% const monthAbbreviation=months[eventDate.getMonth()]; %>
-                                  <% const day=eventDate.getDate(); %>
-                                    <% const dayOfWeek=['SUNDAY', 'MONDAY' , 'TUESDAY' , 'WEDNESDAY' , 'THURSDAY'
-                                      , 'FRIDAY' , 'SATURDAY' ][eventDate.getDay()]; %>
-                                      <%= monthAbbreviation %>
-                                        <%= day %>
-                                          <%= dayOfWeek %>
+                            <% const eventDate = new Date(item.date); %>
+                            <% const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']; %>
+                            <% const monthAbbreviation = months[eventDate.getMonth()]; %>
+                            <% const day = eventDate.getDate(); %>
+                            <% const dayOfWeek = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'][eventDate.getDay()]; %>
+                            <%= monthAbbreviation %>
+                            <%= day %>
+                            <%= dayOfWeek %>
                           </p>
                           <p>
-                            <% const eventTime=new Date(item.time); %>
-                              <% const hours=eventTime.getHours(); %>
-                                <% const minutes=eventTime.getMinutes(); %>
-                                  <% const timeFormatted=(hours % 12 || 12) + ':' + (minutes < 10 ? '0' : '' ) + minutes
-                                    + ' ' + (hours>= 12 ? 'PM' : 'AM'); %> <%= timeFormatted %> | <%= item.venue %>
-                                        </>
+                            <% const eventTime = new Date(item.time); %>
+                            <% const hours = eventTime.getHours(); %>
+                            <% const minutes = eventTime.getMinutes(); %>
+                            <% const timeFormatted = (hours % 12 || 12) + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM'); %>
+                            <%= timeFormatted %> | <%= item.venue %>
                           </p>
                         </div>
                       </div>
