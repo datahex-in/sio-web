@@ -32,6 +32,7 @@ app.use(
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
+  "http://localhost:3002",
   "http://localhost:8072",
   "https://sio-kerala-deconquista-qywe3.ondigitalocean.app",
   "https://lemon-grass-0c88ad110.3.azurestaticapps.net",
@@ -87,6 +88,8 @@ var eventSingle = require("./routes/ejsRoutes/event_single");
 var Updates = require("./routes/ejsRoutes/updatesEjs");
 var Profile = require("./routes/ejsRoutes/profileEjs");
 var Quotes = require("./routes/ejsRoutes/quotesEjs.js");
+
+const Scanner = require("./routes/ejsRoutes/scanner.js")
 
 // ADDED NEWS ROUTES-------
 var Privacy = require("./routes/ejsRoutes/privacyEjs");
@@ -146,6 +149,7 @@ app.use("/register", Register);
 app.use("/updates", Updates);
 app.use("/profile", Profile);
 app.use("/quotes", Quotes);
+app.use("/scan", Scanner);
 
 // LATESTS-----
 app.use("/privacy", Privacy);

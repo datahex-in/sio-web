@@ -1,11 +1,16 @@
 const { default: mongoose } = require("mongoose");
 const Event = require("../models/event");
+const moment = require("moment");
 
 // @desc      CREATE NEW EVENT
 // @route     POST /api/v1/event
 // @access    protect
 exports.createEvent = async (req, res) => {
+  console.log(req.body);
   try {
+    req.body.date = moment(req.body.date).format();
+    console.log(req.body);
+
     const newEvent = await Event.create(req.body);
     res.status(200).json({
       success: true,
