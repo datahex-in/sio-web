@@ -13,23 +13,29 @@ router.get("/", async (req, res) => {
 
 router.post("/validateqr", async (req, res) => {
   try {
-    const value = req.body.value;
-    const result = value.replace(/"/g, "");
+    const result = req.body.value;
 
-    const objectId = new mongoose.Types.ObjectId(result);
+    // No need to parse the object, it's already an object
+    const valueObject = result;
+    console.log(valueObject);
+    console.log(valueObject.userId);
+
+    const objectId = new mongoose.Types.ObjectId(valueObject.userId);
+    console.log(objectId);
 
     const selectedEvent = req.body.event;
 
-    // // Find the user in the Registration collection and update the 'attended' field to true
-    // const updatedUser = await Registration.findByIdAndUpdate(objectId, {
-    //   attended: true,
-    // });
+    // Check if an entry with the same user and event combination already exists
+    const existingEntry = await EventAttendance.findOne({
+      user: objectId,
+      events: selectedEvent,
+    });
 
-    // if (!updatedUser) {
-    //   return res.status(404).json({ message: "User not found" });
-    // }
+    if (existingEntry) {
+      // An entry with the same user and event already exists, do not add a new entry
+      return res.status(400).json({ message: "Entry already exists" });
+    }
 
-    // Now, add an entry in the EventAttendance collection
     const eventAttendance = new EventAttendance({
       events: selectedEvent, // Use the event ID
       user: objectId, // Use the user ID
@@ -39,11 +45,13 @@ router.post("/validateqr", async (req, res) => {
 
     await eventAttendance.save();
 
-    res.json(updatedUser);
+    res.json({ message: "Entry added successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: error });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+
 
 module.exports = router;

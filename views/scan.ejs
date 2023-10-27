@@ -103,7 +103,7 @@
         <select id="event" required>
           <option value="" disabled selected>Select an event</option>
           <% events.forEach(item => { %>
-            <option value="<%= item.title %>"><%= item.title %></option>
+          <option value="<%= item._id %>"><%= item.title %></option>
           <% }); %>
         </select>
       </div>
@@ -113,7 +113,14 @@
         <button id="start-button">Start Scanning</button>
         <button id="stop-button">Stop Scanning</button>
       </div>
-      <div class="result" id="result"></div>
+      <div class="result" id="result">
+        <div id="scanned-data">
+          <p>Name: <span id="name"></span></p>
+          <p>Email: <span id="email"></span></p>
+          <p>Mobile Number: <span id="mobileNumber"></span></p>
+          <!-- Add more fields as needed -->
+        </div>
+      </div>
     </div>
 
     <script>
@@ -123,7 +130,7 @@
       const resultDiv = document.getElementById("result");
       let scanning = false;
 
-      let selectedEvent = ""; // Variable to store the selected event
+      let selectedEvent = "";
 
       const eventSelect = document.getElementById("event");
       eventSelect.addEventListener("change", () => {
@@ -174,31 +181,43 @@
             );
 
             if (code) {
-              // QR code has been found
-              const value = code.data;
+              const value = JSON.parse(code.data);
               if (selectedEvent) {
-                // Send value and selected event to the API endpoint
                 fetch("/scan/validateqr", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({ value, event: selectedEvent }),
+                }).then(() => {
+                  // Display the scanned data
+                  const scannedData = document.getElementById("scanned-data");
+                  const nameElement = document.getElementById("name");
+                  const emailElement = document.getElementById("email");
+                  const mobileNumberElement =
+                    document.getElementById("mobileNumber");
+
+                  nameElement.textContent = value.name;
+                  emailElement.textContent = value.email;
+                  mobileNumberElement.textContent = value.mobileNumber;
+
+                  stopScanning();
                 });
               } else {
                 resultDiv.textContent = "Select an event first.";
+                stopScanning();
               }
+            } else {
+              requestAnimationFrame(scan);
             }
-
-            requestAnimationFrame(scan);
           };
 
-          requestAnimationFrame(scan);
+          scan();
         };
 
         const stopScanning = () => {
           scanning = false;
           startButton.style.display = "block";
           stopButton.style.display = "none";
-          resultDiv.textContent = "";
+          resultDiv.innerHTML = "";
         };
 
         startButton.addEventListener("click", startScanning);
