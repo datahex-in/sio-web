@@ -115,121 +115,134 @@
       </div>
       <div class="result" id="result">
         <div id="scanned-data">
-          <p><span id="attended"></span></p>
+          <p id="attended"></p>
           <p><span id="name"></span></p>
           <p><span id="email"></span></p>
           <p><span id="mobileNumber"></span></p>
           <!-- Add more fields as needed -->
+          <p id="registration-message" style="color: red"></p>
         </div>
       </div>
     </div>
 
     <script>
-        const video = document.getElementById("video");
-        const startButton = document.getElementById("start-button");
-        const stopButton = document.getElementById("stop-button");
-        const scannedDataDiv = document.getElementById("scanned-data");
-        const attendedElement = document.getElementById("attended");
-        const nameElement = document.getElementById("name");
-        const emailElement = document.getElementById("email");
-        const mobileNumberElement = document.getElementById("mobileNumber");
-        let scanning = false;
-        let selectedEvent = "";
-        let scannedData = null;
-      
-        const eventSelect = document.getElementById("event");
-        eventSelect.addEventListener("change", () => {
-          selectedEvent = eventSelect.value;
-        });
-      
-        navigator.mediaDevices
-          .getUserMedia({
-            video: {
-              facingMode: {
-                exact: "environment",
-              },
-            },
-          })
-          .then((stream) => {
-            video.srcObject = stream;
-          })
-          .catch((error) => {
-            console.error("Error accessing camera:", error);
-          });
-      
-        const updateScannedData = (data) => {
-          // Update the scanned data
-          scannedData = JSON.parse(data);
-          nameElement.textContent = `Name: ${scannedData.name}`;
-          emailElement.textContent = `Email: ${scannedData.email}`;
-          mobileNumberElement.textContent = `Mobile Number: ${scannedData.mobileNumber}`;
-        };
-      
-        const startScanning = () => {
-          scanning = true;
-          startButton.style.display = "none";
-          stopButton.style.display = "block";
-          scannedDataDiv.style.display = "block";
-      
-          const scan = () => {
-            if (!scanning) return;
-      
-            const canvas = document.getElementById("qr-canvas");
-            const ctx = canvas.getContext("2d");
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-      
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-            const imageData = ctx.getImageData(
-              0,
-              0,
-              canvas.width,
-              canvas.height
+            const video = document.getElementById("video");
+            const startButton = document.getElementById("start-button");
+            const stopButton = document.getElementById("stop-button");
+            const scannedDataDiv = document.getElementById("scanned-data");
+            const attendedElement = document.getElementById("attended");
+            const nameElement = document.getElementById("name");
+            const emailElement = document.getElementById("email");
+            const mobileNumberElement = document.getElementById("mobileNumber");
+            const registrationMessageElement = document.getElementById(
+              "registration-message"
             );
-            const code = jsQR(
-              imageData.data,
-              imageData.width,
-              imageData.height
-            );
-      
-            if (code) {
-              if (!scannedData) {
-                // If scannedData is null, this is the first scan, so update the data
-                updateScannedData(code.data);
-              }
-      
-              if (selectedEvent) {
-                fetch("/scan/validateqr", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ value: scannedData, event: selectedEvent }),
-                }).then(() => {
-                  // Clear the data, stop scanning, and display the scanned data
-                  scannedData = null;
-                  scanning = false;
-                  attendedElement.textContent = `Attended: true`;
+            const responseMessageElement =
+              document.getElementById("response-message"); // Added this line
+            let scanning = false;
+            let selectedEvent = "";
+            let scannedData = null;
+
+            const eventSelect = document.getElementById("event");
+            eventSelect.addEventListener("change", () => {
+              selectedEvent = eventSelect.value;
+            });
+
+            navigator.mediaDevices
+              .getUserMedia({
+                video: {
+                  facingMode: {
+                    exact: "environment",
+                  },
+                },
+              })
+              .then((stream) => {
+                video.srcObject = stream;
+              })
+              .catch((error) => {
+                console.error("Error accessing camera:", error);
+              });
+
+            const updateScannedData = (data) => {
+              // Update the scanned data
+              scannedData = JSON.parse(data);
+              nameElement.textContent = `Name: ${scannedData.name}`;
+              emailElement.textContent = `Email: ${scannedData.email}`;
+              mobileNumberElement.textContent = `Mobile Number: ${scannedData.mobileNumber}`;
+            };
+
+            const startScanning = () => {
+        scanning = true;
+        startButton.style.display = "none";
+        stopButton.style.display = "block";
+        scannedDataDiv.style.display = "block";
+
+        const scan = () => {
+          if (!scanning) return;
+
+          const canvas = document.getElementById("qr-canvas");
+          const ctx = canvas.getContext("2d");
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+          if (code) {
+            if (!scannedData) {
+              // If scannedData is null, this is the first scan, so update the data
+              updateScannedData(code.data);
+            }
+
+            if (selectedEvent) {
+              fetch("/scan/validateqr", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ value: scannedData, event: selectedEvent }),
+              }).then((response) => {
+                console.log(response);
+                if (response.status === 200) {
+                  // User has registered for the event
+                  registrationMessageElement.textContent = "";
+                  attendedElement.innerHTML += `<p>Attended : <span style="color: green">True</span></p>`;
                   nameElement.textContent = `Name: ${scannedData.name}`;
                   emailElement.textContent = `Email: ${scannedData.email}`;
                   mobileNumberElement.textContent = `Mobile Number: ${scannedData.mobileNumber}`;
                   startButton.style.display = "block";
                   stopButton.style.display = "none";
+                } else {
+                  // User hasn't registered for the event
+                  registrationMessageElement.textContent = "User didn't register for this event. ";
+
+                  attendedElement.innerHTML = `<p>Attended : <span style="color: red">False</span></p>`;
+
+                  startButton.style.display = "block";
+                  stopButton.style.display = "none";
+                  
+                  scannedData = null;
+                }
+
+                // Display the response message
+                response.text().then((message) => {
+                  responseMessageElement.textContent = message;
                 });
-              }
-            } else {
-              requestAnimationFrame(scan);
+              });
             }
-          };
-      
-          scan();
+          } else {
+            requestAnimationFrame(scan);
+          }
         };
-      
-        startButton.addEventListener("click", startScanning);
-        stopButton.addEventListener("click", () => {
-          scanning = false;
-          startButton.style.display = "block";
-          stopButton.style.display = "none";
-        });
-      </script>
-    
+
+        scan();
+      };
+
+            startButton.addEventListener("click", startScanning);
+            stopButton.addEventListener("click", () => {
+              scanning = false;
+              startButton.style.display = "block";
+              stopButton.style.display = "none";
+            });
+    </script>
   </body>
 </html>
