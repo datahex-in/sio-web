@@ -14,8 +14,6 @@ router.get("/", async (req, res) => {
 router.post("/validateqr", async (req, res) => {
   try {
     const result = req.body.value;
-
-    // No need to parse the object, it's already an object
     const valueObject = result;
     console.log(valueObject);
     console.log(valueObject.userId);
@@ -24,34 +22,54 @@ router.post("/validateqr", async (req, res) => {
     console.log(objectId);
 
     const selectedEvent = req.body.event;
+    const eventData = await Event.findById(selectedEvent);
+    console.log(eventData);
 
-    // Check if an entry with the same user and event combination already exists
-    const existingEntry = await EventAttendance.findOne({
-      user: objectId,
-      events: selectedEvent,
-    });
+    if (eventData) {
+      const registration = await Registration.findOne({
+        _id: objectId,
+        events: selectedEvent,
+      }).exec();
 
-    if (existingEntry) {
-      // An entry with the same user and event already exists, do not add a new entry
-      return res.status(400).json({ message: "Entry already exists" });
+      if (registration) {
+        // User has the specific event
+        console.log("User has this event");
+        console.log(registration);
+
+        // Check if an entry with the same user and event combination already exists
+        const existingEntry = await EventAttendance.findOne({
+          user: objectId,
+          events: selectedEvent,
+        });
+
+        if (existingEntry) {
+          return res.status(400).json({ message: "Entry already exists" });
+        }
+
+        const eventAttendance = new EventAttendance({
+          events: selectedEvent,
+          user: objectId,
+          attended: true,
+          attendedDate: new Date(),
+        });
+
+        await eventAttendance.save();
+
+        res.status(200).json({ message: "Entry added successfully" });
+      } else {
+        // User does not have the specific event, so do not create EventAttendance entry
+        console.log("User does not have this event");
+        return res
+          .status(400)
+          .json({ message: "User does not have this event" });
+      }
+    } else {
+      return res.status(404).json({ message: "Event not found" });
     }
-
-    const eventAttendance = new EventAttendance({
-      events: selectedEvent, // Use the event ID
-      user: objectId, // Use the user ID
-      attended: true,
-      attendedDate: new Date(),
-    });
-
-    await eventAttendance.save();
-
-    res.json({ message: "Entry added successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
-
-
 
 module.exports = router;
