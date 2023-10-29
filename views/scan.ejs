@@ -201,7 +201,6 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ value: scannedData, event: selectedEvent }),
               }).then((response) => {
-                console.log(response);
                 if (response.status === 200) {
                   // User has registered for the event
                   registrationMessageElement.textContent = "";
