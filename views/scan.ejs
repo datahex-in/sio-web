@@ -204,7 +204,7 @@
                 if (response.status === 200) {
                   // User has registered for the event
                   registrationMessageElement.textContent = "";
-                  attendedElement.innerHTML += `<p>Attended : <span style="color: green">True</span></p>`;
+                  attendedElement.innerHTML = `<p>Attended : <span style="color: green">True</span></p>`;
                   nameElement.textContent = `Name: ${scannedData.name}`;
                   emailElement.textContent = `Email: ${scannedData.email}`;
                   mobileNumberElement.textContent = `Mobile Number: ${scannedData.mobileNumber}`;
