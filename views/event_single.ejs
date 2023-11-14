@@ -177,6 +177,18 @@
               </button>
             </a>
             <% } %>
+            <div class="event-enroll">
+              <% if (eventData.link) { %>
+              <a
+                href="<%= eventData.link %>"
+                id="enrollButton"
+              >
+                <button>
+                  Watch Online
+                </button>
+              </a>
+              <% } %>
+            </div>
           </div>
           <!-- Sections -->
           <div id="about-section">
