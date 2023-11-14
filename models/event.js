@@ -53,6 +53,10 @@ const eventSchema = new mongoose.Schema({
     ],
     required: true,
   },
+
+  link: {
+    type: String,
+  },
 });
 
 // Create the Event model
