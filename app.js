@@ -125,6 +125,7 @@ const testimonial = require("./routes/testimonial");
 const event = require("./routes/event");
 const eventUser = require("./routes/eventUser");
 const leadersNote = require("./routes/leadersNote.js");
+const approved = require("./routes/approval.js");
 const { errorMonitor } = require("stream");
 const { getS3Middleware } = require("./middleware/s3client.js");
 
@@ -185,6 +186,7 @@ app.use("/api/v1/testimonial", testimonial);
 app.use("/api/v1/event", event);
 app.use("/api/v1/event-user", eventUser);
 app.use("/api/v1/leaders-note", leadersNote);
+app.use("/api/v1/approved", approved);
 
 // ---------------------------------------------------- Google Auth Start ------------------------------------------------ \\
 

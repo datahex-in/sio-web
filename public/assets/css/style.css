@@ -16308,3 +16308,18 @@ span {
     margin: 0 auto;
   }
 }
+
+.register_payment {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+.register_payment > img {
+  width: 240px;
+  border-radius: 10px;
+}
+@media (max-width: 600px) {
+  .register_payment > img {
+    width: 200px;
+  }
+}

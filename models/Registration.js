@@ -63,6 +63,19 @@ const RegistrationSchema = new mongoose.Schema(
     qrImageUrl: {
       type: String,
     },
+    paymentStatus: {
+      type: String,
+    },
+    transactionId: {
+      type: String,
+    },
+    transactionImage: {
+      type: String,
+    },
+    approved: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
