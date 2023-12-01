@@ -11,6 +11,7 @@ const session = require("express-session");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const Registration = require("./models/Registration.js");
+const PaidReg = require('./models/paidReg.js')
 
 const fs = require("fs");
 const qr = require("qrcode");
@@ -84,6 +85,7 @@ var Programe = require("./routes/ejsRoutes/programeEjs");
 var Deconquista = require("./routes/ejsRoutes/deconquistaEjs");
 var Calender = require("./routes/ejsRoutes/calenderEjs");
 var Register = require("./routes/ejsRoutes/registerEjs");
+var Paidreg= require('./routes/ejsRoutes/paidregEjs.js')
 var eventSingle = require("./routes/ejsRoutes/event_single");
 var Updates = require("./routes/ejsRoutes/updatesEjs");
 var Profile = require("./routes/ejsRoutes/profileEjs");
@@ -146,6 +148,7 @@ app.use("/speaker", Speaker);
 app.use("/programe", Programe);
 app.use("/deconquista", Deconquista);
 app.use("/calender", Calender);
+app.use("/paidreg",Paidreg)
 app.use("/register", Register);
 app.use("/updates", Updates);
 app.use("/profile", Profile);
