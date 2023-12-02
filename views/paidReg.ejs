@@ -135,6 +135,13 @@
 
                   <form action="/paidreg" method="post" id="registerForm">
                     <div class="row">
+                      <div id="myModal" class="pay-modal">
+                        <div class="pay-modal-content">
+                          <span class="pay-close" onclick="closeModal()">&times;</span>
+                          <p id="modalMessage"></p>
+                        </div>
+                      </div>                      
+
                       <div class="col-md-6">
                         <div class="form-group">
                           <input
@@ -314,7 +321,55 @@
                           />
                         </div>
                       </div>
-                  
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="paymentStatus">Payment Status</label>
+                          <select
+                            id="paymentStatus"
+                            name="paymentStatus"
+                            class="form-control scrollable-dropdown"
+                            required
+                          >
+                            <option value="Have You Paid?" disabled selected>
+                              Have You Paid?
+                            </option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div
+                        class="row"
+                        id="transactionDetails"
+                        style="display: none"
+                      >
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="transactionId">Transaction Id</label>
+                            <input
+                              type="text"
+                              id="transactionId"
+                              name="transactionId"
+                              class="form-control"
+                            />
+                          </div>
+                        </div>
+                        <!-- <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="transactionImage"
+                              >Transaction Image</label
+                            >
+                            <input
+                              type="file"
+                              id="transactionImage"
+                              name="transactionImage"
+                              class="form-control"
+                            />
+                          </div>
+                        </div> -->
+                      </div>
+
                       <!-- <div class="col-md-6">
                     <div class="form-group">
                       <label for="day">Date of Birth</label>
@@ -336,7 +391,7 @@
                           class="btn event-primary"
                           style="border-radius: 20px"
                         >
-                          Next
+                          Register
                         </button>
                       </div>
                     </div>
@@ -396,40 +451,81 @@
           // Make an AJAX request to submit the form data
           $.ajax({
             type: "POST",
-            url: "/register", // Replace with the actual URL where your form is submitted
+            url: "/paidreg", // Replace with the actual URL where your form is submitted
             data: $(this).serialize(),
             success: function (response) {
+              $("#modalMessage").text("Thankyou!!! Your response submitted successfully");
+              // Show the modal
+              $("#myModal").show();
+
+              // Automatically hide the modal after 3 seconds
+              setTimeout(function () {
+                closeModal();
+              }, 3000);
+
               // Show a success message in the alert
-              $("#alert-message")
-                .removeClass("alert-danger")
-                .addClass("alert-success")
-                .text("Registration successful.")
-                .slideDown();
+              // $("#alert-message")
+              //   .removeClass("alert-danger")
+              //   .addClass("alert-success")
+              //   .text("Registration successful.")
+              //   .slideDown();
 
               // Clear the form fields
               $("#registerForm")[0].reset();
 
               // Automatically hide the success message after 3 seconds
               setTimeout(function () {
-                $("#alert-message").slideUp();
+                $("#myModal").hide();
                 window.location.href =
                   "/profile?" + response.userDataQueryString;
               }, 1500);
             },
             error: function (error) {
+              $("#modalMessage").text(error.responseText);
+              // Show the modal
+              $("#myModal").show();
               // Show an error message in the alert
-              $("#alert-message")
-                .removeClass("alert-success")
-                .addClass("alert-danger")
-                .text(error.responseText)
-                .slideDown();
+              // $("#alert-message")
+              //   .removeClass("alert-success")
+              //   .addClass("alert-danger")
+              //   .text(error.responseText)
+              //   .slideDown();
 
               // Automatically hide the error message after 3 seconds
               setTimeout(function () {
-                $("#alert-message").slideUp();
+                $("#myModal").hide();
               }, 3000);
             },
           });
+          function closeModal() {
+            $("#myModal").hide();
+          }
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $("#paymentStatus").change(function () {
+          var selectedValue = $(this).val();
+
+          if (selectedValue === "yes") {
+            $("#transactionDetails").show();
+          } else {
+            $("#transactionDetails").hide();
+          }
+        });
+
+        $("#registerForm").submit(function (event) {
+          event.preventDefault();
+
+          var paymentStatus = $("#paymentStatus").val();
+
+          // Your existing AJAX code...
+
+          if (paymentStatus === "yes") {
+            // Additional handling for paid users
+            // For example, show a message or perform additional actions
+          }
         });
       });
     </script>

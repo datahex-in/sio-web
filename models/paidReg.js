@@ -72,6 +72,9 @@ const paidRegistrationSchema = new mongoose.Schema(
     transactionImage: {
       type: String,
     },
+    paymentStatus: {
+      type: String,
+    },
     approved: {
       type: Boolean,
       default: false,

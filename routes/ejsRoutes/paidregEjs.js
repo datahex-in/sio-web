@@ -8,7 +8,7 @@ const { getS3Middleware } = require("../../middleware/s3client");
 const getUploadMiddleware = require("../../middleware/upload");
 
 // Import the uploadQRImageToS3 function from the S3 middleware module
-const uploadQRImageToS3 = getS3Middleware(["qrImageUrl"]);
+const uploadQRImageToS3 = getS3Middleware(["qrImageUrl", "transactionImage"]);
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -53,7 +53,8 @@ router.post(
           profession: req.body.profession,
           institution: req.body.institute,
           transactionId: req.body.transactionId,
-          transactionImage: req.body.transactionImage,
+          paymentStatus: req.body.paymentStatus,
+          // transactionImage: req.body.transactionImage,
           place: req.body.place,
           age: req.body.age,
           course: req.body.course,
@@ -70,7 +71,8 @@ router.post(
           profession: req.body.profession,
           institution: req.body.institute,
           transactionId: req.body.transactionId,
-          transactionImage: req.body.transactionImage,
+          paymentStatus: req.body.paymentStatus,
+          // transactionImage: req.body.transactionImage,
           place: req.body.place,
           age: req.body.age,
           course: req.body.course,
@@ -117,7 +119,8 @@ router.post(
           place: req.body.place,
           age: req.body.age,
           transactionId: req.body.transactionId,
-          transactionImage: req.body.transactionImage,
+          paymentStatus: req.body.paymentStatus,
+          // transactionImage: req.body.transactionImage,
           course: req.body.course,
           events: eventId,
         });
@@ -135,7 +138,8 @@ router.post(
           place: req.body.place,
           age: req.body.age,
           transactionId: req.body.transactionId,
-          transactionImage: req.body.transactionImage,
+          paymentStatus: req.body.paymentStatus,
+          // transactionImage: req.body.transactionImage,
           course: req.body.course,
           events: eventId,
         };
