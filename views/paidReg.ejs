@@ -297,7 +297,7 @@
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label for="day">Institute</label>
+                         <label for="institute" id="institute-label">Institute</label>
                           <input
                             type="text"
                             id="institute"
@@ -545,7 +545,7 @@
 <script>
   $(document).ready(function () {
     // Function to toggle label and placeholder text based on profession value
-    function toggleInstituteLabel(profession) {
+    function toggleInstituteText(profession) {
       if (profession === "Student" || profession === "Research Scholar") {
         $("#institute-label").text("Institute");
         $("#institute").attr("placeholder", "Institute");
@@ -556,12 +556,12 @@
     }
 
     // Initial call to set the label and placeholder based on the default selected value
-    toggleInstituteLabel($("#professions").val());
+    toggleInstituteText($("#professions").val());
 
     // Handle profession selection change event
     $("#professions").change(function () {
       var selectedProfession = $(this).val();
-      toggleInstituteLabel(selectedProfession);
+      toggleInstituteText(selectedProfession);
     });
   });
 </script>
