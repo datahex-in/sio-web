@@ -17,7 +17,7 @@ router.get("/", function (req, res, next) {
   const eventId = req.cookies.eventId;
 
   console.log("eventId  :", eventId);
-  res.render("register", { preFilledEmail, preFilledName, eventId });
+  res.render("paidReg", { preFilledEmail, preFilledName, eventId });
 });
 
 router.post(
