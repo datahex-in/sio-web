@@ -3,28 +3,29 @@
   <%-include("mainHeader.ejs")%>
     <!-- ========== End header ========== -->
 </head>
-  <!-- Preloader start -->
-  <!-- <div id="preloader">
+<!-- Preloader start -->
+<!-- <div id="preloader">
       <div class="preloader">
         <span></span>
         <span></span>
       </div>
     </div> -->
-  <!-- Preloader End -->
+<!-- Preloader End -->
 
-  <body id="bg-color-purple">
-    <!-- Offcanvas End -->
-    <!-- Slider Section Start  -->
-    <div>
-      <div class="meeta-hero-section-3 "
-        style="background-image: url('assets/images/header-svg.svg'); background-position: bottom;background-size: cover;position: relative; z-index: 3;">
-      </div>
-      <div class="rectangle_background_top">
-      </div>
-      <div class="about-sio">
-        <div class="container">
-          <div class="title-para">
-            <h1 class="about-sio-title">Let's Navigate..!</h1>
+<body id="bg-color-purple">
+  <!-- Offcanvas End -->
+  <!-- Slider Section Start  -->
+  <div>
+    <div class="meeta-hero-section-3 "
+      style="background-image: url('assets/images/header-svg.svg'); background-position: bottom;background-size: cover;position: relative; z-index: 3;">
+    </div>
+    <div class="rectangle_background_top">
+    </div>
+    <div class="about-sio">
+      <div class="container">
+        <div class="title-para">
+          <h1 class="about-sio-title">Let's Navigate..!</h1>
+          <div class="about_navigate_para">
             <p class="about-sio-para">
               <%= aboutData.vision %>
             </p> <br>
@@ -37,112 +38,111 @@
           </div>
         </div>
       </div>
-      <div class="about-gradient-img"></div>
+    </div>
+    <div class="about-gradient-img"></div>
 
-      <!-- Slider Section End -->
-      <!-- programs sections------ starts -->
-      <div class="testimonial programe-section">
-        <div class="container">
-          <div class="testimonialphone">
-            <div class=" text-center">
-              <h1 class="pb-3 about-sio-title">Testimonial</h1>
-            </div>
-            <%-include("testimoniacommon.ejs")%>
-          </div>
+    <!-- Slider Section End -->
+    <!-- programs sections------ starts -->
+    <div class="testimonial programe-section">
+      <div class="container">
+        <div class="testimonialphone">
           <div class=" text-center">
-            <h1 class="pb-3 about-sio-title">Programs</h1>
+            <h1 class="pb-3 about-sio-title">Testimonial</h1>
           </div>
-          <div id="scrollTrigger" style="height: 1px;"></div>
-
-          <div class="programe-texts">
-            <div class="row program-title-items">
-              <% eventTypeCounts.forEach(item=> { %>
-                <div class="col-4 col-sm-6 col-md-3 text-center">
-                  <div class="program_box">
-                    <h1 class="program_count fade-in">
-                      <%= item.count %>
-                    </h1>
-                    <h3>
-                      <%= item.count> 1 ? item._id + 's' : item._id %>
-                    </h3>
-                  </div>
+          <%-include("testimoniacommon.ejs")%>
+        </div>
+        <div class=" text-center">
+          <h1 class="mt-5 about-sio-title">Programs</h1>
+        </div>
+        <div id="scrollTrigger" style="height: 1px;"></div>
+        <div class="programe-texts">
+          <div class="row program-title-items">
+            <% eventTypeCounts.forEach(item=> { %>
+              <div class="col-4 col-sm-6 col-md-3 text-center">
+                <div class="program_box">
+                  <h1 class="program_count fade-in">
+                    <%= item.count %>
+                  </h1>
+                  <h3>
+                    <%= item.count> 1 ? item._id + 's' : item._id %>
+                  </h3>
                 </div>
-                <% }); %>
-            </div>
+              </div>
+              <% }); %>
           </div>
         </div>
       </div>
-      <!-- programs sections------ends-->
-      <div class="rectangle_background_down">
-      </div>
-      <div class="container c-testimonials__upcoming_mobile">
-        <img src="/assets/images/upcoming_events.svg" alt="">
-      </div>
-      <div class="container">
-        <div class="work-shop-section">
-          <div class="c-testimonials">
-            <ul class="c-testimonials__items swiper-wrapper">
-              <!-- CARD 1 -->
-              <% eventData.forEach(item=> { %>
-                <li class="c-testimonials__item c-card-testimonial swiper-slide">
-                  <div class="c-card-testimonial__profile">
-                    <a href="/event_single/<%= item._id %>">
-                      <img style="object-fit: cover;"
-                        src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.image}` %>" alt=""
-                        class="c-card-testimonial__image">
-                  </div>
-
-                  <div class="c-card-testimonial__description">
-                    <!-- <span class="c-card-testimonial__job">
+    </div>
+    <!-- programs sections------ends-->
+    <div class="rectangle_background_down">
+    </div>
+    <div class="container c-testimonials__upcoming_mobile">
+      <img src="/assets/images/upcoming_events.svg" alt="">
+    </div>
+    <div class="container">
+      <div class="work-shop-section">
+        <div class="c-testimonials">
+          <ul class="c-testimonials__items swiper-wrapper">
+            <!-- CARD 1 -->
+            <% eventData.forEach(item=> { %>
+              <li class="c-testimonials__item c-card-testimonial swiper-slide">
+                <div class="c-card-testimonial__profile">
+                  <a href="/event_single/<%= item._id %>">
+                    <img style="object-fit: cover;"
+                      src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.image}` %>" alt=""
+                      class="c-card-testimonial__image">
+                </div>
+                <div class="c-card-testimonial__description">
+                  <!-- <span class="c-card-testimonial__job">
                       One day Workshop on
                     </span> -->
-                    <div class="c-card-testimonial__author">
-                      <p>
-                        <% const eventDate=new Date(item.date); %>
-                          <% const months=['JAN', 'FEB' , 'MAR' , 'APR' , 'MAY' , 'JUN' , 'JUL' , 'AUG' , 'SEP' , 'OCT'
-                            , 'NOV' , 'DEC' ]; %>
-                            <% const monthAbbreviation=months[eventDate.getMonth()]; %>
-                              <% const day=eventDate.getDate(); %>
-                                <% const dayOfWeek=['SUNDAY', 'MONDAY' , 'TUESDAY' , 'WEDNESDAY' , 'THURSDAY' , 'FRIDAY'
-                                  , 'SATURDAY' ][eventDate.getDay()]; %>
-                                  <%= monthAbbreviation %>
-                                    <%= day %>
-                                      <%= dayOfWeek %>
-                      </p>
-                    </div>
-                    <div class="c-card-testimonial__excerpt">
-                      <p>
-                        <% const eventTime=new Date(item.time); %>
-                          <% const hours=eventTime.getHours(); %>
-                            <% const minutes=eventTime.getMinutes(); %>
-                              <% const timeFormatted=(hours % 12 || 12) + ':' + (minutes < 10 ? '0' : '' ) + minutes
-                                + ' ' + (hours>= 12 ? 'PM' : 'AM'); %> <%= timeFormatted %> | <%= item.venue %>
-                                    </>
-                      </p>
-                    </div>
-                    <div class="swiper_items">
-                      <h5>Swipe for More</h5>
-                      <h6 class="swipe_button">
-                      </h6>
-                    </div>
-                    </a>
+                  <div class="c-card-testimonial__author">
+                    <p>
+                      <% const eventDate=new Date(item.date); %>
+                        <% const months=['JAN', 'FEB' , 'MAR' , 'APR' , 'MAY' , 'JUN' , 'JUL' , 'AUG' , 'SEP' , 'OCT'
+                          , 'NOV' , 'DEC' ]; %>
+                          <% const monthAbbreviation=months[eventDate.getMonth()]; %>
+                            <% const day=eventDate.getDate(); %>
+                              <% const dayOfWeek=['SUNDAY', 'MONDAY' , 'TUESDAY' , 'WEDNESDAY' , 'THURSDAY' , 'FRIDAY'
+                                , 'SATURDAY' ][eventDate.getDay()]; %>
+                                <%= monthAbbreviation %>
+                                  <%= day %>
+                                    <%= dayOfWeek %>
+                    </p>
                   </div>
-                </li>
-                <% }); %>
-            </ul>
-            <div class="c-testimonials__upcoming">
-              <img src="/assets/images/upcoming_events.svg" alt="">
-            </div>
-            <div class="c-testimonials__pagination"></div>
+                  <div class="c-card-testimonial__excerpt">
+                    <p>
+                      <% const eventTime=new Date(item.time); %>
+                        <% const hours=eventTime.getHours(); %>
+                          <% const minutes=eventTime.getMinutes(); %>
+                            <% const timeFormatted=(hours % 12 || 12) + ':' + (minutes < 10 ? '0' : '' ) + minutes + ' '
+                              + (hours>= 12 ? 'PM' : 'AM'); %> <%= timeFormatted %> | <%= item.venue %>
+                                  </>
+                    </p>
+                  </div>
+                  <div class="swiper_items">
+                    <h5>Swipe for More</h5>
+                    <h6 class="swipe_button">
+                    </h6>
+                  </div>
+                  </a>
+                </div>
+              </li>
+              <% }); %>
+          </ul>
+          <div class="c-testimonials__upcoming">
+            <img src="/assets/images/upcoming_events.svg" alt="">
           </div>
+          <div class="c-testimonials__pagination"></div>
         </div>
       </div>
     </div>
-    </div>
-    </div>
-    <!-- ========== Start footer ========== -->
-    <%-include("mainFooter.ejs")%>
-      <!-- ========== End footer ========== -->
-  </body>
+  </div>
+  </div>
+  </div>
+  <!-- ========== Start footer ========== -->
+  <%-include("mainFooter.ejs")%>
+    <!-- ========== End footer ========== -->
+</body>
 
-  </html>
+</html>
