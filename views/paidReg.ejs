@@ -540,5 +540,28 @@
         });
       });
     </script>
+<script>
+  $(document).ready(function () {
+    // Function to toggle label and placeholder text based on profession value
+    function toggleInstituteLabel(profession) {
+      if (profession === "Student" || profession === "Research Scholar") {
+        $("#institute-label").text("Institute");
+        $("#institute").attr("placeholder", "Institute");
+      } else {
+        $("#institute-label").text("Place of Work");
+        $("#institute").attr("placeholder", "Place of Work");
+      }
+    }
+
+    // Initial call to set the label and placeholder based on the default selected value
+    toggleInstituteLabel($("#professions").val());
+
+    // Handle profession selection change event
+    $("#professions").change(function () {
+      var selectedProfession = $(this).val();
+      toggleInstituteLabel(selectedProfession);
+    });
+  });
+</script>
   </body>
 </html>
