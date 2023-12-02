@@ -500,7 +500,7 @@ $(document).ready(function () {
 });
 
 var swiper = new Swiper(".slide-content", {
-  slidesPerView: 3,
+  slidesPerView: 1,
   spaceBetween: 25,
   speed: 500,
   autoplay: 1000,
@@ -519,10 +519,10 @@ var swiper = new Swiper(".slide-content", {
       slidesPerView: 1,
     },
     520: {
-      slidesPerView: 2,
+      slidesPerView: 1,
     },
     950: {
-      slidesPerView: 3,
+      slidesPerView: 1,
     },
   },
 });
