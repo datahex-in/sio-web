@@ -308,18 +308,18 @@
                         </div>
                       </div>
 
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="course">Course</label>
-                          <input
-                            type="text"
-                            id="course"
-                            name="course"
-                            class="form-control"
-                            required
-                          />
-                        </div>
-                      </div>
+                      <div class="col-md-6" id="course-field" style="display: none;">
+  <div class="form-group">
+    <label for="course">Course</label>
+    <input
+      type="text"
+      id="course"
+      name="course"
+      class="form-control"
+      required
+    />
+  </div>
+</div>
       <div class="container">
    <div class="updates-title" style="text-align: center; background-color: white !important;">
   <h3 style="color: white;">Payment Details</h3>
@@ -549,9 +549,13 @@
       if (profession === "Student" || profession === "Research Scholar") {
         $("#institute-label").text("Institute");
         $("#institute").attr("placeholder", "Institute");
+$("#course-field").show();
+
       } else {
         $("#institute-label").text("Place of Work");
         $("#institute").attr("placeholder", "Place of Work");
+$("#course-field").hide();
+
       }
     }
 
