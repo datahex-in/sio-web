@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>De Conquista</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../assets/images/decon-logo.svg"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;500;600;700;800&amp;family=Open+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Archivo:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,500"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- CSS ============================================ -->
+
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="../assets/css/all.min.css" />
+    <link rel="stylesheet" href="../assets/css/flaticon.css" />
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css" />
+    <link rel="stylesheet" href="../assets/css/aos.css" />
+    <link rel="stylesheet" href="../assets/css/nice-select.css" />
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css"
+    />
+
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.12.0.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"
+    ></script>
+
+    <!-- carousel Style CSS -->
+    <link rel="stylesheet" href="../assets/css/css/owl.carousel.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/css/style.css" />
+    <!-- ========== Start header ========== -->
+    <%-include("mainHeader.ejs")%>
+    <!-- ========== End header ========== -->
+  </head>
+
+  <body id="bg-color-purple">
+    <div class="main-wrapper">
+      <!-- Preloader start -->
+      <!-- <div id="preloader">
+      <div class="preloader">
+        <span></span>
+        <span></span>
+      </div>
+    </div> -->
+      <!-- Preloader End -->
+
+      <div class="page_backarrow">
+        <a href="/"
+          ><i
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="22"
+              viewBox="0 0 19 20"
+              fill="none"
+            >
+              <path
+                d="M10.0054 0.265434C10.3271 0.587173 10.3564 1.09064 10.0931 1.44542L10.0054 1.54706L2.18829 9.36458L10.0054 17.1821C10.3271 17.5038 10.3564 18.0073 10.0931 18.3621L10.0054 18.4637C9.68366 18.7855 9.18019 18.8147 8.82541 18.5515L8.72376 18.4637L0.265433 10.0054C-0.0563049 9.68365 -0.0855541 9.18019 0.177686 8.82541L0.265433 8.72376L8.72376 0.265434C9.07768 -0.0884781 9.65148 -0.0884781 10.0054 0.265434Z"
+                fill="#FF4A8C"
+              /></svg></i
+        ></a>
+      </div>
+      <div class="container">
+        <div class="updates-title">
+          <h1>Registration</h1>
+        </div>
+        <!-- <div class="register_payment">
+          <img src="/assets/images/GooglePay_QR.png" alt="" />
+        </div> -->
+      </div>
+      <div>
+        <div class="register-table">
+          <div class="container">
+            <div class="delegate-table-section">
+              <div class="register-form">
+                <div class="container">
+                  <div
+                    id="alert-message"
+                    class="alert"
+                    style="display: none"
+                  ></div>
+
+                  <form action="/paidreg" method="post" id="registerForm">
+                    <div class="row">
+                      <div id="myModal" class="pay-modal">
+                        <div class="pay-modal-content">
+                          <span class="pay-close" onclick="closeModal()">&times;</span>
+                          <p id="modalMessage"></p>
+                        </div>
+                      </div>                      
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            id="eventId"
+                            hidden
+                            name="eventId"
+                            class="form-control"
+                            value="<%= eventId %>"
+                          />
+                          <label for="name">Name</label>
+                          <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            class="form-control"
+                            aria-required="true"
+                            required
+                            value="<%= preFilledName %>"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="gender">Gender</label>
+                          <select
+                            id="gender"
+                            name="gender"
+                            class="form-control"
+                            required
+                          >
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="day">Age</label>
+                          <input
+                            type="number"
+                            id="age"
+                            name="age"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="contact">Contact Number</label>
+                          <input
+                            type="number"
+                            id="contact"
+                            name="contact"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="email">Email ID</label>
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="form-control"
+                            required
+                            value="<%= preFilledEmail %>"
+                          />
+                          <p id="emailError" class="text-danger"></p>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="password">Create Password:</label>
+                      <input type="password" id="password" name="password" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="confirm_password">Confirm Password:</label>
+                      <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+                    </div>
+                  </div> -->
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="day">Place</label>
+                          <input
+                            type="text"
+                            id="place"
+                            name="place"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="location">District</label>
+                          <select
+                            id="location"
+                            name="location"
+                            class="form-control"
+                            required
+                          >
+                            <option value="" disabled selected>
+                              Select your district
+                            </option>
+                            <option value="Alappuzha">Alappuzha</option>
+                            <option value="Ernakulam">Ernakulam</option>
+                            <option value="Ernakulam">Kochi City</option>
+                            <option value="Idukki">Idukki</option>
+                            <option value="Kannur">Kannur</option>
+                            <option value="Kasaragod">Kasaragod</option>
+                            <option value="Kollam">Kollam</option>
+                            <option value="Kottayam">Kottayam</option>
+                            <option value="Kozhikode">Kozhikode</option>
+                            <option value="Malappuram">Malappuram</option>
+                            <option value="Palakkad">Palakkad</option>
+                            <option value="Pathanamthitta">
+                              Pathanamthitta
+                            </option>
+                            <option value="Thiruvananthapuram">
+                              Thiruvananthapuram
+                            </option>
+                            <option value="Thrissur">Thrissur</option>
+                            <option value="Wayanad">Wayanad</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="professions">profession</label>
+                          <select
+                            id="professions"
+                            name="profession"
+                            class="form-control scrollable-dropdown"
+                            required
+                          >
+                            <option value="" disabled selected>
+                              Select your profession
+                            </option>
+                            <option value="Student">Student</option>
+                            <option value="Research scholar">
+                              Research scholar
+                            </option>
+                            <option value="Teacher">Teacher</option>
+                            <option value="other">Other</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="day">Institute</label>
+                          <input
+                            type="text"
+                            id="institute"
+                            name="institute"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="course">Course</label>
+                          <input
+                            type="text"
+                            id="course"
+                            name="course"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="paymentStatus">Payment Status</label>
+                          <select
+                            id="paymentStatus"
+                            name="paymentStatus"
+                            class="form-control scrollable-dropdown"
+                            required
+                          >
+                            <option value="Have You Paid?" disabled selected>
+                              Have You Paid?
+                            </option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div
+                        class="row"
+                        id="transactionDetails"
+                        style="display: none"
+                      >
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="transactionId">Transaction Id</label>
+                            <input
+                              type="text"
+                              id="transactionId"
+                              name="transactionId"
+                              class="form-control"
+                            />
+                          </div>
+                        </div>
+                        <!-- <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="transactionImage"
+                              >Transaction Image</label
+                            >
+                            <input
+                              type="file"
+                              id="transactionImage"
+                              name="transactionImage"
+                              class="form-control"
+                            />
+                          </div>
+                        </div> -->
+                      </div>
+
+                      <!-- <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="day">Date of Birth</label>
+                      <input type="date" id="day" name="day" class="form-control" required>
+                    </div>
+                  </div> -->
+                    </div>
+                    <div
+                      class="row"
+                      style="
+                        align-items: center;
+                        margin-top: 20px;
+                        margin-bottom: 30px;
+                      "
+                    >
+                      <div class="col-12 d-flex justify-content-center">
+                        <button
+                          type="submit"
+                          class="btn event-primary"
+                          style="border-radius: 20px"
+                        >
+                          Register
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer_hide_mobile">
+      <!-- ========== Start footer ========== -->
+      <%-include("mainFooter.ejs")%>
+      <!-- ========== End footer ========== -->
+    </div>
+
+    <!-- JS
+  ============================================ -->
+
+    <!-- carousel & jQuery JS -->
+
+    <script src=" ../assets/js/js/jquery.min.js"></script>
+    <script src="../assets/js/js/owl.carousel.min.js"></script>
+    <script src="../assets/js/js/main.js"></script>
+
+    <!-- Modernizer & jQuery JS -->
+    <script src="../assets/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="../assets/js/vendor/jquery-1.12.4.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugins JS -->
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/back-to-top.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/jquery.counterup.min.js"></script>
+    <script src="../assets/js/waypoints.min.js"></script>
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/jquery.nice-select.min.js"></script>
+    <!-- Main JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      type="text/javascript"
+      src="node_modules/slick-carousel/slick/slick.min.js"
+    ></script>
+    <script src="../assets/js/main.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#registerForm").submit(function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          // Make an AJAX request to submit the form data
+          $.ajax({
+            type: "POST",
+            url: "/paidreg", // Replace with the actual URL where your form is submitted
+            data: $(this).serialize(),
+            success: function (response) {
+              $("#modalMessage").text("Thankyou!!! Your response submitted successfully");
+              // Show the modal
+              $("#myModal").show();
+
+              // Automatically hide the modal after 3 seconds
+              setTimeout(function () {
+                closeModal();
+              }, 3000);
+
+              // Show a success message in the alert
+              // $("#alert-message")
+              //   .removeClass("alert-danger")
+              //   .addClass("alert-success")
+              //   .text("Registration successful.")
+              //   .slideDown();
+
+              // Clear the form fields
+              $("#registerForm")[0].reset();
+
+              // Automatically hide the success message after 3 seconds
+              setTimeout(function () {
+                $("#myModal").hide();
+                window.location.href =
+                  "/profile?" + response.userDataQueryString;
+              }, 1500);
+            },
+            error: function (error) {
+              $("#modalMessage").text(error.responseText);
+              // Show the modal
+              $("#myModal").show();
+              // Show an error message in the alert
+              // $("#alert-message")
+              //   .removeClass("alert-success")
+              //   .addClass("alert-danger")
+              //   .text(error.responseText)
+              //   .slideDown();
+
+              // Automatically hide the error message after 3 seconds
+              setTimeout(function () {
+                $("#myModal").hide();
+              }, 3000);
+            },
+          });
+          function closeModal() {
+            $("#myModal").hide();
+          }
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $("#paymentStatus").change(function () {
+          var selectedValue = $(this).val();
+
+          if (selectedValue === "yes") {
+            $("#transactionDetails").show();
+          } else {
+            $("#transactionDetails").hide();
+          }
+        });
+
+        $("#registerForm").submit(function (event) {
+          event.preventDefault();
+
+          var paymentStatus = $("#paymentStatus").val();
+
+          // Your existing AJAX code...
+
+          if (paymentStatus === "yes") {
+            // Additional handling for paid users
+            // For example, show a message or perform additional actions
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
