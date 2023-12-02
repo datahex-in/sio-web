@@ -9,7 +9,6 @@
   </head>
 
   <body id="bg-color-purple">
-    <div class="updates-section" id="bg-color-purple">
       <div class="page_backarrow">
         <a href="/"
           ><i
@@ -323,25 +322,40 @@
         </div>
       </div>
 <!-- gallery -->
-      <div class="container" id="Gallery-section" style="display: none">
-        <div class="gallery-section">
-          <div class="container" style="margin-top: 50px">
-            <div class="gallery">
-              <div class="column">
-                <% galleryData.forEach(gallery=> { %>
-                <figure>
-                  <img
-                    src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ gallery.image}` %>"
-                  />
-                  <figcaption><%= gallery.title %></figcaption>
-                </figure>
-                <% }); %>
-              </div>
+<div class="container" id="Gallery-section" style="display: none">
+  <div class="gallery-section">
+    <div class="container" style="margin-top: 50px">
+      <div class="gallery">
+        <div class="gallery_column_items">
+          <% galleryData.forEach((gallery, index) => { %>
+            <div class="gallery_item" >
+              <img
+                src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${gallery.image}` %>"
+                class="gallery_img"
+                loading="lazy"
+                alt="<%= gallery.title %>"
+                data-index="<%= index %>"
+              />
+              <h5 class="gallery_title">
+                <%= gallery.title %>
+              </h5>
             </div>
-          </div>
+           
+          <% }); %>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="imageModal">
+    <span class="close" id="closeModal">&times;</span>
+    <img class="modal-content" id="modalImage" loading="lazy" alt="">
+  </div>
+</div>
+
+
+    
     <div class="footer_hide_mobile">
       <!-- ========== Start footer ========== -->
       <%-include("mainFooter.ejs")%>
