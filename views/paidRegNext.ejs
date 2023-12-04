@@ -253,10 +253,11 @@
               $("#loader").hide();
               // Remove blur effect from the background
               $(".site-container").removeClass("blur-background");
-
+              window.location.href = "/"
             setTimeout(function () {
               $("#myModal").hide();
               // window.location.href = "/profile?" + response.userDataQueryString;
+              window.location.href = "/"
             }, 1500);
           },
           error: function (error) {
