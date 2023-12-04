@@ -267,66 +267,49 @@
     <script src="../assets/js/jquery.nice-select.min.js"></script>
     <!-- Main JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script
-      type="text/javascript"
-      src="node_modules/slick-carousel/slick/slick.min.js"
-    ></script>
+    <script src="node_modules/slick-carousel/slick/slick.min.js"></script>
     <script src="../assets/js/main.js"></script>
 
     <script>
       $(document).ready(function () {
         $("#registerForm").submit(function (event) {
-          event.preventDefault(); // Prevent the default form submission
+          event.preventDefault();
 
-          // Make an AJAX request to submit the form data
+          // Your AJAX code here
           $.ajax({
             type: "POST",
             url: "/nextpage", // Replace with the actual URL where your form is submitted
             data: $(this).serialize(),
             success: function (response) {
               $("#modalMessage").text(
-                "Thankyou!!! Your response submitted successfully"
+                "Thank you! Your response submitted successfully"
               );
-              // Show the modal
               $("#myModal").show();
 
-              // Automatically hide the modal after 3 seconds
               setTimeout(function () {
                 closeModal();
               }, 3000);
 
-              // Clear the form fields
               $("#registerForm")[0].reset();
 
-              // Automatically hide the success message after 3 seconds
               setTimeout(function () {
                 $("#myModal").hide();
-                // window.location.href =
-                //   "/profile?" + response.userDataQueryString;
+                // window.location.href = "/profile?" + response.userDataQueryString;
               }, 1500);
             },
             error: function (error) {
               $("#modalMessage").text(error.responseText);
-              // Show the modal
               $("#myModal").show();
 
-              // Automatically hide the error message after 3 seconds
               setTimeout(function () {
                 $("#myModal").hide();
               }, 3000);
             },
           });
-          function closeModal() {
-            $("#myModal").hide();
-          }
         });
-      });
-    </script>
-    <script>
-      $(document).ready(function () {
+
         $("#paymentStatus").change(function () {
           var selectedValue = $(this).val();
-
           if (selectedValue === "yes") {
             $("#transactionDetails").show();
           } else {
@@ -334,22 +317,6 @@
           }
         });
 
-        $("#registerForm").submit(function (event) {
-          event.preventDefault();
-
-          var paymentStatus = $("#paymentStatus").val();
-
-          // Your existing AJAX code...
-
-          if (paymentStatus === "yes") {
-            // Additional handling for paid users
-            // For example, show a message or perform additional actions
-          }
-        });
-      });
-    </script>
-    <script>
-      $(document).ready(function () {
         // Function to toggle label and placeholder text based on profession value
         function toggleInstituteText(profession) {
           if (profession === "Student" || profession === "Research Scholar") {
@@ -371,6 +338,10 @@
           var selectedProfession = $(this).val();
           toggleInstituteText(selectedProfession);
         });
+
+        function closeModal() {
+          $("#myModal").hide();
+        }
       });
     </script>
   </body>
