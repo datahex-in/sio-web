@@ -100,12 +100,14 @@ router.post(
           // Update the QR image URL in your database if needed
           newRegistration.qrImageUrl = qrImageUrl;
           await newRegistration.save();
+          const userId = newRegistration._id
+          const userMobile = newRegistration.mobileNumber
 
           // Include the QR image URL in the response JSON
           const userDataQueryString = `name=${req.body.name}&email=${req.body.email}&mobileNumber=${req.body.contact}&age=${req.body.age}&gender=${req.body.gender}&profession=${req.body.profession}&district=${req.body.location}&events=${eventId}&qrImageUrl=${qrImageUrl}`;
 
           // Send the query string as a JSON response
-          res.json({ userDataQueryString });
+          res.json({ userDataQueryString, userId, userMobile });
         });
       } else {
         const newRegistration = new PaidRegistration({
@@ -166,12 +168,14 @@ router.post(
           // Update the QR image URL in your database if needed
           newRegistration.qrImageUrl = qrImageUrl;
           await newRegistration.save();
+          const userId = newRegistration._id
+          const userMobile = newRegistration.mobileNumber
 
           // Include the QR image URL in the response JSON
           const userDataQueryString = `name=${req.body.name}&email=${req.body.email}&mobileNumber=${req.body.contact}&age=${req.body.age}&gender=${req.body.gender}&profession=${req.body.profession}&district=${req.body.location}&events=${eventId}&qrImageUrl=${qrImageUrl}`;
 
           // Send the query string as a JSON response
-          res.json({ userDataQueryString });
+          res.json({ userDataQueryString, userId, userMobile });
         });
       }
     } catch (error) {
