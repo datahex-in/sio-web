@@ -86,6 +86,7 @@ var Deconquista = require("./routes/ejsRoutes/deconquistaEjs");
 var Calender = require("./routes/ejsRoutes/calenderEjs");
 var Register = require("./routes/ejsRoutes/registerEjs");
 var Paidreg= require('./routes/ejsRoutes/paidregEjs.js')
+var PaidRegNext= require('./routes/ejsRoutes/paidRegNext.js')
 var eventSingle = require("./routes/ejsRoutes/event_single");
 var Updates = require("./routes/ejsRoutes/updatesEjs");
 var Profile = require("./routes/ejsRoutes/profileEjs");
@@ -149,6 +150,7 @@ app.use("/programe", Programe);
 app.use("/deconquista", Deconquista);
 app.use("/calender", Calender);
 app.use("/paidreg",Paidreg)
+app.use("/nextpage",PaidRegNext)
 app.use("/register", Register);
 app.use("/updates", Updates);
 app.use("/profile", Profile);

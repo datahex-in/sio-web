@@ -117,9 +117,7 @@
         <div class="updates-title">
           <h1>Registration</h1>
         </div>
-        <!-- <div class="register_payment">
-          <img src="/assets/images/GooglePay_QR.png" alt="" />
-        </div> -->
+
       </div>
       <div>
         <div class="register-table">
@@ -133,7 +131,8 @@
                     style="display: none"
                   ></div>
 
-                  <form action="/paidreg" method="post" id="registerForm">
+                  <form action="/nextpage" method="post" id="registerForm">
+                    <input type="hidden" id="userId" name="userId" value="<%= userId %>">
                     <div class="row">
                       <div id="myModal" class="pay-modal">
                         <div class="pay-modal-content">
@@ -144,177 +143,48 @@
                         </div>
                       </div>
 
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <input
-                            type="text"
-                            id="eventId"
-                            hidden
-                            name="eventId"
-                            class="form-control"
-                            value="<%= eventId %>"
-                          />
-                          <label for="name">Name</label>
-                          <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            class="form-control"
-                            aria-required="true"
-                            required
-                            value="<%= preFilledName %>"
-                          />
+                      <div class="container">
+                        <div
+                          class="updates-title"
+                          style="text-align: center;  !important;"
+                        >
+                          <h3 style="color: white">Payment Details</h3>
                         </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="gender">Gender</label>
-                          <select
-                            id="gender"
-                            name="gender"
-                            class="form-control"
-                            required
-                          >
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="day">Age</label>
-                          <input
-                            type="number"
-                            id="age"
-                            name="age"
-                            class="form-control"
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="contact">Contact Number</label>
-                          <input
-                            type="number"
-                            id="contact"
-                            name="contact"
-                            class="form-control"
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="email">Email ID</label>
-                          <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            class="form-control"
-                            required
-                            value="<%= preFilledEmail %>"
-                          />
-                          <p id="emailError" class="text-danger"></p>
-                        </div>
-                      </div>
 
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="day">Place</label>
-                          <input
-                            type="text"
-                            id="place"
-                            name="place"
-                            class="form-control"
-                            required
-                          />
+                        <div class="register_payment">
+                          <img src="/assets/images/GooglePay_QR.png" alt="" />
+                        </div>
+                        <div class="updates-title">
+                          <h6 style="color: white !important">
+                            The registration fee for Deconquista International
+                            academic conference is Rs.500/-. The registration
+                            fee is to be paid online through g pay number
+                            7558838799 or UPI id Ibnshameer01@oksbi. Once the
+                            payment is done, please ensure that the screenshot
+                            is shared through WhatsApp
+                            <a
+                              href="https://wa.me/+918921193651"
+                              style="color: white !important"
+                              >https://wa.me/+918921193651</a
+                            >
+                          </h6>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label for="location">District</label>
+                          <label for="paymentStatus">Payment Status</label>
                           <select
-                            id="location"
-                            name="location"
-                            class="form-control"
-                            required
-                          >
-                            <option value="" disabled selected>
-                              Select your district
-                            </option>
-                            <option value="Alappuzha">Alappuzha</option>
-                            <option value="Ernakulam">Ernakulam</option>
-                            <option value="Ernakulam">Kochi City</option>
-                            <option value="Idukki">Idukki</option>
-                            <option value="Kannur">Kannur</option>
-                            <option value="Kasaragod">Kasaragod</option>
-                            <option value="Kollam">Kollam</option>
-                            <option value="Kottayam">Kottayam</option>
-                            <option value="Kozhikode">Kozhikode</option>
-                            <option value="Malappuram">Malappuram</option>
-                            <option value="Palakkad">Palakkad</option>
-                            <option value="Pathanamthitta">
-                              Pathanamthitta
-                            </option>
-                            <option value="Thiruvananthapuram">
-                              Thiruvananthapuram
-                            </option>
-                            <option value="Thrissur">Thrissur</option>
-                            <option value="Wayanad">Wayanad</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="professions">profession</label>
-                          <select
-                            id="professions"
-                            name="profession"
+                            id="paymentStatus"
+                            name="paymentStatus"
                             class="form-control scrollable-dropdown"
                             required
                           >
-                            <option value="" disabled selected>
-                              Select your profession
+                            <option value="Have You Paid?" disabled selected>
+                              Have You Paid?
                             </option>
-                            <option value="Student">Student</option>
-                            <option value="Research Scholar">
-                              Research scholar
-                            </option>
-                            <option value="other">Other</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
                           </select>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="institute" id="institute-label"
-                            >Institute</label
-                          >
-                          <input
-                            type="text"
-                            id="institute"
-                            name="institute"
-                            class="form-control"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div
-                        class="col-md-6"
-                        id="course-field"
-                        style="display: none"
-                      >
-                        <div class="form-group">
-                          <label for="course">Course</label>
-                          <input
-                            type="text"
-                            id="course"
-                            name="course"
-                            class="form-control"
-                            required
-                          />
                         </div>
                       </div>
 
@@ -322,7 +192,19 @@
                         class="row"
                         id="transactionDetails"
                         style="display: none"
-                      ></div>
+                      >
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="transactionId">Transaction Id</label>
+                            <input
+                              type="text"
+                              id="transactionId"
+                              name="transactionId"
+                              class="form-control"
+                            />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div
                       class="row"
@@ -338,7 +220,7 @@
                           class="btn event-primary"
                           style="border-radius: 20px"
                         >
-                          Next
+                          Register
                         </button>
                       </div>
                     </div>
@@ -398,14 +280,14 @@
           // Make an AJAX request to submit the form data
           $.ajax({
             type: "POST",
-            url: "/paidreg", // Replace with the actual URL where your form is submitted
+            url: "/nextpage", // Replace with the actual URL where your form is submitted
             data: $(this).serialize(),
             success: function (response) {
-              // $("#modalMessage").text(
-              //   "Thankyou!!! Your response submitted successfully"
-              // );
-              // // Show the modal
-              // $("#myModal").show();
+              $("#modalMessage").text(
+                "Thankyou!!! Your response submitted successfully"
+              );
+              // Show the modal
+              $("#myModal").show();
 
               // Automatically hide the modal after 3 seconds
               setTimeout(function () {
@@ -417,21 +299,15 @@
 
               // Automatically hide the success message after 3 seconds
               setTimeout(function () {
-                // $("#myModal").hide();
-                window.location.href =
-                  "/nextpage?userId=" + response.userId;
+                $("#myModal").hide();
+                // window.location.href =
+                //   "/profile?" + response.userDataQueryString;
               }, 1500);
             },
             error: function (error) {
               $("#modalMessage").text(error.responseText);
               // Show the modal
               $("#myModal").show();
-              // Show an error message in the alert
-              // $("#alert-message")
-              //   .removeClass("alert-success")
-              //   .addClass("alert-danger")
-              //   .text(error.responseText)
-              //   .slideDown();
 
               // Automatically hide the error message after 3 seconds
               setTimeout(function () {
