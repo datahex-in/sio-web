@@ -117,7 +117,6 @@
         <div class="updates-title">
           <h1>Registration</h1>
         </div>
-
       </div>
       <div>
         <div class="register-table">
@@ -132,7 +131,12 @@
                   ></div>
 
                   <form action="/nextpage" method="post" id="registerForm">
-                    <input type="hidden" id="userId" name="userId" value="<%= userId %>">
+                    <input
+                      type="hidden"
+                      id="userId"
+                      name="userId"
+                      value="<%= userId %>"
+                    />
                     <div class="row">
                       <div id="myModal" class="pay-modal">
                         <div class="pay-modal-content">
@@ -144,10 +148,7 @@
                       </div>
 
                       <div class="container">
-                        <div
-                          class="updates-title"
-                          style="text-align: center;  !important;"
-                        >
+                        <div class="updates-title" style="text-align: center" ;>
                           <h3 style="color: white">Payment Details</h3>
                         </div>
 
