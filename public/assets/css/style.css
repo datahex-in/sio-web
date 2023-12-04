@@ -1839,7 +1839,7 @@ label {
 }
 
 .meeta-header-3 .header-middle.sticky .header-wrap .header-navigation {
-  margin-left: auto;
+  margin-left: inherit;
 }
 
 .logo-white img {
@@ -13007,12 +13007,12 @@ li a {
   }
 
   .delegate-table-section {
-    padding: 15px !important;
+    padding: 0px !important;
   }
 }
 
 .delegate-table-section {
-  padding: 100px;
+  padding: 0px;
 }
 
 .delegate-table-section h1 {
@@ -13848,7 +13848,7 @@ html body .hide {
     overflow: hidden;
   }
 }
-.about-sio{
+.about-sio {
   margin-top: 50px;
 }
 .about-sio-title {
@@ -14770,11 +14770,14 @@ html body .hide {
 .updates-section {
   margin-top: -100px;
 }
+.updates-title {
+  margin: 30px 150px;
+}
 .updates-title h1 {
   text-align: center;
   color: #ff4a8c;
   font-size: 40px;
-  padding-top: 30px;
+  padding-top: 8px;
   font-weight: 400;
   padding-bottom: 20px;
   font-family: var(--font-fabulous);
@@ -14845,6 +14848,9 @@ html body .hide {
   }
   .updates-title h1 {
     font-size: 30px;
+  }
+  .updates-title {
+    margin: 20px 10px;
   }
 }
 /* event-section------ */
@@ -15836,10 +15842,11 @@ main h1 {
 
 .form-group input[type="text"] {
   width: 100%;
-  padding: 8px;
-  border-radius: 10px;
+  padding: 6px;
+  border-radius: 4px;
   border: 0.5px solid #cdb3ff;
 }
+
 .form-group input ::placeholder {
   color: #fff !important;
 }
@@ -15921,6 +15928,19 @@ span {
   height: 150px;
 }
 @media (max-width: 768px) {
+  .form-group label {
+    display: block;
+    font-weight: 300;
+    color: #a758c2;
+    font-family: var(--font-Inter);
+    /* text-align: center; */
+  }
+  .form-group input[type="text"] {
+    width: 100%;
+    padding: 7px;
+    border-radius: 4px;
+    border: 0.5px solid #cdb3ff;
+  }
   .card_quotes {
     margin: auto;
     width: 100%;
