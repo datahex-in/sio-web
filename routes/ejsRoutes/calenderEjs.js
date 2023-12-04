@@ -68,7 +68,6 @@ router.get("/", async function (req, res, next) {
 
     // Get month-wise data with duplicated entries
     const monthWiseData = await getMonthWiseDataWithDuplicates();
-    console.log("monthWiseData :- ",monthWiseData);
 
     res.render("calender", {
       eventData,

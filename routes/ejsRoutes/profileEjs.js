@@ -8,8 +8,6 @@ const { default: mongoose } = require("mongoose");
 router.get("/", async function (req, res, next) {
   try {
     const userData = req.query;
-    console.log(userData);
-
     // Assuming userData.events is either an array of event IDs or a comma-separated string
     let eventIds = [];
 

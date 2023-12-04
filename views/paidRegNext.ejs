@@ -54,18 +54,40 @@
   <!-- ========== Start header ========== -->
   <%-include("mainHeader.ejs")%>
     <!-- ========== End header ========== -->
-</head>
+    <style>
+      .blur-background {
+        filter: blur(5px); /* Adjust the blur amount as needed */
+        transition: filter 0.3s ease; /* Add a smooth transition effect */
+      }
 
+      .loader {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -20px;
+        margin-left: -20px;
+        display: none; /* Hide initially */
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+</head>
+<div class="loader" id="loader"></div>
 <body id="bg-color-purple">
-  <div class="main-wrapper">
-    <!-- Preloader start -->
-    <!-- <div id="preloader">
-      <div class="preloader">
-        <span></span>
-        <span></span>
-      </div>
-    </div> -->
-    <!-- Preloader End -->
+  <div class="main-wrapper site-container">
 
     <div class="page_backarrow">
       <a href="/"><i><svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 19 20" fill="none">
@@ -206,6 +228,10 @@
       $("#registerForm").submit(function (event) {
         event.preventDefault();
 
+                  // Show loader when form is submitted
+                  $(".site-container").addClass("blur-background");
+          $("#loader").show();
+
         // Your AJAX code here
         $.ajax({
           type: "POST",
@@ -223,12 +249,21 @@
 
             $("#registerForm")[0].reset();
 
+              // Hide loader after the request is complete
+              $("#loader").hide();
+              // Remove blur effect from the background
+              $(".site-container").removeClass("blur-background");
+
             setTimeout(function () {
               $("#myModal").hide();
               // window.location.href = "/profile?" + response.userDataQueryString;
             }, 1500);
           },
           error: function (error) {
+                          // Hide loader after the request is complete
+                          $("#loader").hide();
+              // Remove blur effect from the background
+              $(".site-container").removeClass("blur-background");
             $("#modalMessage").text(error.responseText);
             $("#myModal").show();
 
