@@ -8,8 +8,6 @@ router.get("/", async function (req, res, next) {
   const speakerData = await Speaker.find();
   const deconquistaData = await Deconquista.find();
   const leadersNoteData = await LeadersNote.find();
-  console.log(speakerData);
-  console.log(leadersNoteData);
   res.render("deconquista", { speakerData, deconquistaData, leadersNoteData });
 });
 

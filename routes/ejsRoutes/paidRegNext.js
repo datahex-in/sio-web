@@ -6,12 +6,7 @@ const nodemailer = require("nodemailer");
 
 router.get("/", async function (req, res, next) {
   const userId = req.query.userId;
-  console.log({ userId });
-  const preFilledName = req.query.name;
-  const eventId = req.cookies.eventId;
-  const userData = await PaidRegistration.findById(userId);
-  console.log("userId  :", userId);
-  res.render("paidRegNext", { userId, preFilledName, eventId });
+  res.render("paidRegNext", { userId });
 });
 
 router.post("/", async function (req, res, next) {
@@ -154,47 +149,7 @@ function sendConfirmationEmail(existingUser) {
   });
 }
 
-//   function sendWhatsAppMessage(existingUser) {
-//     console.log("Existing User", existingUser);
-//     let mobileNumber = String(existingUser.mobileNumber); // Convert to string
-
-//     if (!mobileNumber.startsWith("91")) {
-//       mobileNumber = "91" + mobileNumber;
-//     }
-
-//     const whatsappMessage = `Dear ${existingUser.name},
-
-//     Congratulations! We are delighted to inform you that your registration for the International Deconquista International Academic Conference has been successfully processed.
-//     Your commitment to participating in this academic venture is greatly appreciated. We look forward to your valuable contributions and engaging discussions during the conference.
-//     Further details regarding the schedule, speakers, and any additional information will be shared with you closer to the event date.
-//     If you have any questions or require assistance, feel free to reach out to this phone number or deconquista.sio@gmail.com.
-//     Once again, congratulations on your successful registration, and we anticipate a fruitful exchange of ideas at the Deconquista International Academic Conference.
-
-//     Best regards,
-//     Director,
-//     Deconquista International Academic Conference`;
-
-//     const whatsappApiUrl = process.env.WHATSAPP_API_URL;
-//     const whatsappData = {
-//       number: mobileNumber,
-//       type: "text",
-//       message: whatsappMessage,
-//       instance_id: process.env.WHATSAPP_ACCOUNT,
-//       access_token: process.env.WHTSP_ACCESS_TOKEN,
-//     };
-
-//     axios
-//       .post(whatsappApiUrl, whatsappData)
-//       .then(function (response) {
-//         console.log("WhatsApp message sent successfully:", response.data);
-//       })
-//       .catch(function (error) {
-//         console.error("Error sending WhatsApp message:", error);
-//       });
-//   }
-
 async function sendWhatsAppMessage(existingUser, req) {
-  console.log("Existing User", existingUser);
 
   // Ensure that mobileNumber is a string
   let phoneNumber = String(existingUser.mobileNumber);

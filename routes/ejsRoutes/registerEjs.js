@@ -30,7 +30,6 @@ router.post(
   getS3Middleware(["qrImageUrl", "transactionImage"]),
   async function (req, res, next) {
     try {
-      console.log(req.body);
 
       // Check if a user with the same email already exists
       const existingUser = await Registration.findOne({
@@ -93,7 +92,6 @@ router.post(
         uploadQRImageToS3(req, res, async () => {
           // After the upload is complete, you can access the S3 URL
           const qrImageUrl = req.body.qrImageUrl;
-          console.log("Qr Url :-", qrImageUrl);
 
           // Update the QR image URL in your database if needed
           newRegistration.qrImageUrl = qrImageUrl;
@@ -157,7 +155,6 @@ router.post(
         uploadQRImageToS3(req, res, async () => {
           // After the upload is complete, you can access the S3 URL
           const qrImageUrl = req.body.qrImageUrl;
-          console.log("Qr Url :-", qrImageUrl);
 
           // Update the QR image URL in your database if needed
           newRegistration.qrImageUrl = qrImageUrl;
@@ -171,8 +168,6 @@ router.post(
         });
       }
     } catch (error) {
-      console.error(error);
-      console.log("error :");
       console.log(error);
       return res.status(500).json({ error: "Internal server error" });
     }

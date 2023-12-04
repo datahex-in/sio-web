@@ -84,19 +84,40 @@
     <!-- ========== Start header ========== -->
     <%-include("mainHeader.ejs")%>
     <!-- ========== End header ========== -->
+    <style>
+      .blur-background {
+        filter: blur(5px); /* Adjust the blur amount as needed */
+        transition: filter 0.3s ease; /* Add a smooth transition effect */
+      }
+
+      .loader {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -20px;
+        margin-left: -20px;
+        display: none; /* Hide initially */
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
-
+  <div class="loader" id="loader"></div>
   <body id="bg-color-purple">
-    <div class="main-wrapper">
-      <!-- Preloader start -->
-      <!-- <div id="preloader">
-      <div class="preloader">
-        <span></span>
-        <span></span>
-      </div>
-    </div> -->
-      <!-- Preloader End -->
-
+    <div class="main-wrapper site-container">
       <div class="page_backarrow">
         <a href="/"
           ><i
@@ -395,18 +416,17 @@
         $("#registerForm").submit(function (event) {
           event.preventDefault(); // Prevent the default form submission
 
+          // Show loader when form is submitted
+          $(".site-container").addClass("blur-background");
+          $("#loader").show();
+          // Add blur effect to the background
+
           // Make an AJAX request to submit the form data
           $.ajax({
             type: "POST",
             url: "/paidreg", // Replace with the actual URL where your form is submitted
             data: $(this).serialize(),
             success: function (response) {
-              // $("#modalMessage").text(
-              //   "Thankyou!!! Your response submitted successfully"
-              // );
-              // // Show the modal
-              // $("#myModal").show();
-
               // Automatically hide the modal after 3 seconds
               setTimeout(function () {
                 closeModal();
@@ -415,36 +435,34 @@
               // Clear the form fields
               $("#registerForm")[0].reset();
 
-              // Automatically hide the success message after 3 seconds
-              setTimeout(function () {
-                // $("#myModal").hide();
-                window.location.href =
-                  "/nextpage?userId=" + response.userId;
-              }, 1500);
+              window.location.href = "/nextpage?userId=" + response.userId;
             },
             error: function (error) {
+              // Show an error message in the modal
               $("#modalMessage").text(error.responseText);
               // Show the modal
               $("#myModal").show();
-              // Show an error message in the alert
-              // $("#alert-message")
-              //   .removeClass("alert-success")
-              //   .addClass("alert-danger")
-              //   .text(error.responseText)
-              //   .slideDown();
 
-              // Automatically hide the error message after 3 seconds
+              // Automatically hide the modal after 3 seconds
               setTimeout(function () {
-                $("#myModal").hide();
+                closeModal();
               }, 3000);
             },
+            complete: function () {
+              // Hide loader after the request is complete
+              $("#loader").hide();
+              // Remove blur effect from the background
+              $(".site-container").removeClass("blur-background");
+            },
           });
+
           function closeModal() {
             $("#myModal").hide();
           }
         });
       });
     </script>
+
     <script>
       $(document).ready(function () {
         $("#paymentStatus").change(function () {
