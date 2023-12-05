@@ -124,6 +124,7 @@ const globalSpeakers = require("./routes/globalSpeakers.js");
 const material = require("./routes/material");
 const eventRegUser = require("./routes/eventRegUser.js");
 const registration = require("./routes/registration");
+const paidReg = require("./routes/paidReg.js");
 const testimonial = require("./routes/testimonial");
 const event = require("./routes/event");
 const eventUser = require("./routes/eventUser");
@@ -192,6 +193,7 @@ app.use("/api/v1/event", event);
 app.use("/api/v1/event-user", eventUser);
 app.use("/api/v1/leaders-note", leadersNote);
 app.use("/api/v1/approved", approved);
+app.use("/api/v1/paid-reg", paidReg);
 
 // ---------------------------------------------------- Google Auth Start ------------------------------------------------ \\
 

@@ -156,8 +156,19 @@
                         </div>
                         <div class="col-md-6" id="transactionDetails" style="display: none;">
                           <div class="form-group">
-                            <label for="paymentStatus">Transaction Id</label>
-                            <input type="text" id="transactionId" name="transactionId" class="form-control" />
+
+                            <label for="paymentScreenshotStatus">Payment Screenshot Status</label>
+                            <select id="paymentScreenshotStatus" name="paymentScreenshotStatus" class="form-control scrollable-dropdown"
+                              required>
+                              <option value="Payment Screenshot Status" disabled selected>
+                                Payment Screenshot Status
+                              </option>
+                              <option value="Done">Done</option>
+                              <option value="Not Done">Not Done</option>
+                            </select>
+
+                            <!-- <label for="paymentStatus">Transaction Id</label>
+                            <input type="text" id="transactionId" name="transactionId" class="form-control" /> -->
                           </div>
                         </div>
                       </div>

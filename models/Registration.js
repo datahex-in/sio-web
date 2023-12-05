@@ -17,6 +17,9 @@ const RegistrationSchema = new mongoose.Schema(
     mobileNumber: {
       type: Number,
     },
+    whatsapp: {
+      type: Number,
+    },
     email: {
       type: String,
     },

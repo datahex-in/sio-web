@@ -12,7 +12,7 @@ router.get("/", async function (req, res, next) {
 router.post("/", async function (req, res, next) {
   try {
     const userId = req.body.userId;
-    const { paymentStatus, transactionId } = req.body;
+    const { paymentStatus, paymentScreenshotStatus } = req.body;
 
     // Construct an object with the fields you want to update
     const updateFields = {};
@@ -21,8 +21,8 @@ router.post("/", async function (req, res, next) {
       updateFields.paymentStatus = paymentStatus;
     }
 
-    if (transactionId) {
-      updateFields.transactionId = transactionId;
+    if (paymentScreenshotStatus) {
+      updateFields.paymentScreenshotStatus = paymentScreenshotStatus;
     }
 
     // Use findByIdAndUpdate to update the user document with specific fields
@@ -37,9 +37,10 @@ router.post("/", async function (req, res, next) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Send the updated user data in the response
-    sendWhatsAppMessage(updatedUser);
-    //   sendConfirmationEmail(updatedUser)
+    if (updatedUser.paymentStatus === "no") {
+      // Send the updated user data in the response
+      sendWhatsAppMessage(updatedUser);
+    }
     res.json({ updatedUser });
   } catch (error) {
     console.log(error);
@@ -47,127 +48,23 @@ router.post("/", async function (req, res, next) {
   }
 });
 
-function sendConfirmationEmail(existingUser) {
-  console.log("Existing User", existingUser);
-  const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: process.env.SMTP_PORT,
-    secure: true,
-    auth: {
-      user: process.env.SMTP_USERNAME,
-      pass: process.env.SMTP_PASSWORD,
-    },
-  });
-
-  const mailOptions = {
-    from: process.env.SMTP_FROM_EMAIL,
-    to: existingUser.email,
-    subject: `Registration Confirmation for ${existingUser.name} at Malabar Literature Festival 2023`,
-    html: `<!DOCTYPE html>
-      <html>
-      <head>
-        <style>
-          .container {
-              color:white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            background-color: #05102c;
-            padding: 0px;
-            border: 2px solid #333;
-            width: 400px;
-            margin: 0 auto;
-          }
-          .img{
-              background:white;
-              width:100%;
-              padding:20px;
-              margin-top:5px;
-          }
-          .header {
-            font-size: 24px;
-            font-weight: bold;
-                text-decoration-line: underline;
-          text-decoration-style: wavy;
-          text-decoration-skip-ink: none;
-          text-underline-offset: 15px;
-           padding:20px;
-          }
-          .content {
-            font-size: 16px;
-            padding:20px;
-          }
-          .contact {
-            margin-top: 0px;
-             padding:20px;
-          }
-          .banner {
-            width: 200px;
-            max-height: 150px;
-            object-fit: cover;
-          }
-          a{
-              color:white;
-          }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-        <div class="content">
-        <div class="header">
-          <p>Dear ${existingUser.name},</p>
-        </div>
-            <p>We are thrilled to inform you that your registration for the Malabar Literature Festival 2023 has been successfully confirmed! We can't wait to welcome you to this exciting literary event, which will take place at the beautiful Calicut Beach from November 30th to December 3rd.</p>
-      
-            <p>Your participation in the Malabar Literature Festival will grant you access to a diverse range of literary discussions, author sessions, workshops, and cultural performances. We have a spectacular lineup of renowned authors, poets, and speakers who will engage in thought-provoking conversations, and we are confident that you will have an enriching and enjoyable experience.</p>
-      
-            <p>Please keep an eye on your email for further updates, including the festival schedule, information about speakers and sessions, and any last-minute changes. We recommend that you arrive at the venue well in advance to ensure you get the best experience possible.</p>
-      
-            <p>If you have any questions or require additional information, please do not hesitate to contact our support team at <a href="mailto:info@malabarliteraturefestival.com">info@malabarliteraturefestival.com</a> or call us at <a href="tel:+919539327252">+91 9539327252</a>.</p>
-      
-            <p>We look forward to seeing you at the Malabar Literature Festival 2023 and sharing in the celebration of literature and culture.</p>
-      
-            <p>Thank you for your participation, and best wishes for an inspiring and memorable festival!</p>
-            <div class="contact">
-              <p>Warm regards,<br>
-              Malabar Literature Festival Organizing Committee<br>
-              Help Desk: +91 9539327252</p>
-            </div>
-          </div>
-        </div>
-      </body>
-      </html>`,
-  };
-
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.error("Error sending email:", error);
-    } else {
-      console.log("Email sent successfully:", info.response);
-    }
-  });
-}
-
 async function sendWhatsAppMessage(existingUser, req) {
-
   // Ensure that mobileNumber is a string
-  let phoneNumber = String(existingUser.mobileNumber);
+  let phoneNumber = String(existingUser.whatsapp);
 
   if (!phoneNumber.startsWith("91")) {
     phoneNumber = "91" + phoneNumber;
   }
 
-  const WhatsappMessage = `Dear ${existingUser.name},
-  Congratulations! We are delighted to inform you that your registration for the International Deconquista International Academic Conference has been successfully processed.
-  Your commitment to participating in this academic venture is greatly appreciated. We look forward to your valuable contributions and engaging discussions during the conference.
-  Further details regarding the schedule, speakers, and any additional information will be shared with you closer to the event date.
-  If you have any questions or require assistance, feel free to reach out to this phone number or deconquista.sio@gmail.com.
-  Once again, congratulations on your successful registration, and we anticipate a fruitful exchange of ideas at the Deconquista International Academic Conference.
-  Best regards,
-  Director,
-  Deconquista International Academic Conference`;
-  
+const WhatsappMessage = `Dear ${existingUser.name},
+Congratulations on completing the registration form for the Deconquista International Academic Conference on 22nd-24th December in Kozhikode! Please note that your registration will be fulfilled only upon successful payment. Kindly proceed with payment using the details provided to secure your spot. 
+If you have any questions or need assistance, please don't hesitate to contact us either by phone to this number or through deconquista.sio@gmail.com.
+Thank you for your participation!
+ 
+Best regards
+Director
+Deconquista international academic conference`;
+
   const data = new FormData();
   data.append("type", "text");
   data.append("message", WhatsappMessage);

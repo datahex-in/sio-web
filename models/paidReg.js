@@ -17,6 +17,9 @@ const paidRegistrationSchema = new mongoose.Schema(
     mobileNumber: {
       type: Number,
     },
+    whatsapp: {
+      type: Number,
+    },
     email: {
       type: String,
     },
@@ -73,6 +76,9 @@ const paidRegistrationSchema = new mongoose.Schema(
       type: String,
     },
     paymentStatus: {
+      type: String,
+    },
+    paymentScreenshotStatus: {
       type: String,
     },
     approved: {
