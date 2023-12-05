@@ -15,6 +15,18 @@ router.post("/", async function (req, res, next) {
     const userId = req.body.userId;
     const { paymentStatus, paymentScreenshotStatus } = req.body;
 
+    // Check if the user already has the desired paymentStatus
+    const user = await PaidRegistration.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // If the user already has the desired paymentStatus, return without updating
+    if (user.paymentStatus === paymentStatus) {
+      return res.status(400).json({ error: `User already has paymentStatus "${paymentStatus}"` });
+    }
+
     // Construct an object with the fields you want to update
     const updateFields = {};
 
@@ -42,12 +54,14 @@ router.post("/", async function (req, res, next) {
       // Send the updated user data in the response
       sendWhatsAppMessage(updatedUser);
     }
+
     res.json({ updatedUser });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
 
 async function sendWhatsAppMessage(existingUser, req) {
   // Ensure that mobileNumber is a string

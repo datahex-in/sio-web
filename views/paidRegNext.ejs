@@ -280,13 +280,13 @@
             $(".site-container").removeClass("blur-background");
 
             // Set the default success message
-            var successMessage = "Thank you! Your response submitted successfully ";
+            var successMessage = "Thank you! Your response submitted successfully";
 
             // Check the selected payment status
-            var paymentStatus = $("#paymentStatus").val();
-            if (paymentStatus === "no") {
-              successMessage = "Please make the payment first.";
-            }
+            // var paymentStatus = $("#paymentStatus").val();
+            // if (paymentStatus === "no") {
+            //   successMessage = "Please make the payment first.";
+            // }
 
             // Display success message in modal
             $("#modalMessage").text(successMessage);
@@ -298,7 +298,7 @@
             // Redirect to home page after 2.5 seconds
             setTimeout(function () {
               window.location.href = "/";
-            }, 2500);
+            }, 3000);
           },
           error: function (error) {
             // Hide loader after the request is complete
