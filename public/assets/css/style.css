@@ -15741,12 +15741,12 @@ main h1 {
   .modal-content {
     border-radius: 20px;
     position: absolute;
-    top: 53%;
+    top: 310px;
     left: 50%;
-    transform: translate(-50%, 64%);
+    transform: translate(-50%, 10%);
     width: 90%;
     max-width: 600px;
-    height: 30vh;
+    height: auto;
     background-color: #fff;
     backdrop-filter: blur(10px);
     z-index: 1;
@@ -16373,8 +16373,8 @@ span {
   color: #6b6060;
   padding: 4px 16px;
   position: fixed;
-  top: 12%;
-  right: 12px;
+  top: 18%;
+  right: 3px;
   transform: translate(0, -50%);
   background-color: transparent;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
