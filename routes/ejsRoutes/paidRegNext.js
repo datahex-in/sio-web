@@ -3,6 +3,7 @@ const router = express.Router();
 const PaidRegistration = require("../../models/paidReg");
 const axios = require("axios");
 const nodemailer = require("nodemailer");
+const FormData = require("form-data");
 
 router.get("/", async function (req, res, next) {
   const userId = req.query.userId;
@@ -39,7 +40,7 @@ router.post("/", async function (req, res, next) {
 
     if (updatedUser.paymentStatus === "no") {
       // Send the updated user data in the response
-      // sendWhatsAppMessage(updatedUser);
+      sendWhatsAppMessage(updatedUser);
     }
     res.json({ updatedUser });
   } catch (error) {
