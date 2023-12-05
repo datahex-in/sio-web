@@ -134,7 +134,7 @@
                           <span style="color: #e59bff">7558838799</span>
                           or UPI id <span style="color: #e59bff">Ibnshameer01@oksbi</span>.
                           Once the payment is done, please ensure that the screenshot is shared through WhatsApp
-                          <a href="https://wa.me/+918921193651" style="color: rgb(25, 108, 192) !important"
+                          <a href="https://wa.me/+918921193651" style="color:rgb(65 146 103)  !important"
                             target="_blank">
                             https://wa.me/+918921193651
                           </a>
@@ -162,8 +162,8 @@
                           <div class="form-group">
 
                             <label for="paymentScreenshotStatus">Payment Screenshot Status</label>
-                            <select id="paymentScreenshotStatus" name="paymentScreenshotStatus" class="form-control scrollable-dropdown"
-                              required>
+                            <select id="paymentScreenshotStatus" name="paymentScreenshotStatus"
+                              class="form-control scrollable-dropdown" required>
                               <option value="Payment Screenshot Status" disabled selected>
                                 Payment Screenshot Status
                               </option>
@@ -183,7 +183,7 @@
                         margin-top: 20px;
                         margin-bottom: 30px;
                       ">
-                      <div class="col-12 d-flex justify-content-center">
+                      <div class="col-12 d-flex justify-content-center" style="padding-bottom: 13px;">
                         <button type="submit" class="btn event-primary" style="border-radius: 20px">
                           Register
                         </button>
@@ -214,8 +214,13 @@
       </div>
     </div>
   </div>
-
-
+  <script>
+    $(document).ready(function () {
+      $(".modal_close").on("click", function () {
+        $("#successModal").modal("hide");
+      });
+    });
+  </script>
   <div class="footer_hide_mobile">
     <!-- ========== Start footer ========== -->
     <%-include("mainFooter.ejs")%>
