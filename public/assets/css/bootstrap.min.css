@@ -6352,6 +6352,7 @@ fieldset:disabled .btn {
 
 .modal-backdrop.show {
   opacity: 0.5;
+  margin-top: 1000px;
 }
 
 .modal-header {
@@ -6360,9 +6361,10 @@ fieldset:disabled .btn {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1rem;
-  border-bottom: 1px solid #dee2e6;
+  /* border-bottom: 1px solid #dee2e6; */
   border-top-left-radius: calc(0.3rem - 1px);
   border-top-right-radius: calc(0.3rem - 1px);
+  padding: 23px 0px;
 }
 
 .modal-header .btn-close {
@@ -7479,6 +7481,19 @@ fieldset:disabled .btn {
 }
 
 @media (min-width: 768px) {
+  .modal_close {
+    border: none;
+    border-radius: 10px;
+    color: #6b6060;
+    padding: 4px 16px;
+    position: fixed;
+    top: 6%;
+    right: 12px;
+    transform: translate(0, -50%);
+    background-color: transparent;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  }
+
   .sticky-md-top {
     position: -webkit-sticky;
     position: sticky;

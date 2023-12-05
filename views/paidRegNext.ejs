@@ -56,8 +56,10 @@
     <!-- ========== End header ========== -->
     <style>
       .blur-background {
-        filter: blur(5px); /* Adjust the blur amount as needed */
-        transition: filter 0.3s ease; /* Add a smooth transition effect */
+        filter: blur(5px);
+        /* Adjust the blur amount as needed */
+        transition: filter 0.3s ease;
+        /* Add a smooth transition effect */
       }
 
       .loader {
@@ -73,13 +75,15 @@
         left: 50%;
         margin-top: -20px;
         margin-left: -20px;
-        display: none; /* Hide initially */
+        display: none;
+        /* Hide initially */
       }
 
       @keyframes spin {
         0% {
           transform: rotate(0deg);
         }
+
         100% {
           transform: rotate(360deg);
         }
@@ -140,7 +144,7 @@
                     </div>
 
                     <div class="container">
-                      <div class="row" style="display: flex; justify-content: center;">
+                      <div class="row paymet_status" style="display: flex; justify-content: center;">
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="paymentStatus">Payment Status</label>
@@ -195,21 +199,22 @@
   </div>
 
   <!-- Success Modal -->
-<div class="modal" id="successModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Success</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p id="modalMessage"></p>
+  <div class="modal" id="successModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" style="color: #FFF;">Success</h5> -->
+          <button class="modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span style="font-size: 24px;" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="modalMessage" style="color: #000;"></p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
 
   <div class="footer_hide_mobile">
     <!-- ========== Start footer ========== -->
@@ -228,14 +233,14 @@
   <!-- carousel & jQuery JS -->
   <script src="../assets/js/owl.carousel.min.js"></script>
   <script src="../assets/js/main.js"></script>
-  
+
   <!-- Modernizer & jQuery JS -->
   <script src="../assets/js/vendor/modernizr-3.11.7.min.js"></script>
-  
+
   <!-- Bootstrap JS -->
   <script src="../assets/js/popper.min.js"></script>
   <script src="../assets/js/bootstrap.min.js"></script>
-  
+
   <!-- Plugins JS -->
   <script src="../assets/js/swiper-bundle.min.js"></script>
   <script src="../assets/js/back-to-top.js"></script>
@@ -244,21 +249,21 @@
   <script src="../assets/js/waypoints.min.js"></script>
   <script src="../assets/js/aos.js"></script>
   <script src="../assets/js/jquery.nice-select.min.js"></script>
-  
+
   <!-- Main JS -->
   <script src="node_modules/slick-carousel/slick/slick.min.js"></script>
   <script src="../assets/js/main.js"></script>
-  
+
   <!-- Loader Script -->
   <script>
     $(document).ready(function () {
       $("#registerForm").submit(function (event) {
         event.preventDefault();
-  
+
         // Show loader when form is submitted
         $("#loader").show();
         $(".site-container").addClass("blur-background");
-  
+
         // Your AJAX code here
         $.ajax({
           type: "POST",
@@ -268,11 +273,11 @@
             // Hide loader after the request is complete
             $("#loader").hide();
             $(".site-container").removeClass("blur-background");
-  
+
             // Display success message in modal
-            $("#modalMessage").text("Thank you! Your response submitted successfully");
+            $("#modalMessage").text("Thank you! Your response submitted successfully loremdjbdbdnsnmd mnsbdhgdhbsnd ns dbshdshd ns ds nd ms dms mdjsbdfgahgfhbfna fdjfbjdhfjdfjndfnjdnfjdhnj");
             $("#successModal").modal("show");
-  
+
             // Reset the form
             $("#registerForm")[0].reset();
           },
@@ -280,14 +285,14 @@
             // Hide loader after the request is complete
             $("#loader").hide();
             $(".site-container").removeClass("blur-background");
-  
+
             // Display error message in modal
             $("#modalMessage").text("Error: " + error.responseText);
             $("#successModal").modal("show");
           },
         });
       });
-  
+
       $("#paymentStatus").change(function () {
         var selectedValue = $(this).val();
         if (selectedValue === "yes") {
@@ -296,7 +301,7 @@
           $("#transactionDetails").hide();
         }
       });
-  
+
       // Function to toggle label and placeholder text based on profession value
       function toggleInstituteText(profession) {
         if (profession === "Student" || profession === "Research Scholar") {
@@ -309,10 +314,10 @@
           $("#course-field").hide();
         }
       }
-  
+
       // Initial call to set the label and placeholder based on the default selected value
       toggleInstituteText($("#professions").val());
-  
+
       // Handle profession selection change event
       $("#professions").change(function () {
         var selectedProfession = $(this).val();
