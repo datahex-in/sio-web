@@ -39,7 +39,7 @@ router.post("/", async function (req, res, next) {
 
     if (updatedUser.paymentStatus === "no") {
       // Send the updated user data in the response
-      sendWhatsAppMessage(updatedUser);
+      // sendWhatsAppMessage(updatedUser);
     }
     res.json({ updatedUser });
   } catch (error) {
