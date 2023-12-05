@@ -6364,7 +6364,7 @@ fieldset:disabled .btn {
   /* border-bottom: 1px solid #dee2e6; */
   border-top-left-radius: calc(0.3rem - 1px);
   border-top-right-radius: calc(0.3rem - 1px);
-  padding: 23px 0px;
+  padding: 10px 0px;
 }
 
 .modal-header .btn-close {
