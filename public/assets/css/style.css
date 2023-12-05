@@ -16326,12 +16326,12 @@ span {
   justify-content: center;
 }
 .register_payment > img {
-  width: 240px;
+  width: 290px;
   border-radius: 10px;
 }
 @media (max-width: 600px) {
   .register_payment > img {
-    width: 265px;
+    width: 270px;
   }
 }
 
