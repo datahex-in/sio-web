@@ -14702,7 +14702,7 @@ html body .hide {
 }
 @media (max-width: 500px) {
   .paymet_status {
-    padding-bottom: 130px;
+    padding-bottom: 41px;
   }
   .form-group {
     width: 97% !important;
@@ -15692,7 +15692,7 @@ main h1 {
 .modal-content {
   border-radius: 20px;
   position: absolute;
-  top: 250px;
+  top: 350px;
   padding: 10px;
   left: 50%;
   transform: translate(-50%, -50%);
