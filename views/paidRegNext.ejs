@@ -214,13 +214,6 @@
       </div>
     </div>
   </div>
-  <script>
-    $(document).ready(function () {
-      $(".modal_close").on("click", function () {
-        $("#successModal").modal("hide");
-      });
-    });
-  </script>
   <div class="footer_hide_mobile">
     <!-- ========== Start footer ========== -->
     <%-include("mainFooter.ejs")%>
@@ -259,45 +252,72 @@
   <script src="node_modules/slick-carousel/slick/slick.min.js"></script>
   <script src="../assets/js/main.js"></script>
 
-  <!-- Loader Script -->
   <script>
     $(document).ready(function () {
-      $("#registerForm").submit(function (event) {
-        event.preventDefault();
+      $(".modal_close").on("click", function () {
+        $("#successModal").modal("hide");
+        window.location.href = "/";
+      });
+    });
+  </script>
 
+  <script>
+    $(document).ready(function () {
+      // Function to submit the form and show success message
+      function submitFormAndShowMessage() {
         // Show loader when form is submitted
         $("#loader").show();
         $(".site-container").addClass("blur-background");
-
+  
         // Your AJAX code here
         $.ajax({
           type: "POST",
           url: "/nextpage",
-          data: $(this).serialize(),
+          data: $("#registerForm").serialize(),
           success: function (response) {
             // Hide loader after the request is complete
             $("#loader").hide();
             $(".site-container").removeClass("blur-background");
-
+  
+            // Set the default success message
+            var successMessage = "Thank you! Your response submitted successfully";
+  
+            // Check the selected payment status
+            var paymentStatus = $("#paymentStatus").val();
+            if (paymentStatus === "no") {
+              successMessage = "Please make the payment first.";
+            }
+  
             // Display success message in modal
-            $("#modalMessage").text("Thank you! Your response submitted successfully");
+            $("#modalMessage").text(successMessage);
             $("#successModal").modal("show");
-
+  
             // Reset the form
             $("#registerForm")[0].reset();
+  
+            // Redirect to home page after 2.5 seconds
+            setTimeout(function () {
+              window.location.href = "/";
+            }, 2500);
           },
           error: function (error) {
             // Hide loader after the request is complete
             $("#loader").hide();
             $(".site-container").removeClass("blur-background");
-
+  
             // Display error message in modal
             $("#modalMessage").text("Error: " + error.responseText);
             $("#successModal").modal("show");
           },
         });
+      }
+  
+      // Submit the form and show message
+      $("#registerForm").submit(function (event) {
+        event.preventDefault();
+        submitFormAndShowMessage();
       });
-
+  
       $("#paymentStatus").change(function () {
         var selectedValue = $(this).val();
         if (selectedValue === "yes") {
@@ -306,7 +326,7 @@
           $("#transactionDetails").hide();
         }
       });
-
+  
       // Function to toggle label and placeholder text based on profession value
       function toggleInstituteText(profession) {
         if (profession === "Student" || profession === "Research Scholar") {
@@ -319,17 +339,21 @@
           $("#course-field").hide();
         }
       }
-
+  
       // Initial call to set the label and placeholder based on the default selected value
       toggleInstituteText($("#professions").val());
-
+  
       // Handle profession selection change event
       $("#professions").change(function () {
         var selectedProfession = $(this).val();
         toggleInstituteText(selectedProfession);
       });
+  
+      // Remove the timeout to redirect to home page after 2.5 seconds from here
     });
   </script>
+  
+  
 </body>
 
 </html>
