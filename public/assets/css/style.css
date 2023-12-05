@@ -14701,6 +14701,9 @@ html body .hide {
   display: none;
 }
 @media (max-width: 500px) {
+  .paymet_status {
+    padding-bottom: 130px;
+  }
   .form-group {
     width: 97% !important;
   }
@@ -15689,13 +15692,13 @@ main h1 {
 .modal-content {
   border-radius: 20px;
   position: absolute;
-  top: 50%;
+  top: 250px;
   padding: 10px;
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 1000px;
   height: auto;
-  background-color: #4d1560;
+  background-color: #fff;
   backdrop-filter: blur(10px);
   z-index: 1;
 }
@@ -15740,11 +15743,11 @@ main h1 {
     position: absolute;
     top: 53%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 64%);
     width: 90%;
     max-width: 600px;
-    height: 74vh;
-    background-color: #4d1560;
+    height: 30vh;
+    background-color: #fff;
     backdrop-filter: blur(10px);
     z-index: 1;
   }
@@ -15868,7 +15871,7 @@ main h1 {
   color: #fff;
 }
 span {
-  margin-right: 8px; /* Adjust the value as needed */
+  /* margin-right: 8px; */
 }
 
 /***** quotes page *****/
@@ -16328,7 +16331,7 @@ span {
 }
 @media (max-width: 600px) {
   .register_payment > img {
-    width: 200px;
+    width: 265px;
   }
 }
 
@@ -16363,4 +16366,16 @@ span {
   font-size: 20px;
   z-index: 3;
   cursor: pointer;
+}
+.modal_close {
+  border: none;
+  border-radius: 10px;
+  color: #6b6060;
+  padding: 4px 16px;
+  position: fixed;
+  top: 12%;
+  right: 12px;
+  transform: translate(0, -50%);
+  background-color: transparent;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
