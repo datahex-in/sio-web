@@ -66,8 +66,9 @@
         border-radius: 50%;
         width: 40px;
         height: 40px;
-        animation: spin 1s linear infinite;
+        animation: spin 5s linear infinite;
         position: absolute;
+        z-index: 3;
         top: 50%;
         left: 50%;
         margin-top: -20px;
@@ -85,8 +86,9 @@
       }
     </style>
 </head>
-<div class="loader" id="loader"></div>
+
 <body id="bg-color-purple">
+  <div class="loader" id="loader"></div>
   <div class="main-wrapper site-container">
 
     <div class="page_backarrow">
@@ -112,12 +114,6 @@
                 <form action="/nextpage" method="post" id="registerForm">
                   <input type="hidden" id="userId" name="userId" value="<%= userId %>" />
                   <div class="row">
-                    <div id="myModal" class="pay-modal">
-                      <div class="pay-modal-content">
-                        <span class="pay-close" onclick="closeModal()">&times;</span>
-                        <p id="modalMessage"></p>
-                      </div>
-                    </div>
 
                     <div class="container">
                       <div class="updates-title" style="text-align: center" ;>
@@ -187,6 +183,23 @@
     </div>
   </div>
 
+  <!-- Success Modal -->
+<div class="modal" id="successModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="modalMessage"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
   <div class="footer_hide_mobile">
     <!-- ========== Start footer ========== -->
     <%-include("mainFooter.ejs")%>
@@ -198,18 +211,20 @@
 
   <!-- carousel & jQuery JS -->
 
-  <script src=" ../assets/js/js/jquery.min.js"></script>
-  <script src="../assets/js/js/owl.carousel.min.js"></script>
-  <script src="../assets/js/js/main.js"></script>
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+  <!-- carousel & jQuery JS -->
+  <script src="../assets/js/owl.carousel.min.js"></script>
+  <script src="../assets/js/main.js"></script>
+  
   <!-- Modernizer & jQuery JS -->
   <script src="../assets/js/vendor/modernizr-3.11.7.min.js"></script>
-  <script src="../assets/js/vendor/jquery-1.12.4.min.js"></script>
-
+  
   <!-- Bootstrap JS -->
   <script src="../assets/js/popper.min.js"></script>
   <script src="../assets/js/bootstrap.min.js"></script>
-
+  
   <!-- Plugins JS -->
   <script src="../assets/js/swiper-bundle.min.js"></script>
   <script src="../assets/js/back-to-top.js"></script>
@@ -218,63 +233,50 @@
   <script src="../assets/js/waypoints.min.js"></script>
   <script src="../assets/js/aos.js"></script>
   <script src="../assets/js/jquery.nice-select.min.js"></script>
+  
   <!-- Main JS -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="node_modules/slick-carousel/slick/slick.min.js"></script>
   <script src="../assets/js/main.js"></script>
-
+  
+  <!-- Loader Script -->
   <script>
     $(document).ready(function () {
       $("#registerForm").submit(function (event) {
         event.preventDefault();
-
-                  // Show loader when form is submitted
-                  $(".site-container").addClass("blur-background");
-          $("#loader").show();
-
+  
+        // Show loader when form is submitted
+        $("#loader").show();
+        $(".site-container").addClass("blur-background");
+  
         // Your AJAX code here
         $.ajax({
           type: "POST",
-          url: "/nextpage", // Replace with the actual URL where your form is submitted
+          url: "/nextpage",
           data: $(this).serialize(),
           success: function (response) {
-            $("#modalMessage").text(
-              "Thank you! Your response submitted successfully"
-            );
-            $("#myModal").show();
-
-            setTimeout(function () {
-              closeModal();
-            }, 3000);
-
+            // Hide loader after the request is complete
+            $("#loader").hide();
+            $(".site-container").removeClass("blur-background");
+  
+            // Display success message in modal
+            $("#modalMessage").text("Thank you! Your response submitted successfully");
+            $("#successModal").modal("show");
+  
+            // Reset the form
             $("#registerForm")[0].reset();
-
-              // Hide loader after the request is complete
-              $("#loader").hide();
-              // Remove blur effect from the background
-              $(".site-container").removeClass("blur-background");
-              window.location.href = "/"
-            setTimeout(function () {
-              $("#myModal").hide();
-              // window.location.href = "/profile?" + response.userDataQueryString;
-              window.location.href = "/"
-            }, 1500);
           },
           error: function (error) {
-                          // Hide loader after the request is complete
-                          $("#loader").hide();
-              // Remove blur effect from the background
-              $(".site-container").removeClass("blur-background");
-            $("#modalMessage").text(error.responseText);
-            $("#myModal").show();
-
-            setTimeout(function () {
-              $("#myModal").hide();
-            }, 3000);
+            // Hide loader after the request is complete
+            $("#loader").hide();
+            $(".site-container").removeClass("blur-background");
+  
+            // Display error message in modal
+            $("#modalMessage").text("Error: " + error.responseText);
+            $("#successModal").modal("show");
           },
         });
       });
-
+  
       $("#paymentStatus").change(function () {
         var selectedValue = $(this).val();
         if (selectedValue === "yes") {
@@ -283,7 +285,7 @@
           $("#transactionDetails").hide();
         }
       });
-
+  
       // Function to toggle label and placeholder text based on profession value
       function toggleInstituteText(profession) {
         if (profession === "Student" || profession === "Research Scholar") {
@@ -296,19 +298,15 @@
           $("#course-field").hide();
         }
       }
-
+  
       // Initial call to set the label and placeholder based on the default selected value
       toggleInstituteText($("#professions").val());
-
+  
       // Handle profession selection change event
       $("#professions").change(function () {
         var selectedProfession = $(this).val();
         toggleInstituteText(selectedProfession);
       });
-
-      function closeModal() {
-        $("#myModal").hide();
-      }
     });
   </script>
 </body>
