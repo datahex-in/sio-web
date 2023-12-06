@@ -442,22 +442,32 @@
               setTimeout(function () {
                 closeModal();
               }, 3000);
-
+              
               // Clear the form fields
               $("#registerForm")[0].reset();
+              
+              if (response.message == "Already Registered With This Mail"){
+              window.location.href = "/nextpage?userId=" + response.userId;
+              }
 
               window.location.href = "/nextpage?userId=" + response.userId;
             },
-            error: function (error) {
-              // Show an error message in the modal
-              $("#modalMessage").text(error.responseText);
-              // Show the modal
-              $("#myModal").show();
-
-              // Automatically hide the modal after 3 seconds
-              setTimeout(function () {
-                closeModal();
-              }, 3000);
+            error: function (error) {    
+              console.log(error)          
+              if (error.status === 400 && error.responseJSON.message == "Already Registered With This Mail"){
+              window.location.href = "/nextpage?userId=" + error.responseJSON.userId;;
+              } 
+              else {
+                // Show an error message in the modal
+                $("#modalMessage").text(error.responseText);
+                // Show the modal
+                $("#myModal").show();
+  
+                // Automatically hide the modal after 3 seconds
+                setTimeout(function () {
+                  closeModal();
+                }, 3000);
+              }
             },
             complete: function () {
               // Hide loader after the request is complete
