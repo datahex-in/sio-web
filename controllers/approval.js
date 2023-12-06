@@ -51,9 +51,9 @@ async function sendWhatsAppMessage(existingUser, req) {
     phoneNumber = "91" + phoneNumber;
   }
 
-  const WhatsappMessage = `Dear ${existingUser.name},
+  const WhatsappMessage = `*Dear ${existingUser.name}*,
 
-  Congratulations! We are delighted to inform you that your registration for the Deconquista International Academic Conference has been successfully processed. Your commitment to participating in this academic venture is greatly appreciated. We look forward to your valuable contributions and engaging discussions during the conference.
+  Congratulations! We are delighted to inform you that your registration for the *Deconquista International Academic Conference* has been successfully processed. Your commitment to participating in this academic venture is greatly appreciated. We look forward to your valuable contributions and engaging discussions during the conference.
   
   Further details regarding the schedule, speakers, and any additional information will be shared with you closer to the event date. If you have any questions or require assistance, feel free to reach out to this phone number or deconquista.sio@gmail.com.
   
