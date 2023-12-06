@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const Registration = require("../../models/Registration");
+const PaidRegistration= require("../../models/paidReg");
 const fs = require("fs");
 const qr = require("qrcode");
 const upload = require("../../middleware/uploadEjs");
@@ -8,7 +8,7 @@ const { getS3Middleware } = require("../../middleware/s3client");
 const getUploadMiddleware = require("../../middleware/upload");
 
 // Import the uploadQRImageToS3 function from the S3 middleware module
-const uploadQRImageToS3 = getS3Middleware(["qrImageUrl"]);
+const uploadQRImageToS3 = getS3Middleware(["qrImageUrl", "transactionImage"]);
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -17,7 +17,7 @@ router.get("/", function (req, res, next) {
   const eventId = req.cookies.eventId;
 
   console.log("eventId  :", eventId);
-  res.render("register", { preFilledEmail, preFilledName, eventId });
+  res.render("paidReg", { preFilledEmail, preFilledName, eventId });
 });
 
 router.post(
@@ -32,7 +32,7 @@ router.post(
     try {
 
       // Check if a user with the same email already exists
-      const existingUser = await Registration.findOne({
+      const existingUser = await PaidRegistration.findOne({
         email: req.body.email,
       });
       if (existingUser) {
@@ -43,16 +43,18 @@ router.post(
       const eventId = req.body.eventId || null;
 
       if (!eventId || eventId === null || eventId === "null") {
-        const newRegistration = new Registration({
+        const newRegistration = new PaidRegistration({
           name: req.body.name,
           gender: req.body.gender,
           mobileNumber: req.body.contact,
+          whatsapp: req.body.whatsapp,
           email: req.body.email,
           district: req.body.location,
           profession: req.body.profession,
           institution: req.body.institute,
           transactionId: req.body.transactionId,
-          transactionImage: req.body.transactionImage,
+          paymentStatus: req.body.paymentStatus,
+          // transactionImage: req.body.transactionImage,
           place: req.body.place,
           age: req.body.age,
           course: req.body.course,
@@ -64,12 +66,14 @@ router.post(
           name: req.body.name,
           gender: req.body.gender,
           mobileNumber: req.body.contact,
+          whatsapp: req.body.whatsapp,
           email: req.body.email,
           district: req.body.location,
           profession: req.body.profession,
           institution: req.body.institute,
           transactionId: req.body.transactionId,
-          transactionImage: req.body.transactionImage,
+          paymentStatus: req.body.paymentStatus,
+          // transactionImage: req.body.transactionImage,
           place: req.body.place,
           age: req.body.age,
           course: req.body.course,
@@ -96,18 +100,21 @@ router.post(
           // Update the QR image URL in your database if needed
           newRegistration.qrImageUrl = qrImageUrl;
           await newRegistration.save();
+          const userId = newRegistration._id
+          const userMobile = newRegistration.mobileNumber
 
           // Include the QR image URL in the response JSON
           const userDataQueryString = `name=${req.body.name}&email=${req.body.email}&mobileNumber=${req.body.contact}&age=${req.body.age}&gender=${req.body.gender}&profession=${req.body.profession}&district=${req.body.location}&events=${eventId}&qrImageUrl=${qrImageUrl}`;
 
           // Send the query string as a JSON response
-          res.json({ userDataQueryString });
+          res.json({ userDataQueryString, userId, userMobile });
         });
       } else {
-        const newRegistration = new Registration({
+        const newRegistration = new PaidRegistration({
           name: req.body.name,
           gender: req.body.gender,
           mobileNumber: req.body.contact,
+          whatsapp: req.body.whatsapp,
           email: req.body.email,
           district: req.body.location,
           profession: req.body.profession,
@@ -115,7 +122,8 @@ router.post(
           place: req.body.place,
           age: req.body.age,
           transactionId: req.body.transactionId,
-          transactionImage: req.body.transactionImage,
+          paymentStatus: req.body.paymentStatus,
+          // transactionImage: req.body.transactionImage,
           course: req.body.course,
           events: eventId,
         });
@@ -126,6 +134,7 @@ router.post(
           name: req.body.name,
           gender: req.body.gender,
           mobileNumber: req.body.contact,
+          whatsapp: req.body.whatsapp,
           email: req.body.email,
           district: req.body.location,
           profession: req.body.profession,
@@ -133,7 +142,8 @@ router.post(
           place: req.body.place,
           age: req.body.age,
           transactionId: req.body.transactionId,
-          transactionImage: req.body.transactionImage,
+          paymentStatus: req.body.paymentStatus,
+          // transactionImage: req.body.transactionImage,
           course: req.body.course,
           events: eventId,
         };
@@ -159,12 +169,14 @@ router.post(
           // Update the QR image URL in your database if needed
           newRegistration.qrImageUrl = qrImageUrl;
           await newRegistration.save();
+          const userId = newRegistration._id
+          const userMobile = newRegistration.mobileNumber
 
           // Include the QR image URL in the response JSON
           const userDataQueryString = `name=${req.body.name}&email=${req.body.email}&mobileNumber=${req.body.contact}&age=${req.body.age}&gender=${req.body.gender}&profession=${req.body.profession}&district=${req.body.location}&events=${eventId}&qrImageUrl=${qrImageUrl}`;
 
           // Send the query string as a JSON response
-          res.json({ userDataQueryString });
+          res.json({ userDataQueryString, userId, userMobile });
         });
       }
     } catch (error) {

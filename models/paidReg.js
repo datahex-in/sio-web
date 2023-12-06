@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const RegistrationSchema = new mongoose.Schema(
+const paidRegistrationSchema = new mongoose.Schema(
   {
     events: [
       {
@@ -75,6 +75,12 @@ const RegistrationSchema = new mongoose.Schema(
     transactionImage: {
       type: String,
     },
+    paymentStatus: {
+      type: String,
+    },
+    paymentScreenshotStatus: {
+      type: String,
+    },
     approved: {
       type: Boolean,
       default: false,
@@ -83,4 +89,4 @@ const RegistrationSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Registration", RegistrationSchema);
+module.exports = mongoose.model("PaidRegistration", paidRegistrationSchema);

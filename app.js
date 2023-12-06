@@ -11,6 +11,7 @@ const session = require("express-session");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const Registration = require("./models/Registration.js");
+const PaidReg = require('./models/paidReg.js')
 
 const fs = require("fs");
 const qr = require("qrcode");
@@ -84,6 +85,8 @@ var Programe = require("./routes/ejsRoutes/programeEjs");
 var Deconquista = require("./routes/ejsRoutes/deconquistaEjs");
 var Calender = require("./routes/ejsRoutes/calenderEjs");
 var Register = require("./routes/ejsRoutes/registerEjs");
+var Paidreg= require('./routes/ejsRoutes/paidregEjs.js')
+var PaidRegNext= require('./routes/ejsRoutes/paidRegNext.js')
 var eventSingle = require("./routes/ejsRoutes/event_single");
 var Updates = require("./routes/ejsRoutes/updatesEjs");
 var Profile = require("./routes/ejsRoutes/profileEjs");
@@ -121,6 +124,7 @@ const globalSpeakers = require("./routes/globalSpeakers.js");
 const material = require("./routes/material");
 const eventRegUser = require("./routes/eventRegUser.js");
 const registration = require("./routes/registration");
+const paidReg = require("./routes/paidReg.js");
 const testimonial = require("./routes/testimonial");
 const event = require("./routes/event");
 const eventUser = require("./routes/eventUser");
@@ -146,6 +150,8 @@ app.use("/speaker", Speaker);
 app.use("/programe", Programe);
 app.use("/deconquista", Deconquista);
 app.use("/calender", Calender);
+app.use("/paidreg",Paidreg)
+app.use("/nextpage",PaidRegNext)
 app.use("/register", Register);
 app.use("/updates", Updates);
 app.use("/profile", Profile);
@@ -187,6 +193,7 @@ app.use("/api/v1/event", event);
 app.use("/api/v1/event-user", eventUser);
 app.use("/api/v1/leaders-note", leadersNote);
 app.use("/api/v1/approved", approved);
+app.use("/api/v1/paid-reg", paidReg);
 
 // ---------------------------------------------------- Google Auth Start ------------------------------------------------ \\
 

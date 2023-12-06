@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>De Conquista</title>
+  <meta name="robots" content="noindex, follow" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="../assets/images/decon-logo.svg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/" />
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;500;600;700;800&amp;family=Open+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Archivo:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+
+  <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" type="text/css" />
+
+  <!-- CSS ============================================ -->
+
+  <!-- Icon Font CSS -->
+  <link rel="stylesheet" href="../assets/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/flaticon.css" />
+
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="../assets/css/magnific-popup.css" />
+  <link rel="stylesheet" href="../assets/css/aos.css" />
+  <link rel="stylesheet" href="../assets/css/nice-select.css" />
+
+  <!-- Main Style CSS -->
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css" />
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+
+  <!-- carousel Style CSS -->
+  <link rel="stylesheet" href="../assets/css/css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css" />
+  <link rel="stylesheet" href="../assets/css/css/style.css" />
+  <!-- ========== Start header ========== -->
+  <%-include("mainHeader.ejs")%>
+    <!-- ========== End header ========== -->
+    <style>
+      .blur-background {
+        filter: blur(5px);
+        /* Adjust the blur amount as needed */
+        transition: filter 0.3s ease;
+        /* Add a smooth transition effect */
+      }
+
+      .loader {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 5s linear infinite;
+        position: absolute;
+        z-index: 3;
+        top: 50%;
+        left: 50%;
+        margin-top: -20px;
+        margin-left: -20px;
+        display: none;
+        /* Hide initially */
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+</head>
+
+<body id="bg-color-purple">
+  <div class="loader" id="loader"></div>
+  <div class="main-wrapper site-container">
+
+    <div class="page_backarrow">
+      <a href="/"><i><svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 19 20" fill="none">
+            <path
+              d="M10.0054 0.265434C10.3271 0.587173 10.3564 1.09064 10.0931 1.44542L10.0054 1.54706L2.18829 9.36458L10.0054 17.1821C10.3271 17.5038 10.3564 18.0073 10.0931 18.3621L10.0054 18.4637C9.68366 18.7855 9.18019 18.8147 8.82541 18.5515L8.72376 18.4637L0.265433 10.0054C-0.0563049 9.68365 -0.0855541 9.18019 0.177686 8.82541L0.265433 8.72376L8.72376 0.265434C9.07768 -0.0884781 9.65148 -0.0884781 10.0054 0.265434Z"
+              fill="#FF4A8C" />
+          </svg></i></a>
+    </div>
+    <div class="container">
+      <div class="updates-title">
+        <h1>Registration</h1>
+      </div>
+    </div>
+    <div>
+      <div class="register-table">
+        <div class="container">
+          <div class="delegate-table-section">
+            <div class="register-form">
+              <div class="container">
+                <div id="alert-message" class="alert" style="display: none"></div>
+
+                <form action="/nextpage" method="post" id="registerForm">
+                  <input type="hidden" id="userId" name="userId" value="<%= userId %>" />
+                  <div class="row">
+
+                    <div class="container">
+                      <div class="updates-title" style="text-align: center" ;>
+                        <h3 style="color: white">Payment Details</h3>
+                      </div>
+
+                      <div class="register_payment">
+                        <img src="/assets/images/GooglePay_QR.png" alt="" />
+                      </div>
+                      <div class="updates-title" style="text-align: center;">
+                        <h6 style="color: white !important">
+                          The registration fee for Deconquista International academic conference is Rs.500/-.
+                          The registration fee is to be paid online through G-Pay number
+                          <span style="color: #e59bff">7558838799</span>
+                          or UPI id <span style="color: #e59bff">Ibnshameer01@oksbi</span>.
+                          Once the payment is done, please ensure that the screenshot is shared through WhatsApp
+                          <a href="https://wa.me/+918921193651" style="color:rgb(65 146 103)  !important"
+                            target="_blank">
+                            https://wa.me/+918921193651
+                          </a>
+                        </h6>
+
+                      </div>
+                    </div>
+
+                    <div class="container">
+                      <div class="row paymet_status" style="display: flex; justify-content: center;">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="paymentStatus">Payment Status</label>
+                            <select id="paymentStatus" name="paymentStatus" class="form-control scrollable-dropdown"
+                              required>
+                              <option value="Have You Paid?" disabled selected>
+                                Have You Paid?
+                              </option>
+                              <option value="yes">Yes</option>
+                              <option value="no">No</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6" id="transactionDetails" style="display: none;">
+                          <div class="form-group">
+
+                            <label for="paymentScreenshotStatus">Payment Screenshot Status</label>
+                            <select id="paymentScreenshotStatus" name="paymentScreenshotStatus"
+                              class="form-control scrollable-dropdown" required>
+                              <option value="Payment Screenshot Status" disabled selected>
+                                Payment Screenshot Status
+                              </option>
+                              <option value="Done">Done</option>
+                              <option value="Not Done">Not Done</option>
+                            </select>
+
+                            <!-- <label for="paymentStatus">Transaction Id</label>
+                            <input type="text" id="transactionId" name="transactionId" class="form-control" /> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row" style="
+                        align-items: center;
+                        margin-top: 20px;
+                        margin-bottom: 30px;
+                      ">
+                      <div class="col-12 d-flex justify-content-center" style="padding-bottom: 13px;">
+                        <button type="submit" class="btn event-primary" style="border-radius: 20px">
+                          Register
+                        </button>
+                      </div>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal" id="successModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" style="color: #FFF;">Success</h5> -->
+          <button class="modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span style="font-size: 34px;" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="modalMessage" style="color: #000;"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer_hide_mobile">
+    <!-- ========== Start footer ========== -->
+    <%-include("mainFooter.ejs")%>
+      <!-- ========== End footer ========== -->
+  </div>
+
+  <!-- JS
+  ============================================ -->
+
+  <!-- carousel & jQuery JS -->
+
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- carousel & jQuery JS -->
+  <script src="../assets/js/owl.carousel.min.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+  <!-- Modernizer & jQuery JS -->
+  <script src="../assets/js/vendor/modernizr-3.11.7.min.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="../assets/js/popper.min.js"></script>
+  <script src="../assets/js/bootstrap.min.js"></script>
+
+  <!-- Plugins JS -->
+  <script src="../assets/js/swiper-bundle.min.js"></script>
+  <script src="../assets/js/back-to-top.js"></script>
+  <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+  <script src="../assets/js/jquery.counterup.min.js"></script>
+  <script src="../assets/js/waypoints.min.js"></script>
+  <script src="../assets/js/aos.js"></script>
+  <script src="../assets/js/jquery.nice-select.min.js"></script>
+
+  <!-- Main JS -->
+  <script src="node_modules/slick-carousel/slick/slick.min.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $(".modal_close").on("click", function () {
+        $("#successModal").modal("hide");
+        window.location.href = "/";
+      });
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      // Function to submit the form and show success message
+      function submitFormAndShowMessage() {
+        // Show loader when form is submitted
+        $("#loader").show();
+        $(".site-container").addClass("blur-background");
+
+        // Your AJAX code here
+        $.ajax({
+          type: "POST",
+          url: "/nextpage",
+          data: $("#registerForm").serialize(),
+          success: function (response) {
+            // Hide loader after the request is complete
+            $("#loader").hide();
+            $(".site-container").removeClass("blur-background");
+
+            // Set the default success message
+            var successMessage = "Thank you! Your response submitted successfully";
+
+            // Check the selected payment status
+            // var paymentStatus = $("#paymentStatus").val();
+            // if (paymentStatus === "no") {
+            //   successMessage = "Please make the payment first.";
+            // }
+
+            // Display success message in modal
+            $("#modalMessage").text(successMessage);
+            $("#successModal").modal("show");
+
+            // Reset the form
+            $("#registerForm")[0].reset();
+
+            // Redirect to home page after 2.5 seconds
+            setTimeout(function () {
+              window.location.href = "/";
+            }, 3000);
+          },
+          error: function (error) {
+            // Hide loader after the request is complete
+            $("#loader").hide();
+            $(".site-container").removeClass("blur-background");
+
+            // Display error message in modal
+            $("#modalMessage").text("Error: " + error.responseText);
+            $("#successModal").modal("show");
+          },
+        });
+      }
+
+      // Submit the form and show message
+      $("#registerForm").submit(function (event) {
+        event.preventDefault();
+        submitFormAndShowMessage();
+      });
+
+      $("#paymentStatus").change(function () {
+        var selectedValue = $(this).val();
+        if (selectedValue === "yes") {
+          $("#transactionDetails").show();
+        } else {
+          $("#transactionDetails").hide();
+        }
+      });
+
+      // Function to toggle label and placeholder text based on profession value
+      function toggleInstituteText(profession) {
+        if (profession === "Student" || profession === "Research Scholar") {
+          $("#institute-label").text("Institute");
+          $("#institute").attr("placeholder", "Institute");
+          $("#course-field").show();
+        } else {
+          $("#institute-label").text("Place of Work");
+          $("#institute").attr("placeholder", "Place of Work");
+          $("#course-field").hide();
+        }
+      }
+
+      // Initial call to set the label and placeholder based on the default selected value
+      toggleInstituteText($("#professions").val());
+
+      // Handle profession selection change event
+      $("#professions").change(function () {
+        var selectedProfession = $(this).val();
+        toggleInstituteText(selectedProfession);
+      });
+
+      // Remove the timeout to redirect to home page after 2.5 seconds from here
+    });
+  </script>
+
+
+</body>
+
+</html>

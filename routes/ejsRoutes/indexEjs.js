@@ -16,17 +16,9 @@ router.get("/", async function (req, res, next) {
       },
     ]);
 
-    eventTypeCounts.forEach((item) => {
-      console.log(item._id);
-    });
-
-    console.log(eventTypeCounts);
     const aboutData = await AboutUs.findOne();
     const eventData = await Event.find();
     const testimonialData = await Testimonial.find();
-    console.log("testimonial Data :- ", testimonialData);
-    console.log(aboutData);
-    console.log(eventData);
     res.render("index", {
       aboutData,
       eventData,

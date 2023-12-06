@@ -84,19 +84,40 @@
     <!-- ========== Start header ========== -->
     <%-include("mainHeader.ejs")%>
     <!-- ========== End header ========== -->
+    <style>
+      .blur-background {
+        filter: blur(5px); /* Adjust the blur amount as needed */
+        transition: filter 0.3s ease; /* Add a smooth transition effect */
+      }
+
+      .loader {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -20px;
+        margin-left: -20px;
+        display: none; /* Hide initially */
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
-
+  <div class="loader" id="loader"></div>
   <body id="bg-color-purple">
-    <div class="main-wrapper">
-      <!-- Preloader start -->
-      <!-- <div id="preloader">
-      <div class="preloader">
-        <span></span>
-        <span></span>
-      </div>
-    </div> -->
-      <!-- Preloader End -->
-
+    <div class="main-wrapper site-container">
       <div class="page_backarrow">
         <a href="/"
           ><i
@@ -117,9 +138,9 @@
         <div class="updates-title">
           <h1>Registration</h1>
         </div>
-        <div class="register_payment">
+        <!-- <div class="register_payment">
           <img src="/assets/images/GooglePay_QR.png" alt="" />
-        </div>
+        </div> -->
       </div>
       <div>
         <div class="register-table">
@@ -133,8 +154,17 @@
                     style="display: none"
                   ></div>
 
-                  <form action="/register" method="post" id="registerForm">
+                  <form action="/paidreg" method="post" id="registerForm">
                     <div class="row">
+                      <div id="myModal" class="pay-modal">
+                        <div class="pay-modal-content">
+                          <span class="pay-close" onclick="closeModal()"
+                            >&times;</span
+                          >
+                          <p id="modalMessage"></p>
+                        </div>
+                      </div>
+
                       <div class="col-md-6">
                         <div class="form-group">
                           <input
@@ -197,6 +227,18 @@
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
+                          <label for="whatsapp">WhatsApp Number</label>
+                          <input
+                            type="number"
+                            id="whatsapp"
+                            name="whatsapp"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
                           <label for="email">Email ID</label>
                           <input
                             type="email"
@@ -209,18 +251,7 @@
                           <p id="emailError" class="text-danger"></p>
                         </div>
                       </div>
-                      <!-- <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="password">Create Password:</label>
-                      <input type="password" id="password" name="password" class="form-control" required>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="confirm_password">Confirm Password:</label>
-                      <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
-                    </div>
-                  </div> -->
+
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="day">Place</label>
@@ -281,17 +312,18 @@
                               Select your profession
                             </option>
                             <option value="Student">Student</option>
-                            <option value="Research scholar">
+                            <option value="Research Scholar">
                               Research scholar
                             </option>
-                            <option value="Teacher">Teacher</option>
                             <option value="other">Other</option>
                           </select>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label for="day">Institute</label>
+                          <label for="institute" id="institute-label"
+                            >Institute</label
+                          >
                           <input
                             type="text"
                             id="institute"
@@ -302,7 +334,11 @@
                         </div>
                       </div>
 
-                      <div class="col-md-6">
+                      <div
+                        class="col-md-6"
+                        id="course-field"
+                        style="display: none"
+                      >
                         <div class="form-group">
                           <label for="course">Course</label>
                           <input
@@ -310,39 +346,15 @@
                             id="course"
                             name="course"
                             class="form-control"
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="transactionId">Transaction Id</label>
-                          <input
-                            type="text"
-                            id="transactionId"
-                            name="transactionId"
-                            class="form-control"
                           />
                         </div>
                       </div>
 
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="transactionImage">Transaction Image</label>
-                          <input
-                            type="file"
-                            id="transactionImage"
-                            name="transactionImage"
-                            class="form-control"
-                          />
-                        </div>
-                      </div>
-                      <!-- <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="day">Date of Birth</label>
-                      <input type="date" id="day" name="day" class="form-control" required>
-                    </div>
-                  </div> -->
+                      <div
+                        class="row"
+                        id="transactionDetails"
+                        style="display: none"
+                      ></div>
                     </div>
                     <div
                       class="row"
@@ -358,7 +370,7 @@
                           class="btn event-primary"
                           style="border-radius: 20px"
                         >
-                          Register
+                          Next
                         </button>
                       </div>
                     </div>
@@ -415,43 +427,101 @@
         $("#registerForm").submit(function (event) {
           event.preventDefault(); // Prevent the default form submission
 
+          // Show loader when form is submitted
+          $(".site-container").addClass("blur-background");
+          $("#loader").show();
+          // Add blur effect to the background
+
           // Make an AJAX request to submit the form data
           $.ajax({
             type: "POST",
-            url: "/register", // Replace with the actual URL where your form is submitted
+            url: "/paidreg", // Replace with the actual URL where your form is submitted
             data: $(this).serialize(),
             success: function (response) {
-              // Show a success message in the alert
-              $("#alert-message")
-                .removeClass("alert-danger")
-                .addClass("alert-success")
-                .text("Registration successful.")
-                .slideDown();
+              // Automatically hide the modal after 3 seconds
+              setTimeout(function () {
+                closeModal();
+              }, 3000);
 
               // Clear the form fields
               $("#registerForm")[0].reset();
 
-              // Automatically hide the success message after 3 seconds
-              setTimeout(function () {
-                $("#alert-message").slideUp();
-                // window.location.href =
-                //   "/profile?" + response.userDataQueryString;
-              }, 1500);
+              window.location.href = "/nextpage?userId=" + response.userId;
             },
             error: function (error) {
-              // Show an error message in the alert
-              $("#alert-message")
-                .removeClass("alert-success")
-                .addClass("alert-danger")
-                .text(error.responseText)
-                .slideDown();
+              // Show an error message in the modal
+              $("#modalMessage").text(error.responseText);
+              // Show the modal
+              $("#myModal").show();
 
-              // Automatically hide the error message after 3 seconds
+              // Automatically hide the modal after 3 seconds
               setTimeout(function () {
-                $("#alert-message").slideUp();
+                closeModal();
               }, 3000);
             },
+            complete: function () {
+              // Hide loader after the request is complete
+              $("#loader").hide();
+              // Remove blur effect from the background
+              $(".site-container").removeClass("blur-background");
+            },
           });
+
+          function closeModal() {
+            $("#myModal").hide();
+          }
+        });
+      });
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        $("#paymentStatus").change(function () {
+          var selectedValue = $(this).val();
+
+          if (selectedValue === "yes") {
+            $("#transactionDetails").show();
+          } else {
+            $("#transactionDetails").hide();
+          }
+        });
+
+        $("#registerForm").submit(function (event) {
+          event.preventDefault();
+
+          var paymentStatus = $("#paymentStatus").val();
+
+          // Your existing AJAX code...
+
+          if (paymentStatus === "yes") {
+            // Additional handling for paid users
+            // For example, show a message or perform additional actions
+          }
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        // Function to toggle label and placeholder text based on profession value
+        function toggleInstituteText(profession) {
+          if (profession === "Student" || profession === "Research Scholar") {
+            $("#institute-label").text("Institute");
+            $("#institute").attr("placeholder", "Institute");
+            $("#course-field").show();
+          } else {
+            $("#institute-label").text("Place of Work");
+            $("#institute").attr("placeholder", "Place of Work");
+            $("#course-field").hide();
+          }
+        }
+
+        // Initial call to set the label and placeholder based on the default selected value
+        toggleInstituteText($("#professions").val());
+
+        // Handle profession selection change event
+        $("#professions").change(function () {
+          var selectedProfession = $(this).val();
+          toggleInstituteText(selectedProfession);
         });
       });
     </script>
