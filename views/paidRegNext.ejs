@@ -184,7 +184,7 @@
                         margin-bottom: 30px;
                       ">
                       <div class="col-12 d-flex justify-content-center" style="padding-bottom: 13px;">
-                        <button type="submit" class="btn event-primary" style="border-radius: 20px">
+                        <button type="submit" class="btn event-primary payment_button" style="border-radius: 20px">
                           Register
                         </button>
                       </div>
@@ -201,10 +201,11 @@
   <!-- Success Modal -->
   <div class="modal" id="successModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
+      <div class="modal-content" id="modal_register_content">
         <div class="modal-header">
           <!-- <h5 class="modal-title" style="color: #FFF;">Success</h5> -->
-          <button class="modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button class="modal_close" id="modal_reg" type="button" class="close" data-dismiss="modal"
+            aria-label="Close">
             <span style="font-size: 34px;" aria-hidden="true">&times;</span>
           </button>
         </div>

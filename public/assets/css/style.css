@@ -14701,9 +14701,6 @@ html body .hide {
   display: none;
 }
 @media (max-width: 500px) {
-  .paymet_status {
-    padding-bottom: 41px;
-  }
   .form-group {
     width: 97% !important;
   }
@@ -15698,9 +15695,27 @@ main h1 {
   transform: translate(-50%, -50%);
   max-width: 1000px;
   height: auto;
-  background-color: #fff;
+  background-color: #4d1560;
   backdrop-filter: blur(10px);
   z-index: 1;
+}
+#modal_register_content {
+  border-radius: 20px;
+  position: absolute;
+  top: 350px;
+  padding: 10px;
+  color: white !important;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  max-width: 1000px;
+  height: auto;
+  background-color: white;
+  backdrop-filter: blur(10px);
+  z-index: 1;
+}
+#modal_reg {
+  color: #000 !important;
 }
 #modalTitle {
   color: #fff;
@@ -15741,13 +15756,13 @@ main h1 {
   .modal-content {
     border-radius: 20px;
     position: absolute;
-    top: 310px;
+    top: 53%;
     left: 50%;
-    transform: translate(-50%, 10%);
+    transform: translate(-50%, -50%);
     width: 90%;
     max-width: 600px;
-    height: auto;
-    background-color: #fff;
+    height: 74vh;
+    background-color: #4d1560;
     backdrop-filter: blur(10px);
     z-index: 1;
   }
@@ -16326,12 +16341,15 @@ span {
   justify-content: center;
 }
 .register_payment > img {
-  width: 290px;
+  width: 240px;
   border-radius: 10px;
 }
 @media (max-width: 600px) {
+  .payment_button {
+    margin-top: 55px;
+  }
   .register_payment > img {
-    width: 270px;
+    width: 200px;
   }
 }
 
@@ -16370,11 +16388,11 @@ span {
 .modal_close {
   border: none;
   border-radius: 10px;
-  color: #6b6060;
+  color: #fff;
   padding: 4px 16px;
   position: fixed;
-  top: 18%;
-  right: 3px;
+  top: 12%;
+  right: 12px;
   transform: translate(0, -50%);
   background-color: transparent;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
