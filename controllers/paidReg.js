@@ -1,15 +1,15 @@
     const { default: mongoose } = require("mongoose");
-const Registration = require("../models/paidReg");
+const PaidRegistration = require("../models/paidReg");
 
 // @desc      CREATE NEW REGISTRATION
 // @route     POST /api/v1/registration
 // @access    private
 exports.createRegistration = async (req, res) => {
   try {
-    const newRegistration = await Registration.create(req.body);
+    const newRegistration = await PaidRegistration.create(req.body);
     res.status(200).json({
       success: true,
-      message: "Registration created successfully",
+      message: "PaidRegistration created successfully",
       data: newRegistration,
     });
   } catch (err) {
@@ -28,9 +28,7 @@ exports.getRegistration = async (req, res) => {
   try {
     const { id, skip, limit, searchkey } = req.query;
     if (id && mongoose.isValidObjectId(id)) {
-      const response = await Registration.findById(id);
-      console.log("Id....", id)
-      console.log("Responseeeee....", response)
+      const response = await PaidRegistration.findById(id);
       return res.status(200).json({
         success: true,
         message: `Retrieved specific registration`,
@@ -44,9 +42,9 @@ exports.getRegistration = async (req, res) => {
       }),
     };
     const [totalCount, filterCount, data] = await Promise.all([
-      parseInt(skip) === 0 && Registration.countDocuments(),
-      parseInt(skip) === 0 && Registration.countDocuments(query),
-      Registration.find(query)
+      parseInt(skip) === 0 && PaidRegistration.countDocuments(),
+      parseInt(skip) === 0 && PaidRegistration.countDocuments(query),
+      PaidRegistration.find(query)
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 0),
     ]);
@@ -73,7 +71,7 @@ exports.getRegistration = async (req, res) => {
 // @access    private
 exports.updateRegistration = async (req, res) => {
   try {
-    const response = await Registration.findByIdAndUpdate(
+    const response = await PaidRegistration.findByIdAndUpdate(
       req.body.id,
       req.body,
       {
@@ -99,16 +97,16 @@ exports.updateRegistration = async (req, res) => {
 // @access    private
 exports.deleteRegistration = async (req, res) => {
   try {
-    const registration = await Registration.findByIdAndDelete(req.query.id);
+    const registration = await PaidRegistration.findByIdAndDelete(req.query.id);
     if (!registration) {
       return res.status(404).json({
         success: false,
-        message: "Registration not found",
+        message: "PaidRegistration not found",
       });
     }
     res.status(200).json({
       success: true,
-      message: "Registration deleted successfully",
+      message: "PaidRegistration deleted successfully",
     });
   } catch (err) {
     console.log(err);
@@ -124,7 +122,7 @@ exports.deleteRegistration = async (req, res) => {
 // @access    protect
 exports.select = async (req, res) => {
   try {
-    const items = await Registration.find(
+    const items = await PaidRegistration.find(
       {},
       { _id: 0, id: "$_id", value: "$name" }
     );
