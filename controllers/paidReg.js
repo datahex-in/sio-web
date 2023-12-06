@@ -35,6 +35,27 @@ exports.getRegistration = async (req, res) => {
         response,
       });
     }
+
+    if (req.filter.approved === "notapproved") {
+      req.filter.approved = { $ne: true };
+    } else if (req.filter.approved === "all") {
+      delete req.filter.approved;
+    } else if (req.filter.approved === "approved") {
+      req.filter.approved = { $ne: false };
+    } else {
+      delete req.filter.approved;
+    }
+
+    if (req.filter.paymentStatus === "no") {
+      req.filter.paymentStatus = "no";
+    } else if (req.filter.paymentStatus === "yes") {
+      req.filter.paymentStatus = "yes";
+    } else if (req.filter.paymentStatus === "all") {
+      delete req.filter.paymentStatus;
+    } else {
+      delete req.filter.paymentStatus;
+    }  
+
     const query = {
       ...req.filter,
       ...(searchkey && {

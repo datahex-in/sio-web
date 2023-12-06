@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const PaidRegistration= require("../../models/paidReg");
+const PaidRegistration = require("../../models/paidReg");
 const fs = require("fs");
 const qr = require("qrcode");
 const upload = require("../../middleware/uploadEjs");
@@ -30,12 +30,20 @@ router.post(
   getS3Middleware(["qrImageUrl", "transactionImage"]),
   async function (req, res, next) {
     try {
-
       // Check if a user with the same email already exists
       const existingUser = await PaidRegistration.findOne({
         email: req.body.email,
       });
+
       if (existingUser) {
+        if (!existingUser.paymentStatus) {
+          const userId = existingUser._id;
+          // If payment status is not present, redirect to /nextpage with user _id
+          return res
+            .status(400)
+            .json({ message: "Already Registered With This Mail", userId });
+        }
+
         return res.status(400).json("Already Registered With This Mail");
       }
 
@@ -100,8 +108,8 @@ router.post(
           // Update the QR image URL in your database if needed
           newRegistration.qrImageUrl = qrImageUrl;
           await newRegistration.save();
-          const userId = newRegistration._id
-          const userMobile = newRegistration.mobileNumber
+          const userId = newRegistration._id;
+          const userMobile = newRegistration.mobileNumber;
 
           // Include the QR image URL in the response JSON
           const userDataQueryString = `name=${req.body.name}&email=${req.body.email}&mobileNumber=${req.body.contact}&age=${req.body.age}&gender=${req.body.gender}&profession=${req.body.profession}&district=${req.body.location}&events=${eventId}&qrImageUrl=${qrImageUrl}`;
@@ -169,8 +177,8 @@ router.post(
           // Update the QR image URL in your database if needed
           newRegistration.qrImageUrl = qrImageUrl;
           await newRegistration.save();
-          const userId = newRegistration._id
-          const userMobile = newRegistration.mobileNumber
+          const userId = newRegistration._id;
+          const userMobile = newRegistration.mobileNumber;
 
           // Include the QR image URL in the response JSON
           const userDataQueryString = `name=${req.body.name}&email=${req.body.email}&mobileNumber=${req.body.contact}&age=${req.body.age}&gender=${req.body.gender}&profession=${req.body.profession}&district=${req.body.location}&events=${eventId}&qrImageUrl=${qrImageUrl}`;
