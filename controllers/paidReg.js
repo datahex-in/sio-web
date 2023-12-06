@@ -1,4 +1,4 @@
-    const { default: mongoose } = require("mongoose");
+const { default: mongoose } = require("mongoose");
 const PaidRegistration = require("../models/paidReg");
 
 // @desc      CREATE NEW REGISTRATION
@@ -54,7 +54,7 @@ exports.getRegistration = async (req, res) => {
       delete req.filter.paymentStatus;
     } else {
       delete req.filter.paymentStatus;
-    }  
+    }
 
     const query = {
       ...req.filter,
@@ -66,6 +66,7 @@ exports.getRegistration = async (req, res) => {
       parseInt(skip) === 0 && PaidRegistration.countDocuments(),
       parseInt(skip) === 0 && PaidRegistration.countDocuments(query),
       PaidRegistration.find(query)
+        .sort({ createdAt: -1 })
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 0),
     ]);
@@ -77,7 +78,7 @@ exports.getRegistration = async (req, res) => {
       totalCount: totalCount || 0,
       filterCount: filterCount || 0,
     });
-    console.log("Ressss", data)
+    console.log("Ressss", data);
   } catch (err) {
     console.log(err);
     res.status(204).json({
