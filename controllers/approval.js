@@ -17,10 +17,15 @@ exports.getApproved = async (req, res) => {
         return res.status(400).json({ message: "User not found" });
       } else if (user.approved == true) {
         res.status(200).json({ message: "Already Approved" });
-      } else {
+      } else if (user.declined === true) {
+        res.status(200).json({ message: "User is declined" });
+      } else if (user.declined === true && user.paymentStatus === "yes"){
         const user = await PaidRegistration.findByIdAndUpdate(
           userId,
-          { $set: { approved: true } },
+          { $set: { 
+            approved: true,
+            declined: false,
+          } },
           { new: true } // To return the updated document
         );
 
@@ -33,6 +38,33 @@ exports.getApproved = async (req, res) => {
         res.status(200).json({
           message: "User approved successfully",
         });
+      } else {
+        if (user.paymentStatus === "yes") {
+
+          const user = await PaidRegistration.findByIdAndUpdate(
+            userId,
+            { $set: { 
+              approved: true,
+              declined: false,
+            } },
+            { new: true } // To return the updated document
+            );
+            
+            sendWhatsAppMessage(user);
+            
+            if (!user) {
+              return res.status(404).json({ error: "User not found" });
+            }
+            
+            res.status(200).json({
+              message: "User approved successfully",
+            });
+          }
+          else {
+            res.status(200).json({
+              message: "User's payment status is No",
+            });
+          }
       }
     } else {
       return res.status(404).json({ error: "Invalid User" });

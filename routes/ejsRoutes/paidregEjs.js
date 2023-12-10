@@ -36,7 +36,7 @@ router.post(
       });
 
       if (existingUser) {
-        if (!existingUser.paymentStatus) {
+        if (existingUser.paymentStatus === null || !existingUser.paymentStatus) {
           const userId = existingUser._id;
           // If payment status is not present, redirect to /nextpage with user _id
           return res
