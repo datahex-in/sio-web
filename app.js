@@ -158,7 +158,10 @@ app.use("/updates", Updates);
 app.use("/profile", Profile);
 app.use("/quotes", Quotes);
 app.use("/scan", Scanner);
-
+// Redirect /paidreg to /registration
+app.use('/paidreg', (req, res) => {
+  res.redirect('/registration');
+});
 // LATESTS-----
 app.use("/privacy", Privacy);
 app.use("/refund", Refund);
