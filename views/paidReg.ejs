@@ -154,7 +154,7 @@
                     style="display: none"
                   ></div>
 
-                  <form action="/paidreg" method="post" id="registerForm">
+                  <form action="/registration" method="post" id="registerForm">
                     <div class="row">
                       <div id="myModal" class="pay-modal">
                         <div class="pay-modal-content">
@@ -435,7 +435,7 @@
           // Make an AJAX request to submit the form data
           $.ajax({
             type: "POST",
-            url: "/paidreg", // Replace with the actual URL where your form is submitted
+            url: "/registration", // Replace with the actual URL where your form is submitted
             data: $(this).serialize(),
             success: function (response) {
               // Automatically hide the modal after 3 seconds
