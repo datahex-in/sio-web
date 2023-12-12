@@ -85,19 +85,22 @@ async function sendWhatsAppMessage(existingUser, req) {
 
   const WhatsappMessage = `Dear ${existingUser.name},
 
-  Congratulations on completing the registration form for the Deconquista International Academic Conference on 22nd-24th December in Kozhikode! *Please note that your registration will be fulfilled only upon successful payment. Kindly proceed with payment through g pay number 7558838799 or UPI id Ibnshameer01@oksbi and send the screenshot to this WhatsApp number to secure your spot.*
-  
-  If you have any questions or need assistance, please don't hesitate to contact us either by phone to this number or through deconquista.sio@gmail.com. Thank you for your participation!
-  
-  Join this group for updates and news.
-  
-  https://chat.whatsapp.com/HCPIwmjcuXDC1I9ZZWQEY1
-  
-  Best regards,
-  
-  Director,
-  Deconquista International Academic Conference`
-      .replace(/\n\s*\n\s*/g, '\n\n');
+Congratulations! We are delighted to inform you that your registration for the International Deconquista International Academic Conference has been successfully processed.
+
+Your commitment to participating in this academic venture is greatly appreciated. We look forward to your valuable contributions and engaging discussions during the conference.
+
+Further details regarding the schedule, speakers, and any additional information will be shared with you closer to the event date.
+
+Should you have any questions or require assistance, feel free to reach out to this phone number or deconquista.sio@gmail.com.
+
+Once again, congratulations on your successful registration, and we anticipate a fruitful exchange of ideas at the Deconquista International Academic Conference.
+Join this group for updates and news.
+
+https://chat.whatsapp.com/HCPIwmjcuXDC1I9ZZWQEY1
+
+Best regards,
+Director,
+Deconquista International Academic Conference`.replace(/\n\s*\n\s*/g, "\n\n");
 
   const data = new FormData();
   data.append("type", "text");
