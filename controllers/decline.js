@@ -41,6 +41,7 @@ exports.getDeclined = async (req, res) => {
         }
 
         console.log(updatedUser);
+        sendWhatsAppMessage(updatedUser);
         res.status(200).json({
           message: "User declined successfully",
         });
@@ -59,6 +60,7 @@ exports.getDeclined = async (req, res) => {
           },
           { new: true } // To return the updated document
         );
+        sendWhatsAppMessage(updatedUser);
         res.status(200).json({ message: "User declined" });
       }
     } else {
@@ -78,17 +80,24 @@ async function sendWhatsAppMessage(existingUser, req) {
     phoneNumber = "91" + phoneNumber;
   }
 
-  const WhatsappMessage = `*Dear ${existingUser.name}*,
-  
-    Congratulations! We are delighted to inform you that your registration for the *Deconquista International Academic Conference* has been successfully processed. Your commitment to participating in this academic venture is greatly appreciated. We look forward to your valuable contributions and engaging discussions during the conference.
-    
-    Further details regarding the schedule, speakers, and any additional information will be shared with you closer to the event date. If you have any questions or require assistance, feel free to reach out to this phone number or deconquista.sio@gmail.com.
-    
-    Once again, congratulations on your successful registration, and we anticipate a fruitful exchange of ideas at the Deconquista International Academic Conference.
-    
-    Best regards,
-  Director,
-  Deconquista International Academic Conference`.replace(/\n\s*\n\s*/g, "\n\n");
+  const WhatsappMessage = `Dear ${existingUser.name},
+
+Congratulations! We are delighted to inform you that your registration for the International Deconquista International Academic Conference has been successfully processed.
+
+Your commitment to participating in this academic venture is greatly appreciated. We look forward to your valuable contributions and engaging discussions during the conference.
+
+Further details regarding the schedule, speakers, and any additional information will be shared with you closer to the event date.
+
+Should you have any questions or require assistance, feel free to reach out to this phone number or deconquista.sio@gmail.com.
+
+Once again, congratulations on your successful registration, and we anticipate a fruitful exchange of ideas at the Deconquista International Academic Conference.
+Join this group for updates and news.
+
+https://chat.whatsapp.com/HCPIwmjcuXDC1I9ZZWQEY1
+
+Best regards,
+Director,
+Deconquista International Academic Conference`.replace(/\n\s*\n\s*/g, "\n\n");
 
   const data = new FormData();
   data.append("type", "text");
