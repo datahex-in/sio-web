@@ -151,7 +151,7 @@ app.use("/speaker", Speaker);
 app.use("/programe", Programe);
 app.use("/deconquista", Deconquista);
 app.use("/calender", Calender);
-app.use("/paidreg",Paidreg)
+app.use("/registration",Paidreg)
 app.use("/nextpage",PaidRegNext)
 app.use("/register", Register);
 app.use("/updates", Updates);
