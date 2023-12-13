@@ -66,6 +66,8 @@ router.post(
           place: req.body.place,
           age: req.body.age,
           course: req.body.course,
+          paymentStatus: req.body.paymentStatus,
+          paymentScreenshotStatus: req.body.paymentScreenshotStatus,
         });
 
         // Generate QR code and store it
@@ -85,6 +87,8 @@ router.post(
           place: req.body.place,
           age: req.body.age,
           course: req.body.course,
+          paymentStatus: req.body.paymentStatus,
+          paymentScreenshotStatus: req.body.paymentScreenshotStatus,
         };
 
         // Create the 'qrcodes' directory if it doesn't exist
@@ -133,6 +137,8 @@ router.post(
           paymentStatus: req.body.paymentStatus,
           // transactionImage: req.body.transactionImage,
           course: req.body.course,
+          paymentStatus: req.body.paymentStatus,
+          paymentScreenshotStatus: req.body.paymentScreenshotStatus,
           events: eventId,
         });
 
@@ -153,6 +159,8 @@ router.post(
           paymentStatus: req.body.paymentStatus,
           // transactionImage: req.body.transactionImage,
           course: req.body.course,
+          paymentStatus: req.body.paymentStatus,
+          paymentScreenshotStatus: req.body.paymentScreenshotStatus,
           events: eventId,
         };
 

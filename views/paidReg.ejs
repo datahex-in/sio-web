@@ -85,6 +85,10 @@
     <%-include("mainHeader.ejs")%>
     <!-- ========== End header ========== -->
     <style>
+      #paymentScreenshotStatusField {
+        display: none;
+      }
+
       .blur-background {
         filter: blur(5px); /* Adjust the blur amount as needed */
         transition: filter 0.3s ease; /* Add a smooth transition effect */
@@ -141,6 +145,33 @@
         <!-- <div class="register_payment">
           <img src="/assets/images/GooglePay_QR.png" alt="" />
         </div> -->
+      </div>
+      <div class="container">
+        <div class="updates-title" style="text-align: center" ;>
+          <h3 style="color: white">Payment Details</h3>
+        </div>
+
+        <div class="register_payment">
+          <img src="/assets/images/GooglePay_QR.png" alt="" />
+        </div>
+        <div class="updates-title" style="text-align: center">
+          <h6 style="color: white !important">
+            The registration fee for Deconquista International academic
+            conference is Rs.500/-. The registration fee is to be paid online
+            through G-Pay number
+            <span style="color: #e59bff">7558838799</span>
+            or UPI id <span style="color: #e59bff">Ibnshameer01@oksbi</span>.
+            Once the payment is done, please ensure that the screenshot is
+            shared through WhatsApp
+            <a
+              href="https://wa.me/+918921193651"
+              style="color: rgb(65 146 103) !important"
+              target="_blank"
+            >
+              https://wa.me/+918921193651
+            </a>
+          </h6>
+        </div>
       </div>
       <div>
         <div class="register-table">
@@ -350,6 +381,48 @@
                         </div>
                       </div>
 
+                      <div class="col-md-6" id="course-field">
+                        <div class="form-group">
+                          <label for="paymentStatus">Payment Status</label>
+                          <select
+                            id="paymentStatus"
+                            name="paymentStatus"
+                            class="form-control scrollable-dropdown"
+                            required
+                          >
+                            <option value="Have You Paid?" disabled selected>
+                              Have You Paid?
+                            </option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6" id="paymentScreenshotStatusField">
+                        <div class="form-group">
+                          <label for="paymentScreenshotStatus"
+                            >Payment Screenshot Status</label
+                          >
+                          <select
+                            id="paymentScreenshotStatus"
+                            name="paymentScreenshotStatus"
+                            class="form-control scrollable-dropdown"
+                            required
+                          >
+                            <option
+                              value="Payment Screenshot Status"
+                              disabled
+                              selected
+                            >
+                              Payment Screenshot Status
+                            </option>
+                            <option value="Done">Done</option>
+                            <option value="Not Done">Not Done</option>
+                          </select>
+                        </div>
+                      </div>
+
                       <div
                         class="row"
                         id="transactionDetails"
@@ -370,7 +443,7 @@
                           class="btn event-primary"
                           style="border-radius: 20px"
                         >
-                          Next
+                          Register
                         </button>
                       </div>
                     </div>
@@ -383,6 +456,8 @@
       </div>
     </div>
 
+    <div class="loader" id="loader"></div>
+    
     <div class="footer_hide_mobile">
       <!-- ========== Start footer ========== -->
       <%-include("mainFooter.ejs")%>
@@ -424,6 +499,22 @@
 
     <script>
       $(document).ready(function () {
+        // Add the style to hide the paymentScreenshotStatus initially
+        $("#paymentScreenshotStatusField").hide();
+
+        $("#paymentStatus").change(function () {
+          var selectedValue = $(this).val();
+
+          // Check if the selected value is "yes"
+          if (selectedValue === "yes") {
+            // Show the paymentScreenshotStatus field
+            $("#paymentScreenshotStatusField").show();
+          } else {
+            // Hide the paymentScreenshotStatus field
+            $("#paymentScreenshotStatusField").hide();
+          }
+        });
+
         $("#registerForm").submit(function (event) {
           event.preventDefault(); // Prevent the default form submission
 
@@ -438,31 +529,49 @@
             url: "/registration", // Replace with the actual URL where your form is submitted
             data: $(this).serialize(),
             success: function (response) {
+
+              $("#registerForm")[0].reset();
+              // Set the default success message
+              var successMessage =
+                "Thank you! Your response submitted successfully";
+
+              // Display success message in modal
+              $("#modalMessage").text(successMessage);
+              $("#myModal").show();
+
+              // Reset the form
+              $("#registerForm")[0].reset();
+
+              // Redirect to home page after 2.5 seconds
+              setTimeout(function () {
+                window.location.href = "/";
+              }, 3000);
+
               // Automatically hide the modal after 3 seconds
               setTimeout(function () {
                 closeModal();
               }, 3000);
-              
-              // Clear the form fields
-              $("#registerForm")[0].reset();
-              
-              if (response.message == "Already Registered With This Mail"){
-              window.location.href = "/nextpage?userId=" + response.userId;
-              }
 
-              window.location.href = "/nextpage?userId=" + response.userId;
             },
-            error: function (error) {    
-              console.log(error)          
-              if (error.status === 400 && error.responseJSON.message == "Already Registered With This Mail"){
-              window.location.href = "/nextpage?userId=" + error.responseJSON.userId;;
-              } 
-              else {
+            error: function (error) {
+              console.log(error);
+              if (
+                error.status === 400 &&
+                error.responseJSON.message ==
+                  "Already Registered With This Mail"
+              ) {
+                $("#modalMessage").text(error.responseJSON.message);
+                $("#myModal").show();
+                // Automatically hide the modal after 3 seconds
+                setTimeout(function () {
+                  closeModal();
+                }, 3000);
+              } else {
                 // Show an error message in the modal
                 $("#modalMessage").text(error.responseText);
                 // Show the modal
                 $("#myModal").show();
-  
+
                 // Automatically hide the modal after 3 seconds
                 setTimeout(function () {
                   closeModal();
