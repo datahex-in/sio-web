@@ -46,6 +46,16 @@ exports.getRegistration = async (req, res) => {
       delete req.filter.approved;
     }
 
+    if (req.filter.declined === "declined") {
+      req.filter.declined = true;
+    } else if (req.filter.declined === "notdeclined") {
+      req.filter.declined = false;
+    } else if (req.filter.declined === "all") {
+      delete req.filter.declined;
+    } else {
+      delete req.filter.declined;
+    }
+
     if (req.filter.paymentStatus === "no") {
       req.filter.paymentStatus = "no";
     } else if (req.filter.paymentStatus === "yes") {
