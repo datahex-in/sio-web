@@ -115,7 +115,7 @@
                             <%= dayOfWeek %>
                           </p>
                           <p>
-                            <% const eventTime = new Date(item.time); %>
+                            <% const eventTime = new Date(item.date); %>
                             <% const hours = eventTime.getHours(); %>
                             <% const minutes = eventTime.getMinutes(); %>
                             <% const timeFormatted = (hours % 12 || 12) + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM'); %>

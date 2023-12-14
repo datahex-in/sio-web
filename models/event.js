@@ -62,4 +62,19 @@ const eventSchema = new mongoose.Schema({
 // Create the Event model
 const Event = mongoose.model("Event", eventSchema);
 
+// Add a virtual property to the schema to get the formatted date in IST
+eventSchema.virtual('formattedDate').get(function() {
+  const options = {
+    timeZone: 'Asia/Kolkata', // IST timezone
+    hour12: true, // 12-hour format
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  };
+
+  return this.date.toLocaleString('en-US', options);
+});
+
 module.exports = Event;

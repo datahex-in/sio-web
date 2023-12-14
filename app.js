@@ -152,13 +152,19 @@ app.use("/programe", Programe);
 app.use("/deconquista", Deconquista);
 app.use("/calender", Calender);
 app.use("/registration",Paidreg)
-app.use("/nextpage",PaidRegNext)
-app.use("/register", Register);
 app.use("/updates", Updates);
 app.use("/profile", Profile);
 app.use("/quotes", Quotes);
 app.use("/scan", Scanner);
+// app.use("/nextpage",PaidRegNext)
+// app.use("/register", Register);
 // Redirect /paidreg to /registration
+app.use('/nextpage', (req, res) => {
+  res.redirect('/registration');
+});
+app.use('/register', (req, res) => {
+  res.redirect('/registration');
+});
 app.use('/paidreg', (req, res) => {
   res.redirect('/registration');
 });
@@ -200,6 +206,13 @@ app.use("/api/v1/approved", approved);
 app.use("/api/v1/declined", decline);
 app.use("/api/v1/paid-reg", paidReg);
 
+// ---------------------------- Site Map -------------------------------- //
+app.get("/sitemap.xml", (req, res) => {
+  res.header("Content-Type", "application/xml");
+  res.sendFile(__dirname + "/sitemap.xml");
+});
+// ---------------------------- ------- -------------------------------- //
+
 // ---------------------------------------------------- Google Auth Start ------------------------------------------------ \\
 
 // Passport.js configuration
@@ -233,7 +246,7 @@ passport.use(
         console.log(googlePhoto);
 
         // Check if the user exists in your MongoDB database using googleId or email
-        let user = await Registration.findOne({
+        let user = await PaidReg.findOne({
           $or: [{ googleId }, { email: googleEmail }],
         });
 
@@ -245,8 +258,16 @@ passport.use(
             name: googleName,
             photo: googlePhoto,
           });
+        } else if (!user.approved) {
+          // If the user is not approved, redirect or handle as needed
+          return done(null, false, {
+            message: "User not approved",
+            email: googleEmail,
+            name: googleName,
+            photo: googlePhoto,
+          });
         } else {
-          // If the user already exists, update their Google ID if it's not already set
+          // If the user already exists and is approved, update their Google ID if it's not already set
           if (!user.googleId) {
             user.googleId = googleId;
             // Save the updated user in the database
@@ -261,12 +282,6 @@ passport.use(
   )
 );
 
-// ---------------------------- Site Map -------------------------------- //
-app.get("/sitemap.xml", (req, res) => {
-  res.header("Content-Type", "application/xml");
-  res.sendFile(__dirname + "/sitemap.xml");
-});
-// ---------------------------- ------- -------------------------------- //
 
 app.use(passport.initialize());
 app.use(passport.session());
