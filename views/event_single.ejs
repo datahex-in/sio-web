@@ -150,12 +150,11 @@
               eventDate.getDate(); %> <% const dayOfWeek = ['SUNDAY', 'MONDAY',
               'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY',
               'SATURDAY'][eventDate.getDay()]; %> <%= monthAbbreviation %> <%=
-              day %> <%= dayOfWeek %> | <% const eventTime = new
-              Date(eventData.time); %> <% const hours = eventTime.getHours(); %>
-              <% const minutes = eventTime.getMinutes(); %> <% const
-              timeFormatted = (hours % 12 || 12) + ':' + (minutes < 10 ? '0' :
-              '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM'); %> <%=
-              timeFormatted %> | <%= eventData.venue %>
+              day %> <%= dayOfWeek %> | <% const eventTime = new Date(eventData.date); %>
+              <% const hours = eventTime.getHours(); %>
+              <% const minutes = eventTime.getMinutes(); %>
+              <% const timeFormatted = (hours % 12 || 12) + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM'); %>
+              <%= timeFormatted %> | <%= eventData.venue %>
             </h5>
 
             <h5 class="event-date-two">
@@ -327,7 +326,7 @@
           } else {
             // User is not registered, you can handle this case as needed
             // For example, you can redirect them to a registration page
-            window.location.href = "/register";
+            window.location.href = "/paidreg";
           }
         } catch (error) {
           // Handle any parsing errors
