@@ -23,7 +23,6 @@ const eventSchema = new mongoose.Schema({
   },
   time: {
     type: String,
-    required: true,
   },
   eventMode: {
     type: String,
