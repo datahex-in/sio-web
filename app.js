@@ -11,7 +11,7 @@ const session = require("express-session");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const Registration = require("./models/Registration.js");
-const PaidReg = require('./models/paidReg.js')
+const PaidReg = require("./models/paidReg.js");
 
 const fs = require("fs");
 const qr = require("qrcode");
@@ -85,14 +85,14 @@ var Programe = require("./routes/ejsRoutes/programeEjs");
 var Deconquista = require("./routes/ejsRoutes/deconquistaEjs");
 var Calender = require("./routes/ejsRoutes/calenderEjs");
 var Register = require("./routes/ejsRoutes/registerEjs");
-var Paidreg= require('./routes/ejsRoutes/paidregEjs.js')
-var PaidRegNext= require('./routes/ejsRoutes/paidRegNext.js')
+var Paidreg = require("./routes/ejsRoutes/paidregEjs.js");
+var PaidRegNext = require("./routes/ejsRoutes/paidRegNext.js");
 var eventSingle = require("./routes/ejsRoutes/event_single");
 var Updates = require("./routes/ejsRoutes/updatesEjs");
 var Profile = require("./routes/ejsRoutes/profileEjs");
 var Quotes = require("./routes/ejsRoutes/quotesEjs.js");
 
-const Scanner = require("./routes/ejsRoutes/scanner.js")
+const Scanner = require("./routes/ejsRoutes/scanner.js");
 
 // ADDED NEWS ROUTES-------
 var Privacy = require("./routes/ejsRoutes/privacyEjs");
@@ -151,7 +151,7 @@ app.use("/speaker", Speaker);
 app.use("/programe", Programe);
 app.use("/deconquista", Deconquista);
 app.use("/calender", Calender);
-app.use("/registration",Paidreg)
+app.use("/registration", Paidreg);
 app.use("/updates", Updates);
 app.use("/profile", Profile);
 app.use("/quotes", Quotes);
@@ -159,14 +159,14 @@ app.use("/scan", Scanner);
 // app.use("/nextpage",PaidRegNext)
 // app.use("/register", Register);
 // Redirect /paidreg to /registration
-app.use('/nextpage', (req, res) => {
-  res.redirect('/registration');
+app.use("/nextpage", (req, res) => {
+  res.redirect("/registration");
 });
-app.use('/register', (req, res) => {
-  res.redirect('/registration');
+app.use("/register", (req, res) => {
+  res.redirect("/registration");
 });
-app.use('/paidreg', (req, res) => {
-  res.redirect('/registration');
+app.use("/paidreg", (req, res) => {
+  res.redirect("/registration");
 });
 // LATESTS-----
 app.use("/privacy", Privacy);
@@ -282,7 +282,6 @@ passport.use(
   )
 );
 
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -380,6 +379,13 @@ app.get("/auth/google/callback", async (req, res, next) => {
         // If eventId is not found in the user's events, add it
         user.events.push(eventId); // Add eventId to the user's events array
         await user.save(); // Save the updated user record with the new eventId
+
+        // Update the corresponding Event document with the user's registration
+        await Event.findByIdAndUpdate(
+          eventId,
+          { $push: { users: user._id } },
+          { new: true }
+        );
 
         // Generate QR code data
         const userData = {

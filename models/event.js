@@ -6,6 +6,12 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  users: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "PaidRegistration",
+    },
+  ],
   image: String,
   shortDescription: String,
   description: {
