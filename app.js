@@ -208,10 +208,8 @@ app.use("/api/v1/declined", decline);
 app.use("/api/v1/paid-reg", paidReg);
 
 app.get('/program-schedule', (req, res) => {
-  // Render the EJS view with the PDF file URL
-  res.render('programSchedule', {
-    pdfUrl: '/assets/pdf/Event_Schedule-pdf.pdf',
-  });
+  // Serve the PDF file
+  res.sendFile(path.join(__dirname, '/public/assets/pdf/Event_Schedule-pdf.pdf'));
 });
 
 // ---------------------------- Site Map -------------------------------- //
