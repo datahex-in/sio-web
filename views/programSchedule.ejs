@@ -1,15 +1,26 @@
-<!-- views/program-schedule.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Program Schedule</title>
+  <!-- Include PDFObject library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.4/pdfobject.min.js"></script>
+  <style>
+    #pdf-container {
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
 </head>
 <body>
-  <div class="header-btn">
-    <iframe src="<%= pdfUrl %>" width="100%" height="800px" frameborder="0"></iframe>
-  </div>
+  <div id="pdf-container"></div>
+  <script>
+    // Your PDF rendering logic using PDFObject
+    document.addEventListener('DOMContentLoaded', function() {
+      var pdfUrl = '<%= pdfUrl %>';
+      PDFObject.embed(pdfUrl, "#pdf-container");
+    });
+  </script>
 </body>
 </html>
