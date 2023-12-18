@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/db.js");
 const session = require("express-session");
+const Event = require("./models/event.js");
 
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
@@ -131,9 +132,9 @@ const eventUser = require("./routes/eventUser");
 const leadersNote = require("./routes/leadersNote.js");
 const approved = require("./routes/approval.js");
 const decline = require("./routes/decline.js");
+const attendance = require("./routes/attendance");
 const { errorMonitor } = require("stream");
 const { getS3Middleware } = require("./middleware/s3client.js");
-const Event = require("./models/event.js");
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -206,6 +207,7 @@ app.use("/api/v1/leaders-note", leadersNote);
 app.use("/api/v1/approved", approved);
 app.use("/api/v1/declined", decline);
 app.use("/api/v1/paid-reg", paidReg);
+app.use("/api/v1/attendance", attendance);
 
 app.get("/program-schedule", (req, res) => {
   // Serve the PDF file
