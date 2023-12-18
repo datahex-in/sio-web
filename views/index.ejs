@@ -2,6 +2,37 @@
   <!-- ========== Start header ========== -->
   <%-include("mainHeader.ejs")%>
     <!-- ========== End header ========== -->
+    <style>
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Background with 50% opacity */
+        justify-content: center;
+        align-items: center;
+      }
+    
+      .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+      }
+    
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+      }
+    </style>
+    
 </head>
 <!-- Preloader start -->
 <!-- <div id="preloader">
@@ -142,9 +173,56 @@
   </div>
   </div>
   </div>
+  <!-- Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <p id="popupMessage"></p>
+  </div>
+</div>
   <!-- ========== Start footer ========== -->
   <%-include("mainFooter.ejs")%>
     <!-- ========== End footer ========== -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Function to extract URL parameters
+        function getParameterByName(name, url) {
+          if (!url) url = window.location.href;
+          name = name.replace(/[\[\]]/g, "\\$&");
+          var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+          if (!results) return null;
+          if (!results[2]) return "";
+          return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+    
+        // Function to show a message as a modal popup
+        function showMessageModal() {
+          // Get the message parameter from the URL
+          var message = getParameterByName("msg");
+    
+          if (message) {
+            // Decode the URL-encoded message
+            var decodedMessage = decodeURIComponent(message);
+    
+            // Display the decoded message in the modal
+            document.getElementById("popupMessage").innerHTML = decodedMessage;
+    
+            // Show the modal
+            document.getElementById("myModal").style.display = "flex";
+          }
+        }
+    
+        // Call the function to show the message modal
+        showMessageModal();
+      });
+    
+      // Function to close the modal
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+    </script>
+    
 </body>
 
 </html>

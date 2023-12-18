@@ -163,9 +163,9 @@ app.use("/scan", Scanner);
 app.use("/nextpage", (req, res) => {
   res.redirect("/registration");
 });
-app.use("/register", (req, res) => {
-  res.redirect("/registration");
-});
+// app.use("/register", (req, res) => {
+//   res.redirect("/registration");
+// });
 app.use("/paidreg", (req, res) => {
   res.redirect("/registration");
 });
@@ -207,9 +207,11 @@ app.use("/api/v1/approved", approved);
 app.use("/api/v1/declined", decline);
 app.use("/api/v1/paid-reg", paidReg);
 
-app.get('/program-schedule', (req, res) => {
+app.get("/program-schedule", (req, res) => {
   // Serve the PDF file
-  res.sendFile(path.join(__dirname, '/public/assets/pdf/Event_Schedule-pdf.pdf'));
+  res.sendFile(
+    path.join(__dirname, "/public/assets/pdf/Event_Schedule-pdf.pdf")
+  );
 });
 
 // ---------------------------- Site Map -------------------------------- //
@@ -264,14 +266,6 @@ passport.use(
             name: googleName,
             photo: googlePhoto,
           });
-        } else if (!user.approved) {
-          // If the user is not approved, redirect or handle as needed
-          return done(null, false, {
-            message: "User not approved",
-            email: googleEmail,
-            name: googleName,
-            photo: googlePhoto,
-          });
         } else {
           // If the user already exists and is approved, update their Google ID if it's not already set
           if (!user.googleId) {
@@ -307,17 +301,25 @@ app.get("/auth/google/callback", async (req, res, next) => {
 
       // Handle the case where the user is not registered
       if (!user) {
-        const redirectUrl = `/register?email=${info.email}&name=${info.name}`;
+        const redirectUrl = `/registration?email=${info.email}&name=${info.name}&msg="You are not registered"`;
         return res.redirect(redirectUrl);
       }
-
+      
+      console.log({user})
       const eventId = req.cookies.eventId;
       console.log("eventId : ", eventId);
-
+      if (user.approved == false) {
+        const redirectUrl = `/?msg="You are not Approved by Admin"`;
+        return res.redirect(redirectUrl);
+      }
+      
       // Check if the user's database record already has eventId
       const hasEventId = user.events.includes(eventId);
-
+      
       if (hasEventId || eventId === null) {
+        const message = hasEventId
+          ? "You are already enrolled in this event."
+          : "You are a new enrollee.";
         // If eventId is already in the user's events or is null, redirect to /profile with user data
         const userData = {
           name: user.name, // Replace with actual user data fields
@@ -378,6 +380,7 @@ app.get("/auth/google/callback", async (req, res, next) => {
         const queryParameters = new URLSearchParams({
           ...userData, // Include all existing user data
           qrImageUrl: userData.qrImageUrl, // Append qrImageUrl
+          message: encodeURIComponent(message),
         }).toString();
 
         return res.redirect(`/profile?${queryParameters}`);
@@ -392,6 +395,9 @@ app.get("/auth/google/callback", async (req, res, next) => {
           { $push: { users: user._id } },
           { new: true }
         );
+
+        // Show a message for successful enrollment
+        const message = "You have successfully enrolled in this event.";
 
         // Generate QR code data
         const userData = {
@@ -439,6 +445,7 @@ app.get("/auth/google/callback", async (req, res, next) => {
         const queryParameters = new URLSearchParams({
           ...userData, // Include all existing user data
           qrImageUrl: userData.qrImageUrl, // Append qrImageUrl
+          message: encodeURIComponent(message),
         }).toString();
 
         req.logIn(user, (loginErr) => {

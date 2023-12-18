@@ -643,5 +643,36 @@
         });
       });
     </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Function to extract URL parameters
+        function getParameterByName(name, url) {
+          if (!url) url = window.location.href;
+          name = name.replace(/[\[\]]/g, "\\$&");
+          var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+          if (!results) return null;
+          if (!results[2]) return "";
+          return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+    
+        // Function to show a message as a popup
+        function showMessagePopup() {
+          // Get the message parameter from the URL
+          var message = getParameterByName("msg");
+    
+          if (message) {
+            // Decode the URL-encoded message
+            var decodedMessage = decodeURIComponent(message);
+    
+            // Show the decoded message in an alert without double quotes
+            alert(decodedMessage);
+          }
+        }
+    
+        // Call the function to show the message popup
+        showMessagePopup();
+      });
+    </script>
   </body>
 </html>
