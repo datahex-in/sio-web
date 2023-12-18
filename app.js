@@ -133,6 +133,7 @@ const approved = require("./routes/approval.js");
 const decline = require("./routes/decline.js");
 const { errorMonitor } = require("stream");
 const { getS3Middleware } = require("./middleware/s3client.js");
+const Event = require("./models/event.js");
 
 app.use(logger("dev"));
 app.use(express.json());
