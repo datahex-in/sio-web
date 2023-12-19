@@ -8,14 +8,13 @@ const moment = require("moment");
 // @access    protect
 exports.createAttendance = async (req, res) => {
   try {
-    const mobile = req.body.mobile;
+    const email = req.body.email;
 
     // Check if the user is already registered
-    let existingUser = await PaidRegistration.findOne({ mobileNumber: mobile });
+    let existingUser = await PaidRegistration.findOne({ email: email });
 
     if (!existingUser) {
-      const cleanedMobile = mobile.replace(/^\"|\"$/g, "");
-      existingUser = await PaidRegistration.findById(new Types.ObjectId(cleanedMobile));
+      existingUser = await PaidRegistration.findOne({email: email});
 
       if (!existingUser) {
         return res.status(400).json({
