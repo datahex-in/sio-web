@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>De Conquista</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/decon-logo.svg" />
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>De Conquista</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/decon-logo.svg" />
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com/" />
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;500;600;700;800&amp;family=Open+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+            rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Archivo:wght@300;400;500;600;700&amp;display=swap"
+            rel="stylesheet" />
+        <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" type="text/css" />
+
+        <!-- CSS
+	============================================ -->
+
+        <!-- Icon Font CSS -->
+        <link rel="stylesheet" href="assets/css/all.min.css" />
+        <link rel="stylesheet" href="assets/css/flaticon.css" />
+
+        <!-- Plugins CSS -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="assets/css/magnific-popup.css" />
+        <link rel="stylesheet" href="assets/css/aos.css" />
+        <link rel="stylesheet" href="assets/css/nice-select.css" />
+
+        <!-- Main Style CSS -->
+        <link rel="stylesheet" href="assets/css/style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css" />
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+        <script src="//cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.js"></script>
+
+        <!-- carousel Style CSS -->
+        <link rel="stylesheet" href="assets/css/css/owl.carousel.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css" />
+        <link rel="stylesheet" href="assets/css/css/style.css" />
+        <!-- carousel Style CSS -->
+        <link rel="stylesheet" href="assets/css/css/owl.carousel.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css" />
+        <link rel="stylesheet" href="assets/css/css/style.css" />
+        <%-include("mainHeader.ejs")%>
+    </head>
+
+<body id="bg-color-purple">
+    <div class="main-wrapper">
+        <!-- Header Start -->
+        <!-- Header End -->
+        <!-- Page Banner Start -->
+        <div>
+            <div class="page_backarrow">
+                <a href="/"><i><svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 19 20"
+                            fill="none">
+                            <path
+                                d="M10.0054 0.265434C10.3271 0.587173 10.3564 1.09064 10.0931 1.44542L10.0054 1.54706L2.18829 9.36458L10.0054 17.1821C10.3271 17.5038 10.3564 18.0073 10.0931 18.3621L10.0054 18.4637C9.68366 18.7855 9.18019 18.8147 8.82541 18.5515L8.72376 18.4637L0.265433 10.0054C-0.0563049 9.68365 -0.0855541 9.18019 0.177686 8.82541L0.265433 8.72376L8.72376 0.265434C9.07768 -0.0884781 9.65148 -0.0884781 10.0054 0.265434Z"
+                                fill="#FF4A8C" />
+                        </svg></i></a>
+            </div>
+            <div class="deconquista-page">
+                <div class="container">
+                    <div class="title-para">
+                        <h1 class="about-sio-title" id="deconquista-header">
+                            International Academic Conference
+                        </h1>
+                    </div>
+                    <% deconquistaData.forEach(deconquista=> { %>
+                        <div class="deconquista-img">
+                            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ deconquista.image}` %>"
+                                alt="DeConquista" loading="lazy" />
+                        </div>
+                        <div class="deconquista-desc">
+                            <p>
+                                <%= deconquista.description %>
+                            </p>
+                        </div>
+                        <% }); %>
+                            <!-- ========== Start speaker section ========== -->
+                            <div class="title-para mt-4">
+                                <h1 class="about-sio-title">Speakers</h1>
+                            </div>
+                            <div class="iac_speaker_item">
+                                <% speakerData.forEach(speaker=> { %>
+                                    <div class="iac_card_img">
+                                        <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${speaker.photo}` %>"
+                                            alt="" loading="lazy" />
+                                        <h4 class="iac_card_name">
+                                            <%=speaker.name%>
+                                        </h4>
+                                    </div>
+                                    <% }); %>
+                            </div>
+                            <!-- ========== End speaker section ========== -->
+                </div>
+            </div>
+        </div>
+        <!-- ========== Start footer ========== -->
+        <%-include("mainFooter.ejs")%>
+            <!-- ========== End footer ========== -->
+</body>
+
+</html>
