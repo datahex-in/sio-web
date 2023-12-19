@@ -85,6 +85,10 @@ const paidRegistrationSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    attended: {
+      type: Boolean,
+      default: false,
+    },
     declined: {
       type: Boolean,
       default: false,
