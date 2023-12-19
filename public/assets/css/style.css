@@ -14401,13 +14401,6 @@ html body .hide {
 }
 @media screen and (max-width: 768px) {
   .c-testimonials .c-testimonials__pagination {
-    /* top: 235px;
-    left: 50% !important;
-    width: 100% !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translateX(-50%); */
     display: none;
   }
 }
@@ -16384,3 +16377,73 @@ span {
   background-color: transparent;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
+/***** iac Section *****/
+.iac_speaker_item {
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  gap: 20px;
+  padding: 10px 0px;
+}
+
+.iac_card_img img {
+  margin-top: 5px;
+  height: 180px;
+  width: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.iac_card_img img:hover {
+  cursor: pointer;
+  filter: grayscale(1);
+}
+.iac_card_name {
+  font-family: var(--font-Nutino);
+  color: white;
+  font-size: 20.161px;
+  font-style: normal;
+  text-align: center;
+  font-weight: 600;
+  width: auto;
+}
+/* Responsive layout for tablets */
+@media (max-width: 768px) {
+  .iac_card_img img {
+    display: inline-block;
+    margin-top: 5px;
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  .iac_speaker_item {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Responsive layout for mobile devices */
+@media (max-width: 480px) {
+  .iac_card_img img {
+    display: inline-block;
+    margin-top: 5px;
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  .iac_speaker_item {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .iac_card_name {
+    width: auto;
+    text-align: center;
+    font-size: 14.161px;
+    font-weight: 400;
+  }
+}
+
+/*****  iac End Section *****/

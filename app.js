@@ -84,6 +84,7 @@ var Faq = require("./routes/ejsRoutes/faqEjs");
 var Speaker = require("./routes/ejsRoutes/speakerEjs");
 var Programe = require("./routes/ejsRoutes/programeEjs");
 var Deconquista = require("./routes/ejsRoutes/deconquistaEjs");
+const Iac = require("./routes/ejsRoutes/iacEjs.js");
 var Calender = require("./routes/ejsRoutes/calenderEjs");
 var Register = require("./routes/ejsRoutes/registerEjs");
 var Paidreg = require("./routes/ejsRoutes/paidregEjs.js");
@@ -152,6 +153,7 @@ app.use("/faq", Faq);
 app.use("/speaker", Speaker);
 app.use("/programe", Programe);
 app.use("/deconquista", Deconquista);
+app.use("/iac", Iac);
 app.use("/calender", Calender);
 app.use("/registration", Paidreg);
 app.use("/updates", Updates);
@@ -306,18 +308,18 @@ app.get("/auth/google/callback", async (req, res, next) => {
         const redirectUrl = `/registration?email=${info.email}&name=${info.name}&msg="You are not registered"`;
         return res.redirect(redirectUrl);
       }
-      
-      console.log({user})
+
+      console.log({ user });
       const eventId = req.cookies.eventId;
       console.log("eventId : ", eventId);
       if (user.approved == false) {
         const redirectUrl = `/?msg="You are not Approved by Admin"`;
         return res.redirect(redirectUrl);
       }
-      
+
       // Check if the user's database record already has eventId
       const hasEventId = user.events.includes(eventId);
-      
+
       if (hasEventId || eventId === null) {
         const message = hasEventId
           ? "You are already enrolled in this event."
