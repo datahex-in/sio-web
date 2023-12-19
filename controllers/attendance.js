@@ -1,7 +1,7 @@
 const { default: mongoose, Types } = require("mongoose");
 const Attendance = require("../models/attendance");
-const PaidRegistration = require("../models/paidReg");
 const moment = require("moment");
+const paidReg = require("../models/paidReg");
 
 // @desc      CREATE NEW ATTENDANCE
 // @route     POST /api/v1/attendance
@@ -11,29 +11,29 @@ exports.createAttendance = async (req, res) => {
     const email = req.body.email;
 
     // Check if the user is already registered
-    let existingUser = await PaidRegistration.findOne({ email: email });
+    let existingUser = await paidReg.findOne({ email: email });
 
     if (!existingUser) {
-      existingUser = await PaidRegistration.findOne({email: email});
-
-      if (!existingUser) {
-        return res.status(400).json({
-          success: false,
-          message: "User not registered",
-        });
-      }
-    }
-
-    // Check if the user has already attended
-    if (existingUser.attended) {
       return res.status(400).json({
         success: false,
-        message: "User has already attended",
+        message: "User not registered",
       });
     }
 
+    // Enable After testing .... :
+
+    // Check if the user has already attended
+    // if (existingUser.attended) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: "User has already attended",
+    //   });
+    // }
+
     // Check if the user is already in Attendance model
-    const existingAttendance = await Attendance.findOne({ user: existingUser._id });
+    const existingAttendance = await Attendance.findOne({
+      user: existingUser._id,
+    });
 
     if (existingAttendance) {
       return res.status(400).json({
@@ -42,7 +42,7 @@ exports.createAttendance = async (req, res) => {
       });
     }
 
-    // Mark attended in PaidRegistration model
+    // Mark attended in paidReg model
     existingUser.attended = true;
     await existingUser.save();
 
@@ -84,7 +84,9 @@ exports.getAttendance = async (req, res) => {
       });
     }
 
-    const query = searchkey ? { ...req.filter, day: { $regex: searchkey, $options: "i" } } : req.filter;
+    const query = searchkey
+      ? { ...req.filter, day: { $regex: searchkey, $options: "i" } }
+      : req.filter;
 
     const [totalCount, filterCount, data, regTypeCounts] = await Promise.all([
       parseInt(skip) === 0 && Attendance.countDocuments(),
@@ -94,7 +96,7 @@ exports.getAttendance = async (req, res) => {
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 0)
         .sort({ _id: -1 }),
-      PaidRegistration.aggregate([
+      paidReg.aggregate([
         { $match: { regType: { $exists: true } } },
         {
           $group: {
@@ -110,7 +112,10 @@ exports.getAttendance = async (req, res) => {
       return acc;
     }, {});
 
-    const allTypeCount = Object.values(regTypeCountMap).reduce((acc, count) => acc + count, 0);
+    const allTypeCount = Object.values(regTypeCountMap).reduce(
+      (acc, count) => acc + count,
+      0
+    );
 
     res.status(200).json({
       success: true,
@@ -137,9 +142,13 @@ exports.getAttendance = async (req, res) => {
 // @access    protect
 exports.updateAttendance = async (req, res) => {
   try {
-    const attendance = await Attendance.findByIdAndUpdate(req.body.id, req.body, {
-      new: true,
-    });
+    const attendance = await Attendance.findByIdAndUpdate(
+      req.body.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
 
     if (!attendance) {
       return res.status(404).json({
@@ -194,7 +203,10 @@ exports.deleteAttendance = async (req, res) => {
 // @access    protect
 exports.select = async (req, res) => {
   try {
-    const items = await Attendance.find({}, { _id: 0, id: "$_id", value: "$day" });
+    const items = await Attendance.find(
+      {},
+      { _id: 0, id: "$_id", value: "$day" }
+    );
     console.log(items);
     return res.status(200).send(items);
   } catch (err) {

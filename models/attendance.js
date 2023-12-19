@@ -4,7 +4,7 @@ const AttendanceSchema = new mongoose.Schema(
     {
         user: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Registration",
+            ref: "PaidRegistration",
         },
         date: {
             type: Date,
