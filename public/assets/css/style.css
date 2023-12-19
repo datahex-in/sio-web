@@ -16447,3 +16447,40 @@ span {
 }
 
 /*****  iac End Section *****/
+
+/*======================
+    404 page
+=======================*/
+
+.page_404 {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.four_zero_four_bg {
+  background-image: url("/assets/images/decon-logo.svg");
+  width: 250px;
+  height: 200px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.content_box_404 h3 {
+  margin-bottom: 10px;
+}
+.content_box_404 p {
+  margin-bottom: 10px;
+}
+.link_404 {
+  margin-bottom: 20px;
+  color: #fff !important;
+  background: #652a7a;
+  padding: 5px 20px;
+  border-radius: 20px;
+  display: inline-block;
+}
