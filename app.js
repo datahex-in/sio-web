@@ -313,7 +313,7 @@ app.get("/auth/google/callback", async (req, res, next) => {
       const eventId = req.cookies.eventId;
       console.log("eventId : ", eventId);
       if (user.approved == false) {
-        const redirectUrl = `/?msg="You are not Approved by Admin"`;
+        const redirectUrl = `/?msg= You are not Approved by Admin. Please contact 9746552330 to get your registration approved.`;
         return res.redirect(redirectUrl);
       }
 
