@@ -20,15 +20,13 @@ exports.createAttendance = async (req, res) => {
       });
     }
 
-    // Enable After testing .... :
-
     // Check if the user has already attended
-    // if (existingUser.attended) {
-    //   return res.status(400).json({
-    //     success: false,
-    //     message: "User has already attended",
-    //   });
-    // }
+    if (existingUser.attended) {
+      return res.status(400).json({
+        success: false,
+        message: "User has already attended",
+      });
+    }
 
     // Check if the user is already in Attendance model
     const existingAttendance = await Attendance.findOne({
@@ -88,7 +86,7 @@ exports.getAttendance = async (req, res) => {
       ? { ...req.filter, day: { $regex: searchkey, $options: "i" } }
       : req.filter;
 
-    const [totalCount, filterCount, data, regTypeCounts] = await Promise.all([
+    const [totalAttendanceCount, filterCount, data] = await Promise.all([
       parseInt(skip) === 0 && Attendance.countDocuments(),
       parseInt(skip) === 0 && Attendance.countDocuments(query),
       Attendance.find(query)
@@ -96,37 +94,25 @@ exports.getAttendance = async (req, res) => {
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 0)
         .sort({ _id: -1 }),
-      paidReg.aggregate([
-        { $match: { regType: { $exists: true } } },
-        {
-          $group: {
-            _id: "$regType",
-            count: { $sum: 1 },
-          },
-        },
-      ]),
     ]);
 
-    const regTypeCountMap = regTypeCounts.reduce((acc, { _id, count }) => {
-      acc[`${_id}Count`] = count;
-      return acc;
-    }, {});
-
-    const allTypeCount = Object.values(regTypeCountMap).reduce(
-      (acc, count) => acc + count,
-      0
-    );
+    const [approved, pending, totalReg] = await Promise.all([
+      paidReg.countDocuments({ approved: true }),
+      paidReg.countDocuments({ approved: false }),
+      paidReg.countDocuments(),
+    ]);
 
     res.status(200).json({
       success: true,
       message: "Retrieved all attendance",
       response: data,
       count: data.length,
+      approved,
+      pending,
+      totalReg,
       attendanceCount: data.length,
-      totalCount: totalCount || 0,
+      totalAttendanceCount: totalAttendanceCount || 0,
       filterCount: filterCount || 0,
-      allTypeCount,
-      ...regTypeCountMap,
     });
   } catch (err) {
     console.log(err);
