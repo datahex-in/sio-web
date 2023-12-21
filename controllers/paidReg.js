@@ -78,10 +78,15 @@ exports.getRegistration = async (req, res) => {
 
     const query = {
       ...req.filter,
-      ...(searchkey && {
-        name: { $regex: searchkey, $options: "i" },
-      }),
+      $or: [
+        { name: { $regex: searchkey, $options: "i" } },
+        { district: { $regex: searchkey, $options: "i" } },
+        { institution: { $regex: searchkey, $options: "i" } },
+        { email: { $regex: searchkey, $options: "i" } },
+        { course: { $regex: searchkey, $options: "i" } },
+      ],
     };
+    console.log("Generated Query:", query);
     const [totalCount, filterCount, data] = await Promise.all([
       parseInt(skip) === 0 && PaidRegistration.countDocuments(),
       parseInt(skip) === 0 && PaidRegistration.countDocuments(query),
