@@ -44,14 +44,11 @@
                                   <div class="iac_card_img">
                                     <div class="gallery_loader"></div> <!-- Loader div -->
                                     <img
-                                      src="<%= speaker.photo ? `https://event-manager.syd1.cdn.digitaloceanspaces.com/${speaker.photo}` : '/path/to/dummy-image.jpg' %>"
+                                      src="<%= speaker.image ? `https://event-manager.syd1.cdn.digitaloceanspaces.com/${speaker.image}` : '/path/to/dummy-image.jpg' %>"
                                       alt=""
                                       loading="lazy"
                                       onload="removeLoader(this)" 
                                     />
-                                    <h4 class="iac_card_name">
-                                      <%= speaker.name %>
-                                    </h4>
                                   </div>
                                 <% }); %>
                               </div>
