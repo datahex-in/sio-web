@@ -16390,10 +16390,10 @@ span {
 
 .iac_card_img img {
   margin-top: 5px;
-  height: 180px;
   width: 180px;
-  object-fit: cover;
-  border-radius: 50%;
+  height: 220px;
+  border-radius: 1px;
+  object-fit: fill;
 }
 .iac_card_img img:hover {
   cursor: pointer;
@@ -16402,21 +16402,19 @@ span {
 .iac_card_name {
   font-family: var(--font-Nutino);
   color: white;
-  font-size: 20.161px;
+  font-size: 14.161px;
   font-style: normal;
   text-align: center;
   font-weight: 600;
   width: auto;
+  margin-top: 5px;
 }
 /* Responsive layout for tablets */
 @media (max-width: 768px) {
   .iac_card_img img {
-    display: inline-block;
     margin-top: 5px;
-    height: 150px;
     width: 150px;
-    object-fit: cover;
-    border-radius: 50%;
+    height: 180px;
   }
   .iac_speaker_item {
     grid-template-columns: repeat(3, 1fr);
@@ -16427,12 +16425,9 @@ span {
 /* Responsive layout for mobile devices */
 @media (max-width: 480px) {
   .iac_card_img img {
-    display: inline-block;
     margin-top: 5px;
-    height: 150px;
     width: 150px;
-    object-fit: cover;
-    border-radius: 50%;
+    height: 180px;
   }
   .iac_speaker_item {
     grid-template-columns: repeat(2, 1fr);
