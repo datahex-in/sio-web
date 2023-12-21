@@ -122,49 +122,48 @@
         <div class="c-testimonials">
           <ul class="c-testimonials__items swiper-wrapper">
             <!-- CARD 1 -->
-            <% eventData.forEach(item=> { %>
-              <li class="c-testimonials__item c-card-testimonial swiper-slide">
-                <div class="c-card-testimonial__profile">
-                  <a href="/event_single/<%= item._id %>">
-                    <img style="object-fit: cover;"
-                      src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ item.image}` %>" alt=""
-                      class="c-card-testimonial__image">
-                </div>
-                <div class="c-card-testimonial__description">
-                  <div class="c-card-testimonial__author">
-                    <p>
-                      <% const eventDate=new Date(item.date); %>
-                        <% const months=['JAN', 'FEB' , 'MAR' , 'APR' , 'MAY' , 'JUN' , 'JUL' , 'AUG' , 'SEP' , 'OCT'
-                          , 'NOV' , 'DEC' ]; %>
-                          <% const monthAbbreviation=months[eventDate.getMonth()]; %>
-                            <% const day=eventDate.getDate(); %>
-                              <% const dayOfWeek=['SUNDAY', 'MONDAY' , 'TUESDAY' , 'WEDNESDAY' , 'THURSDAY' , 'FRIDAY'
-                                , 'SATURDAY' ][eventDate.getDay()]; %>
-                                <%= monthAbbreviation %>
-                                  <%= day %>
-                                    <%= dayOfWeek %>
-                    </p>
+            <% eventData.forEach(item => { %>
+              <% const eventDate = new Date(item.date); %>
+              <% const currentDate = new Date(); %>
+              <% if (eventDate >= currentDate) { %>
+                <li class="c-testimonials__item c-card-testimonial swiper-slide">
+                  <div class="c-card-testimonial__profile">
+                    <a href="/event_single/<%= item._id %>">
+                      <img style="object-fit: cover;"
+                      src="<%= item.image ? `https://event-manager.syd1.cdn.digitaloceanspaces.com/${item.image}` : '/assets/images/no-image.jpg' %>"
+                      alt="loading" class="c-card-testimonial__image">                 
+                    </a>
                   </div>
-                  <div class="c-card-testimonial__excerpt">
-                    <p>
-                      <% const eventTime=new Date(item.time); %>
-                        <% const hours=eventTime.getHours(); %>
-                          <% const minutes=eventTime.getMinutes(); %>
-                            <% const timeFormatted=(hours % 12 || 12) + ':' + (minutes < 10 ? '0' : '' ) + minutes + ' '
-                              + (hours>= 12 ? 'PM' : 'AM'); %> <%= timeFormatted %> | <%= item.venue %>
-                                  </>
-                    </p>
+                  <div class="c-card-testimonial__description">
+                    <div class="c-card-testimonial__author">
+                      <p>
+                        <% const months=['JAN', 'FEB' , 'MAR' , 'APR' , 'MAY' , 'JUN' , 'JUL' , 'AUG' , 'SEP' , 'OCT' , 'NOV' , 'DEC' ]; %>
+                        <% const monthAbbreviation=months[eventDate.getMonth()]; %>
+                        <% const day=eventDate.getDate(); %>
+                        <% const dayOfWeek=['SUNDAY', 'MONDAY' , 'TUESDAY' , 'WEDNESDAY' , 'THURSDAY' , 'FRIDAY' , 'SATURDAY'][eventDate.getDay()]; %>
+                        <%= monthAbbreviation %>
+                        <%= day %>
+                        <%= dayOfWeek %>
+                      </p>
+                    </div>
+                    <div class="c-card-testimonial__excerpt">
+                      <p>
+                        <% const eventTime = new Date(item.time); %>
+                        <% const hours = eventTime.getHours(); %>
+                        <% const minutes = eventTime.getMinutes(); %>
+                        <% const timeFormatted = (hours % 12 || 12) + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM'); %>
+                        <%= timeFormatted %> | <%= item.venue %>
+                      </p>
+                    </div>
+                    <div class="swiper_items">
+                      <h5>Swipe for More</h5>
+                      <h6 class="swipe_button"></h6>
+                    </div>
                   </div>
-                  <div class="swiper_items">
-                    <h5>Swipe for More</h5>
-                    <h6 class="swipe_button">
-                    </h6>
-                  </div>
-                  </a>
-                </div>
-              </li>
-              <% }); %>
-          </ul>
+                </li>
+              <% } %>
+            <% }); %>
+          </ul>          
           <div class="c-testimonials__upcoming">
             <img src="/assets/images/upcoming_events.svg" alt="">
           </div>

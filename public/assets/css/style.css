@@ -764,6 +764,9 @@ h1 {
 .gallery_item {
   position: relative;
 }
+.iac_card_img{
+  position: relative;
+}
 .gallery_loader {
   display: block;
   position: absolute;
