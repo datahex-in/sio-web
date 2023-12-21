@@ -134,6 +134,7 @@ const leadersNote = require("./routes/leadersNote.js");
 const approved = require("./routes/approval.js");
 const decline = require("./routes/decline.js");
 const attendance = require("./routes/attendance");
+const speakerPoster = require("./routes/speakerPoster");
 const { errorMonitor } = require("stream");
 const { getS3Middleware } = require("./middleware/s3client.js");
 
@@ -210,6 +211,7 @@ app.use("/api/v1/approved", approved);
 app.use("/api/v1/declined", decline);
 app.use("/api/v1/paid-reg", paidReg);
 app.use("/api/v1/attendance", attendance);
+app.use("/api/v1/speaker-poster", speakerPoster);
 
 app.get("/program-schedule", (req, res) => {
   // Serve the PDF file
