@@ -36,6 +36,16 @@ exports.getRegistration = async (req, res) => {
       });
     }
 
+    if (req.filter.attended === "notattended") {
+      req.filter.attended = { $ne: true };
+    } else if (req.filter.attended === "all") {
+      delete req.filter.attended;
+    } else if (req.filter.attended === "attended") {
+      req.filter.attended = { $ne: false };
+    } else {
+      delete req.filter.attended;
+    }
+
     if (req.filter.approved === "notapproved") {
       req.filter.approved = { $ne: true };
     } else if (req.filter.approved === "all") {

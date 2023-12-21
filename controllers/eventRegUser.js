@@ -1,6 +1,7 @@
 const { default: mongoose } = require("mongoose");
 const Event = require("../models/event");
 const Registration = require("../models/Registration");
+const paidReg = require("../models/paidReg");
 
 let eventId;
 
@@ -15,7 +16,7 @@ exports.getRegEvent = async (req, res) => {
 
       // If the event is found, retrieve registered users for that event
       if (eventData) {
-        const response = await Registration.find({ events: event })
+        const response = await paidReg.find({ events: event })
           .populate("events") // Populate the 'events' field with Event documents
           .exec();
 
