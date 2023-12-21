@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <head>
     <!-- ========== Start header ========== -->
     <%-include("mainHeader.ejs")%>
-    <!-- ========== End header ========== -->
+      <!-- ========== End header ========== -->
   </head>
-
   <body id="bg-color-purple">
       <div class="page_backarrow">
         <a href="/"
@@ -28,7 +23,7 @@
       <div class="header-programe" >
         <div class="container">
           <div class="updates-title">
-            <h1>updates</h1>
+            <h1>Updates</h1>
           </div>
           <div class="updates-menu">
             <ul>
@@ -100,8 +95,6 @@
                   </p>
                 </div>
               </div>
-              
-      
               <!-- The modal -->
               <div id="myModal" class="modal">
                 <div class="modal-content">
@@ -175,8 +168,6 @@
           </div>
         </div>
       </div>
-      
-
       <div class="container" id="Article-section" style="display: none">
         <div class="article-section">
           <div class="container">
@@ -329,38 +320,43 @@
         <div class="gallery_column_items">
           <% galleryData.forEach((gallery, index) => { %>
             <div class="gallery_item" >
+              <div class="gallery_loader"></div> <!-- Loader div -->
               <img
                 src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${gallery.image}` %>"
                 class="gallery_img"
                 loading="lazy"
                 alt="<%= gallery.title %>"
                 data-index="<%= index %>"
+                onload="removeLoader(this)"
               />
               <h5 class="gallery_title">
                 <%= gallery.title %>
               </h5>
-            </div>
-           
+            </div>   
           <% }); %>
         </div>
       </div>
     </div>
   </div>
-
   <!-- Modal -->
   <div class="modal" id="imageModal">
     <span class="close" id="closeModal">&times;</span>
     <img class="modal-content" id="modalImage" loading="lazy" alt="">
   </div>
 </div>
-
-
-    
     <div class="footer_hide_mobile">
       <!-- ========== Start footer ========== -->
       <%-include("mainFooter.ejs")%>
       <!-- ========== End footer ========== -->
     </div>
+    <script>
+    function removeLoader(img) {
+      const loader = img.previousElementSibling; // Assuming the loader is the previous sibling
+      if (loader && loader.classList.contains('gallery_loader')) {
+        loader.style.display = 'none';
+      }
+    }
+  </script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Function to toggle the "active" class for navigation items
@@ -403,7 +399,6 @@
         toggleActiveNavigation("News");
       });
     </script>
-  </body>
 
   <script>
     // Function to open the modal with the specified news item's description
@@ -467,4 +462,4 @@ closeButton.addEventListener("click", function () {
   modal.style.display = "none";
 });
 </script>
-</html>
+</body>
