@@ -1,74 +1,71 @@
 <head>
-    <!-- ========== Start header ========== -->
-    <%-include("mainHeader.ejs")%>
+  <!-- ========== Start header ========== -->
+  <%-include("mainHeader.ejs")%>
     <!-- ========== End header ========== -->
-    </head>
+</head>
+
 <body id="bg-color-purple">
-    <div class="main-wrapper">
-        <!-- Header Start -->
-        <!-- Header End -->
-        <!-- Page Banner Start -->
-        <div>
-            <div class="page_backarrow">
-                <a href="/"><i><svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 19 20"
-                            fill="none">
-                            <path
-                                d="M10.0054 0.265434C10.3271 0.587173 10.3564 1.09064 10.0931 1.44542L10.0054 1.54706L2.18829 9.36458L10.0054 17.1821C10.3271 17.5038 10.3564 18.0073 10.0931 18.3621L10.0054 18.4637C9.68366 18.7855 9.18019 18.8147 8.82541 18.5515L8.72376 18.4637L0.265433 10.0054C-0.0563049 9.68365 -0.0855541 9.18019 0.177686 8.82541L0.265433 8.72376L8.72376 0.265434C9.07768 -0.0884781 9.65148 -0.0884781 10.0054 0.265434Z"
-                                fill="#FF4A8C" />
-                        </svg></i></a>
-            </div>
-            <div class="deconquista-page">
-                <div class="container">
-                    <div class="title-para">
-                        <h1 class="about-sio-title" id="deconquista-header">
-                            International Academic Conference
-                        </h1>
-                    </div>
-                    <% deconquistaData.forEach(deconquista=> { %>
-                        <div class="deconquista-img">
-                            <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ deconquista.image}` %>"
-                                alt="DeConquista" loading="lazy" />
-                        </div>
-                        <div class="deconquista-desc">
-                            <p>
-                                <%= deconquista.description %>
-                            </p>
-                        </div>
-                        <% }); %>
-                            <!-- ========== Start speaker section ========== -->
-                            <div class="title-para mt-4">
-                                <h1 class="about-sio-title">Speakers</h1>
-                            </div>
-                            <div class="iac_speaker_item">
-                                <% speakerData.forEach(speaker => { %>
-                                  <div class="iac_card_img">
-                                    <div class="gallery_loader"></div> <!-- Loader div -->
-                                    <img
-                                      src="<%= speaker.image ? `https://event-manager.syd1.cdn.digitaloceanspaces.com/${speaker.image}` : '/path/to/dummy-image.jpg' %>"
-                                      alt=""
-                                      loading="lazy"
-                                      onload="removeLoader(this)" 
-                                    />
-                                  </div>
-                                <% }); %>
-                              </div>
-              <!-- ========== End speaker section ========== -->
-                </div>
-            </div>
-        </div>
-        <div class="footer_hide_mobile">
-            <!-- ========== Start footer ========== -->
-            <%- include("mainFooter.ejs") %>
-              <!-- ========== End footer ========== -->
+  <div class="main-wrapper">
+    <!-- Header Start -->
+    <!-- Header End -->
+    <!-- Page Banner Start -->
+    <div>
+      <div class="page_backarrow">
+        <a href="/"><i><svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 19 20" fill="none">
+              <path
+                d="M10.0054 0.265434C10.3271 0.587173 10.3564 1.09064 10.0931 1.44542L10.0054 1.54706L2.18829 9.36458L10.0054 17.1821C10.3271 17.5038 10.3564 18.0073 10.0931 18.3621L10.0054 18.4637C9.68366 18.7855 9.18019 18.8147 8.82541 18.5515L8.72376 18.4637L0.265433 10.0054C-0.0563049 9.68365 -0.0855541 9.18019 0.177686 8.82541L0.265433 8.72376L8.72376 0.265434C9.07768 -0.0884781 9.65148 -0.0884781 10.0054 0.265434Z"
+                fill="#FF4A8C" />
+            </svg></i></a>
+      </div>
+      <div class="deconquista-page">
+        <div class="container">
+          <div class="title-para">
+            <h1 class="about-sio-title" style="margin-left: 15px;" id="deconquista-header">
+              International Academic Conference
+            </h1>
           </div>
-          <script>
-            function removeLoader(img) {
-              const loader = img.previousElementSibling; // Assuming the loader is the previous sibling
-              if (loader && loader.classList.contains('gallery_loader')) {
-                loader.style.display = 'none';
-              }
-            }
-          </script>   
+          <% deconquistaData.forEach(deconquista=> { %>
+            <div class="deconquista-img">
+              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ deconquista.image}` %>"
+                alt="DeConquista" loading="lazy" />
+            </div>
+            <div class="deconquista-desc">
+              <p>
+                <%= deconquista.description %>
+              </p>
+            </div>
+            <% }); %>
+              <!-- ========== Start speaker section ========== -->
+              <div class="title-para mt-4">
+                <h1 class="about-sio-title">Speakers</h1>
+              </div>
+              <div class="iac_speaker_item">
+                <% speakerData.forEach(speaker=> { %>
+                  <div class="iac_card_img">
+                    <div class="gallery_loader"></div> <!-- Loader div -->
+                    <img
+                      src="<%= speaker.image ? `https://event-manager.syd1.cdn.digitaloceanspaces.com/${speaker.image}` : '/path/to/dummy-image.jpg' %>"
+                      alt="" loading="lazy" onload="removeLoader(this)" />
+                  </div>
+                  <% }); %>
+              </div>
+              <!-- ========== End speaker section ========== -->
+        </div>
+      </div>
+    </div>
+    <div class="footer_hide_mobile">
+      <!-- ========== Start footer ========== -->
+      <%- include("mainFooter.ejs") %>
+        <!-- ========== End footer ========== -->
+    </div>
+    <script>
+      function removeLoader(img) {
+        const loader = img.previousElementSibling; // Assuming the loader is the previous sibling
+        if (loader && loader.classList.contains('gallery_loader')) {
+          loader.style.display = 'none';
+        }
+      }
+    </script>
 </body>
 
 </html>
