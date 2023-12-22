@@ -222,10 +222,10 @@ exports.revokeAttendance = async (req, res) => {
     }
 
     // Check if the user has already attended
-    if (existingUser.attended) {
+    if (existingUser.attended == false) {
       return res.status(400).json({
         success: false,
-        message: "User has already attended",
+        message: "User has already Revoked",
       });
     }
 
@@ -234,10 +234,10 @@ exports.revokeAttendance = async (req, res) => {
       user: existingUser._id,
     });
 
-    if (existingAttendance) {
+    if (!existingAttendance) {
       return res.status(400).json({
         success: false,
-        message: "User already in Attendance",
+        message: "User already in Revoked",
       });
     }
 
@@ -254,7 +254,7 @@ exports.revokeAttendance = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Attendance Marked successfully",
+      message: "Attendance Revoked successfully",
       data: newAttendance,
       userData: existingUser,
     });
