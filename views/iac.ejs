@@ -24,11 +24,13 @@
               International Academic Conference
             </h1>
           </div>
-          <% deconquistaData.forEach(deconquista=> { %>
-            <div class="deconquista-img">
-              <img src="<%= `https://event-manager.syd1.cdn.digitaloceanspaces.com/${ deconquista.image}` %>"
-                alt="DeConquista" loading="lazy" />
+          <div class="deconquista-img iac-banner-image">
+            <img src="/assets/images/Iac-img.jpg" alt="DeConquista" loading="lazy" />
+            <div class="header-btn iac-program-schedule">
+              <a href="/program-schedule" class="btn-2 button-glow ">Program Schedule</a>
             </div>
+          </div>
+          <% deconquistaData.forEach(deconquista=> { %>
             <div class="deconquista-desc">
               <p>
                 <%= deconquista.description %>
@@ -43,9 +45,12 @@
                 <% speakerData.forEach(speaker=> { %>
                   <div class="iac_card_img">
                     <div class="gallery_loader"></div> <!-- Loader div -->
-                    <img
-                      src="<%= speaker.image ? `https://event-manager.syd1.cdn.digitaloceanspaces.com/${speaker.image}` : '/path/to/dummy-image.jpg' %>"
-                      alt="" loading="lazy" onload="removeLoader(this)" />
+
+                    <div class="class fade-left">
+                      <img
+                        src="<%= speaker.image ? `https://event-manager.syd1.cdn.digitaloceanspaces.com/${speaker.image}` : '/path/to/dummy-image.jpg' %>"
+                        alt="" loading="lazy" onload="removeLoader(this)" />
+                    </div>
                   </div>
                   <% }); %>
               </div>
