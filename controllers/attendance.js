@@ -21,7 +21,7 @@ exports.createAttendance = async (req, res) => {
     }
 
     // Check if the user has already attended
-    if (existingUser.attended) {
+    if (existingUser.attended == true) {
       return res.status(400).json({
         success: false,
         message: "User has already attended",
@@ -37,6 +37,7 @@ exports.createAttendance = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "User already in Attendance",
+        user: existingAttendance,
       });
     }
 
@@ -200,6 +201,54 @@ exports.select = async (req, res) => {
     res.status(400).json({
       success: false,
       message: err.toString(),
+    });
+  }
+};
+
+// @desc      CREATE NEW ATTENDANCE
+// @route     POST /api/v1/attendance/revoke
+// @access    protect
+exports.revokeAttendance = async (req, res) => {
+  try {
+    const email = req.body.email;
+
+    // Check if the user is already registered
+    let existingUser = await paidReg.findOne({ email: email });
+
+    if (!existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: "User not registered",
+      });
+    }
+
+    // Check if the user has already attended
+    if (existingUser.attended == false) {
+      return res.status(400).json({
+        success: false,
+        message: "User has already Revoked",
+      });
+    }
+
+    // Check if the user is already in Attendance model
+    const existingAttendance = await Attendance.deleteOne({
+      user: existingUser._id,
+    });    
+
+    // Mark attended in paidReg model
+    existingUser.attended = false;
+    await existingUser.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Attendance Revoked successfully",
+      userData: existingUser,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
     });
   }
 };

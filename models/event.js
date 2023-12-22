@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const eventSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true,
   },
   users: [
     {
@@ -16,16 +15,13 @@ const eventSchema = new mongoose.Schema({
   shortDescription: String,
   description: {
     type: String,
-    required: true,
   },
   theme: {
     type: String,
-    required: true,
   },
   venue: String,
   date: {
     type: Date,
-    required: true,
   },
   time: {
     type: String,
@@ -56,7 +52,6 @@ const eventSchema = new mongoose.Schema({
       "Book Talks",
       "Online Academic Conclaves",
     ],
-    required: true,
   },
 
   link: {
@@ -68,18 +63,18 @@ const eventSchema = new mongoose.Schema({
 const Event = mongoose.model("Event", eventSchema);
 
 // Add a virtual property to the schema to get the formatted date in IST
-eventSchema.virtual('formattedDate').get(function() {
+eventSchema.virtual("formattedDate").get(function () {
   const options = {
-    timeZone: 'Asia/Kolkata', // IST timezone
+    timeZone: "Asia/Kolkata", // IST timezone
     hour12: true, // 12-hour format
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
   };
 
-  return this.date.toLocaleString('en-US', options);
+  return this.date.toLocaleString("en-US", options);
 });
 
 module.exports = Event;
