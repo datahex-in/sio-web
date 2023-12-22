@@ -6,6 +6,7 @@ const {
   updateAttendance,
   deleteAttendance,
   select,
+  revokeAttendance
   // getByFranchise,
 } = require("../controllers/attendance");
 // Middleware
@@ -20,5 +21,6 @@ router
   .delete(deleteAttendance);
 
 router.get("/select", reqFilter, select);
+router.post("/revoke", revokeAttendance);
 
 module.exports = router;
