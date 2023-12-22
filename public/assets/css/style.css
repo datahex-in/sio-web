@@ -15491,8 +15491,8 @@ html body .hide {
 }
 @media (max-width: 768px) {
   .btn_register {
-    top: 45px;
-    right: 15px;
+    top: 42px;
+    right: 3px;
     transform: translate(-20%, -50%);
   }
   .testimonialphone {
