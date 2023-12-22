@@ -21,7 +21,7 @@ exports.createAttendance = async (req, res) => {
     }
 
     // Check if the user has already attended
-    if (existingUser.attended) {
+    if (existingUser.attended == true) {
       return res.status(400).json({
         success: false,
         message: "User has already attended",
@@ -37,6 +37,7 @@ exports.createAttendance = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "User already in Attendance",
+        user: existingAttendance,
       });
     }
 
@@ -234,28 +235,13 @@ exports.revokeAttendance = async (req, res) => {
       user: existingUser._id,
     });    
 
-    if (!existingAttendance) {
-      return res.status(400).json({
-        success: false,
-        message: "User already in Revoked",
-      });
-    }
-
     // Mark attended in paidReg model
     existingUser.attended = false;
     await existingUser.save();
 
-    // Save the user in Attendance collection
-    const newAttendance = await Attendance.create({
-      user: existingUser._id,
-      date: moment().toDate(), // Save current date using moment
-      status: false,
-    });
-
     res.status(200).json({
       success: true,
       message: "Attendance Revoked successfully",
-      data: newAttendance,
       userData: existingUser,
     });
   } catch (err) {
