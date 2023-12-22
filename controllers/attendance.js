@@ -203,3 +203,66 @@ exports.select = async (req, res) => {
     });
   }
 };
+
+// @desc      CREATE NEW ATTENDANCE
+// @route     POST /api/v1/attendance/revoke
+// @access    protect
+exports.revokeAttendance = async (req, res) => {
+  try {
+    const email = req.body.email;
+
+    // Check if the user is already registered
+    let existingUser = await paidReg.findOne({ email: email });
+
+    if (!existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: "User not registered",
+      });
+    }
+
+    // Check if the user has already attended
+    if (existingUser.attended) {
+      return res.status(400).json({
+        success: false,
+        message: "User has already attended",
+      });
+    }
+
+    // Check if the user is already in Attendance model
+    const existingAttendance = await Attendance.findOne({
+      user: existingUser._id,
+    });
+
+    if (existingAttendance) {
+      return res.status(400).json({
+        success: false,
+        message: "User already in Attendance",
+      });
+    }
+
+    // Mark attended in paidReg model
+    existingUser.attended = false;
+    await existingUser.save();
+
+    // Save the user in Attendance collection
+    const newAttendance = await Attendance.create({
+      user: existingUser._id,
+      date: moment().toDate(), // Save current date using moment
+      status: false,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Attendance Marked successfully",
+      data: newAttendance,
+      userData: existingUser,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
