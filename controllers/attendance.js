@@ -230,7 +230,7 @@ exports.revokeAttendance = async (req, res) => {
     }
 
     // Check if the user is already in Attendance model
-    const existingAttendance = await Attendance.findOne({
+    const existingAttendance = await Attendance.findOneAndDelete({
       user: existingUser._id,
     });
 
