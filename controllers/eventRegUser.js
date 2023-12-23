@@ -10,36 +10,45 @@ exports.getRegEvent = async (req, res) => {
     const { id, skip, limit, searchkey, event } = req.query;
     console.log(req.query);
     eventId = event;
-    if (event && mongoose.isValidObjectId(event)) {
-      // Find the event by ID
-      const eventData = await Event.findById(event);
-
-      // If the event is found, retrieve registered users for that event
-      if (eventData) {
-        const response = await paidReg.find({ events: event })
-          .populate("events") // Populate the 'events' field with Event documents
-          .exec();
-
-        return res.status(200).json({
-          success: true,
-          message: "Retrieved specific event and its registered users",
-          event,
-          response,
-        });
-      }
-    }
 
     const query = {
       ...req.filter,
       ...(searchkey && {
         title: { $regex: searchkey, $options: "i" },
       }),
+      
     };
+    if (event && mongoose.isValidObjectId(event)) {
+      // Find the event by ID
+      const eventData = await Event.findById(event);
+
+      // If the event is found, retrieve registered users for that event
+      if (eventData) {
+        // Find registered users for the specific event and populate the 'events' field
+        const response = await paidReg.find({ events: event })
+          .populate("events")
+          .exec();
+      
+        // Get the total count of registered users for the specific event
+        const totalCount = await paidReg.countDocuments({ events: event });
+      
+        // Return the response with the list of users and the total count
+        return res.status(200).json({
+          success: true,
+          message: "Retrieved specific event and its registered users",
+          event,
+          count: response.length,
+          filterCount: response.length,
+          totalCount: totalCount || 0,
+          response,
+        });
+      }
+    }
 
     const [totalCount, filterCount, data] = await Promise.all([
-      parseInt(skip) === 0 && Registration.countDocuments(),
-      parseInt(skip) === 0 && Registration.countDocuments(query),
-      Registration.find(query)
+      parseInt(skip) === 0 && paidReg.countDocuments(),
+      parseInt(skip) === 0 && paidReg.countDocuments(query),
+      paidReg.find(query)
         .skip(parseInt(skip) || 0)
         .limit(parseInt(limit) || 0)
         .sort({ _id: -1 }),
